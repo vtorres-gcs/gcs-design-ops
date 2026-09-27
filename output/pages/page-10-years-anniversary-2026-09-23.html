@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Years of Global Citizen Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Yrsa:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../gcs-design-system/styles.css">
+<link rel="stylesheet" href="../../../gcs-design-system/components/core/primitives/tables.css">
+<script src="../../../gcs-design-system/assets/icons/icon-loader.js"></script>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:var(--font-sans);background:var(--card);color:var(--foreground)}
+  img,svg{display:block;max-width:100%}
+  h1,h2,h3,p{margin:0}
+  a,button{font:inherit;color:inherit;text-decoration:none;background:none;border:0;cursor:pointer}
+  :focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .container{max-width:var(--container-max);margin:0 auto;width:100%;padding:0 48px}
+  @media(max-width:768px){.container{padding:0 24px}}
+  @media(max-width:480px){.container{padding:0 20px}}
+
+  .icon-mask{width:16px;height:16px;color:#fff;flex-shrink:0}
+  .icon-mask--sm{width:13px;height:13px}
+  .icon-mask--primary{color:var(--primary)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 24px;height:44px;font-family:var(--font-sans);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap;cursor:pointer;border-radius:var(--radius)}
+  .btn-primary{background:var(--primary);color:var(--primary-foreground);border:1px solid var(--primary);box-shadow:var(--shadow-xs)}
+  .btn-primary:hover{background:var(--accent);border-color:var(--accent)}
+  .btn-outline-dark{background:transparent;color:var(--primary);border:1px solid var(--primary)}
+  .btn-outline-dark:hover{background:var(--primary);color:var(--primary-foreground)}
+  .btn-outline-light{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.6)}
+  .btn-outline-light:hover{background:#fff;color:var(--primary);border-color:#fff}
+  .btn-white{background:#fff;color:var(--primary);border:1px solid #fff}
+  .btn-white:hover{background:transparent;color:#fff;border-color:#fff}
+
+  /* ═══ UTILITY BAR + NAV ═══ */
+  .top{background:var(--primary);display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px 20px;min-height:42px;padding:8px 48px}
+  .top-item{display:flex;align-items:center;gap:4px;color:#fff;font-size:12px;font-weight:600;line-height:1.4;text-transform:uppercase;letter-spacing:var(--tracking-widest)}
+  .lang{display:flex;align-items:center;gap:4px;color:#fff;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:var(--tracking-widest)}
+  @media(max-width:768px){.top{padding:8px 20px;justify-content:center}}
+
+  .nav{background:#fefefe;border-bottom:1px solid var(--border);padding:0 48px;height:96px;display:flex;align-items:center;gap:32px;position:sticky;top:0;z-index:50}
+  .nav-logo{display:flex;align-items:center;flex-shrink:0}
+  .nav-logo img{height:34px;width:auto}
+  .nav-logo-col2{border-left:1px solid var(--border);padding-left:28px;margin-left:4px;display:flex;align-items:center;flex-shrink:0}
+  .nav-logo-col2 img{height:36px;width:auto}
+  .nav-links{display:flex;gap:36px;flex:1;align-items:center}
+  .nav-link{font-size:16px;font-weight:500;color:var(--primary)}
+  .nav-link:hover{color:var(--accent)}
+  .nav-cta{background:var(--primary);border:1px solid var(--primary);color:#fff;font-size:14px;font-weight:600;padding:12px 22px;letter-spacing:.02em;text-transform:uppercase;flex-shrink:0;box-shadow:var(--shadow-xs)}
+  .nav-cta:hover{background:var(--accent);border-color:var(--accent)}
+  .nav-toggle{display:none;align-items:center;justify-content:center;width:44px;height:44px;color:var(--primary);flex-shrink:0;margin-left:auto}
+  @media(max-width:1024px){.nav{padding:0 32px}.nav-links,.nav-logo-col2,.nav-cta{display:none}.nav-toggle{display:inline-flex}}
+  @media(max-width:768px){.nav{padding:0 20px;height:76px}.top-item:not(.top-item--phone){display:none}}
+  .mobile-panel{display:none;background:#fefefe;border-bottom:1px solid var(--border)}
+  .mobile-panel.open{display:flex;flex-direction:column}
+  .mobile-item{padding:18px 24px;font-size:16px;font-weight:500;color:var(--primary);border-top:1px solid var(--electric-blue-25)}
+  .mobile-actions{padding:16px 24px;display:flex;flex-direction:column;gap:10px}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;height:560px;overflow:hidden;background:var(--night-blue-400)}
+  .hero-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,9,87,.85) 15%,rgba(0,9,87,.3) 80%)}
+  .hero-content{position:relative;height:100%;max-width:var(--container-max);margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:40px;padding:0 48px}
+  .hero-text{display:flex;flex-direction:column;gap:20px}
+  .hero-eyebrow{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--night-blue-50)}
+  .hero-title{font-family:var(--font-serif);font-size:clamp(32px,4.2vw,48px);font-weight:400;color:#fff;line-height:1.15;max-width:620px}
+  .hero-title em{font-style:italic;color:var(--night-blue-50)}
+  .hero-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,.8);max-width:520px;line-height:1.6}
+  .hero-seal-col{display:flex;align-items:center;justify-content:center}
+  .hero-seal{width:340px;max-width:100%;height:auto}
+  @media(max-width:1024px){.hero-seal{width:260px}}
+  @media(max-width:900px){.hero{height:auto;min-height:460px}.hero-content{grid-template-columns:1fr;padding:64px 24px}.hero-seal-col{display:none}}
+
+  /* ═══ GALLERY STRIP ═══ */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border)}
+  .gallery img{width:100%;height:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+  @media(max-width:768px){.gallery{grid-template-columns:repeat(2,1fr)}}
+
+  /* ═══ SECTION shell ═══ */
+  section{padding:80px 0}
+  .sec-off{background:var(--background)}
+  .sec-night{background:var(--primary)}
+  .sec-hd-center{text-align:center;max-width:640px;margin:0 auto 48px}
+  .sec-hd-title{font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--primary);margin-bottom:14px;line-height:1.2}
+  .sec-hd-title em{font-style:italic;color:var(--night-blue-50)}
+  .sec-hd-sub{font-size:15px;font-weight:300;color:var(--foreground-secondary);line-height:1.7}
+  @media(max-width:768px){section{padding:56px 0}}
+
+  /* ═══ VIDEO ═══ */
+  .video-wrap{max-width:800px;margin:0 auto}
+  .video-frame{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#000;box-shadow:var(--shadow-lg)}
+  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+
+  /* ═══ TIMELINE ═══ */
+  .tl-years{display:flex;gap:0;justify-content:space-between;position:relative;padding-top:5px;overflow-x:auto}
+  .tl-years::before{content:"";position:absolute;left:0;right:0;top:4px;height:1px;background:var(--border)}
+  .tl-year{flex:0 0 auto;font-family:var(--font-sans);font-size:13px;color:var(--muted-foreground);padding:14px 10px 0;position:relative;text-align:center}
+  .tl-year::before{content:"";position:absolute;top:-1px;left:0;width:100%;height:1px;background:transparent}
+  .tl-year::after{content:"";position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:#fff;border:1px solid var(--border)}
+  .tl-year.on{color:var(--primary);font-weight:800}
+  .tl-year.on::before{background:var(--accent)}
+  .tl-year.on::after{background:var(--accent);border-color:var(--accent)}
+  #tlPanels{margin-top:44px}
+  .tl-panel{display:none;grid-template-columns:1fr 1.6fr;gap:32px;align-items:start}
+  .tl-panel.on{display:grid;height:480px;overflow:hidden}
+  .tl-img-lg{height:100%;width:100%;object-fit:cover}
+  .tl-body{display:flex;gap:20px;height:100%;overflow-y:auto}
+  .tl-year-num{font-family:var(--font-serif);font-size:36px;font-weight:700;line-height:1;flex:0 0 auto;color:var(--accent)}
+  .tl-body p{font-size:14px;color:var(--foreground-secondary);line-height:1.65}
+  .tl-body h3.tl-lede{font-family:var(--font-sans);font-size:19px;color:var(--primary);font-weight:700;margin-bottom:10px}
+  .tl-body ul{margin:14px 0 0;padding-left:18px;color:var(--foreground-secondary);font-size:13px;line-height:1.7}
+  .tl-body ul li{margin-bottom:4px}
+  @media (max-width:900px){.tl-panel.on{height:auto;overflow:visible}.tl-panel{grid-template-columns:1fr}.tl-img-lg{height:260px}.tl-body{flex-direction:column;gap:8px;height:auto;overflow-y:visible}}
+
+  /* ═══ DATA / TABLE ═══ */
+  .data-wide-img{width:100%;height:320px;object-fit:cover;margin-bottom:48px}
+  .gcs-table{max-width:960px;margin:0 auto}
+
+  /* ═══ TRENDS SPLIT ═══ */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .split-title{font-family:var(--font-serif);font-size:30px;font-weight:400;color:var(--primary);line-height:1.25;margin-bottom:16px}
+  .split-title em{font-style:italic;color:var(--night-blue-50)}
+  .split-desc{font-size:14px;color:var(--foreground-secondary);line-height:1.7;margin-bottom:28px;max-width:440px}
+  .split-media{height:340px;overflow:hidden}
+  .split-media img{width:100%;height:100%;object-fit:cover}
+  @media(max-width:900px){.split{grid-template-columns:1fr}.split-media{height:260px}}
+
+  /* ═══ FEATURED TESTIMONIAL ═══ */
+  .feature-quote{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .feature-video{width:379px;max-width:100%;margin:0 auto;aspect-ratio:1/1;overflow:hidden}
+  .feature-video iframe{width:100%;height:100%;border:0;display:block}
+  .stars{color:var(--star);letter-spacing:2px;font-size:16px;margin-bottom:18px}
+  .feature-quote blockquote{font-family:var(--font-serif);margin:0;font-size:24px;font-weight:400;line-height:1.4;color:var(--primary)}
+  .who{margin-top:24px;display:flex;align-items:center;gap:14px}
+  .avatar-tint{width:48px;height:48px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:17px;flex-shrink:0}
+  .who b{display:block;font-size:14px;color:var(--primary)}
+  .who .role{color:var(--muted-foreground);font-size:12px}
+  @media(max-width:900px){.feature-quote{grid-template-columns:1fr}}
+
+  /* ═══ TEAM TESTIMONIAL (gcs-team-testimonial composition) ═══ */
+  .gcs-team-testimonial{background:var(--card);font-family:var(--font-sans);box-sizing:border-box}
+
+  .gcs-team-testimonial__header{display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start;justify-content:center;border-bottom:1px solid var(--border);padding-bottom:60px;width:100%}
+  .gcs-team-testimonial__header-left{flex-shrink:0;width:100%;max-width:690px}
+  .gcs-team-testimonial__headline{margin:0;font-family:var(--font-serif);font-weight:400;font-size:60px;line-height:64px;letter-spacing:-1.2px;color:var(--primary)}
+  @media(max-width:768px){.gcs-team-testimonial__headline{font-size:40px;line-height:1.15}}
+  .gcs-team-testimonial__headline em{font-style:italic;color:var(--night-blue-50)}
+  .gcs-team-testimonial__header-right{flex:1 0 0;min-width:240px;display:flex;flex-direction:column;justify-content:flex-end}
+  .gcs-team-testimonial__description{margin:0;font-family:var(--font-sans);font-weight:300;font-size:18px;line-height:1.4;color:var(--primary);max-width:566px}
+
+  .gcs-team-testimonial__body{display:flex;flex-direction:column;align-items:center;gap:60px;padding-top:60px;width:100%}
+
+  .gcs-team-testimonial__row{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%}
+  .gcs-team-testimonial__avatars{display:flex;flex:1 0 0;min-width:0;gap:16px;align-items:center;justify-content:center}
+
+  .gcs-team-testimonial__avatar{flex:1 1 0;min-width:0;max-width:180px;aspect-ratio:1/1;border-radius:var(--radius-full);border:4px solid var(--primary-foreground);padding:0;background:var(--night-blue-25);cursor:pointer;overflow:hidden}
+  .gcs-team-testimonial__avatar img,.gcs-team-testimonial__avatar-fallback{width:100%;height:100%;object-fit:cover;display:flex;align-items:center;justify-content:center;filter:grayscale(1);transition:filter .2s ease}
+  .gcs-team-testimonial__avatar[data-active="true"] img,.gcs-team-testimonial__avatar[data-active="true"] .gcs-team-testimonial__avatar-fallback,.gcs-team-testimonial__avatar:hover img,.gcs-team-testimonial__avatar:hover .gcs-team-testimonial__avatar-fallback{filter:grayscale(0)}
+  .gcs-team-testimonial__avatar-fallback{background:var(--night-blue-25);color:var(--night-blue-50);font-family:var(--font-sans);font-size:clamp(24px,3vw,48px);font-weight:500}
+
+  .gcs-team-testimonial__nav{width:45px;height:45px;border-radius:var(--radius-full);background:var(--night-blue-25);display:flex;align-items:center;justify-content:center;border:none;padding:0;cursor:pointer;flex-shrink:0}
+  .gcs-team-testimonial__nav-ico{width:18px;height:18px;background:var(--primary)}
+  .gcs-team-testimonial__nav.prev .gcs-team-testimonial__nav-ico{-webkit-mask:var(--icon-chevron-left) no-repeat center/contain;mask:var(--icon-chevron-left) no-repeat center/contain}
+  .gcs-team-testimonial__nav.next .gcs-team-testimonial__nav-ico{-webkit-mask:var(--icon-chevron-right) no-repeat center/contain;mask:var(--icon-chevron-right) no-repeat center/contain}
+
+  .gcs-team-testimonial__card{background:var(--card);border:1px solid var(--border);display:flex;flex-direction:column;gap:32px;padding:32px;width:100%;box-sizing:border-box;overflow:hidden}
+  .gcs-team-testimonial__quote-icon{width:48px;height:48px;flex-shrink:0;background:var(--accent);transform:rotate(180deg);-webkit-mask:var(--icon-quote) no-repeat center/contain;mask:var(--icon-quote) no-repeat center/contain}
+  .gcs-team-testimonial__card-content{display:flex;flex-direction:column;gap:32px;animation:gcs-team-testimonial-slide-in .45s ease}
+  .gcs-team-testimonial__quote{margin:0;font-family:var(--font-sans);font-size:clamp(18px,1.6vw,24px);font-weight:400;line-height:1.4;color:var(--primary)}
+  .gcs-team-testimonial__attribution{margin:0;font-family:var(--font-sans);font-size:18px;font-weight:600;line-height:1.4;color:var(--primary)}
+
+  @keyframes gcs-team-testimonial-slide-in{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
+  @media(prefers-reduced-motion:reduce){.gcs-team-testimonial__card-content{animation:none}}
+
+  @media(max-width:768px){.gcs-team-testimonial__body{gap:40px;padding-top:40px}.gcs-team-testimonial__card{padding:24px}}
+
+  /* ═══ CTA BAND ═══ */
+  .cta-band{position:relative;min-height:300px;overflow:hidden;display:flex;align-items:center}
+  .cta-band .bg{position:absolute;inset:0;z-index:0}
+  .cta-band .bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .cta-band .bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,9,87,.92) 35%,rgba(0,9,87,.55) 100%)}
+  .cta-band-content{position:relative;z-index:1;display:flex;flex-direction:column;gap:16px;max-width:600px;padding:56px 0}
+  .cta-symbol{width:36px;height:36px}
+  .cta-band-title{font-family:var(--font-serif);font-size:30px;font-weight:400;color:#fff;line-height:1.25}
+  .cta-band-title em{font-style:italic;color:var(--night-blue-50)}
+  .cta-band-sub{font-size:14px;color:rgba(255,255,255,.75);line-height:1.7;max-width:440px}
+
+  /* ═══ FOOTER ═══ */
+  .footer{background:var(--primary);padding:64px 0 24px}
+  .footer-news{display:flex;flex-wrap:wrap;align-items:center;gap:24px;padding-bottom:32px;margin-bottom:32px;border-bottom:1px solid var(--night-blue-300)}
+  .footer-news img.logo{height:36px;width:auto;flex-shrink:0}
+  .footer-news-box{flex:1 1 480px;display:flex;flex-wrap:wrap;align-items:center;gap:20px;border:1px solid var(--night-blue-300);padding:18px 20px}
+  .footer-news-label{font-family:var(--font-serif);font-weight:500;font-size:22px;line-height:1.2;color:#fff;flex-shrink:0}
+  .footer-form{display:flex;flex:1 1 260px;gap:10px;flex-wrap:wrap}
+  .footer-field{flex:1 1 140px;min-width:0;height:40px;background:transparent;border:1px solid var(--night-blue-300);padding:0 12px;color:#fff;font-family:var(--font-sans);font-size:13px;outline:none}
+  .footer-field::placeholder{color:var(--night-blue-100)}
+  .footer-field:focus{border-color:var(--accent)}
+  .footer-subscribe{flex:1 1 130px;height:40px;padding:0 18px;background:var(--accent);color:#fff;border:1px solid var(--accent);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;cursor:pointer;white-space:nowrap}
+  .footer-subscribe:hover{background:#fff;color:var(--accent);border-color:#fff}
+  .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:40px}
+  .footer-col-title{font-family:var(--font-serif);font-size:16px;font-weight:500;color:var(--night-blue-50);margin-bottom:14px}
+  .footer-link{display:block;font-size:12px;color:rgba(255,255,255,.65);margin-bottom:12px}
+  .footer-link:hover{color:var(--accent)}
+  .footer-membership{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding:28px 0;border-top:1px solid var(--night-blue-300);border-bottom:1px solid var(--night-blue-300);margin-bottom:20px}
+  .footer-member{display:flex;align-items:center;gap:14px}
+  .footer-member-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.6)}
+  .footer-member img{height:32px;width:auto}
+  .footer-badges{height:20px;width:auto}
+  .footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;font-size:11px;color:rgba(255,255,255,.45)}
+  .footer-socials{display:flex;align-items:center;gap:14px}
+  .footer-social-link{display:inline-flex;width:16px;height:16px}
+  .footer-social-link img{width:100%;height:100%}
+  .footer-social-link:hover{opacity:.75}
+  @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body style="--icon-chevron-left:url('https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/chevron_left/materialsymbolssharp/chevron_left_24px.svg');--icon-chevron-right:url('https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/chevron_right/materialsymbolssharp/chevron_right_24px.svg');--icon-quote:url('https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/format_quote/materialsymbolssharp/format_quote_fill1_24px.svg')">
+
+  <!-- UTILITY BAR -->
+  <div class="top">
+    <a class="top-item" href="#"><span class="icon-mask" data-icon="phone_callback"></span>Request a Callback</a>
+    <a class="top-item top-item--phone" href="tel:+351211337060"><span class="icon-mask" data-icon="call"></span>+351 211 337 060</a>
+    <a class="top-item" href="#"><span class="icon-mask" data-icon="location_on"></span>Worldwide Offices</a>
+    <a class="lang" href="#">EN<span class="icon-mask icon-mask--sm" data-icon="keyboard_arrow_down"></span></a>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <a class="nav-logo" href="../index.html" aria-label="Global Citizen Solutions">
+      <img src="../../../gcs-design-system/assets/logos/GCS-Primary-Blue.svg" alt="Global Citizen Solutions">
+    </a>
+    <div class="nav-logo-col2">
+      <img src="../../../gcs-design-system/assets/logos/GCS-10years-reduced.svg" alt="Celebrating 10 Years of Global Citizen Solutions">
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="../countries.html">Countries</a>
+      <a class="nav-link" href="../residency.html">Residency</a>
+      <a class="nav-link" href="../citizenship.html">Citizenship</a>
+      <a class="nav-link" href="#">Services</a>
+      <a class="nav-link" href="#">Intelligence</a>
+      <a class="nav-link" href="#">About</a>
+    </div>
+    <a class="nav-cta" href="#">Contact Us</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMobilePanel" aria-label="Toggle menu">
+      <span class="icon-mask icon-mask--primary" id="navToggleIcon" data-icon="menu"></span>
+    </button>
+  </nav>
+  <div class="mobile-panel" id="navMobilePanel">
+    <a class="mobile-item" href="../countries.html">Countries</a>
+    <a class="mobile-item" href="../residency.html">Residency</a>
+    <a class="mobile-item" href="../citizenship.html">Citizenship</a>
+    <a class="mobile-item" href="#">Services</a>
+    <a class="mobile-item" href="#">Intelligence</a>
+    <a class="mobile-item" href="#">About</a>
+    <div class="mobile-actions">
+      <a class="btn btn-primary" href="#">Contact Us</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img class="hero-bg-img" src="../../../gcs-design-system/assets/images/family-and-future-generations/father_child_toy_boat_sunset_wide.jpg" alt="A father and child playing at the water's edge at sunset">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <span class="hero-eyebrow">2016 &mdash; 2026</span>
+        <h1 class="hero-title">Celebrating 10 Years<br><em>of Global Citizen Solutions</em></h1>
+        <p class="hero-sub">For a decade, we have helped families build the freedom to choose where they live, invest, and leave their legacy. This is the story of that decade, and the starting point of the next.</p>
+      </div>
+      <div class="hero-seal-col">
+        <img class="hero-seal" src="../../../gcs-design-system/assets/logos/GCS-10years-primary.svg" alt="Celebrating 10 Years of Global Citizen Solutions seal">
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY STRIP -->
+  <div class="gallery">
+    <img src="../../../gcs-design-system/assets/images/family-and-future-generations/family_hijab_father_daughter_laughing_outdoors.png" alt="A father and daughter laughing outdoors">
+    <img src="../../../gcs-design-system/assets/images/family-and-future-generations/elderly_couple_walking_lisbon_tram_street.png" alt="An elderly couple walking a Lisbon tram street">
+    <img src="../../../gcs-design-system/assets/images/optionality/magnific_minimal-monochrome-world-_JN4WAT0Oq4.jpg" alt="Minimal monochrome world map">
+    <img src="../../../gcs-design-system/assets/images/security-and-access/senior_executive_office_window_discussion.png" alt="An advisor speaking with a client in a modern office">
+  </div>
+
+  <!-- VIDEO INTRO -->
+  <section class="sec-off">
+    <div class="container">
+      <div class="sec-hd-center">
+        <h2 class="sec-hd-title">The World Changed Course. <em>We Drew The Map.</em></h2>
+        <p class="sec-hd-sub">Watch the story of a decade in motion and the frontier ahead.</p>
+      </div>
+      <div class="video-wrap">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/gnGvXZLTQ5E?si=I6jy-dB8rMSIq-WG"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline">
+    <div class="container">
+      <div class="sec-hd-center" style="text-align:left;margin:0 0 40px">
+        <h2 class="sec-hd-title">The Map We Redrew<br><em>Alongside The World</em></h2>
+      </div>
+
+      <div class="tl-years" id="tlYears">
+        <button class="tl-year on" data-year="2016">2016</button>
+        <button class="tl-year" data-year="2017">2017</button>
+        <button class="tl-year" data-year="2018">2018</button>
+        <button class="tl-year" data-year="2019">2019</button>
+        <button class="tl-year" data-year="2020">2020</button>
+        <button class="tl-year" data-year="2021">2021</button>
+        <button class="tl-year" data-year="2022">2022</button>
+        <button class="tl-year" data-year="2023">2023</button>
+        <button class="tl-year" data-year="2024">2024</button>
+        <button class="tl-year" data-year="2025">2025</button>
+        <button class="tl-year" data-year="2026">2026</button>
+      </div>
+
+      <div id="tlPanels">
+        <div class="tl-panel on" data-year="2016">
+          <img class="tl-img-lg" src="../../../gcs-design-system/assets/images/optionality/magnific_wide-hero-photograph-of-a_1lLN274r4r.png" alt="2016">
+          <div class="tl-body">
+            <div class="tl-year-num">2016</div>
+            <div>
+              <h3 class="tl-lede">Brexit changes the way Europe thinks about mobility.</h3>
+              <p>Millions of people begin to realise that rights once considered permanent, including freedom of movement, can also change with political decisions.</p>
+              <ul><li>Global Citizen Solutions is born.</li></ul>
+            </div>
+          </div>
+        </div>
+        <div class="tl-panel" data-year="2017">
+          <img class="tl-img-lg" src="../../../gcs-design-system/assets/images/optionality/magnific_wide-hero-photograph-of-a_1lLN2J9r4r.png" alt="2017">
+          <div class="tl-body">
+            <div class="tl-year-num">2017</div>
+            <div>
+              <h3 class="tl-lede">Investment migration gains momentum worldwide.</h3>
+              <p>New residency and citizenship programmes expand the possibilities available to investors and families looking for greater freedom, security and international opportunities.</p>
+              <ul><li>Global mobility begins to reach a wider audience.</li></ul>
+            </div>
+          </div>
+        </div>
+        <div class="tl-panel" data-year="2018">
+          <img class="tl-img-lg" src="../../../gcs-design-system/assets/images/optionality/magnific_wide-hero-photograph-of-a_SyJG0itUb8.png" alt="2018">
+          <div class="tl-body">
+            <div class="tl-year-num">2018</div>
+            <div>
+              <h3 class="tl-lede">Citizenship by investment becomes more accessible and competitive.</h3>
+              <p>Turkey significantly reduces its minimum real estate investment requirement, attracting a new generation of international investors.</p>
+              <ul><li>Investment migration moves further into the mainstream.</li></ul>
+            </div>
+          </div>
+        </div>
+        <div class="tl-panel" data-year="2019">
+          <img class="tl-img-lg" src="../../../gcs-design-system/assets/images/optionality/magnific_wide-hero-photograph-of-a_XmIbxC2Bfo.png" alt="2019">
+          <div class="tl-body">
+            <div class="tl-year-num">2019</div>
+            <div>
+              <h3 class="tl-lede">New global mobility hubs begin to emerge.</h3>
+              <p>While Europe increases its scrutiny of Golden Visa and citizenship programmes, the UAE launches its Golden Visa for investors, professionals and exceptional talent.</p>
+              <ul><li>Global mobility expands beyond its traditional markets.</li></ul>
+            </div>
+          </div>
+        </div>
+        <div class="tl-panel" data-year="2020">
+          <img class="tl-img-lg" src="../../../gcs-design-system/assets/images/optionality/magnific_wide-hero-photograph-of-a_rgs6AOFxtc.png" alt="2020">
+          <div class="tl-body">
+            <div class="tl-year-num">2020</div>
+            <div>
+              <h3 class="tl-lede">Global mobility takes on a new meaning.</h3>
+              <p>Remote work accelerates, new ways of living across borders begin to emerge, and demand grows for alternative residency, citizenship and international planning options.</p>
+              <ul><li>The freedom to choose where to live becomes more valuable than ever.</li></ul>
+            </div>
+          </div>
+        </div>
+        <div class="tl-panel" data-year="2021">
+          <img class="tl-img-lg" src="../../../gcs-design-system/assets/images/optionality/magnific_wide-hero-photograph-sing_6AZp56AiJO.png" alt="2021">
+          <div class="tl-body">
+            <div class="tl-year-num">2021</div>
+            <div>
+              <h3 class="tl-lede">The world reopens, but the way people live and work has changed.</h3>
+              <p>Remote work continues to accelerate demand for digital nomad visas, alternative residencies and new possibilities for living outside one's country of origin.</p>
+              <ul>
+                <li>At the same time, Brexit brings an end to freedom of movement between the UK and the European Union.</li>
+                <li>Living and working no longer have to happen in the same country.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tl-panel" data-year="2022">
+          <img class="tl-img-lg" src="../../../gcs-design-system/assets/images/optionality/magnific_wide-hero-photograph-sing_KLx4RDAkqp.png" alt="2022">
+          <div class="tl-body">
+            <div class="tl-year-num">2022</div>
+            <div>
+              <h3 class="tl-lede">Global mobility becomes increasingly connected to security, opportunity and long-term planning.</h3>
+              <p>Major geopolitical events reinforce the importance of having options across borders, while governments and families place greater focus on residency, citizenship and international mobility strategies.</p>
+              <ul><li>For families around the world, having options becomes more important than ever.</li></ul>
+            </div>
+          </div>
+        </div>
+        <div class="tl-panel" data-year="2023">
+          <img class="tl-img-lg" src="../../../gcs-design-system/assets/images/optionality/magnific_wide-hero-photograph-sing_KLx4e50kqp.png" alt="2023">
+          <div class="tl-body">
+            <div class="tl-year-num">2023</div>
+            <div>
+              <h3 class="tl-lede">Investment migration enters a new phase.</h3>
+              <p>Portugal reshapes its Golden Visa, while the market becomes more diversified, with new investment structures and a broader approach to residency, wealth and family planning.</p>
+              <ul><li>GCS grows with the transformation of global mobility.</li></ul>
+            </div>
+          </div>
+        </div>
+        <div class="tl-panel" data-year="2024">
+          <img class="tl-img-lg" src="../../../gcs-design-system/assets/images/optionality/magnific_wide-hero-photograph-sing_N2RDoFg6D9.png" alt="2024">
+          <div class="tl-body">
+            <div class="tl-year-num">2024</div>
+            <div>
+              <h3 class="tl-lede">Portugal becomes one of the decade's leading international mobility destinations.</h3>
+              <p>More than 1.5 million foreign citizens are living in Portugal, compared with fewer than 400,000 in 2016.</p>
+              <ul>
+                <li>Across Europe, investment migration continues to evolve as countries reassess traditional real estate-led Golden Visa models.</li>
+                <li>A new generation of global citizens is choosing where and how they want to live.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tl-panel" data-year="2025">
+          <img class="tl-img-lg" src="../../../gcs-design-system/assets/images/optionality/magnific_wide-hero-photograph-sing_O69cpf3ynm.png" alt="2025">
+          <div class="tl-body">
+            <div class="tl-year-num">2025</div>
+            <div>
+              <h3 class="tl-lede">Investment migration continues to evolve.</h3>
+              <p>Spain closes its Golden Visa, Portugal has already moved away from direct real estate investment, and Greece introduces higher investment thresholds in its most sought-after regions.</p>
+              <ul>
+                <li>At the same time, the sector becomes increasingly focused on regulation, transparency and long-term value.</li>
+                <li>Global mobility becomes more sophisticated, diverse and strategic.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tl-panel" data-year="2026">
+          <img class="tl-img-lg" src="../../../gcs-design-system/assets/images/optionality/magnific_wide-hero-photograph-sing_SyJGvg4Ub8.png" alt="2026">
+          <div class="tl-body">
+            <div class="tl-year-num">2026</div>
+            <div>
+              <h3 class="tl-lede">Global mobility enters a new era.</h3>
+              <p>Digital borders, biometric systems and evolving residency and citizenship frameworks are reshaping how people move between countries.</p>
+              <ul>
+                <li>Ten years after GCS was founded, the conversation is no longer simply about obtaining a visa or a second passport.</li>
+                <li>It is about where to live, where to invest, how to protect a family's future and how to preserve freedom of choice in a changing world.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATA -->
+  <section class="sec-off" id="data">
+    <div class="container">
+      <img class="data-wide-img" src="../../../gcs-design-system/assets/images/security-and-access/magnific_wide-hero-photograph-arch_dt8qre4XSL.png" alt="Global architecture skyline representing a decade of mobility">
+      <div class="sec-hd-center">
+        <h2 class="sec-hd-title">10 Years Of Results That <em>Changed Global Mobility</em></h2>
+        <p class="sec-hd-sub">The numbers behind a decade of global mobility, from where we started to where we stand today.</p>
+      </div>
+
+      <div class="gcs-table" data-theme="light" data-header="minimal" data-footer="light">
+        <div class="gcs-table__scroll">
+          <table>
+            <thead>
+              <tr><th>Benchmark</th><th>2016</th><th>2026</th></tr>
+            </thead>
+            <tbody>
+              <tr><td data-label="Benchmark">Active investment-migration programmes</td><td data-label="2016">40</td><td data-label="2026">90</td></tr>
+              <tr><td data-label="Benchmark">Capital invested per year</td><td data-label="2016">US$10+ billion</td><td data-label="2026">US$20+ billion</td></tr>
+              <tr><td data-label="Benchmark">Cumulative capital raised (since inception)</td><td data-label="2016">US$40+ billion</td><td data-label="2026">US$100+ billion</td></tr>
+              <tr><td data-label="Benchmark">People gaining residence/citizenship</td><td data-label="2016">20,000</td><td data-label="2026">50,000+</td></tr>
+              <tr><td data-label="Benchmark">Top source market</td><td data-label="2016">China and other emerging economies</td><td data-label="2026">US, China and other emerging economies</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="gcs-table__footnote">Note: Figures are estimates based on reported application volumes and investment attracted across countries over the years.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRENDS SPLIT -->
+  <section>
+    <div class="container split">
+      <div>
+        <h2 class="split-title">The Map Is <em>Changing Again</em></h2>
+        <p class="split-desc">Evolving regulation, new investment routes, and climate-driven relocation will define citizenship and residency planning for the next ten years.</p>
+        <a href="#" class="btn btn-outline-dark">Explore</a>
+      </div>
+      <div class="split-media">
+        <img src="../../../gcs-design-system/assets/images/optionality/magnific_minimal-monochrome-world-_gO7AizaSXO.jpg" alt="Abstract minimal monochrome map representing the next decade of mobility">
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED CLIENT TESTIMONIAL -->
+  <section class="sec-off">
+    <div class="container feature-quote">
+      <div class="feature-video">
+        <iframe
+          src="https://www.youtube.com/embed/a6YvaZhMG3E?rel=0&playsinline=1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <div>
+        <h2 class="split-title" style="font-size:26px">Families Who Chose <em>A Different Future</em></h2>
+        <p class="split-desc" style="margin-bottom:20px">Every journey is different, but the outcome is the same: the freedom to live life on their own terms.</p>
+        <div class="stars">★★★★★</div>
+        <blockquote>&ldquo;They gave me not just a second passport but a second act in life. I started again at fifty and never looked back.&rdquo;</blockquote>
+        <div class="who">
+          <div class="avatar-tint" style="background:var(--avatar-tint-3)">A</div>
+          <div>
+            <b>Amara Okafor</b>
+            <span class="role">Founder, Lagos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM TESTIMONIAL (gcs-team-testimonial composition) -->
+  <section id="teamTestimonial">
+    <div class="container">
+    <div class="gcs-team-testimonial">
+    <div class="gcs-team-testimonial__header">
+      <div class="gcs-team-testimonial__header-left">
+        <h2 class="gcs-team-testimonial__headline">The People<br><em>Behind The Map</em></h2>
+      </div>
+      <div class="gcs-team-testimonial__header-right">
+        <p class="gcs-team-testimonial__description">Reflections from the people who helped families navigate a decade of change.</p>
+      </div>
+    </div>
+
+    <div class="gcs-team-testimonial__body">
+      <div class="gcs-team-testimonial__row">
+        <button type="button" class="gcs-team-testimonial__nav prev" id="teamPrev" aria-label="Previous team members"><span class="gcs-team-testimonial__nav-ico" aria-hidden="true"></span></button>
+
+        <div class="gcs-team-testimonial__avatars" id="teamAvatars">
+          <button type="button" class="gcs-team-testimonial__avatar" data-active="true" aria-pressed="true" data-idx="0"
+            data-name="Patricia Casaburi" data-role="Founder &amp; CEO"
+            data-quote="As barriers to entry rise, gold-standard compliance and due diligence will become the decisive factor in selecting a program in the next decade. In addition, residence and citizenship planning will increasingly be absorbed into wealth architecture as a risk-management line item, sitting alongside trusts and tax residency planning rather than being sold as a standalone lifestyle product."
+            aria-label="Show reflection from Patricia Casaburi">
+            <img src="../../../gcs-design-system/assets/images/headshots/Patricia Casaburi.png" alt="Patricia Casaburi" loading="lazy">
+          </button>
+          <button type="button" class="gcs-team-testimonial__avatar" data-active="false" aria-pressed="false" data-idx="1"
+            data-name="Artur Saraiva" data-role="Founder"
+            data-quote="Regulatory scrutiny in this industry will keep tightening, and we see that as a good thing — the next decade belongs to firms and programs that treat AML compliance, data protection, and rigorous due diligence as core infrastructure, held to the same standard as any regulated financial institution. Governments recognize this too: as programs face greater international scrutiny, more will seek advisory partners with genuine cross-border regulatory expertise and proprietary market intelligence."
+            aria-label="Show reflection from Artur Saraiva">
+            <img src="../../../gcs-design-system/assets/images/headshots/Artur Saraiva.png" alt="Artur Saraiva" loading="lazy">
+          </button>
+          <button type="button" class="gcs-team-testimonial__avatar" data-active="false" aria-pressed="false" data-idx="2"
+            data-name="Mehdi Kadiri" data-role="President"
+            data-quote="Investment migration has evolved from a static product into a strategic part of global wealth, mobility, and succession planning. Wealthy families will increasingly diversify not only their assets and currencies, but also their residences, citizenships, and jurisdictions."
+            aria-label="Show reflection from Mehdi Kadiri">
+            <img src="../../../gcs-design-system/assets/images/headshots/Mehdi Kadiri.png" alt="Mehdi Kadiri" loading="lazy">
+          </button>
+          <button type="button" class="gcs-team-testimonial__avatar" data-active="false" aria-pressed="false" data-idx="3"
+            data-name="Adalberto Pucca" data-role="Head of Global Sales"
+            data-quote="Sophisticated families no longer expect one country to serve every purpose. They've come to see jurisdictional diversification the way they see portfolio diversification — deliberate and role-specific. One jurisdiction may anchor business interests, another the family's lifestyle, another its mobility or long-term succession. That is where planning is heading, and it's a far more mature conversation than the one we were having a decade ago."
+            aria-label="Show reflection from Adalberto Pucca">
+            <img src="../../../gcs-design-system/assets/images/headshots/Adalberto Pucca.png" alt="Adalberto Pucca" loading="lazy">
+          </button>
+          <button type="button" class="gcs-team-testimonial__avatar" data-active="false" aria-pressed="false" data-idx="4"
+            data-name="Joana Mendonça" data-role="General Counsel"
+            data-quote="For decades, the international standards governing due diligence, beneficial ownership and financial integrity functioned largely as soft law — guidance, recommendation, best practice a state could adopt selectively without real consequence. That era is closing. Transnational bodies are converting expectations into obligations. States are not losing sovereignty over migration policy through treaty in the traditional sense. They are trading it away by calculation, because standing outside these frameworks now costs more than joining them."
+            aria-label="Show reflection from Joana Mendonça">
+            <img src="../../../gcs-design-system/assets/images/headshots/Joana Mendonca.png" alt="Joana Mendonça" loading="lazy">
+          </button>
+          <button type="button" class="gcs-team-testimonial__avatar" data-active="false" aria-pressed="false" data-idx="5"
+            data-name="Joe Rice" data-role="Head of Citizenship Programs"
+            data-quote="In previous years, client interest in citizenship programs was driven primarily by the appeal of visa-free travel. Over the past years, however, this focus has shifted, with clients increasingly drawn to these programs for asset management, portfolio diversification, and broader investment planning. This trend will continue in the future."
+            aria-label="Show reflection from Joe Rice">
+            <img src="../../../gcs-design-system/assets/images/headshots/Joe Rice.png" alt="Joe Rice" loading="lazy">
+          </button>
+          <button type="button" class="gcs-team-testimonial__avatar" data-active="false" aria-pressed="false" data-idx="6" hidden
+            data-name="Joao Pacheco" data-role="Head of Institutional Client Relations"
+            data-quote="HNWIs seem to be more cross-border than ever before. It is increasingly common to see international real estate portfolios, multi-jurisdictional banking relationships, and multiple residencies or passports. The younger generation is extremely mobile and cross-border oriented, which will contribute even more to the growing importance of residency and citizenship planning."
+            aria-label="Show reflection from Joao Pacheco">
+            <img src="../../../gcs-design-system/assets/images/headshots/Joao Pacheco.png" alt="Joao Pacheco" loading="lazy">
+          </button>
+          <button type="button" class="gcs-team-testimonial__avatar" data-active="false" aria-pressed="false" data-idx="7" hidden
+            data-name="Jelena Sivcev" data-role="Product Strategy Manager"
+            data-quote="The value of an investment migration program is ultimately defined by the client's objective. There is no universally 'best' program, only the one that best fits a client's specific priorities and situation."
+            aria-label="Show reflection from Jelena Sivcev">
+            <img src="../../../gcs-design-system/assets/images/headshots/Jelena Sivcev.png" alt="Jelena Sivcev" loading="lazy">
+          </button>
+          <button type="button" class="gcs-team-testimonial__avatar" data-active="false" aria-pressed="false" data-idx="8" hidden
+            data-name="Dr. Laura Madrid" data-role="Research Lead at GIU"
+            data-quote="The defining story of the next ten years is consolidation. The raw number of programs will matter far less than which prove durable. And durability will be shaped by governance: the rigor of due diligence, the transparency of how investment is deployed, and a jurisdiction's standing with international standard-setters."
+            aria-label="Show reflection from Dr. Laura Madrid">
+            <img src="../../../gcs-design-system/assets/images/headshots/Laura Madrid.png" alt="Dr. Laura Madrid" loading="lazy">
+          </button>
+          <button type="button" class="gcs-team-testimonial__avatar" data-active="false" aria-pressed="false" data-idx="9" hidden
+            data-name="Manuel Garrido" data-role="Head of Marketing"
+            data-quote="People approach global mobility very differently today than they did ten years ago. They do their homework, ask better questions and want an honest view of the risks, not just the opportunities. That has pushed the whole industry to improve. For me, the next decade will come down to trust."
+            aria-label="Show reflection from Manuel Garrido">
+            <img src="../../../gcs-design-system/assets/images/headshots/Manuel Garrido.png" alt="Manuel Garrido" loading="lazy">
+          </button>
+        </div>
+
+        <button type="button" class="gcs-team-testimonial__nav next" id="teamNext" aria-label="Next team members"><span class="gcs-team-testimonial__nav-ico" aria-hidden="true"></span></button>
+      </div>
+
+      <div class="gcs-team-testimonial__card">
+        <span class="gcs-team-testimonial__quote-icon" aria-hidden="true"></span>
+        <div class="gcs-team-testimonial__card-content" id="teamCardContent">
+          <p class="gcs-team-testimonial__quote" id="teamQuoteText">&ldquo;As barriers to entry rise, gold-standard compliance and due diligence will become the decisive factor in selecting a program in the next decade. In addition, residence and citizenship planning will increasingly be absorbed into wealth architecture as a risk-management line item, sitting alongside trusts and tax residency planning rather than being sold as a standalone lifestyle product.&rdquo;</p>
+          <p class="gcs-team-testimonial__attribution" id="teamQuoteAttribution">&mdash; Patricia Casaburi, Founder &amp; CEO</p>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- MID-PAGE CTA BAND -->
+  <div class="cta-band">
+    <div class="bg" aria-hidden="true">
+      <img src="../../../gcs-design-system/assets/images/security-and-access/magnific_architectural-interior-ph_XmIGLuQBfo.jpg" alt="">
+    </div>
+    <div class="container">
+      <div class="cta-band-content">
+        <img class="cta-symbol" src="../../../gcs-design-system/assets/logos/GCS-Symbol-White.svg" alt="" aria-hidden="true">
+        <h2 class="cta-band-title">Your Family's <em>Future Starts Now</em></h2>
+        <p class="cta-band-sub">The world is not waiting. Neither should your plan for freedom and security.</p>
+        <a href="#" class="btn btn-white" style="width:fit-content">Contact Us</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-news">
+        <img class="logo" src="../../../gcs-design-system/assets/logos/GCS-Primary-White.svg" alt="Global Citizen Solutions">
+        <div class="footer-news-box">
+          <div class="footer-news-label">Join Our Newsletter</div>
+          <form class="footer-form" id="newsletterForm">
+            <input class="footer-field" type="email" id="newsletterEmail" placeholder="Enter your email" required>
+            <button type="submit" class="footer-subscribe" id="newsletterSubmit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <div>
+          <div class="footer-col-title">About Us</div>
+          <a class="footer-link" href="#">Our Story</a>
+          <a class="footer-link" href="#">Our Team</a>
+          <a class="footer-link" href="#">Careers</a>
+          <a class="footer-link" href="#">Press</a>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <a class="footer-link" href="#">Residency Planning</a>
+          <a class="footer-link" href="#">Citizenship By Investment</a>
+          <a class="footer-link" href="#">Global Expansion</a>
+          <a class="footer-link" href="#">Family Office</a>
+        </div>
+        <div>
+          <div class="footer-col-title">Resources</div>
+          <a class="footer-link" href="#">Global Indexes</a>
+          <a class="footer-link" href="#">Research Reports</a>
+          <a class="footer-link" href="#">Case Studies</a>
+          <a class="footer-link" href="#">FAQ</a>
+        </div>
+        <div>
+          <div class="footer-col-title">Anniversary</div>
+          <a class="footer-link" href="#">The Manifesto</a>
+          <a class="footer-link" href="#timeline">Our Timeline</a>
+          <a class="footer-link" href="#">Future Trends</a>
+          <a class="footer-link" href="#data">Data Retrospective</a>
+        </div>
+      </div>
+
+      <div class="footer-membership">
+        <div class="footer-member">
+          <span class="footer-member-label">We Are Member</span>
+          <img src="../../../gcs-design-system/assets/logos/partners/investment-migration-council.svg" alt="Investment Migration Council">
+        </div>
+        <img class="footer-badges" src="../../../gcs-design-system/assets/logos/partners/lisboa2030-eu-badges.svg" alt="Lisboa 2030, Portugal 2030 and co-funded by the European Union">
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Global Citizen Solutions. All rights reserved. | Terms and Conditions | Privacy Policy</span>
+        <div class="footer-socials">
+          <a class="footer-social-link" href="#" aria-label="LinkedIn"><img src="../../../gcs-design-system/assets/icons/social/linkedin.svg" alt=""></a>
+          <a class="footer-social-link" href="#" aria-label="Facebook"><img src="../../../gcs-design-system/assets/icons/social/facebook.svg" alt=""></a>
+          <a class="footer-social-link" href="#" aria-label="Instagram"><img src="../../../gcs-design-system/assets/icons/social/instagram.svg" alt=""></a>
+          <a class="footer-social-link" href="#" aria-label="YouTube"><img src="../../../gcs-design-system/assets/icons/social/youtube.svg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  document.querySelectorAll('#tlYears .tl-year').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var y = btn.dataset.year;
+      document.querySelectorAll('#tlYears .tl-year').forEach(function(b){ b.classList.toggle('on', b===btn); });
+      document.querySelectorAll('#tlPanels .tl-panel').forEach(function(p){ p.classList.toggle('on', p.dataset.year===y); });
+    });
+  });
+
+  (function(){
+    var avatarBtns = Array.prototype.slice.call(document.querySelectorAll('#teamAvatars .gcs-team-testimonial__avatar'));
+    var cardContent = document.getElementById('teamCardContent');
+    var quoteText = document.getElementById('teamQuoteText');
+    var quoteAttribution = document.getElementById('teamQuoteAttribution');
+    var total = avatarBtns.length;
+    var activeIndex = 0;
+    var autoAdvanceMs = 6000;
+    var timer = null;
+
+    function membersPerView(){
+      var w = window.innerWidth;
+      if (w <= 480) return Math.min(6, 2);
+      if (w <= 768) return Math.min(6, 3);
+      if (w <= 1024) return Math.min(6, 4);
+      return 6;
+    }
+
+    function render(){
+      var perView = membersPerView();
+      var maxWindowStart = Math.max(0, total - perView);
+      var windowStart = Math.min(activeIndex, maxWindowStart);
+
+      avatarBtns.forEach(function(btn, i){
+        var visible = i >= windowStart && i < windowStart + perView;
+        btn.hidden = !visible;
+        var isActive = i === activeIndex;
+        btn.dataset.active = String(isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+      });
+
+      var active = avatarBtns[activeIndex];
+      cardContent.style.animation = 'none';
+      void cardContent.offsetWidth;
+      cardContent.style.animation = '';
+      quoteText.textContent = '“' + active.dataset.quote + '”';
+      quoteAttribution.textContent = '— ' + active.dataset.name + (active.dataset.role ? ', ' + active.dataset.role : '');
+    }
+
+    function selectIndex(next, userInitiated){
+      activeIndex = (next + total) % total;
+      if (userInitiated && timer) { window.clearInterval(timer); timer = null; startAutoAdvance(); }
+      render();
+    }
+
+    function startAutoAdvance(){
+      if (total <= 1) return;
+      timer = window.setInterval(function(){
+        activeIndex = (activeIndex + 1) % total;
+        render();
+      }, autoAdvanceMs);
+    }
+
+    avatarBtns.forEach(function(btn, idx){
+      btn.addEventListener('click', function(){ selectIndex(idx, true); });
+    });
+    document.getElementById('teamPrev').addEventListener('click', function(){ selectIndex(activeIndex - 1, true); });
+    document.getElementById('teamNext').addEventListener('click', function(){ selectIndex(activeIndex + 1, true); });
+    window.addEventListener('resize', render);
+
+    render();
+    startAutoAdvance();
+  })();
+
+  var navToggle = document.getElementById('navToggle');
+  var navToggleIcon = document.getElementById('navToggleIcon');
+  var navPanel = document.getElementById('navMobilePanel');
+  navToggle.addEventListener('click', function(){
+    var open = navPanel.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggleIcon.setAttribute('data-icon', open ? 'close' : 'menu');
+    window.GCSIconLoader.hydrate(navToggle);
+  });
+
+  document.getElementById('newsletterForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var input = document.getElementById('newsletterEmail');
+    if (input && input.value) alert('Subscribed: ' + input.value);
+  });
+</script>
+</body>
+</html>

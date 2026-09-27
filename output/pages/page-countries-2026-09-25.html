@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countries — Global Citizen Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- GCS Design System — Fonts (tokens/fonts.css) -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Yrsa:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap');
+</style>
+
+<style>
+/* ============================================================
+   GCS Design System — Color Tokens (tokens/colors.css, verbatim)
+   ============================================================ */
+:root {
+  --night-blue-25:  hsl(218 17% 92%);
+  --night-blue-50:  hsl(233 22% 75%);
+  --night-blue-100: hsl(232 18% 59%);
+  --night-blue-200: hsl(233 41% 34%);
+  --night-blue-300: hsl(233 60% 26%);
+  --night-blue-400: hsl(233 100% 17%);
+
+  --electric-blue-25:  hsl(215 100% 96%);
+  --electric-blue-50:  hsl(216 100% 93%);
+  --electric-blue-400: hsl(216 100% 62%);
+
+  --star: hsl(47 100% 44%);
+
+  --primary-50:  hsl(218 17% 92%);
+  --primary-100: hsl(233 22% 75%);
+  --primary-800: hsl(233 100% 17%);
+
+  --secondary-100: hsl(216 100% 93%);
+
+  --background:          hsl(210 20% 98%);
+  --foreground:          hsl(220 43% 11%);
+
+  --card:                hsl(0 0% 100%);
+  --card-foreground:     hsl(220 43% 11%);
+
+  --primary:             hsl(233 100% 17%);
+  --primary-foreground:  hsl(0 0% 100%);
+
+  --secondary:           hsl(216 100% 62%);
+  --secondary-foreground: hsl(0 0% 100%);
+
+  --muted:               hsl(218 21% 93%);
+  --muted-foreground:    hsl(221 13% 46%);
+  --foreground-secondary: #414856;
+
+  --accent:              hsl(216 100% 62%);
+  --accent-foreground:   hsl(0 0% 100%);
+
+  --destructive:         hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  --border:              hsl(216 100% 93%);
+  --input:               hsl(216 100% 93%);
+  --ring:                hsl(233 100% 17%);
+
+  --success:            hsl(142 71% 45%);
+  --success-foreground: hsl(0 0% 100%);
+  --warning:            hsl(38 92% 50%);
+  --warning-foreground: hsl(0 0% 100%);
+  --info:               hsl(216 100% 62%);
+  --info-foreground:    hsl(0 0% 100%);
+}
+
+/* ============================================================
+   GCS Design System — Typography Tokens (tokens/typography.css)
+   ============================================================ */
+:root {
+  --font-sans:  'Heebo', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Yrsa', Georgia, 'Times New Roman', serif;
+  --font-mono:  'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  --tracking-tighter: -0.05em;
+  --tracking-tight:   -0.025em;
+  --tracking-normal:  -0.01em;
+  --tracking-wide:     0.025em;
+  --tracking-wider:    0.05em;
+  --tracking-widest:   0.1em;
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+}
+
+/* ============================================================
+   GCS Design System — Spacing Tokens (tokens/spacing.css)
+   ============================================================ */
+:root {
+  --space-1:  4px;  --space-2:  8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 20px;  --space-6: 24px;  --space-8: 32px; --space-10: 40px;
+  --space-12: 48px; --space-14: 56px; --space-16: 64px; --space-20: 80px;
+  --gap-xs: var(--space-1); --gap-sm: var(--space-2); --gap-md: var(--space-4);
+  --gap-lg: var(--space-6); --gap-xl: var(--space-8); --gap-2xl: var(--space-12);
+  --container-padding: 2rem; --container-max: 1400px;
+}
+
+/* ============================================================
+   GCS Design System — Radius Tokens (tokens/radius.css)
+   ============================================================ */
+:root {
+  --radius:    0rem;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+}
+
+/* ============================================================
+   GCS Design System — Shadow Tokens (tokens/shadows.css)
+   ============================================================ */
+:root {
+  --shadow-2xs: 0 4px 10px 0 hsl(0 0% 0% / 0.03);
+  --shadow-xs:  0 1px 2px 0 hsl(220 43% 11% / 0.05);
+  --shadow-sm:  0 4px 10px 0 hsl(220 43% 11% / 0.05), 0 1px 2px -1px hsl(220 43% 11% / 0.05);
+  --shadow:     0 4px 10px 0 hsl(220 43% 11% / 0.05), 0 1px 2px -1px hsl(220 43% 11% / 0.05);
+  --shadow-md:  0 4px 10px 0 hsl(220 43% 11% / 0.05), 0 2px 4px -1px hsl(220 43% 11% / 0.05);
+  --shadow-lg:  0 4px 10px 0 hsl(220 43% 11% / 0.05), 0 4px 6px -1px hsl(220 43% 11% / 0.05);
+  --shadow-xl:  0 4px 10px 0 hsl(220 43% 11% / 0.05), 0 8px 10px -1px hsl(220 43% 11% / 0.05);
+  --shadow-focus: 0 0 0 3px hsl(216 100% 62% / 0.35);
+}
+</style>
+
+<style>
+/* ============================================================
+   Base reset + type scale (tokens/typography.css base rules)
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);font-size:16px;line-height:1.4;color:var(--foreground);background:var(--background);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.page{background:var(--card);box-shadow:var(--shadow-lg)}
+[id]{scroll-margin-top:140px}
+
+/* ── Utility bar (components/core/sections/navbar.reference.html .top) ── */
+.util-bar{background:var(--primary);padding:0 48px;height:38px;display:flex;align-items:center;justify-content:flex-end;gap:28px;flex-wrap:wrap}
+.util-item{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
+.util-item:hover{color:#fff}
+.util-icon{width:14px;height:14px;flex-shrink:0;color:rgba(255,255,255,.85)}
+.util-icon svg{width:100%;height:100%;display:block}
+@media(max-width:1023px){.util-bar{padding:8px 32px;height:auto}}
+@media(max-width:767px){.util-bar{display:none}}
+
+/* ── Navbar (components/core/sections/navbar.reference.html .main) ── */
+.nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:84px;display:flex;align-items:center;gap:40px;position:sticky;top:0;z-index:50}
+.nav-logo{display:flex;align-items:center;flex-shrink:0}
+.nav-logo svg{height:34px;width:auto;display:block}
+.nav-links{display:flex;gap:32px;flex:1;align-items:center;min-width:0}
+.nav-link{font-size:13px;font-weight:600;color:var(--primary);display:flex;align-items:center;gap:4px;white-space:nowrap}
+.nav-link:hover{color:var(--accent)}
+.nav-link.active{font-weight:800;color:var(--accent)}
+.nav-link .caret{width:11px;height:11px;color:var(--primary)}
+.nav-link .caret svg{width:100%;height:100%}
+.nav-cta{background:var(--primary);color:#fff;font-size:11px;font-weight:700;padding:16px 26px;letter-spacing:.05em;text-transform:uppercase;flex-shrink:0;border:1px solid var(--primary)}
+.nav-cta:hover{background:var(--accent);border-color:var(--accent)}
+@media(max-width:1023px){.nav{padding:0 32px}.nav-links{gap:20px}}
+@media(max-width:900px){.nav-links{display:none}}
+@media(max-width:767px){.nav{padding:0 20px;height:72px}.nav-cta{padding:12px 18px;font-size:10px}}
+
+/* ── Hero (adapted from components/core/sections/heroinner.reference.html — solid Night Blue, no media panel per brief) ── */
+.hero{background:var(--primary);padding:64px 48px}
+.hero-inner{max-width:640px}
+.hero-eyebrow{font-family:var(--font-sans);font-size:11px;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px}
+.hero-title{font-family:var(--font-serif);font-weight:400;font-size:clamp(32px,4.4vw,48px);line-height:1.07;letter-spacing:-1.2px;color:var(--primary-foreground);margin:0 0 16px}
+.hero-title em{font-style:italic;color:var(--night-blue-50)}
+.hero-sub{font-family:var(--font-sans);font-weight:300;font-size:14px;line-height:1.7;color:rgba(255,255,255,.55);max-width:560px}
+@media(max-width:768px){.hero{padding:40px 24px}}
+
+/* ── Filter bar (sticky region tabs, under nav) ── */
+.filter-bar{background:var(--muted);border-bottom:2px solid var(--border);padding:0 48px;display:flex;align-items:center;position:sticky;top:84px;z-index:40;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.filter-item{font-size:12px;font-weight:600;color:var(--muted-foreground);padding:14px 20px;border-bottom:3px solid transparent;white-space:nowrap;cursor:pointer;user-select:none}
+.filter-item:hover{color:var(--primary)}
+.filter-item.active{color:var(--primary);border-bottom-color:var(--accent)}
+@media(max-width:767px){.filter-bar{padding:0 20px;top:72px}.filter-item{padding:12px 14px}}
+
+/* ── Section intro (Yrsa display heading) ── */
+.table-intro{padding:40px 48px 20px;max-width:900px}
+.table-intro-title{font-family:var(--font-serif);font-size:24px;font-weight:400;color:var(--primary);margin-bottom:10px;letter-spacing:-0.01em}
+.table-intro-copy{font-size:13px;color:var(--foreground-secondary);line-height:1.75}
+@media(max-width:767px){.table-intro{padding:32px 20px 16px}}
+
+/* ── Programme table wrap ── */
+.table-wrap{padding:0 48px 8px}
+@media(max-width:767px){.table-wrap{padding:0 20px 8px}}
+
+/* ============================================================
+   GCS Tables (components/core/primitives/tables.css) — adapted:
+   the shipped file hardcodes literal hex for WordPress portability;
+   here the same custom-property contract is re-bound to the real
+   design-token values so nothing is hardcoded.
+   ============================================================ */
+.gcs-table,.gcs-table *{box-sizing:border-box}
+.gcs-table{
+  --gcs-primary: var(--primary);
+  --gcs-primary-fg: var(--primary-foreground);
+  --gcs-secondary: var(--accent);
+  --gcs-foreground: var(--foreground);
+  --gcs-card: var(--card);
+  --gcs-muted: var(--muted);
+  --gcs-muted-fg: var(--muted-foreground);
+  --gcs-border: var(--border);
+  --gcs-row-line: var(--border);
+  --gcs-success-bg: hsl(142 45% 95%);
+  --gcs-success-fg: hsl(142 60% 28%);
+  --gcs-info-bg: var(--electric-blue-25);
+  --gcs-info-fg: hsl(216 100% 45%);
+  --gcs-warning-bg: hsl(38 92% 92%);
+  --gcs-warning-fg: hsl(38 80% 30%);
+  --gcs-accent-bg: var(--electric-blue-50);
+  --gcs-accent-fg: var(--night-blue-300);
+
+  width:100%;max-width:100%;font-family:var(--font-sans);color:var(--gcs-foreground);
+  background:var(--gcs-card);border:1px solid var(--gcs-border);overflow:hidden;
+}
+.gcs-table__scroll{width:100%;overflow-x:auto;padding:0}
+.gcs-table table{width:100%;min-width:760px;border-collapse:collapse;background:var(--gcs-card);border:none}
+.gcs-table tbody tr{background:var(--gcs-card)}
+.gcs-table th{text-align:left;vertical-align:top;font-family:var(--font-sans);padding:14px 16px;white-space:nowrap;background:transparent;border:none}
+.gcs-table[data-header="solid"] thead{background:var(--gcs-primary)}
+.gcs-table[data-header="solid"] th{color:rgba(255,255,255,.55);font-size:9px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;border-left:1px solid rgba(255,255,255,.12)}
+.gcs-table[data-header="solid"] th:first-child{border-left:none}
+.gcs-table__th-inline{display:inline-flex;align-items:center;gap:8px}
+.gcs-table__th-icon{width:13px;height:13px;flex-shrink:0;display:block}
+.gcs-table__th-icon svg{width:100%;height:100%;display:block}
+.gcs-table td{vertical-align:top;padding:14px 16px;font-size:11.5px;font-weight:400;color:var(--gcs-muted-fg);border:none;border-top:1px solid var(--gcs-row-line);background:transparent;text-align:left;line-height:1.6}
+.gcs-table[data-header="solid"] tbody tr:first-child td{border-top:none}
+.gcs-table tbody tr:hover td{background:var(--gcs-muted)}
+
+/* Region divider row */
+.gcs-table__region-row td{background:var(--gcs-muted);border-top:none;border-bottom:1px solid var(--gcs-border);padding:9px 16px}
+.gcs-table__region-row:hover td{background:var(--gcs-muted)}
+.gcs-table__region-name{font-size:10px;font-weight:800;color:var(--gcs-primary);text-transform:uppercase;letter-spacing:.09em}
+.gcs-table__region-count{font-size:9px;font-weight:600;color:var(--gcs-muted-fg);margin-left:10px}
+
+/* Column widths (5-col programme layout) */
+.gcs-table td.col-country{width:190px;white-space:nowrap;font-weight:800;font-size:11.5px;color:var(--gcs-primary)}
+.gcs-table td.col-type{width:170px}
+.gcs-table td.col-min{width:230px;font-family:var(--font-mono);font-size:11px;color:var(--gcs-foreground);font-weight:500;line-height:1.6}
+.gcs-table td.col-adv{min-width:280px}
+.gcs-table td.col-cta{width:100px;white-space:nowrap;text-align:right}
+
+/* Country / flag cell */
+.gcs-table__country{display:inline-flex;align-items:center;gap:8px}
+.gcs-table__flag{width:20px;height:20px;object-fit:cover;border-radius:var(--radius-full);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);flex-shrink:0;display:block}
+
+/* Programme-type badges (components/core/primitives/Badge.jsx variants, pill radius-full) */
+.gcs-table .badge{display:inline-block;padding:3px 9px;border-radius:var(--radius-full);font-size:9px;font-weight:700;line-height:1.6;letter-spacing:.02em;white-space:nowrap}
+.gcs-table .badge--info{background:var(--gcs-info-bg);color:var(--gcs-info-fg)}
+.gcs-table .badge--success{background:var(--gcs-success-bg);color:var(--gcs-success-fg)}
+.gcs-table .badge--warning{background:var(--gcs-warning-bg);color:var(--gcs-warning-fg)}
+.gcs-table .badge--accent{background:var(--gcs-accent-bg);color:var(--gcs-accent-fg)}
+
+/* CTA cell */
+.gcs-table__cta-link{font-size:10px;font-weight:700;color:var(--gcs-secondary)}
+a.gcs-table__cta-link:hover{text-decoration:underline}
+span.gcs-table__cta-link{color:var(--gcs-secondary)}
+
+.gcs-table__footnote{padding:16px 28px 24px;font-size:11px;font-style:italic;color:var(--gcs-muted-fg);line-height:1.6;max-width:900px}
+
+/* Mobile — collapse into labelled stacked cards (tables.css contract) */
+@media(max-width:640px){
+  .gcs-table__scroll{overflow-x:visible;padding:0}
+  .gcs-table table{min-width:0}
+  .gcs-table table,.gcs-table thead,.gcs-table tbody,.gcs-table th,.gcs-table td,.gcs-table tr{display:block;width:100%}
+  .gcs-table thead{display:none}
+  .gcs-table tbody tr{padding:14px 20px;border-top:1px solid var(--gcs-row-line)}
+  .gcs-table tbody tr:first-child{border-top:none}
+  .gcs-table__region-row{padding:0}
+  .gcs-table td{display:flex;align-items:flex-start;justify-content:flex-start;gap:14px;padding:5px 0;border-top:none;text-align:left;width:auto}
+  .gcs-table td.col-cta{justify-content:flex-start;text-align:left}
+  .gcs-table td::before{content:attr(data-label);flex-shrink:0;width:96px;text-align:left;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gcs-muted-fg)}
+  .gcs-table td.col-country::before{display:none}
+  .gcs-table td.col-country{font-size:15px}
+}
+
+/* ── Disclaimer footnote ── */
+.table-note{padding:16px 48px 48px;font-size:11px;color:var(--muted-foreground);line-height:1.6;max-width:900px;font-style:italic}
+@media(max-width:767px){.table-note{padding:16px 20px 40px}}
+
+/* ── CTA strip (adapted from components/core/sections/ctasection.reference.html — right panel swapped for a StatisticsGrid-style stat block instead of an image, per brief) ── */
+.cta-strip{background:var(--primary);padding:56px 48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.cta-title{font-family:var(--font-serif);font-weight:400;font-size:28px;line-height:1.2;color:var(--primary-foreground);margin-bottom:8px}
+.cta-sub{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:24px;max-width:440px}
+.cta-actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 28px;font-family:var(--font-sans);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.02em;border-radius:0;cursor:pointer;white-space:nowrap;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.btn-electric{background:var(--accent);color:var(--accent-foreground);border:1px solid var(--accent);box-shadow:var(--shadow-xs)}
+.btn-electric:hover{background:var(--card);color:var(--primary);border-color:var(--card)}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,.25);color:var(--primary-foreground)}
+.btn-outline:hover{border-color:var(--primary-foreground)}
+.cta-right{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cta-stat{padding:20px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04)}
+.cta-stat-val{font-family:var(--font-serif);font-weight:400;font-size:28px;line-height:1.2;color:var(--accent)}
+.cta-stat-lbl{font-size:10px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
+@media(max-width:900px){.cta-strip{grid-template-columns:1fr;padding:40px 24px}}
+@media(max-width:480px){.cta-right{grid-template-columns:1fr 1fr;gap:8px}.cta-stat{padding:14px}}
+
+/* ── Footer (adapted from components/core/sections/footer.reference.html — Night Blue surface, column + bottom-bar structure, wireframe's original 4-column content only) ── */
+.footer{background:var(--primary);padding:40px 48px 24px;border-top:1px solid var(--night-blue-300)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px}
+.footer-logo{font-family:var(--font-serif);font-size:16px;font-weight:500;color:var(--primary-foreground);margin-bottom:10px}
+.footer-desc{font-size:11px;color:rgba(255,255,255,.4);line-height:1.6;max-width:220px}
+.footer-col-title{font-family:var(--font-serif);font-size:14px;font-weight:500;color:var(--night-blue-50);margin-bottom:12px}
+.footer-link{display:block;font-size:11px;color:rgba(255,255,255,.55);margin-bottom:10px}
+.footer-link:hover{color:var(--accent)}
+.footer-bottom{border-top:1px solid var(--night-blue-300);padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:10px;color:rgba(255,255,255,.35)}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:28px}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}.footer{padding:32px 20px 20px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- UTILITY BAR (components/core/sections/navbar.reference.html .top, icons: Material Symbols phone_callback / call / location_on, fetched + materialized) -->
+  <div class="util-bar">
+    <a class="util-item" href="#"><span class="util-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M520-520v-240h80v104l200-200 56 56-200 200h104v80H520Zm278 400q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z"/></svg></span>Request a Callback</a>
+    <a class="util-item" href="tel:+351210605995"><span class="util-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z"/></svg></span>+351 210 605 995</a>
+    <a class="util-item" href="#"><span class="util-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg></span>Worldwide Offices</a>
+  </div>
+
+  <!-- NAVBAR (components/core/sections/navbar.reference.html .main, logo = wireframe's real inline GCS mark) -->
+  <nav class="nav">
+    <a class="nav-logo" href="index.html" aria-label="Global Citizen Solutions">
+      <svg viewBox="0 0 199 71" xmlns="http://www.w3.org/2000/svg">
+<path d="M64.045 35C64.045 51.5685 50.6136 65 34.045 65C17.4765 65 4.04504 51.5685 4.04504 35C4.04504 18.4315 17.4765 5 34.045 5C50.6136 5 64.045 18.4315 64.045 35Z" fill="white"></path>
+<path d="M34.7438 0C15.5817 0 0.0450439 15.8237 0.0450439 35.353C0.0450439 54.8823 15.5817 70.6994 34.7438 70.6994C53.9058 70.6994 69.4425 54.869 69.4425 35.353C69.4425 15.8371 53.9058 0 34.7438 0ZM49.0052 42.8376L52.3635 52.2584C52.5572 52.7925 52.0297 53.3066 51.5022 53.1063L42.2484 49.6278C41.9212 49.5076 41.554 49.6545 41.4071 49.975L35.358 63.0613C35.1177 63.5754 34.3832 63.5754 34.1429 63.0613L28.0871 49.9616C27.9402 49.6478 27.573 49.4942 27.2459 49.6144L17.8985 53.073C17.3644 53.2733 16.8436 52.7525 17.0372 52.2183L20.4356 42.8242C20.5558 42.4971 20.4023 42.1365 20.0884 41.9897L7.03553 35.9606C6.52143 35.7203 6.52143 34.9858 7.03553 34.7455L20.0951 28.7031C20.4156 28.5562 20.5625 28.189 20.4423 27.8618L16.9371 18.5612C16.7368 18.027 17.2509 17.5063 17.785 17.6932L27.2659 21.0583C27.593 21.1718 27.9536 21.0249 28.0938 20.7111L34.1429 7.63812C34.3832 7.12402 35.1177 7.12402 35.358 7.63812L41.3937 20.6977C41.5406 21.0115 41.9012 21.1651 42.2283 21.0449L51.6091 17.6465C52.1432 17.4528 52.6573 17.9736 52.4637 18.5078L49.0118 27.8484C48.8917 28.1756 49.0452 28.5428 49.359 28.683L62.4654 34.7455C62.9795 34.9858 62.9795 35.7203 62.4654 35.9606L49.359 42.0164C49.0452 42.1633 48.8917 42.5238 49.0118 42.8443L49.0052 42.8376Z" fill="#000957"></path>
+<path d="M91.6211 13.1498C90.7598 12.3219 89.4712 11.8679 88.3562 11.8679C85.6054 11.8679 83.9362 13.9577 83.9362 16.6016C83.9362 18.7115 85.1647 20.8947 88.3562 20.8947C89.3644 20.8947 90.2457 20.6744 91.2539 19.8665V17.5898H87.9689V15.4265H93.4705V20.8413C92.202 22.2902 90.6062 23.1515 88.3495 23.1515C83.5223 23.1515 81.5593 19.98 81.5593 16.6016C81.5593 12.9896 83.816 9.64453 88.3495 9.64453C90.0721 9.64453 91.8014 10.3055 93.1233 11.6075L91.6211 13.1498Z" fill="#000957"></path>
+<path d="M99.3461 10.0117V20.6143H105.949V22.851H96.9224V10.0117H99.3461Z" fill="#000957"></path>
+<path d="M121.366 16.5081C121.332 19.8264 119.289 23.1514 114.776 23.1514C110.262 23.1514 108.173 19.9065 108.173 16.5281C108.173 13.1497 110.336 9.75793 114.776 9.75793C119.216 9.75793 121.399 13.1497 121.366 16.5081ZM110.556 16.5615C110.61 18.6713 111.751 20.928 114.776 20.928C117.8 20.928 118.942 18.6513 118.975 16.5414C119.009 14.3782 117.8 11.9546 114.776 11.9546C111.751 11.9546 110.503 14.3982 110.556 16.5615Z" fill="#000957"></path>
+<path d="M135.046 13.7373C135.046 14.7255 134.572 15.6802 133.377 16.2144C134.879 16.675 135.433 18.2708 135.433 19.0787C135.433 21.943 133.284 22.8577 130.626 22.8577H124.537V10.0117H130.626C133.157 10.0117 135.046 11.1468 135.046 13.7373ZM126.921 15.1661H130.626C132.149 15.1661 132.643 14.5252 132.643 13.7907C132.643 13.2032 132.169 12.215 130.626 12.215H126.921V15.1661ZM126.921 20.5943H130.626C131.614 20.5943 133.03 20.2671 133.03 19.0519C133.03 17.8368 131.614 17.2893 130.626 17.2893H126.921V20.5943Z" fill="#000957"></path>
+<path d="M147.725 20.434H141.009L139.907 22.8577H137.283L143.045 10.0117H145.689L151.451 22.8577H148.807L147.725 20.434ZM144.367 12.7091L141.983 18.1773H146.757L144.374 12.7091H144.367Z" fill="#000957"></path>
+<path d="M156.625 10.0117V20.6143H163.229V22.851H154.202V10.0117H156.625Z" fill="#000957"></path>
+<path d="M93.4038 40.1703C92.0818 41.4722 90.3792 42.0798 88.5231 42.0798C83.7493 42.0798 81.7329 38.7949 81.7129 35.4566C81.6929 32.0982 83.8762 28.6864 88.5231 28.6864C90.2657 28.6864 91.9149 29.3474 93.2369 30.6493L91.6211 32.2117C90.7798 31.3838 89.6381 31.0032 88.5231 31.0032C85.4251 31.0032 84.0831 33.3133 84.1032 35.4632C84.1232 37.5931 85.3517 39.8098 88.5231 39.8098C89.6448 39.8098 90.9067 39.3491 91.7546 38.5078L93.4038 40.177V40.1703Z" fill="#000957"></path>
+<path d="M96.2615 41.7861V28.9402H98.6651V41.7861H96.2615Z" fill="#000957"></path>
+<path d="M106.316 31.1435H102.244V28.9402H112.813V31.1435H108.74V41.7861H106.316V31.1435Z" fill="#000957"></path>
+<path d="M115.764 41.7861V28.9402H118.168V41.7861H115.764Z" fill="#000957"></path>
+<path d="M121.713 28.9402H131.588V30.0752L124.924 39.4893H131.588V41.7861H121.553V40.3907L128.069 31.2169H121.72V28.9402H121.713Z" fill="#000957"></path>
+<path d="M144.093 41.7861H134.479V28.9402H144.093V31.2904H136.882V34.2415H143.839V36.4982H136.882V39.3959H144.093V41.7794V41.7861Z" fill="#000957"></path>
+<path d="M156.258 28.92H158.682V41.786H157.18V41.806L150.429 33.1264V41.786H148.006V28.9401H149.969L156.265 36.9054V28.9267L156.258 28.92Z" fill="#000957"></path>
+<path d="M90.0055 50.9732C89.5648 50.2387 88.3563 49.5444 86.9609 49.5444C85.1649 49.5444 84.3036 50.2988 84.3036 51.2536C84.3036 52.3753 85.6256 52.6824 87.1679 52.8694C89.8452 53.1965 92.3423 53.8976 92.3423 56.9622C92.3423 59.8265 89.8118 61.055 86.9475 61.055C84.3236 61.055 82.3072 60.2471 81.3525 57.8969L83.3688 56.8487C83.9364 58.2641 85.4253 58.885 86.9809 58.885C88.5366 58.885 89.932 58.3509 89.932 56.9555C89.932 55.747 88.6635 55.2463 86.9609 55.066C84.337 54.7522 81.9133 54.0578 81.9133 51.1735C81.9133 48.5295 84.5172 47.4479 86.8875 47.4279C88.8905 47.4279 90.9602 47.9954 91.935 49.9783L90.0055 50.9665V50.9732Z" fill="#000957"></path>
+<path d="M108.3 54.3716C108.266 57.6899 106.223 61.0149 101.71 61.0149C97.1962 61.0149 95.1064 57.77 95.1064 54.3916C95.1064 51.0132 97.2697 47.6215 101.71 47.6215C106.15 47.6215 108.333 51.0132 108.3 54.3716ZM97.49 54.425C97.5434 56.5348 98.6851 58.7915 101.71 58.7915C104.734 58.7915 105.876 56.5148 105.909 54.405C105.943 52.2417 104.734 49.8181 101.71 49.8181C98.6851 49.8181 97.4366 52.2618 97.49 54.425Z" fill="#000957"></path>
+<path d="M113.968 47.8751V58.4777H120.571V60.7143H111.544V47.8684H113.968V47.8751Z" fill="#000957"></path>
+<path d="M134.258 47.8951V55.2528C134.258 59.0519 131.928 60.9948 128.697 60.9948C125.465 60.9948 122.988 59.1253 122.988 55.2528V47.8951H125.392V55.2528C125.392 57.563 126.714 58.7915 128.71 58.7915C130.706 58.7915 131.848 57.4495 131.848 55.2528V47.8951H134.252H134.258Z" fill="#000957"></path>
+<path d="M141.416 50.0786H137.343V47.8752H147.912V50.0786H143.839V60.7212H141.416V50.0786Z" fill="#000957"></path>
+<path d="M150.863 60.7212V47.8752H153.267V60.7212H150.863Z" fill="#000957"></path>
+<path d="M170.019 54.3716C169.985 57.6899 167.942 61.0149 163.429 61.0149C158.915 61.0149 156.826 57.77 156.826 54.3916C156.826 51.0132 158.989 47.6215 163.429 47.6215C167.869 47.6215 170.052 51.0132 170.019 54.3716ZM159.209 54.425C159.263 56.5348 160.404 58.7915 163.429 58.7915C166.453 58.7915 167.595 56.5148 167.628 54.405C167.662 52.2417 166.453 49.8181 163.429 49.8181C160.404 49.8181 159.156 52.2618 159.209 54.425Z" fill="#000957"></path>
+<path d="M181.71 47.8552H184.133V60.7145H182.631V60.7345L175.881 52.0549V60.7145H173.457V47.8686H175.42L181.716 55.8339V47.8552H181.71Z" fill="#000957"></path>
+<path d="M195.944 50.9732C195.504 50.2387 194.295 49.5444 192.9 49.5444C191.104 49.5444 190.242 50.2988 190.242 51.2536C190.242 52.3753 191.564 52.6824 193.107 52.8694C195.784 53.1965 198.281 53.8976 198.281 56.9622C198.281 59.8265 195.751 61.055 192.886 61.055C190.263 61.055 188.246 60.2471 187.291 57.8969L189.308 56.8487C189.875 58.2641 191.364 58.885 192.92 58.885C194.475 58.885 195.871 58.3509 195.871 56.9555C195.871 55.747 194.602 55.2463 192.9 55.066C190.276 54.7522 187.852 54.0578 187.852 51.1735C187.852 48.5295 190.456 47.4479 192.826 47.4279C194.829 47.4279 196.899 47.9954 197.874 49.9783L195.944 50.9665V50.9732Z" fill="#000957"></path>
+</svg>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link active" href="countries.html">Countries</a>
+      <a class="nav-link" href="residency.html">Residency</a>
+      <a class="nav-link" href="citizenship.html">Citizenship</a>
+      <div class="nav-link has-caret">Services<span class="caret"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg></span></div>
+      <div class="nav-link has-caret">Intelligence<span class="caret"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg></span></div>
+      <div class="nav-link has-caret">About<span class="caret"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg></span></div>
+    </div>
+    <div class="nav-cta">Book a Consultation</div>
+  </nav>
+
+  <!-- HERO (adapted from components/core/sections/heroinner.reference.html — same headline/subhead copy already in the DS reference, solid Night Blue, no media panel) -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Countries</div>
+      <h1 class="hero-title">Explore Every<br><em>Destination</em></h1>
+      <p class="hero-sub">Browse every country offering citizenship or residency programmes — from EU Golden Visas and Caribbean CBI to LATAM investor routes and Middle East hubs.</p>
+    </div>
+  </div>
+
+  <!-- FILTER BAR (sticky region tabs; anchor-scroll + active-state JS preserved) -->
+  <div class="filter-bar">
+    <a class="filter-item active" href="#listing">All</a>
+    <a class="filter-item" href="#sec-europe">Europe</a>
+    <a class="filter-item" href="#sec-caribbean">The Caribbean</a>
+    <a class="filter-item" href="#sec-americas">The Americas</a>
+    <a class="filter-item" href="#sec-middle-east">Middle East</a>
+    <a class="filter-item" href="#sec-africa">Africa</a>
+    <a class="filter-item" href="#sec-asia-pacific">Asia Pacific</a>
+  </div>
+
+  <!-- PROGRAMME TABLE INTRO -->
+  <div class="table-intro" id="listing">
+    <div class="table-intro-title">Programme Overview: Citizenship and Residency Options</div>
+    <div class="table-intro-copy">An increasing number of countries offer residency and citizenship programmes giving families and individuals the optionality to secure a plan B tailored to their needs. These programmes fall under two broad categories: Citizenship Planning and Residency Planning, which grant citizenship or residency based on investment in the country or exceptional contribution and achievement. Residency can also be secured through income, rather than investment — whether passive or active income. Below you will find the complete list of residency and citizenship options Global Citizen Solutions offers our clients.</div>
+  </div>
+
+  <!-- PROGRAMME TABLE (components/core/primitives/tables.card.html — Template 03, Standard Table, extended with region-divider rows) -->
+  <div class="table-wrap">
+    <div class="gcs-table" data-theme="light" data-header="solid">
+      <div class="gcs-table__scroll">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-country"></th>
+              <th class="col-type">
+                <span class="gcs-table__th-inline"><span class="gcs-table__th-icon"><svg viewBox="0 -960 960 960" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m260-520 220-360 220 360H260ZM700-80q-75 0-127.5-52.5T520-260q0-75 52.5-127.5T700-440q75 0 127.5 52.5T880-260q0 75-52.5 127.5T700-80Zm-580-20v-320h320v320H120Zm580-60q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm-500-20h160v-160H200v160Zm202-420h156l-78-126-78 126Zm78 0ZM360-340Zm340 80Z"/></svg></span>Type of Programme</span>
+              </th>
+              <th class="col-min">
+                <span class="gcs-table__th-inline"><span class="gcs-table__th-icon"><svg viewBox="0 -960 960 960" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M560-440q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM280-320q-33 0-56.5-23.5T200-400v-320q0-33 23.5-56.5T280-800h560q33 0 56.5 23.5T920-720v320q0 33-23.5 56.5T840-320H280Zm80-80h400q0-33 23.5-56.5T840-480v-160q-33 0-56.5-23.5T760-720H360q0 33-23.5 56.5T280-640v160q33 0 56.5 23.5T360-400Zm440 240H120q-33 0-56.5-23.5T40-240v-440h80v440h680v80ZM280-400v-320 320Z"/></svg></span>Minimum Investment or Requirement</span>
+              </th>
+              <th class="col-adv">
+                <span class="gcs-table__th-inline"><span class="gcs-table__th-icon"><svg viewBox="0 -960 960 960" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M222-200 80-342l56-56 85 85 170-170 56 57-225 226Zm0-320L80-662l56-56 85 85 170-170 56 57-225 226Zm298 240v-80h360v80H520Zm0-320v-80h360v80H520Z"/></svg></span>Main Advantages</span>
+              </th>
+              <th class="col-cta"></th>
+            </tr>
+          </thead>
+
+          <tbody class="gcs-table__region-group" id="sec-europe" data-region="Europe">
+            <tr class="gcs-table__region-row"><td colspan="5"><span class="gcs-table__region-name">Europe</span><span class="gcs-table__region-count">26 programmes</span></td></tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/at.png" alt="">Austria</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">Exceptional contribution to the country and the economy</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 180+ countries; only route allowing dual citizenship in Austria.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/at.png" alt="">Austria</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--warning">Passive Income Residency</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 24,700 monthly in passive income and EUR 50,000 in personal bank savings</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in Austria on proof of passive income; requires actual residency (183+ days/year); family inclusion.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/cy.png" alt="">Cyprus</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 300,000</td>
+              <td class="col-adv" data-label="Main Advantages">Permanent residence permit with right to live and study in Cyprus with minimum visit requirement once every two years; family inclusion; path to citizenship after 7 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/gr.png" alt="">Greece</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 250,000</td>
+              <td class="col-adv" data-label="Main Advantages">Permanent residence permit with the right to live and study in Greece; visa-free Schengen travel with no minimum stay requirement; family inclusion; path to citizenship after 7 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/gr.png" alt="">Greece</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--warning">Passive Income Residency</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 3,500 monthly in passive income OR EUR 126,000 in savings</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in Greece on proof of passive income or savings; requires actual residency (183+ days/year); family inclusion.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/gr.png" alt="">Greece</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--accent">Digital Nomad Residency</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 3,500 monthly in active income from remote work</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in Greece while working remotely for foreign employers/clients; requires actual residency (183+ days/year); family inclusion.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/hu.png" alt="">Hungary</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 250,000</td>
+              <td class="col-adv" data-label="Main Advantages">Residence permit with the right to live, work, and study in Hungary; visa-free Schengen travel, with no minimum stay requirement; family inclusion; path to citizenship after 8 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/ie.png" alt="">Ireland</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--warning">Passive Income Residency</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">Individual income of EUR 50,000 per year and lump-sum contingency</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in Ireland on proof of passive income; requires actual residency (183+ days/year); family inclusion.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/it.png" alt="">Italy</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 250,000</td>
+              <td class="col-adv" data-label="Main Advantages">Residence permit with the right to live, work and study in Italy; visa-free Schengen travel, with no minimum stay requirement; family inclusion; path to citizenship after 10 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/it.png" alt="">Italy</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--warning">Passive Income Residency</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 32,000 yearly in passive income</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in Italy on proof of passive income; requires actual residency (183+ days/year); family inclusion.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/it.png" alt="">Italy</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--accent">Digital Nomad Residency</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 24,789 yearly in active income from remote work</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in Italy while working remotely for foreign employers/clients; requires actual residency (183+ days/year); family inclusion.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/je.svg" alt="">Jersey</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">GBP 1.75 million in real estate, annual income of no less than GBP 1.25 million, and GBP 250,000 annually in tax</td>
+              <td class="col-adv" data-label="Main Advantages">Residence permit with the right to live, work and study in Jersey; family inclusion; must have intent to make Jersey your tax base (spend 183+ days/year); path to citizenship after 6 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/lv.png" alt="">Latvia</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 50,000</td>
+              <td class="col-adv" data-label="Main Advantages">Residence permit with the right to live, work and study in Latvia; visa-free Schengen travel, with no minimum stay requirement; family inclusion; path to citizenship after 10 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/lu.png" alt="">Luxembourg</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 500,000</td>
+              <td class="col-adv" data-label="Main Advantages">Residence permit with the right to live, work and study in Luxembourg; visa-free Schengen travel, with no minimum stay requirement; family inclusion; path to citizenship after 5 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/mt.png" alt="">Malta</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">Exceptional contribution to the country and the economy</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship granted by merit for exceptional achievement, with the right to live, work, and study anywhere in the EU for life.</td>
+              <td class="col-cta" data-label=""><a class="gcs-table__cta-link" href="citizenship-malta.html">View details →</a></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/mt.png" alt="">Malta</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 169,000</td>
+              <td class="col-adv" data-label="Main Advantages">Permanent residence permit with the right to live and study in Malta; visa-free Schengen travel, with no minimum stay requirement; extended family inclusion; permanent residency valid for life.</td>
+              <td class="col-cta" data-label=""><a class="gcs-table__cta-link" href="residency-malta.html">View details →</a></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/mc.png" alt="">Monaco</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 500,000</td>
+              <td class="col-adv" data-label="Main Advantages">Residence permit with the right to live and study in Monaco; visa-free Schengen travel; residency required; family inclusion; path to citizenship after 10 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/pt.png" alt="">Portugal</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 200,000</td>
+              <td class="col-adv" data-label="Main Advantages">Residence permit with right to live, work, and study in Portugal; visa-free Schengen travel with minimum stay requirement of 7 days per year; family inclusion; path to citizenship after 10 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/pt.png" alt="">Portugal</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--warning">Passive Income Residency</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 920 monthly in passive income and EUR 11,040 in savings</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in Portugal on proof of passive income; requires actual residency (183+ days/year); family inclusion.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/pt.png" alt="">Portugal</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--accent">Digital Nomad Residency</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 3,680 monthly in active income from remote work and EUR 11,040 in savings</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in Portugal while working remotely for foreign employers/clients; requires actual residency (183+ days/year); family inclusion.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/rs.png" alt="">Serbia</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">No minimum</td>
+              <td class="col-adv" data-label="Main Advantages">Residence permit with right to live, work, and study in Serbia; requires actual residency (183+ days/year); family inclusion; path to citizenship after 6 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/es.png" alt="">Spain</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--warning">Passive Income Residency</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 28,800 yearly in passive income</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in Spain on proof of passive income; requires actual residency (183+ days/year); family inclusion.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/es.png" alt="">Spain</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--accent">Digital Nomad Residency</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">EUR 33,200 yearly in active income from remote work</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in Spain while working remotely for foreign employers/clients; requires actual residency (183+ days/year); family inclusion.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/ch.png" alt="">Switzerland</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">No investment — instead, minimum annual lump-sum tax. Effective annual tax burden typically CHF 150,000–800,000+</td>
+              <td class="col-adv" data-label="Main Advantages">Residence permit with the right to live and study in Switzerland; visa-free Schengen travel; requires actual residency (183+ days/year); family inclusion; preferential tax treatment; path to citizenship after 10 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/tr.png" alt="">Turkey</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 400,000</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 110+ countries; option for the US E-2 investor visa treaty; special favourable tax regime available.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/gb.png" alt="">United Kingdom</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">No investment — innovative, scalable business idea endorsed by a UK endorsing body</td>
+              <td class="col-adv" data-label="Main Advantages">Residence permit with right to live, work, and study in the UK; requires actual residency (183+ days/year); family inclusion; path to citizenship after 5 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+          </tbody>
+
+          <tbody class="gcs-table__region-group" id="sec-caribbean" data-region="The Caribbean">
+            <tr class="gcs-table__region-row"><td colspan="5"><span class="gcs-table__region-name">The Caribbean</span><span class="gcs-table__region-count">7 programmes</span></td></tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/ag.png" alt="">Antigua and Barbuda</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 230,000</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 150+ countries; extended family included; best value for big families; favourable tax regime.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/bs.png" alt="">Bahamas</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 1 million</td>
+              <td class="col-adv" data-label="Main Advantages">Permanent residence permit with right to live in the Bahamas with no minimum stay requirement; family inclusion; residency valid for life; path to citizenship after 10 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/ky.png" alt="">Cayman Islands</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 1.2 million</td>
+              <td class="col-adv" data-label="Main Advantages">Permanent residence permit with right to live in the Cayman Islands with no minimum stay requirement; family inclusion; residency valid for 25 years.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/dm.png" alt="">Dominica</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 200,000</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 145+ countries including Russia and China; favourable tax regime.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/gd.png" alt="">Grenada</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 235,000</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 147+ countries; option for the US E-2 investor visa treaty; citizenship extends to next generation; favourable tax regime.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/kn.png" alt="">St. Kitts and Nevis</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 250,000</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 150+ countries; oldest and most prestigious programme; favourable tax regime.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/lc.png" alt="">St. Lucia</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 240,000</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 140+ countries; citizenship extends to next generation; diverse investment options; favourable tax regime.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+          </tbody>
+
+          <tbody class="gcs-table__region-group" id="sec-americas" data-region="The Americas">
+            <tr class="gcs-table__region-row"><td colspan="5"><span class="gcs-table__region-name">The Americas</span><span class="gcs-table__region-count">10 programmes</span></td></tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/ar.png" alt="">Argentina</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">Expected around USD 500,000</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 170+ countries; gives the right to live and work across Mercosur states.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/ar.png" alt="">Argentina</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--warning">Passive Income Residency</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 1,500 monthly in passive income</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in Argentina on proof of passive income; flexible stay requirement; family inclusion.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/br.png" alt="">Brazil</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 150,000</td>
+              <td class="col-adv" data-label="Main Advantages">Residence permit with right to live, work, and study in Brazil; 14 days in two years minimum stay requirement; family inclusion; path to citizenship after 8 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/ca.png" alt="">Canada</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">No investment — innovative, scalable business idea endorsed by a Canadian designated business organization</td>
+              <td class="col-adv" data-label="Main Advantages">Permanent residence permit with right to live, work, and study in Canada; intent to relocate required; family inclusion; path to citizenship after 3 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/cr.png" alt="">Costa Rica</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 150,000</td>
+              <td class="col-adv" data-label="Main Advantages">Permanent residence permit with right to live, work, and study in Costa Rica; no minimum stay requirement; family inclusion; path to citizenship after 7 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/pa.png" alt="">Panama</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 300,000</td>
+              <td class="col-adv" data-label="Main Advantages">Permanent residence permit with right to live, work, and study in Panama; no minimum stay requirement; family inclusion; path to citizenship after 5 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/py.png" alt="">Paraguay</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--warning">Passive Income Residency</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 1,500 monthly in passive or earned income</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in Paraguay on proof of passive income; flexible stay requirement; family inclusion.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/us.png" alt="">United States</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 800,000</td>
+              <td class="col-adv" data-label="Main Advantages">Residence permit (Green Card) with right to live, work, and study in the US; requires actual residency (183+ days/year); family inclusion; path to citizenship after 5 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/us.png" alt="">United States</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 100,000</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in the US while running your own business; no minimum stay requirement; family inclusion; indefinite renewal of residency.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/uy.png" alt="">Uruguay</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--warning">Passive Income Residency</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 1,500 monthly in passive income</td>
+              <td class="col-adv" data-label="Main Advantages">Right to live in Uruguay on proof of passive income; flexible stay requirement; family inclusion.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+          </tbody>
+
+          <tbody class="gcs-table__region-group" id="sec-middle-east" data-region="Middle East">
+            <tr class="gcs-table__region-row"><td colspan="5"><span class="gcs-table__region-name">Middle East</span><span class="gcs-table__region-count">2 programmes</span></td></tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/jo.png" alt="">Jordan</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">JOD 700,000</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 50+ countries.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/ae.png" alt="">UAE</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">AED 2 million</td>
+              <td class="col-adv" data-label="Main Advantages">Permanent residence permit with right to live, work, and study in the UAE; no minimum stay requirement; extended family inclusion; long-term 10-year residency.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+          </tbody>
+
+          <tbody class="gcs-table__region-group" id="sec-africa" data-region="Africa">
+            <tr class="gcs-table__region-row"><td colspan="5"><span class="gcs-table__region-name">Africa</span><span class="gcs-table__region-count">2 programmes</span></td></tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/eg.png" alt="">Egypt</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 250,000</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 50+ countries; option for the US E-2 investor visa treaty.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/st.png" alt="">São Tomé and Príncipe</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 90,000</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 60+ countries.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+          </tbody>
+
+          <tbody class="gcs-table__region-group" id="sec-asia-pacific" data-region="Asia Pacific">
+            <tr class="gcs-table__region-row"><td colspan="5"><span class="gcs-table__region-name">Asia Pacific</span><span class="gcs-table__region-count">4 programmes</span></td></tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/kh.png" alt="">Cambodia</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 245,000</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 40+ countries with visa-free travel across ASEAN.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/nr.png" alt="">Nauru</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 90,000 under promotion until 31 December 2026, after USD 115,000</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 70+ countries; favourable tax regime.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/nz.png" alt="">New Zealand</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--success">Residency Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">NZD 5 million</td>
+              <td class="col-adv" data-label="Main Advantages">Residence permit with right to live, work, and study in New Zealand; minimum stay requirement of 21 days in 3 years or 105 days in 5 years; family inclusion; path to citizenship after 5 years*.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+            <tr>
+              <td class="col-country" data-label="Country"><span class="gcs-table__country"><img class="gcs-table__flag" src="/Volumes/GCS%20-%20DISK%201T/GCS%202026/Github/gcs-design-system/assets/flags/vu.png" alt="">Vanuatu</span></td>
+              <td class="col-type" data-label="Type of Programme"><span class="badge badge--info">Citizenship Planning</span></td>
+              <td class="col-min" data-label="Minimum Investment or Requirement">USD 130,000</td>
+              <td class="col-adv" data-label="Main Advantages">Full citizenship for the entire family; visa-free access to 100+ countries; favourable tax regime.</td>
+              <td class="col-cta" data-label=""><span class="gcs-table__cta-link">View details →</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-note">* Disclaimer: Eligibility for citizenship is subject to the specific legal requirements of each country and may include additional criteria such as language proficiency, residency duration, and other conditions beyond the receipt of a residency permit. These requirements are set by each country and may change over time.</div>
+
+  <!-- CTA STRIP (adapted from components/core/sections/ctasection.reference.html) -->
+  <div class="cta-strip">
+    <div class="cta-left">
+      <div class="cta-title">Not sure where to start?</div>
+      <div class="cta-sub">Our advisors match your profile to the right programme — based on your passport, timeline, budget, and long-term goals.</div>
+      <div class="cta-actions">
+        <a class="btn btn-electric" href="#">Book a free consultation</a>
+        <a class="btn btn-outline" href="#">Download programme guide</a>
+      </div>
+    </div>
+    <div class="cta-right">
+      <div class="cta-stat"><div class="cta-stat-val">42</div><div class="cta-stat-lbl">Countries covered</div></div>
+      <div class="cta-stat"><div class="cta-stat-val">15</div><div class="cta-stat-lbl">Citizenship options</div></div>
+      <div class="cta-stat"><div class="cta-stat-val">28</div><div class="cta-stat-lbl">Residency options</div></div>
+      <div class="cta-stat"><div class="cta-stat-val">50+</div><div class="cta-stat-lbl">Countries advised</div></div>
+    </div>
+  </div>
+
+  <!-- FOOTER (adapted from components/core/sections/footer.reference.html, wireframe's original content only) -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Global Citizen Solutions</div>
+        <div class="footer-desc">Leading advisory firm for residence and citizenship by investment across 50+ countries.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Citizenship</div>
+        <a class="footer-link" href="#">Malta</a>
+        <a class="footer-link" href="#">Austria</a>
+        <a class="footer-link" href="#">Caribbean CBI</a>
+        <a class="footer-link" href="#">All Programmes</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Residency</div>
+        <a class="footer-link" href="#">Portugal</a>
+        <a class="footer-link" href="#">Greece</a>
+        <a class="footer-link" href="#">UAE</a>
+        <a class="footer-link" href="#">All Programmes</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <a class="footer-link" href="#">About GCS</a>
+        <a class="footer-link" href="#">Advisors</a>
+        <a class="footer-link" href="#">Contact</a>
+        <a class="footer-link" href="#">Legal</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Global Citizen Solutions. All rights reserved.</span>
+      <span>Privacy · Terms · Cookies</span>
+    </div>
+  </footer>
+
+</div><!-- /page -->
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.filter-item[href]');
+  items.forEach(function (i) {
+    i.addEventListener('click', function () {
+      items.forEach(function (x) { x.classList.remove('active'); });
+      i.classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

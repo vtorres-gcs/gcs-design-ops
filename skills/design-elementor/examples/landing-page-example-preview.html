@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GCS Elementor Preview — Landing Page (Hero + Features + CTA)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* , *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #EEF1F5;
+  color: #101828;
+}
+
+/* ---- Sticky top bar (clean white UI, not GCS-themed) ---- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.topbar .section-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: #000957;
+}
+
+.topbar .actions {
+  display: flex;
+  gap: 8px;
+}
+
+.topbar button {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #000957;
+  transition: opacity 0.15s;
+}
+
+.topbar button:hover { opacity: 0.85; }
+
+.btn-copy {
+  background: #000957;
+  color: #FFFFFF;
+}
+
+.btn-download {
+  background: #FFFFFF;
+  color: #000957;
+}
+
+.topbar .toast {
+  font-size: 12px;
+  color: #10893E;
+  margin-left: 8px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.topbar .toast.show { opacity: 1; }
+
+/* ---- Preview scaffolding (neutral, just labels + frames) ---- */
+.preview-wrap {
+  padding: 32px 24px 64px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.preview-note {
+  font-size: 12px;
+  color: #6B7280;
+  background: #FFF7E6;
+  border: 1px solid #F3D9A4;
+  padding: 10px 14px;
+  margin: 0 0 24px;
+}
+
+.preview-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6B7280;
+  margin: 0 0 12px;
+}
+
+.frame-desktop {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+
+.frame-mobile-outer {
+  display: flex;
+  justify-content: center;
+}
+
+.frame-mobile {
+  width: 390px;
+  background: #fff;
+  border: 8px solid #1F2430;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* =========================================================
+   GCS SECTION RENDER
+   Containers/backgrounds use the JSON's literal GCS colors.
+   Heading/text/button copy uses a generic system font and a
+   neutral button style — the JSON sets no typography/color on
+   these widgets, so the real WordPress theme controls them.
+   ========================================================= */
+
+/* --- shared text/button styles (generic, theme-inherited look) --- */
+.gcs-h1 { margin: 0; font-weight: 700; font-size: 40px; line-height: 1.15; }
+.gcs-h2 { margin: 0; font-weight: 700; font-size: 30px; line-height: 1.2; }
+.gcs-h3 { margin: 0; font-weight: 700; font-size: 16px; line-height: 1.3; }
+.gcs-body { margin: 0; font-size: 16px; line-height: 1.5; color: #444B57; }
+.gcs-body-sm { margin: 0; font-size: 14px; line-height: 1.5; color: #444B57; }
+.gcs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  background: #E9ECF1;
+  color: #101828;
+  border: 1px solid #C9CFDA;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* --- Hero --- */
+.gcs-hero-outer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  background: #FFFFFF;
+  padding: 60px 64px;
+}
+
+.gcs-hero-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.gcs-hero-intro .gcs-h1, .gcs-hero-intro .gcs-body { text-align: center; }
+.gcs-hero-intro .gcs-body { max-width: 582px; }
+
+.gcs-hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding-top: 20px;
+  flex-wrap: wrap;
+}
+
+.gcs-hero-media {
+  width: 100%;
+  min-height: 480px;
+  background: #F9FAFB;
+  overflow: hidden;
+}
+
+.gcs-hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+}
+
+/* --- Features --- */
+.gcs-features-outer {
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border-right: 1px solid #DBEAFF;
+  border-bottom: 1px solid #DBEAFF;
+  border-left: 1px solid #DBEAFF;
+}
+
+.gcs-features-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.gcs-features-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 33.33%;
+  padding: 24px;
+  border-right: 1px solid #DBEAFF;
+  border-bottom: 1px solid #DBEAFF;
+}
+
+.gcs-features-tile:last-child { border-right: none; }
+
+.gcs-features-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #3F8CFF;
+  color: #FFFFFF;
+  font-size: 20px;
+}
+
+/* --- CTA --- */
+.gcs-cta-outer {
+  display: flex;
+  flex-direction: row;
+  min-height: 400px;
+  background: #FFFFFF;
+}
+
+.gcs-cta-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  width: 50%;
+  padding: 56px 80px;
+  background: #000957;
+}
+
+.gcs-cta-left .gcs-h2 { color: inherit; }
+
+.gcs-cta-icon {
+  color: #3F8CFF;
+  font-size: 40px;
+}
+
+.gcs-cta-right {
+  width: 50%;
+  background: #F9FAFB url('https://images.unsplash.com/photo-placeholder') center/cover no-repeat;
+}
+
+/* Mobile breakpoint — mirrors the JSON's _mobile settings (≤767px) */
+@media (max-width: 480px) {
+  .gcs-hero-outer { padding: 48px 24px; gap: 28px; }
+  .gcs-h1 { font-size: 28px; }
+  .gcs-hero-actions { flex-direction: column; gap: 16px; }
+  .gcs-hero-media { min-height: 220px; }
+  .gcs-features-row { flex-direction: column; }
+  .gcs-features-tile { width: 100%; border-right: none; }
+  .gcs-cta-outer { flex-direction: column; }
+  .gcs-cta-left, .gcs-cta-right { width: 100%; }
+  .gcs-cta-left { padding: 40px 24px; }
+  .gcs-h2 { font-size: 26px; }
+  .gcs-cta-right { min-height: 240px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="section-name">Landing Page — Hero + Features + CTA — Global Citizen Solutions</div>
+  <div class="actions">
+    <span class="toast" id="toast">Copied</span>
+    <button class="btn-copy" id="copyBtn">Copy Elementor JSON</button>
+    <button class="btn-download" id="downloadBtn">Download JSON</button>
+  </div>
+</div>
+
+<div class="preview-wrap">
+
+  <p class="preview-note">Font and button styling shown here are generic placeholders — the live site will render heading/text/button widgets with your WordPress theme's own fonts and button style. Backgrounds shown in Night Blue/Electric Blue/etc. are literal colors set in the JSON.</p>
+
+  <p class="preview-label">Desktop</p>
+  <div class="frame-desktop">
+
+    <div class="gcs-hero-outer">
+      <div class="gcs-hero-intro">
+        <h1 class="gcs-h1">Secure Optionality for Your Family's Future</h1>
+        <p class="gcs-body">Global Citizen Solutions helps high-net-worth families plan residency and citizenship across jurisdictions, so you retain the freedom to act when circumstances change.</p>
+        <div class="gcs-hero-actions">
+          <a class="gcs-btn" href="https://www.globalcitizensolutions.com/contact/">Book a Consultation</a>
+        </div>
+      </div>
+      <div class="gcs-hero-media">
+        <img src="https://images.unsplash.com/photo-placeholder" alt="">
+      </div>
+    </div>
+
+    <div class="gcs-features-outer">
+      <div class="gcs-features-row">
+        <div class="gcs-features-tile">
+          <span class="gcs-features-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="24" height="24" viewBox="0 -960 960 960"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-82v-78q-33 0-56.5-23.5T360-320v-40L168-552q-3 18-5.5 36t-2.5 36q0 121 79.5 212T440-162Zm276-102q20-22 36-47.5t26.5-53q10.5-27.5 16-56.5t5.5-59q0-98-54.5-179T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h240q17 0 28.5 11.5T600-440v120h40q26 0 47 15.5t29 40.5Z"/></svg></span>
+          <h3 class="gcs-h3">Multi-Jurisdictional Optionality</h3>
+          <p class="gcs-body-sm">Establish a legally recognised alternative in a second jurisdiction, so you retain the freedom to act if circumstances change.</p>
+        </div>
+        <div class="gcs-features-tile">
+          <span class="gcs-features-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="24" height="24" viewBox="0 -960 960 960"><path d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"/></svg></span>
+          <h3 class="gcs-h3">Security and Access</h3>
+          <p class="gcs-body-sm">A specialist team guides every step of the application, from documentation through to approval.</p>
+        </div>
+        <div class="gcs-features-tile">
+          <span class="gcs-features-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="24" height="24" viewBox="0 -960 960 960"><path d="M40-160v-160q0-34 23.5-57t56.5-23h131q20 0 38 10t29 27q29 39 71.5 61t90.5 22q49 0 91.5-22t70.5-61q13-17 30.5-27t36.5-10h131q34 0 57 23t23 57v160H640v-91q-35 25-75.5 38T480-200q-43 0-84-13.5T320-252v92H40Zm440-160q-38 0-72-17.5T351-386q-17-25-42.5-39.5T253-440q22-37 93-58.5T480-520q63 0 134 21.5t93 58.5q-29 0-55 14.5T609-386q-22 32-56 49t-73 17ZM160-440q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T280-560q0 50-34.5 85T160-440Zm640 0q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T920-560q0 50-34.5 85T800-440ZM480-560q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-680q0 50-34.5 85T480-560Z"/></svg></span>
+          <h3 class="gcs-h3">Family and Future Generations</h3>
+          <p class="gcs-body-sm">Benefits can extend across generations, giving your children an established alternative of their own.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="gcs-cta-outer">
+      <div class="gcs-cta-left">
+        <span class="gcs-cta-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="40" height="40" viewBox="0 -960 960 960"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg></span>
+        <h2 class="gcs-h2">Ready to Plan Your Next Step?</h2>
+        <a class="gcs-btn" href="https://www.globalcitizensolutions.com/contact/">Book a Consultation</a>
+      </div>
+      <div class="gcs-cta-right"></div>
+    </div>
+
+  </div>
+
+  <p class="preview-label">Mobile — 390px</p>
+  <div class="frame-mobile-outer">
+    <div class="frame-mobile">
+
+      <div class="gcs-hero-outer" style="padding: 48px 24px; gap: 28px;">
+        <div class="gcs-hero-intro">
+          <h1 class="gcs-h1" style="font-size: 28px;">Secure Optionality for Your Family's Future</h1>
+          <p class="gcs-body">Global Citizen Solutions helps high-net-worth families plan residency and citizenship across jurisdictions, so you retain the freedom to act when circumstances change.</p>
+          <div class="gcs-hero-actions" style="flex-direction: column; gap: 16px;">
+            <a class="gcs-btn" href="https://www.globalcitizensolutions.com/contact/">Book a Consultation</a>
+          </div>
+        </div>
+        <div class="gcs-hero-media" style="min-height: 220px;">
+          <img src="https://images.unsplash.com/photo-placeholder" alt="">
+        </div>
+      </div>
+
+      <div class="gcs-features-outer">
+        <div class="gcs-features-row" style="flex-direction: column;">
+          <div class="gcs-features-tile" style="width: 100%; border-right: none;">
+            <span class="gcs-features-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="24" height="24" viewBox="0 -960 960 960"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-82v-78q-33 0-56.5-23.5T360-320v-40L168-552q-3 18-5.5 36t-2.5 36q0 121 79.5 212T440-162Zm276-102q20-22 36-47.5t26.5-53q10.5-27.5 16-56.5t5.5-59q0-98-54.5-179T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h240q17 0 28.5 11.5T600-440v120h40q26 0 47 15.5t29 40.5Z"/></svg></span>
+            <h3 class="gcs-h3">Multi-Jurisdictional Optionality</h3>
+            <p class="gcs-body-sm">Establish a legally recognised alternative in a second jurisdiction, so you retain the freedom to act if circumstances change.</p>
+          </div>
+          <div class="gcs-features-tile" style="width: 100%; border-right: none;">
+            <span class="gcs-features-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="24" height="24" viewBox="0 -960 960 960"><path d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"/></svg></span>
+            <h3 class="gcs-h3">Security and Access</h3>
+            <p class="gcs-body-sm">A specialist team guides every step of the application, from documentation through to approval.</p>
+          </div>
+          <div class="gcs-features-tile" style="width: 100%; border-right: none;">
+            <span class="gcs-features-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="24" height="24" viewBox="0 -960 960 960"><path d="M40-160v-160q0-34 23.5-57t56.5-23h131q20 0 38 10t29 27q29 39 71.5 61t90.5 22q49 0 91.5-22t70.5-61q13-17 30.5-27t36.5-10h131q34 0 57 23t23 57v160H640v-91q-35 25-75.5 38T480-200q-43 0-84-13.5T320-252v92H40Zm440-160q-38 0-72-17.5T351-386q-17-25-42.5-39.5T253-440q22-37 93-58.5T480-520q63 0 134 21.5t93 58.5q-29 0-55 14.5T609-386q-22 32-56 49t-73 17ZM160-440q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T280-560q0 50-34.5 85T160-440Zm640 0q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T920-560q0 50-34.5 85T800-440ZM480-560q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-680q0 50-34.5 85T480-560Z"/></svg></span>
+            <h3 class="gcs-h3">Family and Future Generations</h3>
+            <p class="gcs-body-sm">Benefits can extend across generations, giving your children an established alternative of their own.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gcs-cta-outer" style="flex-direction: column;">
+        <div class="gcs-cta-left" style="width: 100%; padding: 40px 24px;">
+          <span class="gcs-cta-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="40" height="40" viewBox="0 -960 960 960"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg></span>
+          <h2 class="gcs-h2" style="font-size: 26px;">Ready to Plan Your Next Step?</h2>
+          <a class="gcs-btn" href="https://www.globalcitizensolutions.com/contact/">Book a Consultation</a>
+        </div>
+        <div class="gcs-cta-right" style="width: 100%; min-height: 240px;"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script type="application/json" id="elementor-json">
+{
+  "type": "elementor",
+  "siteurl": "https://www.globalcitizensolutions.com/wp-json/",
+  "elements": [
+    {
+      "id": "gcs-hero-outer",
+      "elType": "container",
+      "isInner": false,
+      "isLocked": false,
+      "settings": {
+        "flex_direction": "column",
+        "flex_direction_tablet": "column",
+        "flex_direction_mobile": "column",
+        "flex_wrap": "nowrap",
+        "align_items": "center",
+        "flex_gap": { "unit": "px", "size": 40 },
+        "flex_gap_mobile": { "unit": "px", "size": 28 },
+        "padding": { "unit": "px", "top": 60, "right": 64, "bottom": 60, "left": 64, "isLinked": false },
+        "padding_tablet": { "unit": "px", "top": 48, "right": 32, "bottom": 48, "left": 32, "isLinked": false },
+        "padding_mobile": { "unit": "px", "top": 48, "right": 24, "bottom": 48, "left": 24, "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#FFFFFF",
+        "border_border": "none",
+        "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+      },
+      "elements": [
+        {
+          "id": "gcs-hero-intro",
+          "elType": "container",
+          "isInner": true,
+          "isLocked": false,
+          "settings": {
+            "flex_direction": "column",
+            "flex_direction_tablet": "column",
+            "flex_direction_mobile": "column",
+            "flex_wrap": "nowrap",
+            "align_items": "center",
+            "justify_content": "center",
+            "flex_gap": { "unit": "px", "size": 20 },
+            "width": { "unit": "%", "size": 100 },
+            "background_background": "classic",
+            "background_color": "#FFFFFF",
+            "border_border": "none",
+            "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+          },
+          "elements": [
+            {
+              "id": "gcs-hero-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "isInner": false,
+              "isLocked": false,
+              "settings": {
+                "title": "Secure Optionality for Your Family's Future",
+                "header_size": "h1",
+                "align": "center",
+                "align_tablet": "center",
+                "align_mobile": "center"
+              },
+              "elements": []
+            },
+            {
+              "id": "gcs-hero-body",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "isInner": false,
+              "isLocked": false,
+              "settings": {
+                "editor": "<p>Global Citizen Solutions helps high-net-worth families plan residency and citizenship across jurisdictions, so you retain the freedom to act when circumstances change.</p>",
+                "align": "center",
+                "align_tablet": "center",
+                "align_mobile": "center"
+              },
+              "elements": []
+            },
+            {
+              "id": "gcs-hero-actions",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "flex_direction": "row",
+                "flex_direction_tablet": "row",
+                "flex_direction_mobile": "column",
+                "flex_wrap": "nowrap",
+                "align_items": "center",
+                "justify_content": "center",
+                "flex_gap": { "unit": "px", "size": 24 },
+                "flex_gap_mobile": { "unit": "px", "size": 16 },
+                "padding": { "unit": "px", "top": 20, "right": 0, "bottom": 0, "left": 0, "isLinked": false },
+                "background_background": "classic",
+                "background_color": "#FFFFFF",
+                "border_border": "none",
+                "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+              },
+              "elements": [
+                {
+                  "id": "gcs-hero-cta",
+                  "elType": "widget",
+                  "widgetType": "button",
+                  "isInner": false,
+                  "isLocked": false,
+                  "settings": {
+                    "text": "Book a Consultation",
+                    "link": { "url": "https://www.globalcitizensolutions.com/contact/", "is_external": false, "nofollow": false },
+                    "align": "center"
+                  },
+                  "elements": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gcs-hero-media",
+          "elType": "container",
+          "isInner": true,
+          "isLocked": false,
+          "settings": {
+            "flex_direction": "column",
+            "flex_wrap": "nowrap",
+            "width": { "unit": "%", "size": 100 },
+            "min_height": { "unit": "px", "size": 480 },
+            "min_height_tablet": { "unit": "px", "size": 380 },
+            "min_height_mobile": { "unit": "px", "size": 220 },
+            "background_background": "classic",
+            "background_color": "#F9FAFB",
+            "border_border": "none",
+            "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+          },
+          "elements": [
+            {
+              "id": "gcs-hero-image",
+              "elType": "widget",
+              "widgetType": "image",
+              "isInner": false,
+              "isLocked": false,
+              "settings": {
+                "image": { "url": "https://images.unsplash.com/photo-placeholder", "id": 0 },
+                "image_size": "large",
+                "align": "center",
+                "width": { "unit": "%", "size": 100 },
+                "object-fit": "cover"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gcs-features-outer",
+      "elType": "container",
+      "isInner": false,
+      "isLocked": false,
+      "settings": {
+        "flex_direction": "column",
+        "flex_wrap": "nowrap",
+        "flex_gap": { "unit": "px", "size": 0 },
+        "padding": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0, "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#FFFFFF",
+        "border_border": "solid",
+        "border_width": { "unit": "px", "top": 0, "right": 1, "bottom": 1, "left": 1, "isLinked": false },
+        "border_color": "#DBEAFF"
+      },
+      "elements": [
+        {
+          "id": "gcs-features-row-1",
+          "elType": "container",
+          "isInner": true,
+          "isLocked": false,
+          "settings": {
+            "flex_direction": "row",
+            "flex_direction_mobile": "column",
+            "flex_wrap": "nowrap",
+            "flex_gap": { "unit": "px", "size": 0 },
+            "padding": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0, "isLinked": false },
+            "background_background": "classic",
+            "background_color": "#FFFFFF",
+            "border_border": "none",
+            "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+          },
+          "elements": [
+            {
+              "id": "gcs-features-tile-1",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "flex_direction": "column",
+                "flex_wrap": "nowrap",
+                "flex_gap": { "unit": "px", "size": 12 },
+                "width": { "unit": "%", "size": 33.33 },
+                "width_mobile": { "unit": "%", "size": 100 },
+                "padding": { "unit": "px", "top": 24, "right": 24, "bottom": 24, "left": 24, "isLinked": false },
+                "background_background": "classic",
+                "background_color": "#FFFFFF",
+                "border_border": "solid",
+                "border_width": { "unit": "px", "top": 0, "right": 1, "bottom": 1, "left": 0, "isLinked": false },
+                "border_color": "#DBEAFF",
+                "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+              },
+              "elements": [
+                {
+                  "id": "gcs-features-icon-1",
+                  "elType": "widget",
+                  "widgetType": "icon",
+                  "isInner": false,
+                  "isLocked": false,
+                  "settings": {
+                    "selected_icon": { "value": { "library": "fa-solid", "value": "fa-solid fa-globe" }, "library": "fa-solid" },
+                    "align": "left",
+                    "size": { "unit": "px", "size": 24 },
+                    "primary_color": "#FFFFFF",
+                    "background_color": "#3F8CFF",
+                    "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-features-heading-1",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "isInner": false,
+                  "isLocked": false,
+                  "settings": {
+                    "title": "Multi-Jurisdictional Optionality",
+                    "header_size": "h3",
+                    "align": "left"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-features-body-1",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "isInner": false,
+                  "isLocked": false,
+                  "settings": {
+                    "editor": "<p>Establish a legally recognised alternative in a second jurisdiction, so you retain the freedom to act if circumstances change.</p>",
+                    "align": "left"
+                  },
+                  "elements": []
+                }
+              ]
+            },
+            {
+              "id": "gcs-features-tile-2",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "flex_direction": "column",
+                "flex_wrap": "nowrap",
+                "flex_gap": { "unit": "px", "size": 12 },
+                "width": { "unit": "%", "size": 33.33 },
+                "width_mobile": { "unit": "%", "size": 100 },
+                "padding": { "unit": "px", "top": 24, "right": 24, "bottom": 24, "left": 24, "isLinked": false },
+                "background_background": "classic",
+                "background_color": "#FFFFFF",
+                "border_border": "solid",
+                "border_width": { "unit": "px", "top": 0, "right": 1, "bottom": 1, "left": 0, "isLinked": false },
+                "border_color": "#DBEAFF",
+                "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+              },
+              "elements": [
+                {
+                  "id": "gcs-features-icon-2",
+                  "elType": "widget",
+                  "widgetType": "icon",
+                  "isInner": false,
+                  "isLocked": false,
+                  "settings": {
+                    "selected_icon": { "value": { "library": "fa-solid", "value": "fa-solid fa-shield-halved" }, "library": "fa-solid" },
+                    "align": "left",
+                    "size": { "unit": "px", "size": 24 },
+                    "primary_color": "#FFFFFF",
+                    "background_color": "#3F8CFF",
+                    "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-features-heading-2",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "isInner": false,
+                  "isLocked": false,
+                  "settings": {
+                    "title": "Security and Access",
+                    "header_size": "h3",
+                    "align": "left"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-features-body-2",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "isInner": false,
+                  "isLocked": false,
+                  "settings": {
+                    "editor": "<p>A specialist team guides every step of the application, from documentation through to approval.</p>",
+                    "align": "left"
+                  },
+                  "elements": []
+                }
+              ]
+            },
+            {
+              "id": "gcs-features-tile-3",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "flex_direction": "column",
+                "flex_wrap": "nowrap",
+                "flex_gap": { "unit": "px", "size": 12 },
+                "width": { "unit": "%", "size": 33.33 },
+                "width_mobile": { "unit": "%", "size": 100 },
+                "padding": { "unit": "px", "top": 24, "right": 24, "bottom": 24, "left": 24, "isLinked": false },
+                "background_background": "classic",
+                "background_color": "#FFFFFF",
+                "border_border": "solid",
+                "border_width": { "unit": "px", "top": 0, "right": 0, "bottom": 1, "left": 0, "isLinked": false },
+                "border_color": "#DBEAFF",
+                "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+              },
+              "elements": [
+                {
+                  "id": "gcs-features-icon-3",
+                  "elType": "widget",
+                  "widgetType": "icon",
+                  "isInner": false,
+                  "isLocked": false,
+                  "settings": {
+                    "selected_icon": { "value": { "library": "fa-solid", "value": "fa-solid fa-people-roof" }, "library": "fa-solid" },
+                    "align": "left",
+                    "size": { "unit": "px", "size": 24 },
+                    "primary_color": "#FFFFFF",
+                    "background_color": "#3F8CFF",
+                    "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-features-heading-3",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "isInner": false,
+                  "isLocked": false,
+                  "settings": {
+                    "title": "Family and Future Generations",
+                    "header_size": "h3",
+                    "align": "left"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-features-body-3",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "isInner": false,
+                  "isLocked": false,
+                  "settings": {
+                    "editor": "<p>Benefits can extend across generations, giving your children an established alternative of their own.</p>",
+                    "align": "left"
+                  },
+                  "elements": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gcs-cta-outer",
+      "elType": "container",
+      "isInner": false,
+      "isLocked": false,
+      "settings": {
+        "flex_direction": "row",
+        "flex_direction_mobile": "column",
+        "flex_wrap": "nowrap",
+        "min_height": { "unit": "px", "size": 400 },
+        "flex_gap": { "unit": "px", "size": 0 },
+        "padding": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0, "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#FFFFFF",
+        "border_border": "none",
+        "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+      },
+      "elements": [
+        {
+          "id": "gcs-cta-left",
+          "elType": "container",
+          "isInner": true,
+          "isLocked": false,
+          "settings": {
+            "flex_direction": "column",
+            "flex_wrap": "nowrap",
+            "justify_content": "center",
+            "flex_gap": { "unit": "px", "size": 32 },
+            "width": { "unit": "%", "size": 50 },
+            "width_mobile": { "unit": "%", "size": 100 },
+            "padding": { "unit": "px", "top": 56, "right": 80, "bottom": 56, "left": 80, "isLinked": false },
+            "padding_mobile": { "unit": "px", "top": 40, "right": 24, "bottom": 40, "left": 24, "isLinked": false },
+            "background_background": "classic",
+            "background_color": "#000957",
+            "border_border": "none",
+            "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+          },
+          "elements": [
+            {
+              "id": "gcs-cta-icon",
+              "elType": "widget",
+              "widgetType": "icon",
+              "isInner": false,
+              "isLocked": false,
+              "settings": {
+                "selected_icon": { "value": { "library": "fa-solid", "value": "fa-solid fa-arrow-right" }, "library": "fa-solid" },
+                "align": "left",
+                "size": { "unit": "px", "size": 40 },
+                "primary_color": "#3F8CFF"
+              },
+              "elements": []
+            },
+            {
+              "id": "gcs-cta-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "isInner": false,
+              "isLocked": false,
+              "settings": {
+                "title": "Ready to Plan Your Next Step?",
+                "header_size": "h2",
+                "align": "left"
+              },
+              "elements": []
+            },
+            {
+              "id": "gcs-cta-button",
+              "elType": "widget",
+              "widgetType": "button",
+              "isInner": false,
+              "isLocked": false,
+              "settings": {
+                "text": "Book a Consultation",
+                "link": { "url": "https://www.globalcitizensolutions.com/contact/", "is_external": false, "nofollow": false },
+                "align": "left"
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "gcs-cta-right",
+          "elType": "container",
+          "isInner": true,
+          "isLocked": false,
+          "settings": {
+            "flex_direction": "column",
+            "flex_wrap": "nowrap",
+            "width": { "unit": "%", "size": 50 },
+            "width_mobile": { "unit": "%", "size": 100 },
+            "padding": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0, "isLinked": false },
+            "background_background": "classic",
+            "background_color": "#F9FAFB",
+            "border_border": "none",
+            "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+          },
+          "elements": [
+            {
+              "id": "gcs-cta-image",
+              "elType": "widget",
+              "widgetType": "image",
+              "isInner": false,
+              "isLocked": false,
+              "settings": {
+                "image": { "url": "https://images.unsplash.com/photo-placeholder", "id": 0 },
+                "image_size": "large",
+                "align": "center",
+                "width": { "unit": "%", "size": 100 },
+                "object-fit": "cover"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  var jsonPre = document.getElementById('elementor-json');
+
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    navigator.clipboard.writeText(jsonPre.textContent).then(function () {
+      var toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(function () { toast.classList.remove('show'); }, 1500);
+    });
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', function () {
+    var blob = new Blob([jsonPre.textContent], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'golden_visa_page.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+{
+  "type": "elementor",
+  "siteurl": "https://www.globalcitizensolutions.com/wp-json/",
+  "elements": [
+    {
+      "id": "gcs-hero-outer",
+      "elType": "container",
+      "isInner": false,
+      "isLocked": false,
+      "settings": {
+        "flex_direction": "column",
+        "flex_direction_tablet": "column",
+        "flex_direction_mobile": "column",
+        "flex_wrap": "nowrap",
+        "align_items": "center",
+        "flex_gap": { "unit": "px", "size": 40 },
+        "flex_gap_mobile": { "unit": "px", "size": 28 },
+        "padding": { "unit": "px", "top": 60, "right": 64, "bottom": 60, "left": 64, "isLinked": false },
+        "padding_tablet": { "unit": "px", "top": 48, "right": 32, "bottom": 48, "left": 32, "isLinked": false },
+        "padding_mobile": { "unit": "px", "top": 48, "right": 24, "bottom": 48, "left": 24, "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#FFFFFF",
+        "border_border": "none",
+        "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+      },
+      "elements": [
+        {
+          "id": "gcs-hero-intro",
+          "elType": "container",
+          "isInner": true,
+          "isLocked": false,
+          "settings": {
+            "flex_direction": "column",
+            "flex_direction_tablet": "column",
+            "flex_direction_mobile": "column",
+            "flex_wrap": "nowrap",
+            "align_items": "center",
+            "justify_content": "center",
+            "flex_gap": { "unit": "px", "size": 20 },
+            "width": { "unit": "%", "size": 100 },
+            "background_background": "classic",
+            "background_color": "#FFFFFF",
+            "border_border": "none",
+            "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+          },
+          "elements": [
+            {
+              "id": "gcs-hero-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "isInner": false,
+              "isLocked": false,
+              "settings": {
+                "title": "The Best Legacy You Can Leave Is Freedom",
+                "header_size": "h1",
+                "align": "center",
+                "align_tablet": "center",
+                "align_mobile": "center"
+              },
+              "elements": []
+            },
+            {
+              "id": "gcs-hero-body",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "isInner": false,
+              "isLocked": false,
+              "settings": {
+                "editor": "<p>Second citizenship, residency, and relocation strategies for those planning beyond borders.</p>",
+                "align": "center",
+                "align_tablet": "center",
+                "align_mobile": "center"
+              },
+              "elements": []
+            },
+            {
+              "id": "gcs-hero-actions",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "flex_direction": "row",
+                "flex_direction_tablet": "row",
+                "flex_direction_mobile": "column",
+                "flex_wrap": "nowrap",
+                "align_items": "center",
+                "justify_content": "center",
+                "flex_gap": { "unit": "px", "size": 24 },
+                "flex_gap_mobile": { "unit": "px", "size": 16 },
+                "padding": { "unit": "px", "top": 20, "right": 0, "bottom": 0, "left": 0, "isLinked": false },
+                "background_background": "classic",
+                "background_color": "#FFFFFF",
+                "border_border": "none",
+                "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+              },
+              "elements": [
+                {
+                  "id": "gcs-hero-cta-primary",
+                  "elType": "widget",
+                  "widgetType": "button",
+                  "isInner": false,
+                  "isLocked": false,
+                  "settings": {
+                    "text": "Speak to an Expert",
+                    "link": { "url": "https://www.globalcitizensolutions.com/contact/", "is_external": false, "nofollow": false },
+                    "align": "center"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-hero-cta-secondary",
+                  "elType": "widget",
+                  "widgetType": "button",
+                  "isInner": false,
+                  "isLocked": false,
+                  "settings": {
+                    "text": "View Programmes",
+                    "link": { "url": "https://www.globalcitizensolutions.com/programmes/", "is_external": false, "nofollow": false },
+                    "align": "center"
+                  },
+                  "elements": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gcs-hero-media",
+          "elType": "container",
+          "isInner": true,
+          "isLocked": false,
+          "settings": {
+            "flex_direction": "column",
+            "flex_wrap": "nowrap",
+            "width": { "unit": "%", "size": 100 },
+            "min_height": { "unit": "px", "size": 540 },
+            "min_height_tablet": { "unit": "px", "size": 420 },
+            "min_height_mobile": { "unit": "px", "size": 220 },
+            "background_background": "classic",
+            "background_color": "#F9FAFB",
+            "border_border": "none",
+            "border_radius": { "unit": "px", "top": 0, "right": 0, "bottom": 0, "left": 0 }
+          },
+          "elements": [
+            {
+              "id": "gcs-hero-image",
+              "elType": "widget",
+              "widgetType": "image",
+              "isInner": false,
+              "isLocked": false,
+              "settings": {
+                "image": { "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c", "id": 0 },
+                "image_size": "large",
+                "align": "center",
+                "width": { "unit": "%", "size": 100 },
+                "object-fit": "cover"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

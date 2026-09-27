@@ -1,0 +1,17 @@
+{
+  "name": "giu-corporate",
+  "displayName": "GIU Corporate Report",
+  "brand": "giu",
+  "sourceTemplate": "templates/brochures/giu-corporate/GiuCorporate.dc.html",
+  "implemented": false,
+  "pageCount": 13,
+  "pages": [
+    "Cover", "TOC", "Executive Summary (dark stat-band, 4 tiles)",
+    "Simple table", "Comparative table", "Zebra table", "Indicator table (status pills)",
+    "Financial table", "Milestones (step-list + status pill, not a <table>)",
+    "Chart: line", "Chart: area", "Chart: multi-line", "Back cover"
+  ],
+  "newComponentsNeeded": ["toc", "data-table (simple/comparative/zebra/indicator/financial variants)", "chart-line (native PptxGenJS charts)", "status-pill helper"],
+  "note": "Richest/most complex template — largest new-component surface. Build the table family + charts first (see SKILL.md build order), reusing step-list.js for milestones with an added status-pill column.",
+  "propsSchema": {}
+}

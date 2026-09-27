@@ -1,0 +1,15 @@
+{
+  "name": "gcs-brochure-builder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Generates editable GCS/GIU brochures as A4-portrait .pptx via PptxGenJS.",
+  "main": "scripts/build-brochure.js",
+  "scripts": {
+    "build": "node scripts/build-brochure.js"
+  },
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "dependencies": {
+    "pptxgenjs": "^4.0.1"
+  }
+}

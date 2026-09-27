@@ -1,0 +1,1245 @@
+{
+  "type": "elementor",
+  "siteurl": "https://www.globalcitizensolutions.com/wp-json/",
+  "elements": [
+
+    {
+      "id": "gcs-hero-outer",
+      "elType": "container",
+      "isInner": false,
+      "isLocked": false,
+      "settings": {
+        "content_width": "full",
+        "background_background": "classic",
+        "background_color": "#F9FAFB",
+        "padding": { "unit": "px", "top": "80", "right": "0", "bottom": "80", "left": "0" },
+        "padding_tablet": { "unit": "px", "top": "64", "right": "0", "bottom": "64", "left": "0" },
+        "padding_mobile": { "unit": "px", "top": "48", "right": "0", "bottom": "48", "left": "0" },
+        "flex_direction": "column",
+        "flex_wrap": "nowrap",
+        "align_items": "center",
+        "border_border": "none",
+        "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+      },
+      "elements": [
+        {
+          "id": "gcs-hero-inner",
+          "elType": "container",
+          "isInner": true,
+          "isLocked": false,
+          "settings": {
+            "width": { "unit": "px", "size": 1200 },
+            "width_tablet": { "unit": "%", "size": 100 },
+            "width_mobile": { "unit": "%", "size": 100 },
+            "padding": { "unit": "px", "top": "0", "right": "32", "bottom": "0", "left": "32" },
+            "padding_tablet": { "unit": "px", "top": "0", "right": "24", "bottom": "0", "left": "24" },
+            "padding_mobile": { "unit": "px", "top": "0", "right": "16", "bottom": "0", "left": "16" },
+            "flex_direction": "row",
+            "flex_direction_tablet": "column",
+            "flex_direction_mobile": "column",
+            "flex_wrap": "nowrap",
+            "align_items": "center",
+            "gap": { "unit": "px", "size": 64 },
+            "gap_tablet": { "unit": "px", "size": 40 },
+            "gap_mobile": { "unit": "px", "size": 32 },
+            "background_background": "classic",
+            "background_color": "#F9FAFB",
+            "border_border": "none",
+            "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+          },
+          "elements": [
+            {
+              "id": "gcs-hero-left",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "width": { "unit": "%", "size": 50 },
+                "width_tablet": { "unit": "%", "size": 100 },
+                "width_mobile": { "unit": "%", "size": 100 },
+                "flex_direction": "column",
+                "flex_wrap": "nowrap",
+                "gap": { "unit": "px", "size": 24 },
+                "gap_mobile": { "unit": "px", "size": 20 },
+                "background_background": "classic",
+                "background_color": "#F9FAFB",
+                "border_border": "none",
+                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+              },
+              "elements": [
+                {
+                  "id": "gcs-hero-heading",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "title": "Change the World of Migration With Us",
+                    "header_size": "h1"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-hero-text",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "editor": "<p>We’re looking for driven people to join our international team. Help redefine global mobility — from Lisbon, Malta, and beyond. If you’re ready to bring your best to a company that values ambition and excellence in equal measure, we’d love to hear from you.</p>"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-hero-btns",
+                  "elType": "container",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "flex_direction": "row",
+                    "flex_wrap": "nowrap",
+                    "gap": { "unit": "px", "size": 16 },
+                    "background_background": "classic",
+                    "background_color": "#F9FAFB",
+                    "border_border": "none",
+                    "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+                  },
+                  "elements": [
+                    {
+                      "id": "gcs-hero-btn-primary",
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "text": "See Open Roles",
+                        "link": { "url": "#open-roles" }
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "gcs-hero-btn-secondary",
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "text": "Our Story",
+                        "link": { "url": "/about/" }
+                      },
+                      "elements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "gcs-hero-right",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "width": { "unit": "%", "size": 50 },
+                "width_tablet": { "unit": "%", "size": 100 },
+                "width_mobile": { "unit": "%", "size": 100 },
+                "flex_direction": "column",
+                "flex_wrap": "nowrap",
+                "align_items": "stretch",
+                "background_background": "classic",
+                "background_color": "#F9FAFB",
+                "border_border": "none",
+                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+              },
+              "elements": [
+                {
+                  "id": "gcs-hero-image",
+                  "elType": "widget",
+                  "widgetType": "image",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "image": {
+                      "url": "https://placehold.co/640x480/DBEAFF/000957?text=Replace+with+team+photo",
+                      "id": ""
+                    },
+                    "image_size": "full"
+                  },
+                  "elements": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "gcs-stats-outer",
+      "elType": "container",
+      "isInner": false,
+      "isLocked": false,
+      "settings": {
+        "content_width": "full",
+        "background_background": "classic",
+        "background_color": "#000957",
+        "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" },
+        "flex_direction": "column",
+        "flex_wrap": "nowrap",
+        "align_items": "center",
+        "border_border": "none",
+        "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+      },
+      "elements": [
+        {
+          "id": "gcs-stats-inner",
+          "elType": "container",
+          "isInner": true,
+          "isLocked": false,
+          "settings": {
+            "width": { "unit": "px", "size": 1200 },
+            "width_tablet": { "unit": "%", "size": 100 },
+            "width_mobile": { "unit": "%", "size": 100 },
+            "flex_direction": "row",
+            "flex_direction_mobile": "column",
+            "flex_wrap": "nowrap",
+            "background_background": "classic",
+            "background_color": "#000957",
+            "border_border": "none",
+            "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+          },
+          "elements": [
+            {
+              "id": "gcs-stats-item-1",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "width": { "unit": "%", "size": 25 },
+                "width_mobile": { "unit": "%", "size": 100 },
+                "padding": { "unit": "px", "top": "56", "right": "24", "bottom": "56", "left": "24" },
+                "padding_tablet": { "unit": "px", "top": "40", "right": "16", "bottom": "40", "left": "16" },
+                "padding_mobile": { "unit": "px", "top": "32", "right": "16", "bottom": "32", "left": "16" },
+                "flex_direction": "column",
+                "flex_wrap": "nowrap",
+                "align_items": "center",
+                "gap": { "unit": "px", "size": 8 },
+                "background_background": "classic",
+                "background_color": "#000957",
+                "border_border": "solid",
+                "border_width": { "unit": "px", "top": "0", "right": "1", "bottom": "0", "left": "0" },
+                "border_color": "#1A2268",
+                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+              },
+              "elements": [
+                {
+                  "id": "gcs-stats-num-1",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "title": "10+",
+                    "header_size": "h2",
+                    "align": "center"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-stats-label-1",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "editor": "<p style=\"text-align:center;\">Years of Experience</p>"
+                  },
+                  "elements": []
+                }
+              ]
+            },
+            {
+              "id": "gcs-stats-item-2",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "width": { "unit": "%", "size": 25 },
+                "width_mobile": { "unit": "%", "size": 100 },
+                "padding": { "unit": "px", "top": "56", "right": "24", "bottom": "56", "left": "24" },
+                "padding_tablet": { "unit": "px", "top": "40", "right": "16", "bottom": "40", "left": "16" },
+                "padding_mobile": { "unit": "px", "top": "32", "right": "16", "bottom": "32", "left": "16" },
+                "flex_direction": "column",
+                "flex_wrap": "nowrap",
+                "align_items": "center",
+                "gap": { "unit": "px", "size": 8 },
+                "background_background": "classic",
+                "background_color": "#000957",
+                "border_border": "solid",
+                "border_width": { "unit": "px", "top": "0", "right": "1", "bottom": "0", "left": "0" },
+                "border_color": "#1A2268",
+                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+              },
+              "elements": [
+                {
+                  "id": "gcs-stats-num-2",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "title": "20+",
+                    "header_size": "h2",
+                    "align": "center"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-stats-label-2",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "editor": "<p style=\"text-align:center;\">Nationalities in Our Team</p>"
+                  },
+                  "elements": []
+                }
+              ]
+            },
+            {
+              "id": "gcs-stats-item-3",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "width": { "unit": "%", "size": 25 },
+                "width_mobile": { "unit": "%", "size": 100 },
+                "padding": { "unit": "px", "top": "56", "right": "24", "bottom": "56", "left": "24" },
+                "padding_tablet": { "unit": "px", "top": "40", "right": "16", "bottom": "40", "left": "16" },
+                "padding_mobile": { "unit": "px", "top": "32", "right": "16", "bottom": "32", "left": "16" },
+                "flex_direction": "column",
+                "flex_wrap": "nowrap",
+                "align_items": "center",
+                "gap": { "unit": "px", "size": 8 },
+                "background_background": "classic",
+                "background_color": "#000957",
+                "border_border": "solid",
+                "border_width": { "unit": "px", "top": "0", "right": "1", "bottom": "0", "left": "0" },
+                "border_color": "#1A2268",
+                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+              },
+              "elements": [
+                {
+                  "id": "gcs-stats-num-3",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "title": "5",
+                    "header_size": "h2",
+                    "align": "center"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-stats-label-3",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "editor": "<p style=\"text-align:center;\">Global Offices</p>"
+                  },
+                  "elements": []
+                }
+              ]
+            },
+            {
+              "id": "gcs-stats-item-4",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "width": { "unit": "%", "size": 25 },
+                "width_mobile": { "unit": "%", "size": 100 },
+                "padding": { "unit": "px", "top": "56", "right": "24", "bottom": "56", "left": "24" },
+                "padding_tablet": { "unit": "px", "top": "40", "right": "16", "bottom": "40", "left": "16" },
+                "padding_mobile": { "unit": "px", "top": "32", "right": "16", "bottom": "32", "left": "16" },
+                "flex_direction": "column",
+                "flex_wrap": "nowrap",
+                "align_items": "center",
+                "gap": { "unit": "px", "size": 8 },
+                "background_background": "classic",
+                "background_color": "#000957",
+                "border_border": "none",
+                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+              },
+              "elements": [
+                {
+                  "id": "gcs-stats-num-4",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "title": "1,000+",
+                    "header_size": "h2",
+                    "align": "center"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-stats-label-4",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "editor": "<p style=\"text-align:center;\">Clients Advised</p>"
+                  },
+                  "elements": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "gcs-feat-outer",
+      "elType": "container",
+      "isInner": false,
+      "isLocked": false,
+      "settings": {
+        "content_width": "full",
+        "background_background": "classic",
+        "background_color": "#FFFFFF",
+        "padding": { "unit": "px", "top": "80", "right": "0", "bottom": "80", "left": "0" },
+        "padding_tablet": { "unit": "px", "top": "64", "right": "0", "bottom": "64", "left": "0" },
+        "padding_mobile": { "unit": "px", "top": "48", "right": "0", "bottom": "48", "left": "0" },
+        "flex_direction": "column",
+        "flex_wrap": "nowrap",
+        "align_items": "center",
+        "border_border": "none",
+        "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+      },
+      "elements": [
+        {
+          "id": "gcs-feat-inner",
+          "elType": "container",
+          "isInner": true,
+          "isLocked": false,
+          "settings": {
+            "width": { "unit": "px", "size": 1200 },
+            "width_tablet": { "unit": "%", "size": 100 },
+            "width_mobile": { "unit": "%", "size": 100 },
+            "padding": { "unit": "px", "top": "0", "right": "32", "bottom": "0", "left": "32" },
+            "padding_tablet": { "unit": "px", "top": "0", "right": "24", "bottom": "0", "left": "24" },
+            "padding_mobile": { "unit": "px", "top": "0", "right": "16", "bottom": "0", "left": "16" },
+            "flex_direction": "column",
+            "flex_wrap": "nowrap",
+            "gap": { "unit": "px", "size": 48 },
+            "gap_mobile": { "unit": "px", "size": 32 },
+            "background_background": "classic",
+            "background_color": "#FFFFFF",
+            "border_border": "none",
+            "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+          },
+          "elements": [
+            {
+              "id": "gcs-feat-header",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "flex_direction": "column",
+                "flex_wrap": "nowrap",
+                "gap": { "unit": "px", "size": 16 },
+                "align_items": "center",
+                "background_background": "classic",
+                "background_color": "#FFFFFF",
+                "border_border": "none",
+                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+              },
+              "elements": [
+                {
+                  "id": "gcs-feat-heading",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "title": "A Place Where Ambition Meets Purpose",
+                    "header_size": "h2",
+                    "align": "center"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-feat-subtext",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "editor": "<p style=\"text-align:center;\">We build careers alongside client journeys. Our culture is rooted in curiosity, respect, and shared ambition.</p>"
+                  },
+                  "elements": []
+                }
+              ]
+            },
+            {
+              "id": "gcs-feat-row",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "flex_direction": "row",
+                "flex_direction_tablet": "column",
+                "flex_direction_mobile": "column",
+                "flex_wrap": "nowrap",
+                "gap": { "unit": "px", "size": 32 },
+                "gap_mobile": { "unit": "px", "size": 24 },
+                "background_background": "classic",
+                "background_color": "#FFFFFF",
+                "border_border": "none",
+                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+              },
+              "elements": [
+                {
+                  "id": "gcs-feat-tile-1",
+                  "elType": "container",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "width": { "unit": "%", "size": 33.33 },
+                    "width_tablet": { "unit": "%", "size": 100 },
+                    "width_mobile": { "unit": "%", "size": 100 },
+                    "padding": { "unit": "px", "top": "32", "right": "32", "bottom": "32", "left": "32" },
+                    "padding_mobile": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24" },
+                    "flex_direction": "column",
+                    "flex_wrap": "nowrap",
+                    "gap": { "unit": "px", "size": 16 },
+                    "background_background": "classic",
+                    "background_color": "#F9FAFB",
+                    "border_border": "solid",
+                    "border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "border_color": "#DBEAFF",
+                    "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+                  },
+                  "elements": [
+                    {
+                      "id": "gcs-feat-icon-1",
+                      "elType": "widget",
+                      "widgetType": "icon",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "selected_icon": { "value": "fas fa-handshake", "library": "fa-solid" },
+                        "primary_color": "#3F8CFF",
+                        "size": { "unit": "px", "size": 32 }
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "gcs-feat-heading-1",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "title": "Collaboration, With Purpose",
+                        "header_size": "h4"
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "gcs-feat-text-1",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "editor": "<p>We foster a positive, open environment where ideas flow freely and people work together — with respect, clarity, and shared goals.</p>"
+                      },
+                      "elements": []
+                    }
+                  ]
+                },
+                {
+                  "id": "gcs-feat-tile-2",
+                  "elType": "container",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "width": { "unit": "%", "size": 33.33 },
+                    "width_tablet": { "unit": "%", "size": 100 },
+                    "width_mobile": { "unit": "%", "size": 100 },
+                    "padding": { "unit": "px", "top": "32", "right": "32", "bottom": "32", "left": "32" },
+                    "padding_mobile": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24" },
+                    "flex_direction": "column",
+                    "flex_wrap": "nowrap",
+                    "gap": { "unit": "px", "size": 16 },
+                    "background_background": "classic",
+                    "background_color": "#F9FAFB",
+                    "border_border": "solid",
+                    "border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "border_color": "#DBEAFF",
+                    "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+                  },
+                  "elements": [
+                    {
+                      "id": "gcs-feat-icon-2",
+                      "elType": "widget",
+                      "widgetType": "icon",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "selected_icon": { "value": "fas fa-globe", "library": "fa-solid" },
+                        "primary_color": "#3F8CFF",
+                        "size": { "unit": "px", "size": 32 }
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "gcs-feat-heading-2",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "title": "Global Mindset",
+                        "header_size": "h4"
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "gcs-feat-text-2",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "editor": "<p>Our team is diverse in background and experience — and that’s our strength. We value curiosity, empathy, and openness to different views, cultures, and ways of working.</p>"
+                      },
+                      "elements": []
+                    }
+                  ]
+                },
+                {
+                  "id": "gcs-feat-tile-3",
+                  "elType": "container",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "width": { "unit": "%", "size": 33.33 },
+                    "width_tablet": { "unit": "%", "size": 100 },
+                    "width_mobile": { "unit": "%", "size": 100 },
+                    "padding": { "unit": "px", "top": "32", "right": "32", "bottom": "32", "left": "32" },
+                    "padding_mobile": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24" },
+                    "flex_direction": "column",
+                    "flex_wrap": "nowrap",
+                    "gap": { "unit": "px", "size": 16 },
+                    "background_background": "classic",
+                    "background_color": "#F9FAFB",
+                    "border_border": "solid",
+                    "border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "border_color": "#DBEAFF",
+                    "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+                  },
+                  "elements": [
+                    {
+                      "id": "gcs-feat-icon-3",
+                      "elType": "widget",
+                      "widgetType": "icon",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "selected_icon": { "value": "fas fa-bolt", "library": "fa-solid" },
+                        "primary_color": "#3F8CFF",
+                        "size": { "unit": "px", "size": 32 }
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "gcs-feat-heading-3",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "title": "Agile and Aware",
+                        "header_size": "h4"
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "gcs-feat-text-3",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "editor": "<p>We work in a fast-moving, global space. That means staying flexible, informed, and ready to adapt — to client needs, market shifts, and the world around us.</p>"
+                      },
+                      "elements": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "gcs-roles-outer",
+      "elType": "container",
+      "isInner": false,
+      "isLocked": false,
+      "settings": {
+        "content_width": "full",
+        "background_background": "classic",
+        "background_color": "#F9FAFB",
+        "padding": { "unit": "px", "top": "80", "right": "0", "bottom": "80", "left": "0" },
+        "padding_tablet": { "unit": "px", "top": "64", "right": "0", "bottom": "64", "left": "0" },
+        "padding_mobile": { "unit": "px", "top": "48", "right": "0", "bottom": "48", "left": "0" },
+        "flex_direction": "column",
+        "flex_wrap": "nowrap",
+        "align_items": "center",
+        "border_border": "none",
+        "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+      },
+      "elements": [
+        {
+          "id": "gcs-roles-inner",
+          "elType": "container",
+          "isInner": true,
+          "isLocked": false,
+          "settings": {
+            "width": { "unit": "px", "size": 1200 },
+            "width_tablet": { "unit": "%", "size": 100 },
+            "width_mobile": { "unit": "%", "size": 100 },
+            "padding": { "unit": "px", "top": "0", "right": "32", "bottom": "0", "left": "32" },
+            "padding_tablet": { "unit": "px", "top": "0", "right": "24", "bottom": "0", "left": "24" },
+            "padding_mobile": { "unit": "px", "top": "0", "right": "16", "bottom": "0", "left": "16" },
+            "flex_direction": "column",
+            "flex_wrap": "nowrap",
+            "gap": { "unit": "px", "size": 48 },
+            "gap_mobile": { "unit": "px", "size": 32 },
+            "background_background": "classic",
+            "background_color": "#F9FAFB",
+            "border_border": "none",
+            "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+          },
+          "elements": [
+            {
+              "id": "gcs-roles-header",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "flex_direction": "column",
+                "flex_wrap": "nowrap",
+                "gap": { "unit": "px", "size": 16 },
+                "background_background": "classic",
+                "background_color": "#F9FAFB",
+                "border_border": "none",
+                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+              },
+              "elements": [
+                {
+                  "id": "gcs-roles-heading",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "title": "Current Opportunities",
+                    "header_size": "h2"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gcs-roles-subtext",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "editor": "<p>Explore our current openings and discover how you can make an impact at Global Citizen Solutions. We have a variety of roles waiting for passionate individuals like you.</p>"
+                  },
+                  "elements": []
+                }
+              ]
+            },
+            {
+              "id": "gcs-roles-row",
+              "elType": "container",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "flex_direction": "row",
+                "flex_direction_tablet": "column",
+                "flex_direction_mobile": "column",
+                "flex_wrap": "nowrap",
+                "gap": { "unit": "px", "size": 32 },
+                "gap_mobile": { "unit": "px", "size": 24 },
+                "align_items": "stretch",
+                "background_background": "classic",
+                "background_color": "#F9FAFB",
+                "border_border": "none",
+                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+              },
+              "elements": [
+                {
+                  "id": "gcs-roles-card-1",
+                  "elType": "container",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "width": { "unit": "%", "size": 50 },
+                    "width_tablet": { "unit": "%", "size": 100 },
+                    "width_mobile": { "unit": "%", "size": 100 },
+                    "padding": { "unit": "px", "top": "32", "right": "32", "bottom": "32", "left": "32" },
+                    "padding_mobile": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24" },
+                    "flex_direction": "column",
+                    "flex_wrap": "nowrap",
+                    "gap": { "unit": "px", "size": 20 },
+                    "background_background": "classic",
+                    "background_color": "#FFFFFF",
+                    "border_border": "solid",
+                    "border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "border_color": "#DBEAFF",
+                    "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+                  },
+                  "elements": [
+                    {
+                      "id": "gcs-roles-card-1-meta",
+                      "elType": "container",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "flex_direction": "row",
+                        "flex_wrap": "nowrap",
+                        "gap": { "unit": "px", "size": 24 },
+                        "background_background": "classic",
+                        "background_color": "#FFFFFF",
+                        "border_border": "none",
+                        "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+                      },
+                      "elements": [
+                        {
+                          "id": "gcs-roles-card-1-meta-type",
+                          "elType": "container",
+                          "isInner": true,
+                          "isLocked": false,
+                          "settings": {
+                            "flex_direction": "row",
+                            "flex_wrap": "nowrap",
+                            "align_items": "center",
+                            "gap": { "unit": "px", "size": 8 },
+                            "background_background": "classic",
+                            "background_color": "#FFFFFF",
+                            "border_border": "none",
+                            "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+                          },
+                          "elements": [
+                            {
+                              "id": "gcs-roles-card-1-icon-type",
+                              "elType": "widget",
+                              "widgetType": "icon",
+                              "isInner": true,
+                              "isLocked": false,
+                              "settings": {
+                                "selected_icon": { "value": "fas fa-briefcase", "library": "fa-solid" },
+                                "primary_color": "#667085",
+                                "size": { "unit": "px", "size": 14 }
+                              },
+                              "elements": []
+                            },
+                            {
+                              "id": "gcs-roles-card-1-text-type",
+                              "elType": "widget",
+                              "widgetType": "text-editor",
+                              "isInner": true,
+                              "isLocked": false,
+                              "settings": {
+                                "editor": "<p>Full-time</p>"
+                              },
+                              "elements": []
+                            }
+                          ]
+                        },
+                        {
+                          "id": "gcs-roles-card-1-meta-loc",
+                          "elType": "container",
+                          "isInner": true,
+                          "isLocked": false,
+                          "settings": {
+                            "flex_direction": "row",
+                            "flex_wrap": "nowrap",
+                            "align_items": "center",
+                            "gap": { "unit": "px", "size": 8 },
+                            "background_background": "classic",
+                            "background_color": "#FFFFFF",
+                            "border_border": "none",
+                            "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+                          },
+                          "elements": [
+                            {
+                              "id": "gcs-roles-card-1-icon-loc",
+                              "elType": "widget",
+                              "widgetType": "icon",
+                              "isInner": true,
+                              "isLocked": false,
+                              "settings": {
+                                "selected_icon": { "value": "fas fa-map-marker-alt", "library": "fa-solid" },
+                                "primary_color": "#667085",
+                                "size": { "unit": "px", "size": 14 }
+                              },
+                              "elements": []
+                            },
+                            {
+                              "id": "gcs-roles-card-1-text-loc",
+                              "elType": "widget",
+                              "widgetType": "text-editor",
+                              "isInner": true,
+                              "isLocked": false,
+                              "settings": {
+                                "editor": "<p>Malta</p>"
+                              },
+                              "elements": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "gcs-roles-card-1-heading",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "title": "Relationship Manager",
+                        "header_size": "h3"
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "gcs-roles-card-1-text",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "editor": "<p>Act as the primary point of contact for clients and support process management throughout the residency or citizenship application journey.</p>"
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "gcs-roles-card-1-divider",
+                      "elType": "widget",
+                      "widgetType": "divider",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "color": "#DBEAFF",
+                        "weight": { "unit": "px", "size": 1 }
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "gcs-roles-card-1-btn",
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "text": "Apply Now",
+                        "link": { "url": "/careers/relationship-manager-malta/" }
+                      },
+                      "elements": []
+                    }
+                  ]
+                },
+                {
+                  "id": "gcs-roles-card-2",
+                  "elType": "container",
+                  "isInner": true,
+                  "isLocked": false,
+                  "settings": {
+                    "width": { "unit": "%", "size": 50 },
+                    "width_tablet": { "unit": "%", "size": 100 },
+                    "width_mobile": { "unit": "%", "size": 100 },
+                    "padding": { "unit": "px", "top": "32", "right": "32", "bottom": "32", "left": "32" },
+                    "padding_mobile": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24" },
+                    "flex_direction": "column",
+                    "flex_wrap": "nowrap",
+                    "gap": { "unit": "px", "size": 20 },
+                    "background_background": "classic",
+                    "background_color": "#FFFFFF",
+                    "border_border": "solid",
+                    "border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "border_color": "#DBEAFF",
+                    "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+                  },
+                  "elements": [
+                    {
+                      "id": "gcs-roles-card-2-meta",
+                      "elType": "container",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "flex_direction": "row",
+                        "flex_wrap": "nowrap",
+                        "gap": { "unit": "px", "size": 24 },
+                        "background_background": "classic",
+                        "background_color": "#FFFFFF",
+                        "border_border": "none",
+                        "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+                      },
+                      "elements": [
+                        {
+                          "id": "gcs-roles-card-2-meta-type",
+                          "elType": "container",
+                          "isInner": true,
+                          "isLocked": false,
+                          "settings": {
+                            "flex_direction": "row",
+                            "flex_wrap": "nowrap",
+                            "align_items": "center",
+                            "gap": { "unit": "px", "size": 8 },
+                            "background_background": "classic",
+                            "background_color": "#FFFFFF",
+                            "border_border": "none",
+                            "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+                          },
+                          "elements": [
+                            {
+                              "id": "gcs-roles-card-2-icon-type",
+                              "elType": "widget",
+                              "widgetType": "icon",
+                              "isInner": true,
+                              "isLocked": false,
+                              "settings": {
+                                "selected_icon": { "value": "fas fa-briefcase", "library": "fa-solid" },
+                                "primary_color": "#667085",
+                                "size": { "unit": "px", "size": 14 }
+                              },
+                              "elements": []
+                            },
+                            {
+                              "id": "gcs-roles-card-2-text-type",
+                              "elType": "widget",
+                              "widgetType": "text-editor",
+                              "isInner": true,
+                              "isLocked": false,
+                              "settings": {
+                                "editor": "<p>Full-time</p>"
+                              },
+                              "elements": []
+                            }
+                          ]
+                        },
+                        {
+                          "id": "gcs-roles-card-2-meta-loc",
+                          "elType": "container",
+                          "isInner": true,
+                          "isLocked": false,
+                          "settings": {
+                            "flex_direction": "row",
+                            "flex_wrap": "nowrap",
+                            "align_items": "center",
+                            "gap": { "unit": "px", "size": 8 },
+                            "background_background": "classic",
+                            "background_color": "#FFFFFF",
+                            "border_border": "none",
+                            "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+                          },
+                          "elements": [
+                            {
+                              "id": "gcs-roles-card-2-icon-loc",
+                              "elType": "widget",
+                              "widgetType": "icon",
+                              "isInner": true,
+                              "isLocked": false,
+                              "settings": {
+                                "selected_icon": { "value": "fas fa-map-marker-alt", "library": "fa-solid" },
+                                "primary_color": "#667085",
+                                "size": { "unit": "px", "size": 14 }
+                              },
+                              "elements": []
+                            },
+                            {
+                              "id": "gcs-roles-card-2-text-loc",
+                              "elType": "widget",
+                              "widgetType": "text-editor",
+                              "isInner": true,
+                              "isLocked": false,
+                              "settings": {
+                                "editor": "<p>Portugal</p>"
+                              },
+                              "elements": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "gcs-roles-card-2-heading",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "title": "Global Wealth Researcher",
+                        "header_size": "h3"
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "gcs-roles-card-2-text",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "editor": "<p>Be our researcher with a commercial mindset, turning economic and financial data into insights that drive business and market growth.</p>"
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "gcs-roles-card-2-divider",
+                      "elType": "widget",
+                      "widgetType": "divider",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "color": "#DBEAFF",
+                        "weight": { "unit": "px", "size": 1 }
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "gcs-roles-card-2-btn",
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "isInner": true,
+                      "isLocked": false,
+                      "settings": {
+                        "text": "Apply Now",
+                        "link": { "url": "/careers/global-wealth-researcher/" }
+                      },
+                      "elements": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "gcs-cta-outer",
+      "elType": "container",
+      "isInner": false,
+      "isLocked": false,
+      "settings": {
+        "content_width": "full",
+        "background_background": "classic",
+        "background_color": "#000957",
+        "padding": { "unit": "px", "top": "80", "right": "0", "bottom": "80", "left": "0" },
+        "padding_tablet": { "unit": "px", "top": "64", "right": "0", "bottom": "64", "left": "0" },
+        "padding_mobile": { "unit": "px", "top": "48", "right": "0", "bottom": "48", "left": "0" },
+        "flex_direction": "column",
+        "flex_wrap": "nowrap",
+        "align_items": "center",
+        "border_border": "none",
+        "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+      },
+      "elements": [
+        {
+          "id": "gcs-cta-inner",
+          "elType": "container",
+          "isInner": true,
+          "isLocked": false,
+          "settings": {
+            "width": { "unit": "px", "size": 720 },
+            "width_tablet": { "unit": "%", "size": 100 },
+            "width_mobile": { "unit": "%", "size": 100 },
+            "padding": { "unit": "px", "top": "0", "right": "32", "bottom": "0", "left": "32" },
+            "padding_mobile": { "unit": "px", "top": "0", "right": "16", "bottom": "0", "left": "16" },
+            "flex_direction": "column",
+            "flex_wrap": "nowrap",
+            "align_items": "center",
+            "gap": { "unit": "px", "size": 24 },
+            "gap_mobile": { "unit": "px", "size": 20 },
+            "background_background": "classic",
+            "background_color": "#000957",
+            "border_border": "none",
+            "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+          },
+          "elements": [
+            {
+              "id": "gcs-cta-icon",
+              "elType": "widget",
+              "widgetType": "icon",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "selected_icon": { "value": "fas fa-paper-plane", "library": "fa-solid" },
+                "primary_color": "#3F8CFF",
+                "size": { "unit": "px", "size": 40 }
+              },
+              "elements": []
+            },
+            {
+              "id": "gcs-cta-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "title": "Don’t See Your Role?",
+                "header_size": "h2",
+                "align": "center"
+              },
+              "elements": []
+            },
+            {
+              "id": "gcs-cta-text",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "editor": "<p style=\"text-align:center;\">We’re always looking for people who think globally. Send us a spontaneous application and let’s explore how you can contribute to our mission.</p>"
+              },
+              "elements": []
+            },
+            {
+              "id": "gcs-cta-btn",
+              "elType": "widget",
+              "widgetType": "button",
+              "isInner": true,
+              "isLocked": false,
+              "settings": {
+                "text": "Contact Us",
+                "link": { "url": "/contact/" }
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    }
+
+  ]
+}

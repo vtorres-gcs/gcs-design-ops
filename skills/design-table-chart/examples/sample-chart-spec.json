@@ -1,0 +1,20 @@
+{
+  "type": "grouped",
+  "theme": "light",
+  "footnote": "Figures as published by each government. Chart values in thousands.",
+  "ariaLabel": "Grouped bar chart comparing minimum investment and government fees by programme",
+  "xKey": "name",
+  "tickPrefix": "",
+  "tickSuffix": "k",
+  "values": true,
+  "data": [
+    {"name": "Malta", "inv": 690, "fees": 60},
+    {"name": "Portugal", "inv": 250, "fees": 12},
+    {"name": "St. Kitts & Nevis", "inv": 250, "fees": 25},
+    {"name": "Grenada", "inv": 150, "fees": 8}
+  ],
+  "series": [
+    {"key": "inv", "label": "Min. Investment"},
+    {"key": "fees", "label": "Government Fees"}
+  ]
+}

@@ -1,0 +1,457 @@
+<title>Careers Page</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, Arial, sans-serif; background: #e9ecef; color: #101828; }
+
+  /* ─── Toolbar ─── */
+  .toolbar {
+    position: sticky; top: 0; z-index: 100;
+    background: #fff; border-bottom: 1px solid #e5e7eb;
+    padding: 12px 24px; display: flex; align-items: center; gap: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  }
+  .toolbar-title { font-size: 14px; font-weight: 700; color: #000957; white-space: nowrap; }
+  .toolbar-note { font-size: 11px; color: #667085; flex: 1; }
+  .toolbar-btn {
+    padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer;
+    border-radius: 0; border: 1px solid #000957;
+  }
+  .toolbar-btn-primary { background: #000957; color: #fff; }
+  .toolbar-btn-primary:hover { background: #1A2268; }
+  .toolbar-btn-secondary { background: transparent; color: #000957; }
+  .toolbar-btn-secondary:hover { background: #ECF4FF; }
+
+  /* ─── Frame wrappers ─── */
+  .frame-wrapper { padding: 24px; }
+  .frame-label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 700; color: #667085; letter-spacing: .08em;
+    text-transform: uppercase; margin-bottom: 8px; padding: 0 24px;
+  }
+  .frame-label .frame-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #3F8CFF;
+  }
+
+  .desktop-view { background: #fff; width: 100%; }
+  .mobile-wrapper { display: flex; justify-content: center; padding: 0 24px 24px; }
+  .mobile-view { background: #fff; width: 390px; overflow-x: hidden; box-shadow: 0 4px 24px rgba(0,0,9,.15); }
+
+  /* ─── Shared section primitives ─── */
+  .sec { width: 100%; }
+  .sec-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .sec-inner-narrow { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+
+  /* Icon placeholder */
+  svg.gcs-icon { display: inline-block; vertical-align: middle; }
+  .icon-lg { width: 40px; height: 40px; }
+  .icon-md { width: 32px; height: 32px; }
+  .icon-sm { width: 16px; height: 16px; }
+  .electric { color: #3F8CFF; fill: #3F8CFF; }
+  .muted { color: #667085; fill: #667085; }
+
+  /* Generic button style — NOT GCS styling, matches "inherit from WP theme" intent */
+  .gcs-btn {
+    display: inline-block; padding: 12px 24px; font-size: 14px; font-weight: 600;
+    background: #e5e7eb; color: #111827; border: 1px solid #d1d5db;
+    border-radius: 0; cursor: pointer; text-decoration: none; font-family: inherit;
+  }
+
+  /* ─── §1 Hero ─── */
+  .sec-hero { background: #F9FAFB; padding: 80px 0; }
+  .hero-grid { display: flex; flex-direction: row; align-items: center; gap: 64px; }
+  .hero-left { flex: 0 0 50%; display: flex; flex-direction: column; gap: 24px; }
+  .hero-right { flex: 0 0 50%; }
+  .hero-right img { width: 100%; height: auto; display: block; }
+  .hero-btns { display: flex; flex-direction: row; gap: 16px; }
+  .hero-heading {
+    font-size: 40px; font-weight: 400; line-height: 1.2; color: #000957;
+  }
+  .hero-text { font-size: 16px; line-height: 1.6; color: #414856; }
+
+  /* ─── §2 Stats ─── */
+  .sec-stats { background: #000957; }
+  .stats-row { display: flex; flex-direction: row; }
+  .stat-item {
+    flex: 0 0 25%; display: flex; flex-direction: column; align-items: center;
+    padding: 56px 24px; gap: 8px; text-align: center;
+  }
+  .stat-item:not(:last-child) { border-right: 1px solid #1A2268; }
+  .stat-num { font-size: 36px; font-weight: 700; color: #fff; line-height: 1; }
+  .stat-label { font-size: 14px; color: #DBEAFF; line-height: 1.4; }
+
+  /* ─── §3 Features ─── */
+  .sec-features { background: #FFFFFF; padding: 80px 0; }
+  .feat-header { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 48px; }
+  .feat-heading { font-size: 32px; font-weight: 400; color: #000957; text-align: center; }
+  .feat-sub { font-size: 16px; color: #414856; text-align: center; max-width: 560px; }
+  .feat-tiles { display: flex; flex-direction: row; gap: 32px; }
+  .feat-tile {
+    flex: 0 0 calc(33.33% - 22px);
+    background: #F9FAFB; border: 1px solid #DBEAFF;
+    padding: 32px; display: flex; flex-direction: column; gap: 16px;
+  }
+  .feat-tile-heading { font-size: 18px; font-weight: 600; color: #000957; }
+  .feat-tile-text { font-size: 14px; line-height: 1.6; color: #414856; }
+
+  /* ─── §4 Open Roles ─── */
+  .sec-roles { background: #F9FAFB; padding: 80px 0; }
+  .roles-header { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; }
+  .roles-heading { font-size: 32px; font-weight: 400; color: #000957; }
+  .roles-sub { font-size: 16px; color: #414856; max-width: 560px; }
+  .roles-row { display: flex; flex-direction: row; gap: 32px; }
+  .role-card {
+    flex: 0 0 calc(50% - 16px);
+    background: #FFFFFF; border: 1px solid #DBEAFF;
+    padding: 32px; display: flex; flex-direction: column; gap: 20px;
+  }
+  .role-meta { display: flex; flex-direction: row; gap: 24px; }
+  .role-meta-item { display: flex; flex-direction: row; align-items: center; gap: 8px; }
+  .role-meta-text { font-size: 13px; color: #667085; }
+  .role-title { font-size: 20px; font-weight: 600; color: #000957; }
+  .role-desc { font-size: 14px; line-height: 1.6; color: #414856; flex: 1; }
+  .role-divider { border: none; border-top: 1px solid #DBEAFF; }
+
+  /* ─── §5 CTA ─── */
+  .sec-cta { background: #000957; padding: 80px 0; }
+  .cta-inner-col { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+  .cta-heading { font-size: 32px; font-weight: 400; color: #fff; text-align: center; }
+  .cta-text { font-size: 16px; color: #DBEAFF; text-align: center; line-height: 1.6; max-width: 480px; }
+
+  /* ─── Mobile overrides ─── */
+  .mobile-view .sec-inner { padding: 0 16px; }
+  .mobile-view .sec-inner-narrow { padding: 0 16px; }
+  .mobile-view .sec-hero { padding: 48px 0; }
+  .mobile-view .hero-grid { flex-direction: column; gap: 32px; }
+  .mobile-view .hero-left { flex: 0 0 100%; }
+  .mobile-view .hero-right { flex: 0 0 100%; width: 100%; }
+  .mobile-view .hero-heading { font-size: 28px; }
+  .mobile-view .hero-btns { flex-wrap: wrap; }
+  .mobile-view .sec-stats { }
+  .mobile-view .stats-row { flex-direction: column; }
+  .mobile-view .stat-item { flex: 0 0 100%; border-right: none !important; padding: 32px 16px; border-bottom: 1px solid #1A2268; }
+  .mobile-view .stat-item:last-child { border-bottom: none; }
+  .mobile-view .sec-features { padding: 48px 0; }
+  .mobile-view .feat-header { margin-bottom: 32px; }
+  .mobile-view .feat-tiles { flex-direction: column; gap: 16px; }
+  .mobile-view .feat-tile { flex: 0 0 100%; }
+  .mobile-view .sec-roles { padding: 48px 0; }
+  .mobile-view .roles-row { flex-direction: column; }
+  .mobile-view .role-card { flex: 0 0 100%; }
+  .mobile-view .sec-cta { padding: 48px 0; }
+  .mobile-view .cta-heading { font-size: 24px; }
+</style>
+
+<!-- Toolbar -->
+<div class="toolbar">
+  <span class="toolbar-title">Careers Page — GCS Elementor Preview</span>
+  <span class="toolbar-note">Font and button styling shown here are generic placeholders — the live site will render these with your WordPress theme's own fonts and button style. Stats numbers are illustrative placeholders — replace with real figures before publishing.</span>
+  <button class="toolbar-btn toolbar-btn-primary" onclick="copyJSON()">Copy JSON</button>
+  <button class="toolbar-btn toolbar-btn-secondary" onclick="downloadJSON()">Download JSON</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     DESKTOP
+═══════════════════════════════════════════════ -->
+<div class="frame-label"><span class="frame-dot"></span> Desktop</div>
+<div class="frame-wrapper">
+<div class="desktop-view">
+
+  <!-- §1 HERO -->
+  <section class="sec sec-hero">
+    <div class="sec-inner">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <h1 class="hero-heading">Change the World of Migration With Us</h1>
+          <p class="hero-text">We're looking for driven people to join our international team. Help redefine global mobility — from Lisbon, Malta, and beyond. If you're ready to bring your best to a company that values ambition and excellence in equal measure, we'd love to hear from you.</p>
+          <div class="hero-btns">
+            <a href="#" class="gcs-btn">See Open Roles</a>
+            <a href="#" class="gcs-btn">Our Story</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <img src="https://placehold.co/640x480/DBEAFF/000957?text=Replace+with+team+photo" alt="Team photo placeholder" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §2 STATS -->
+  <section class="sec sec-stats">
+    <div class="sec-inner" style="padding-left:0;padding-right:0;max-width:100%;">
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-num">10+</span>
+          <span class="stat-label">Years of Experience</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">20+</span>
+          <span class="stat-label">Nationalities in Our Team</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Global Offices</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">1,000+</span>
+          <span class="stat-label">Clients Advised</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §3 FEATURES -->
+  <section class="sec sec-features">
+    <div class="sec-inner">
+      <div class="feat-header">
+        <h2 class="feat-heading">A Place Where Ambition Meets Purpose</h2>
+        <p class="feat-sub">We build careers alongside client journeys. Our culture is rooted in curiosity, respect, and shared ambition.</p>
+      </div>
+      <div class="feat-tiles">
+        <div class="feat-tile">
+          <svg class="gcs-icon icon-md electric" viewBox="0 0 24 24"><path d="M11 14H9c0-4.97 4.03-9 9-9v2c-3.87 0-7 3.13-7 7zm7-3V9c-2.76 0-5 2.24-5 5h2c0-1.66 1.34-3 3-3zM1 18v3h3l10.41-10.41-3-3L1 18zm22.71-11.29c.39-.39.39-1.02 0-1.41l-2.01-2.01a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.41 3.41 1.84-1.82z"/></svg>
+          <p class="feat-tile-heading">Collaboration, With Purpose</p>
+          <p class="feat-tile-text">We foster a positive, open environment where ideas flow freely and people work together — with respect, clarity, and shared goals.</p>
+        </div>
+        <div class="feat-tile">
+          <svg class="gcs-icon icon-md electric" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          <p class="feat-tile-heading">Global Mindset</p>
+          <p class="feat-tile-text">Our team is diverse in background and experience — and that's our strength. We value curiosity, empathy, and openness to different views, cultures, and ways of working.</p>
+        </div>
+        <div class="feat-tile">
+          <svg class="gcs-icon icon-md electric" viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+          <p class="feat-tile-heading">Agile and Aware</p>
+          <p class="feat-tile-text">We work in a fast-moving, global space. That means staying flexible, informed, and ready to adapt — to client needs, market shifts, and the world around us.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §4 OPEN ROLES -->
+  <section class="sec sec-roles">
+    <div class="sec-inner">
+      <div class="roles-header">
+        <h2 class="roles-heading">Current Opportunities</h2>
+        <p class="roles-sub">Explore our current openings and discover how you can make an impact at Global Citizen Solutions. We have a variety of roles waiting for passionate individuals like you.</p>
+      </div>
+      <div class="roles-row">
+        <!-- Card 1 -->
+        <div class="role-card">
+          <div class="role-meta">
+            <div class="role-meta-item">
+              <svg class="gcs-icon icon-sm muted" viewBox="0 0 24 24"><path d="M20 7h-4V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM10 5h4v2h-4V5zm10 15H4V9h16v11z"/></svg>
+              <span class="role-meta-text">Full-time</span>
+            </div>
+            <div class="role-meta-item">
+              <svg class="gcs-icon icon-sm muted" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span class="role-meta-text">Malta</span>
+            </div>
+          </div>
+          <p class="role-title">Relationship Manager</p>
+          <p class="role-desc">Act as the primary point of contact for clients and support process management throughout the residency or citizenship application journey.</p>
+          <hr class="role-divider" />
+          <a href="#" class="gcs-btn">Apply Now</a>
+        </div>
+        <!-- Card 2 -->
+        <div class="role-card">
+          <div class="role-meta">
+            <div class="role-meta-item">
+              <svg class="gcs-icon icon-sm muted" viewBox="0 0 24 24"><path d="M20 7h-4V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM10 5h4v2h-4V5zm10 15H4V9h16v11z"/></svg>
+              <span class="role-meta-text">Full-time</span>
+            </div>
+            <div class="role-meta-item">
+              <svg class="gcs-icon icon-sm muted" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span class="role-meta-text">Portugal</span>
+            </div>
+          </div>
+          <p class="role-title">Global Wealth Researcher</p>
+          <p class="role-desc">Be our researcher with a commercial mindset, turning economic and financial data into insights that drive business and market growth.</p>
+          <hr class="role-divider" />
+          <a href="#" class="gcs-btn">Apply Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §5 CTA -->
+  <section class="sec sec-cta">
+    <div class="sec-inner-narrow">
+      <div class="cta-inner-col">
+        <svg class="gcs-icon icon-lg electric" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        <h2 class="cta-heading">Don't See Your Role?</h2>
+        <p class="cta-text">We're always looking for people who think globally. Send us a spontaneous application and let's explore how you can contribute to our mission.</p>
+        <a href="#" class="gcs-btn">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     MOBILE
+═══════════════════════════════════════════════ -->
+<div class="frame-label" style="margin-top:40px;"><span class="frame-dot"></span> Mobile (390px)</div>
+<div class="mobile-wrapper">
+<div class="mobile-view">
+
+  <!-- §1 HERO -->
+  <section class="sec sec-hero">
+    <div class="sec-inner">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <h1 class="hero-heading">Change the World of Migration With Us</h1>
+          <p class="hero-text">We're looking for driven people to join our international team. Help redefine global mobility — from Lisbon, Malta, and beyond. If you're ready to bring your best to a company that values ambition and excellence in equal measure, we'd love to hear from you.</p>
+          <div class="hero-btns">
+            <a href="#" class="gcs-btn">See Open Roles</a>
+            <a href="#" class="gcs-btn">Our Story</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <img src="https://placehold.co/390x260/DBEAFF/000957?text=Team+Photo" alt="Team photo placeholder" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §2 STATS -->
+  <section class="sec sec-stats">
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Years of Experience</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">20+</span>
+        <span class="stat-label">Nationalities in Our Team</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">5</span>
+        <span class="stat-label">Global Offices</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">1,000+</span>
+        <span class="stat-label">Clients Advised</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- §3 FEATURES -->
+  <section class="sec sec-features">
+    <div class="sec-inner">
+      <div class="feat-header">
+        <h2 class="feat-heading">A Place Where Ambition Meets Purpose</h2>
+        <p class="feat-sub">We build careers alongside client journeys. Our culture is rooted in curiosity, respect, and shared ambition.</p>
+      </div>
+      <div class="feat-tiles">
+        <div class="feat-tile">
+          <svg class="gcs-icon icon-md electric" viewBox="0 0 24 24"><path d="M11 14H9c0-4.97 4.03-9 9-9v2c-3.87 0-7 3.13-7 7zm7-3V9c-2.76 0-5 2.24-5 5h2c0-1.66 1.34-3 3-3zM1 18v3h3l10.41-10.41-3-3L1 18zm22.71-11.29c.39-.39.39-1.02 0-1.41l-2.01-2.01a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.41 3.41 1.84-1.82z"/></svg>
+          <p class="feat-tile-heading">Collaboration, With Purpose</p>
+          <p class="feat-tile-text">We foster a positive, open environment where ideas flow freely and people work together — with respect, clarity, and shared goals.</p>
+        </div>
+        <div class="feat-tile">
+          <svg class="gcs-icon icon-md electric" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          <p class="feat-tile-heading">Global Mindset</p>
+          <p class="feat-tile-text">Our team is diverse in background and experience — and that's our strength. We value curiosity, empathy, and openness to different views, cultures, and ways of working.</p>
+        </div>
+        <div class="feat-tile">
+          <svg class="gcs-icon icon-md electric" viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+          <p class="feat-tile-heading">Agile and Aware</p>
+          <p class="feat-tile-text">We work in a fast-moving, global space. That means staying flexible, informed, and ready to adapt — to client needs, market shifts, and the world around us.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §4 OPEN ROLES -->
+  <section class="sec sec-roles">
+    <div class="sec-inner">
+      <div class="roles-header">
+        <h2 class="roles-heading">Current Opportunities</h2>
+        <p class="roles-sub">Explore our current openings and discover how you can make an impact at Global Citizen Solutions.</p>
+      </div>
+      <div class="roles-row">
+        <div class="role-card">
+          <div class="role-meta">
+            <div class="role-meta-item">
+              <svg class="gcs-icon icon-sm muted" viewBox="0 0 24 24"><path d="M20 7h-4V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM10 5h4v2h-4V5zm10 15H4V9h16v11z"/></svg>
+              <span class="role-meta-text">Full-time</span>
+            </div>
+            <div class="role-meta-item">
+              <svg class="gcs-icon icon-sm muted" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span class="role-meta-text">Malta</span>
+            </div>
+          </div>
+          <p class="role-title">Relationship Manager</p>
+          <p class="role-desc">Act as the primary point of contact for clients and support process management throughout the residency or citizenship application journey.</p>
+          <hr class="role-divider" />
+          <a href="#" class="gcs-btn">Apply Now</a>
+        </div>
+        <div class="role-card">
+          <div class="role-meta">
+            <div class="role-meta-item">
+              <svg class="gcs-icon icon-sm muted" viewBox="0 0 24 24"><path d="M20 7h-4V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM10 5h4v2h-4V5zm10 15H4V9h16v11z"/></svg>
+              <span class="role-meta-text">Full-time</span>
+            </div>
+            <div class="role-meta-item">
+              <svg class="gcs-icon icon-sm muted" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span class="role-meta-text">Portugal</span>
+            </div>
+          </div>
+          <p class="role-title">Global Wealth Researcher</p>
+          <p class="role-desc">Be our researcher with a commercial mindset, turning economic and financial data into insights that drive business and market growth.</p>
+          <hr class="role-divider" />
+          <a href="#" class="gcs-btn">Apply Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §5 CTA -->
+  <section class="sec sec-cta">
+    <div class="sec-inner-narrow">
+      <div class="cta-inner-col">
+        <svg class="gcs-icon icon-lg electric" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        <h2 class="cta-heading">Don't See Your Role?</h2>
+        <p class="cta-text">We're always looking for people who think globally. Send us a spontaneous application and let's explore how you can contribute to our mission.</p>
+        <a href="#" class="gcs-btn">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<!-- JSON payload (not rendered) -->
+<script type="application/json" id="elementor-json">
+</script>
+
+<script>
+  // Load JSON from file reference — embed inline
+  (function() {
+    var el = document.getElementById('elementor-json');
+    el.textContent = JSON.stringify({"type":"elementor","siteurl":"https://www.globalcitizensolutions.com/wp-json/","elements":[{"id":"gcs-hero-outer","elType":"container","isInner":false,"isLocked":false,"settings":{"content_width":"full","background_background":"classic","background_color":"#F9FAFB","padding":{"unit":"px","top":"80","right":"0","bottom":"80","left":"0"},"padding_tablet":{"unit":"px","top":"64","right":"0","bottom":"64","left":"0"},"padding_mobile":{"unit":"px","top":"48","right":"0","bottom":"48","left":"0"},"flex_direction":"column","flex_wrap":"nowrap","align_items":"center","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-hero-inner","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"px","size":1200},"width_tablet":{"unit":"%","size":100},"width_mobile":{"unit":"%","size":100},"padding":{"unit":"px","top":"0","right":"32","bottom":"0","left":"32"},"padding_tablet":{"unit":"px","top":"0","right":"24","bottom":"0","left":"24"},"padding_mobile":{"unit":"px","top":"0","right":"16","bottom":"0","left":"16"},"flex_direction":"row","flex_direction_tablet":"column","flex_direction_mobile":"column","flex_wrap":"nowrap","align_items":"center","gap":{"unit":"px","size":64},"gap_tablet":{"unit":"px","size":40},"gap_mobile":{"unit":"px","size":32},"background_background":"classic","background_color":"#F9FAFB","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-hero-left","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"%","size":50},"width_tablet":{"unit":"%","size":100},"width_mobile":{"unit":"%","size":100},"flex_direction":"column","flex_wrap":"nowrap","gap":{"unit":"px","size":24},"gap_mobile":{"unit":"px","size":20},"background_background":"classic","background_color":"#F9FAFB","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-hero-heading","elType":"widget","widgetType":"heading","isInner":true,"isLocked":false,"settings":{"title":"Change the World of Migration With Us","header_size":"h1"},"elements":[]},{"id":"gcs-hero-text","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p>We’re looking for driven people to join our international team. Help redefine global mobility — from Lisbon, Malta, and beyond. If you’re ready to bring your best to a company that values ambition and excellence in equal measure, we’d love to hear from you.<\/p>"},"elements":[]},{"id":"gcs-hero-btns","elType":"container","isInner":true,"isLocked":false,"settings":{"flex_direction":"row","flex_wrap":"nowrap","gap":{"unit":"px","size":16},"background_background":"classic","background_color":"#F9FAFB","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-hero-btn-primary","elType":"widget","widgetType":"button","isInner":true,"isLocked":false,"settings":{"text":"See Open Roles","link":{"url":"#open-roles"}},"elements":[]},{"id":"gcs-hero-btn-secondary","elType":"widget","widgetType":"button","isInner":true,"isLocked":false,"settings":{"text":"Our Story","link":{"url":"\/about\/"}},"elements":[]}]}]},{"id":"gcs-hero-right","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"%","size":50},"width_tablet":{"unit":"%","size":100},"width_mobile":{"unit":"%","size":100},"flex_direction":"column","flex_wrap":"nowrap","align_items":"stretch","background_background":"classic","background_color":"#F9FAFB","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-hero-image","elType":"widget","widgetType":"image","isInner":true,"isLocked":false,"settings":{"image":{"url":"https:\/\/placehold.co\/640x480\/DBEAFF\/000957?text=Replace+with+team+photo","id":""},"image_size":"full"},"elements":[]}]}]}]},{"id":"gcs-stats-outer","elType":"container","isInner":false,"isLocked":false,"settings":{"content_width":"full","background_background":"classic","background_color":"#000957","padding":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"},"flex_direction":"column","flex_wrap":"nowrap","align_items":"center","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-stats-inner","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"px","size":1200},"width_tablet":{"unit":"%","size":100},"width_mobile":{"unit":"%","size":100},"flex_direction":"row","flex_direction_mobile":"column","flex_wrap":"nowrap","background_background":"classic","background_color":"#000957","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-stats-item-1","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"%","size":25},"width_mobile":{"unit":"%","size":100},"padding":{"unit":"px","top":"56","right":"24","bottom":"56","left":"24"},"padding_tablet":{"unit":"px","top":"40","right":"16","bottom":"40","left":"16"},"padding_mobile":{"unit":"px","top":"32","right":"16","bottom":"32","left":"16"},"flex_direction":"column","flex_wrap":"nowrap","align_items":"center","gap":{"unit":"px","size":8},"background_background":"classic","background_color":"#000957","border_border":"solid","border_width":{"unit":"px","top":"0","right":"1","bottom":"0","left":"0"},"border_color":"#1A2268","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-stats-num-1","elType":"widget","widgetType":"heading","isInner":true,"isLocked":false,"settings":{"title":"10+","header_size":"h2","align":"center"},"elements":[]},{"id":"gcs-stats-label-1","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p style=\"text-align:center;\">Years of Experience<\/p>"},"elements":[]}]},{"id":"gcs-stats-item-2","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"%","size":25},"width_mobile":{"unit":"%","size":100},"padding":{"unit":"px","top":"56","right":"24","bottom":"56","left":"24"},"padding_tablet":{"unit":"px","top":"40","right":"16","bottom":"40","left":"16"},"padding_mobile":{"unit":"px","top":"32","right":"16","bottom":"32","left":"16"},"flex_direction":"column","flex_wrap":"nowrap","align_items":"center","gap":{"unit":"px","size":8},"background_background":"classic","background_color":"#000957","border_border":"solid","border_width":{"unit":"px","top":"0","right":"1","bottom":"0","left":"0"},"border_color":"#1A2268","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-stats-num-2","elType":"widget","widgetType":"heading","isInner":true,"isLocked":false,"settings":{"title":"20+","header_size":"h2","align":"center"},"elements":[]},{"id":"gcs-stats-label-2","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p style=\"text-align:center;\">Nationalities in Our Team<\/p>"},"elements":[]}]},{"id":"gcs-stats-item-3","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"%","size":25},"width_mobile":{"unit":"%","size":100},"padding":{"unit":"px","top":"56","right":"24","bottom":"56","left":"24"},"padding_tablet":{"unit":"px","top":"40","right":"16","bottom":"40","left":"16"},"padding_mobile":{"unit":"px","top":"32","right":"16","bottom":"32","left":"16"},"flex_direction":"column","flex_wrap":"nowrap","align_items":"center","gap":{"unit":"px","size":8},"background_background":"classic","background_color":"#000957","border_border":"solid","border_width":{"unit":"px","top":"0","right":"1","bottom":"0","left":"0"},"border_color":"#1A2268","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-stats-num-3","elType":"widget","widgetType":"heading","isInner":true,"isLocked":false,"settings":{"title":"5","header_size":"h2","align":"center"},"elements":[]},{"id":"gcs-stats-label-3","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p style=\"text-align:center;\">Global Offices<\/p>"},"elements":[]}]},{"id":"gcs-stats-item-4","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"%","size":25},"width_mobile":{"unit":"%","size":100},"padding":{"unit":"px","top":"56","right":"24","bottom":"56","left":"24"},"padding_tablet":{"unit":"px","top":"40","right":"16","bottom":"40","left":"16"},"padding_mobile":{"unit":"px","top":"32","right":"16","bottom":"32","left":"16"},"flex_direction":"column","flex_wrap":"nowrap","align_items":"center","gap":{"unit":"px","size":8},"background_background":"classic","background_color":"#000957","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-stats-num-4","elType":"widget","widgetType":"heading","isInner":true,"isLocked":false,"settings":{"title":"1,000+","header_size":"h2","align":"center"},"elements":[]},{"id":"gcs-stats-label-4","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p style=\"text-align:center;\">Clients Advised<\/p>"},"elements":[]}]}]}]},{"id":"gcs-feat-outer","elType":"container","isInner":false,"isLocked":false,"settings":{"content_width":"full","background_background":"classic","background_color":"#FFFFFF","padding":{"unit":"px","top":"80","right":"0","bottom":"80","left":"0"},"padding_tablet":{"unit":"px","top":"64","right":"0","bottom":"64","left":"0"},"padding_mobile":{"unit":"px","top":"48","right":"0","bottom":"48","left":"0"},"flex_direction":"column","flex_wrap":"nowrap","align_items":"center","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-feat-inner","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"px","size":1200},"width_tablet":{"unit":"%","size":100},"width_mobile":{"unit":"%","size":100},"padding":{"unit":"px","top":"0","right":"32","bottom":"0","left":"32"},"padding_tablet":{"unit":"px","top":"0","right":"24","bottom":"0","left":"24"},"padding_mobile":{"unit":"px","top":"0","right":"16","bottom":"0","left":"16"},"flex_direction":"column","flex_wrap":"nowrap","gap":{"unit":"px","size":48},"gap_mobile":{"unit":"px","size":32},"background_background":"classic","background_color":"#FFFFFF","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-feat-header","elType":"container","isInner":true,"isLocked":false,"settings":{"flex_direction":"column","flex_wrap":"nowrap","gap":{"unit":"px","size":16},"align_items":"center","background_background":"classic","background_color":"#FFFFFF","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-feat-heading","elType":"widget","widgetType":"heading","isInner":true,"isLocked":false,"settings":{"title":"A Place Where Ambition Meets Purpose","header_size":"h2","align":"center"},"elements":[]},{"id":"gcs-feat-subtext","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p style=\"text-align:center;\">We build careers alongside client journeys. Our culture is rooted in curiosity, respect, and shared ambition.<\/p>"},"elements":[]}]},{"id":"gcs-feat-row","elType":"container","isInner":true,"isLocked":false,"settings":{"flex_direction":"row","flex_direction_tablet":"column","flex_direction_mobile":"column","flex_wrap":"nowrap","gap":{"unit":"px","size":32},"gap_mobile":{"unit":"px","size":24},"background_background":"classic","background_color":"#FFFFFF","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-feat-tile-1","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"%","size":33.33},"width_tablet":{"unit":"%","size":100},"width_mobile":{"unit":"%","size":100},"padding":{"unit":"px","top":"32","right":"32","bottom":"32","left":"32"},"padding_mobile":{"unit":"px","top":"24","right":"24","bottom":"24","left":"24"},"flex_direction":"column","flex_wrap":"nowrap","gap":{"unit":"px","size":16},"background_background":"classic","background_color":"#F9FAFB","border_border":"solid","border_width":{"unit":"px","top":"1","right":"1","bottom":"1","left":"1"},"border_color":"#DBEAFF","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-feat-icon-1","elType":"widget","widgetType":"icon","isInner":true,"isLocked":false,"settings":{"selected_icon":{"value":"fas fa-handshake","library":"fa-solid"},"primary_color":"#3F8CFF","size":{"unit":"px","size":32}},"elements":[]},{"id":"gcs-feat-heading-1","elType":"widget","widgetType":"heading","isInner":true,"isLocked":false,"settings":{"title":"Collaboration, With Purpose","header_size":"h4"},"elements":[]},{"id":"gcs-feat-text-1","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p>We foster a positive, open environment where ideas flow freely and people work together — with respect, clarity, and shared goals.<\/p>"},"elements":[]}]},{"id":"gcs-feat-tile-2","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"%","size":33.33},"width_tablet":{"unit":"%","size":100},"width_mobile":{"unit":"%","size":100},"padding":{"unit":"px","top":"32","right":"32","bottom":"32","left":"32"},"padding_mobile":{"unit":"px","top":"24","right":"24","bottom":"24","left":"24"},"flex_direction":"column","flex_wrap":"nowrap","gap":{"unit":"px","size":16},"background_background":"classic","background_color":"#F9FAFB","border_border":"solid","border_width":{"unit":"px","top":"1","right":"1","bottom":"1","left":"1"},"border_color":"#DBEAFF","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-feat-icon-2","elType":"widget","widgetType":"icon","isInner":true,"isLocked":false,"settings":{"selected_icon":{"value":"fas fa-globe","library":"fa-solid"},"primary_color":"#3F8CFF","size":{"unit":"px","size":32}},"elements":[]},{"id":"gcs-feat-heading-2","elType":"widget","widgetType":"heading","isInner":true,"isLocked":false,"settings":{"title":"Global Mindset","header_size":"h4"},"elements":[]},{"id":"gcs-feat-text-2","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p>Our team is diverse in background and experience — and that’s our strength. We value curiosity, empathy, and openness to different views, cultures, and ways of working.<\/p>"},"elements":[]}]},{"id":"gcs-feat-tile-3","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"%","size":33.33},"width_tablet":{"unit":"%","size":100},"width_mobile":{"unit":"%","size":100},"padding":{"unit":"px","top":"32","right":"32","bottom":"32","left":"32"},"padding_mobile":{"unit":"px","top":"24","right":"24","bottom":"24","left":"24"},"flex_direction":"column","flex_wrap":"nowrap","gap":{"unit":"px","size":16},"background_background":"classic","background_color":"#F9FAFB","border_border":"solid","border_width":{"unit":"px","top":"1","right":"1","bottom":"1","left":"1"},"border_color":"#DBEAFF","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-feat-icon-3","elType":"widget","widgetType":"icon","isInner":true,"isLocked":false,"settings":{"selected_icon":{"value":"fas fa-bolt","library":"fa-solid"},"primary_color":"#3F8CFF","size":{"unit":"px","size":32}},"elements":[]},{"id":"gcs-feat-heading-3","elType":"widget","widgetType":"heading","isInner":true,"isLocked":false,"settings":{"title":"Agile and Aware","header_size":"h4"},"elements":[]},{"id":"gcs-feat-text-3","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p>We work in a fast-moving, global space. That means staying flexible, informed, and ready to adapt — to client needs, market shifts, and the world around us.<\/p>"},"elements":[]}]}]}]}]},{"id":"gcs-roles-outer","elType":"container","isInner":false,"isLocked":false,"settings":{"content_width":"full","background_background":"classic","background_color":"#F9FAFB","padding":{"unit":"px","top":"80","right":"0","bottom":"80","left":"0"},"padding_tablet":{"unit":"px","top":"64","right":"0","bottom":"64","left":"0"},"padding_mobile":{"unit":"px","top":"48","right":"0","bottom":"48","left":"0"},"flex_direction":"column","flex_wrap":"nowrap","align_items":"center","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-roles-inner","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"px","size":1200},"width_tablet":{"unit":"%","size":100},"width_mobile":{"unit":"%","size":100},"padding":{"unit":"px","top":"0","right":"32","bottom":"0","left":"32"},"padding_tablet":{"unit":"px","top":"0","right":"24","bottom":"0","left":"24"},"padding_mobile":{"unit":"px","top":"0","right":"16","bottom":"0","left":"16"},"flex_direction":"column","flex_wrap":"nowrap","gap":{"unit":"px","size":48},"gap_mobile":{"unit":"px","size":32},"background_background":"classic","background_color":"#F9FAFB","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-roles-header","elType":"container","isInner":true,"isLocked":false,"settings":{"flex_direction":"column","flex_wrap":"nowrap","gap":{"unit":"px","size":16},"background_background":"classic","background_color":"#F9FAFB","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-roles-heading","elType":"widget","widgetType":"heading","isInner":true,"isLocked":false,"settings":{"title":"Current Opportunities","header_size":"h2"},"elements":[]},{"id":"gcs-roles-subtext","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p>Explore our current openings and discover how you can make an impact at Global Citizen Solutions. We have a variety of roles waiting for passionate individuals like you.<\/p>"},"elements":[]}]},{"id":"gcs-roles-row","elType":"container","isInner":true,"isLocked":false,"settings":{"flex_direction":"row","flex_direction_tablet":"column","flex_direction_mobile":"column","flex_wrap":"nowrap","gap":{"unit":"px","size":32},"gap_mobile":{"unit":"px","size":24},"align_items":"stretch","background_background":"classic","background_color":"#F9FAFB","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-roles-card-1","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"%","size":50},"width_tablet":{"unit":"%","size":100},"width_mobile":{"unit":"%","size":100},"padding":{"unit":"px","top":"32","right":"32","bottom":"32","left":"32"},"padding_mobile":{"unit":"px","top":"24","right":"24","bottom":"24","left":"24"},"flex_direction":"column","flex_wrap":"nowrap","gap":{"unit":"px","size":20},"background_background":"classic","background_color":"#FFFFFF","border_border":"solid","border_width":{"unit":"px","top":"1","right":"1","bottom":"1","left":"1"},"border_color":"#DBEAFF","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-roles-card-1-meta","elType":"container","isInner":true,"isLocked":false,"settings":{"flex_direction":"row","flex_wrap":"nowrap","gap":{"unit":"px","size":24},"background_background":"classic","background_color":"#FFFFFF","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-roles-card-1-meta-type","elType":"container","isInner":true,"isLocked":false,"settings":{"flex_direction":"row","flex_wrap":"nowrap","align_items":"center","gap":{"unit":"px","size":8},"background_background":"classic","background_color":"#FFFFFF","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-roles-card-1-icon-type","elType":"widget","widgetType":"icon","isInner":true,"isLocked":false,"settings":{"selected_icon":{"value":"fas fa-briefcase","library":"fa-solid"},"primary_color":"#667085","size":{"unit":"px","size":14}},"elements":[]},{"id":"gcs-roles-card-1-text-type","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p>Full-time<\/p>"},"elements":[]}]},{"id":"gcs-roles-card-1-meta-loc","elType":"container","isInner":true,"isLocked":false,"settings":{"flex_direction":"row","flex_wrap":"nowrap","align_items":"center","gap":{"unit":"px","size":8},"background_background":"classic","background_color":"#FFFFFF","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-roles-card-1-icon-loc","elType":"widget","widgetType":"icon","isInner":true,"isLocked":false,"settings":{"selected_icon":{"value":"fas fa-map-marker-alt","library":"fa-solid"},"primary_color":"#667085","size":{"unit":"px","size":14}},"elements":[]},{"id":"gcs-roles-card-1-text-loc","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p>Malta<\/p>"},"elements":[]}]}]},{"id":"gcs-roles-card-1-heading","elType":"widget","widgetType":"heading","isInner":true,"isLocked":false,"settings":{"title":"Relationship Manager","header_size":"h3"},"elements":[]},{"id":"gcs-roles-card-1-text","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p>Act as the primary point of contact for clients and support process management throughout the residency or citizenship application journey.<\/p>"},"elements":[]},{"id":"gcs-roles-card-1-divider","elType":"widget","widgetType":"divider","isInner":true,"isLocked":false,"settings":{"color":"#DBEAFF","weight":{"unit":"px","size":1}},"elements":[]},{"id":"gcs-roles-card-1-btn","elType":"widget","widgetType":"button","isInner":true,"isLocked":false,"settings":{"text":"Apply Now","link":{"url":"\/careers\/relationship-manager-malta\/"}},"elements":[]}]},{"id":"gcs-roles-card-2","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"%","size":50},"width_tablet":{"unit":"%","size":100},"width_mobile":{"unit":"%","size":100},"padding":{"unit":"px","top":"32","right":"32","bottom":"32","left":"32"},"padding_mobile":{"unit":"px","top":"24","right":"24","bottom":"24","left":"24"},"flex_direction":"column","flex_wrap":"nowrap","gap":{"unit":"px","size":20},"background_background":"classic","background_color":"#FFFFFF","border_border":"solid","border_width":{"unit":"px","top":"1","right":"1","bottom":"1","left":"1"},"border_color":"#DBEAFF","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-roles-card-2-meta","elType":"container","isInner":true,"isLocked":false,"settings":{"flex_direction":"row","flex_wrap":"nowrap","gap":{"unit":"px","size":24},"background_background":"classic","background_color":"#FFFFFF","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-roles-card-2-meta-type","elType":"container","isInner":true,"isLocked":false,"settings":{"flex_direction":"row","flex_wrap":"nowrap","align_items":"center","gap":{"unit":"px","size":8},"background_background":"classic","background_color":"#FFFFFF","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-roles-card-2-icon-type","elType":"widget","widgetType":"icon","isInner":true,"isLocked":false,"settings":{"selected_icon":{"value":"fas fa-briefcase","library":"fa-solid"},"primary_color":"#667085","size":{"unit":"px","size":14}},"elements":[]},{"id":"gcs-roles-card-2-text-type","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p>Full-time<\/p>"},"elements":[]}]},{"id":"gcs-roles-card-2-meta-loc","elType":"container","isInner":true,"isLocked":false,"settings":{"flex_direction":"row","flex_wrap":"nowrap","align_items":"center","gap":{"unit":"px","size":8},"background_background":"classic","background_color":"#FFFFFF","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-roles-card-2-icon-loc","elType":"widget","widgetType":"icon","isInner":true,"isLocked":false,"settings":{"selected_icon":{"value":"fas fa-map-marker-alt","library":"fa-solid"},"primary_color":"#667085","size":{"unit":"px","size":14}},"elements":[]},{"id":"gcs-roles-card-2-text-loc","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p>Portugal<\/p>"},"elements":[]}]}]},{"id":"gcs-roles-card-2-heading","elType":"widget","widgetType":"heading","isInner":true,"isLocked":false,"settings":{"title":"Global Wealth Researcher","header_size":"h3"},"elements":[]},{"id":"gcs-roles-card-2-text","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p>Be our researcher with a commercial mindset, turning economic and financial data into insights that drive business and market growth.<\/p>"},"elements":[]},{"id":"gcs-roles-card-2-divider","elType":"widget","widgetType":"divider","isInner":true,"isLocked":false,"settings":{"color":"#DBEAFF","weight":{"unit":"px","size":1}},"elements":[]},{"id":"gcs-roles-card-2-btn","elType":"widget","widgetType":"button","isInner":true,"isLocked":false,"settings":{"text":"Apply Now","link":{"url":"\/careers\/global-wealth-researcher\/"}},"elements":[]}]}]}]}]},{"id":"gcs-cta-outer","elType":"container","isInner":false,"isLocked":false,"settings":{"content_width":"full","background_background":"classic","background_color":"#000957","padding":{"unit":"px","top":"80","right":"0","bottom":"80","left":"0"},"padding_tablet":{"unit":"px","top":"64","right":"0","bottom":"64","left":"0"},"padding_mobile":{"unit":"px","top":"48","right":"0","bottom":"48","left":"0"},"flex_direction":"column","flex_wrap":"nowrap","align_items":"center","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-cta-inner","elType":"container","isInner":true,"isLocked":false,"settings":{"width":{"unit":"px","size":720},"width_tablet":{"unit":"%","size":100},"width_mobile":{"unit":"%","size":100},"padding":{"unit":"px","top":"0","right":"32","bottom":"0","left":"32"},"padding_mobile":{"unit":"px","top":"0","right":"16","bottom":"0","left":"16"},"flex_direction":"column","flex_wrap":"nowrap","align_items":"center","gap":{"unit":"px","size":24},"gap_mobile":{"unit":"px","size":20},"background_background":"classic","background_color":"#000957","border_border":"none","border_radius":{"unit":"px","top":"0","right":"0","bottom":"0","left":"0"}},"elements":[{"id":"gcs-cta-icon","elType":"widget","widgetType":"icon","isInner":true,"isLocked":false,"settings":{"selected_icon":{"value":"fas fa-paper-plane","library":"fa-solid"},"primary_color":"#3F8CFF","size":{"unit":"px","size":40}},"elements":[]},{"id":"gcs-cta-heading","elType":"widget","widgetType":"heading","isInner":true,"isLocked":false,"settings":{"title":"Don’t See Your Role?","header_size":"h2","align":"center"},"elements":[]},{"id":"gcs-cta-text","elType":"widget","widgetType":"text-editor","isInner":true,"isLocked":false,"settings":{"editor":"<p style=\"text-align:center;\">We’re always looking for people who think globally. Send us a spontaneous application and let’s explore how you can contribute to our mission.<\/p>"},"elements":[]},{"id":"gcs-cta-btn","elType":"widget","widgetType":"button","isInner":true,"isLocked":false,"settings":{"text":"Contact Us","link":{"url":"\/contact\/"}},"elements":[]}]}]}]}, 2);
+  })();
+
+  function copyJSON() {
+    var el = document.getElementById('elementor-json');
+    navigator.clipboard.writeText(el.textContent).then(function() {
+      var btn = document.querySelector('.toolbar-btn-primary');
+      var orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = orig; }, 2000);
+    });
+  }
+
+  function downloadJSON() {
+    var el = document.getElementById('elementor-json');
+    var blob = new Blob([el.textContent], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'careers_page.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+</script>
