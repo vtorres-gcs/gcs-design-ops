@@ -1,4 +1,0 @@
-interface:
-  display_name: "GCS Social Media"
-  short_description: "Create social HTML, live previews, PNGs and PDFs"
-  default_prompt: "Use $gcs-social-media to create a GCS social creative with an editable HTML preview."

@@ -1,1 +1,0 @@
-Slide deck template — title, content (with stat callouts, image placeholder, charts, or table), agenda (icon list), numbered steps, stats (KPI overlay), timeline, schedule, quote, and closing/global-presence layouts. 12 slides, 1280×720, GCS token fonts (Yrsa / Heebo / JetBrains Mono).

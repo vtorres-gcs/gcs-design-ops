@@ -1,4 +1,0 @@
-interface:
-  display_name: "GCS Image Generator"
-  short_description: "Create and review on-brand GCS imagery"
-  default_prompt: "Use $gcs-image-generator to create an on-brand image or production-ready prompt for this brief."
