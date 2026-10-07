@@ -1,0 +1,16 @@
+/* ============================================================
+   GCS Design System — Border Radius Tokens
+   ============================================================
+   Default radius is 0 — the GCS brand uses sharp, geometric
+   corners as a defining visual trait. Use sparingly; only
+   apply non-zero radius where explicitly specified in designs.
+   ============================================================ */
+
+:root {
+  --radius:    0rem;       /* 0px  — default: sharp corners */
+  --radius-sm: 0.125rem;   /* 2px  — very slight softening */
+  --radius-md: 0.25rem;    /* 4px  — subtle rounding */
+  --radius-lg: 0.5rem;     /* 8px  — moderate rounding */
+  --radius-xl: 0.75rem;    /* 12px — rounded panels */
+  --radius-full: 9999px;   /* pill — tags, badges, avatars */
+}

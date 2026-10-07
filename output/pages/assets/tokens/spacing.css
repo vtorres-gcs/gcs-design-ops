@@ -1,0 +1,54 @@
+/* ============================================================
+   GCS Design System — Spacing Tokens
+   ============================================================
+   4pt base grid. All spacing values are multiples of 4px.
+   ============================================================ */
+
+:root {
+  --spacing-base: 0.25rem; /* 4px */
+
+  --space-0:    0px;
+  --space-0-5:  2px;   /* 0.5 × base */
+  --space-1:    4px;   /* 1 × base */
+  --space-1-5:  6px;   /* 1.5 × base */
+  --space-2:    8px;   /* 2 × base */
+  --space-2-5:  10px;  /* 2.5 × base */
+  --space-3:    12px;  /* 3 × base */
+  --space-4:    16px;  /* 4 × base */
+  --space-5:    20px;  /* 5 × base */
+  --space-6:    24px;  /* 6 × base */
+  --space-7:    28px;  /* 7 × base */
+  --space-8:    32px;  /* 8 × base */
+  --space-10:   40px;  /* 10 × base */
+  --space-12:   48px;  /* 12 × base */
+  --space-14:   56px;  /* 14 × base */
+  --space-16:   64px;  /* 16 × base */
+  --space-20:   80px;  /* 20 × base */
+  --space-24:   96px;  /* 24 × base */
+  --space-32:   128px; /* 32 × base */
+  --space-40:   160px; /* 40 × base */
+  --space-48:   192px; /* 48 × base */
+  --space-64:   256px; /* 64 × base */
+
+  /* Semantic spacing aliases */
+  --gap-xs:   var(--space-1);   /* 4px  — tight inline gaps */
+  --gap-sm:   var(--space-2);   /* 8px  — icon + label */
+  --gap-md:   var(--space-4);   /* 16px — component internal */
+  --gap-lg:   var(--space-6);   /* 24px — section internal */
+  --gap-xl:   var(--space-8);   /* 32px — section separation */
+  --gap-2xl:  var(--space-12);  /* 48px — page sections */
+  --gap-3xl:  var(--space-16);  /* 64px — major sections */
+
+  /* Component-level padding */
+  --padding-btn-sm:  0 var(--space-3);   /* 12px H */
+  --padding-btn-md:  0 var(--space-4);   /* 16px H */
+  --padding-btn-lg:  0 var(--space-6);   /* 24px H */
+
+  --padding-card:     var(--space-6);    /* 24px */
+  --padding-card-sm:  var(--space-4);    /* 16px */
+  --padding-input:    var(--space-3) var(--space-4); /* 12px 16px */
+
+  /* Layout */
+  --container-padding: 2rem;  /* 32px */
+  --container-max:     1400px;
+}

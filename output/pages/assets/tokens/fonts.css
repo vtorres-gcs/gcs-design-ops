@@ -1,0 +1,16 @@
+/* ============================================================
+   GCS Design System — Fonts
+   ============================================================
+   Heebo   → UI, body text, labels, captions (sans-serif)
+   Yrsa    → Display headings, editorial copy (serif)
+   JetBrains Mono → Code, data, monospace contexts
+   Iconography → self-hosted SVGs, see components/core/Icon.jsx
+   and guidelines/icons.card.html (no icon font — see assets/icons/)
+
+   NOTE: Heebo / Yrsa / JetBrains Mono are still loaded from
+   Google Fonts. For production use, self-host these too and
+   replace this @import with local @font-face declarations.
+   Contact the brand team for licensed font assets.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Yrsa:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap');

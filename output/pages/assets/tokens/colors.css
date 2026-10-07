@@ -1,0 +1,234 @@
+/* ============================================================
+   GCS Design System — Color Tokens
+   ============================================================
+   All colors expressed as hsl() values.
+   Base palette → semantic aliases → component-level tokens.
+   ============================================================ */
+
+:root {
+
+  /* ----------------------------------------------------------
+     Brand Palette — Night Blue
+     Primary brand color. Used for navigation, headings,
+     primary CTAs, and high-emphasis surfaces.
+     ---------------------------------------------------------- */
+  --night-blue-25:  hsl(218 17% 92%);   /* #E8EBF0 */
+  --night-blue-50:  hsl(233 22% 75%);   /* #B3B5CD */
+  --night-blue-100: hsl(232 18% 59%);   /* #8084AB */
+  --night-blue-200: hsl(233 41% 34%);   /* #333A79 */
+  --night-blue-300: hsl(233 60% 26%);   /* #1A2268 */
+  --night-blue-400: hsl(233 100% 17%);  /* #000957 — primary */
+
+  /* ----------------------------------------------------------
+     Brand Palette — Electric Blue
+     Accent and secondary action color. Used for links,
+     highlights, focus rings, secondary buttons.
+     ---------------------------------------------------------- */
+  --electric-blue-25:  hsl(215 100% 96%);  /* #ECF4FF */
+  --electric-blue-50:  hsl(216 100% 93%);  /* #D9E8FF */
+  --electric-blue-400: hsl(216 100% 62%);  /* #3F8CFF — accent */
+
+  /* ----------------------------------------------------------
+     Brand Palette — Star (Rating)
+     Used exclusively for star ratings and achievement badges.
+     ---------------------------------------------------------- */
+  --star: hsl(47 100% 44%);  /* #DFB300 */
+
+  /* ----------------------------------------------------------
+     Avatar Tint Palette
+     Deterministic background tints for initials-fallback avatars
+     (components/core/primitives/Avatar.jsx hashes a name to one
+     of these 8). Distinct from the Night Blue scale so avatars
+     stay visually differentiable at a glance; always paired with
+     white text.
+     ---------------------------------------------------------- */
+  --avatar-tint-1: #1a3a5c;
+  --avatar-tint-2: #1e4a6e;
+  --avatar-tint-3: #215a80;
+  --avatar-tint-4: #236a92;
+  --avatar-tint-5: #2580a8;
+  --avatar-tint-6: #1a4a6e;
+  --avatar-tint-7: #163358;
+  --avatar-tint-8: #0e2440;
+
+  /* ----------------------------------------------------------
+     Primary Scale (Night Blue aliases)
+     ---------------------------------------------------------- */
+  --primary-50:  hsl(218 17% 92%);   /* nightBlue-25 */
+  --primary-100: hsl(233 22% 75%);   /* nightBlue-50 */
+  --primary-200: hsl(233 22% 75%);   /* nightBlue-50 */
+  --primary-300: hsl(232 18% 59%);   /* nightBlue-100 */
+  --primary-400: hsl(233 41% 34%);   /* nightBlue-200 */
+  --primary-500: hsl(233 60% 26%);   /* nightBlue-300 */
+  --primary-600: hsl(233 80% 22%);
+  --primary-700: hsl(233 60% 26%);   /* nightBlue-300 */
+  --primary-800: hsl(233 100% 17%);  /* nightBlue-400 */
+  --primary-900: hsl(233 100% 12%);
+
+  /* ----------------------------------------------------------
+     Secondary Scale (Electric Blue aliases)
+     ---------------------------------------------------------- */
+  --secondary-50:  hsl(215 100% 96%);
+  --secondary-100: hsl(216 100% 93%);
+  --secondary-200: hsl(216 100% 85%);
+  --secondary-300: hsl(216 100% 76%);
+  --secondary-400: hsl(216 100% 68%);
+  --secondary-500: hsl(216 100% 62%);
+  --secondary-600: hsl(216 100% 55%);
+  --secondary-700: hsl(216 100% 45%);
+  --secondary-800: hsl(216 100% 35%);
+  --secondary-900: hsl(216 100% 25%);
+
+  /* ----------------------------------------------------------
+     Semantic Tokens — Light Mode (default)
+     ---------------------------------------------------------- */
+  --background:          hsl(210 20% 98%);
+  --foreground:          hsl(220 43% 11%);
+
+  --card:                hsl(0 0% 100%);
+  --card-foreground:     hsl(220 43% 11%);
+
+  --popover:             hsl(0 0% 100%);
+  --popover-foreground:  hsl(220 43% 11%);
+
+  --primary:             hsl(233 100% 17%);   /* Night Blue 400 */
+  --primary-foreground:  hsl(0 0% 100%);
+
+  --secondary:           hsl(216 100% 62%);   /* Electric Blue 400 */
+  --secondary-foreground: hsl(0 0% 100%);
+
+  --muted:               hsl(218 21% 93%);
+  --muted-foreground:    hsl(221 13% 46%);
+
+  /* Established GCS body-text grey — the value used consistently for card/body
+     copy across social + print templates (see resources/gcs-social-media/references/
+     slide-library.md, "#414856 (body text)"). Darker/more neutral than
+     --muted-foreground, lighter than --foreground; use for body copy that
+     needs more presence than muted text but shouldn't compete with headings. */
+  --foreground-secondary: #414856;
+
+  --accent:              hsl(216 100% 62%);
+  --accent-foreground:   hsl(0 0% 100%);
+
+  --destructive:         hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  --border:              hsl(216 100% 93%);
+  --input:               hsl(216 100% 93%);
+  --ring:                hsl(233 100% 17%);
+
+  /* ----------------------------------------------------------
+     Sidebar Tokens — Light Mode
+     Sidebar uses the primary Night Blue background.
+     ---------------------------------------------------------- */
+  --sidebar-background: hsl(233 100% 17%);
+  --sidebar-foreground: hsl(0 0% 100%);
+  --sidebar-primary:    hsl(216 100% 62%);
+  --sidebar-accent:     hsl(218 21% 93%);
+  --sidebar-border:     hsl(216 100% 93%);
+  --sidebar-ring:       hsl(233 100% 17%);
+
+  /* ----------------------------------------------------------
+     Chart Colors
+     ---------------------------------------------------------- */
+  --chart-1: var(--primary);
+  --chart-2: var(--accent);
+  --chart-3: var(--muted-foreground);
+  --chart-4: var(--border);
+  --chart-5: var(--muted);
+
+  /* ----------------------------------------------------------
+     Functional / Status Colors
+     ---------------------------------------------------------- */
+  --success:            hsl(142 71% 45%);
+  --success-foreground: hsl(0 0% 100%);
+  --warning:            hsl(38 92% 50%);
+  --warning-foreground: hsl(0 0% 100%);
+  --info:               hsl(216 100% 62%);
+  --info-foreground:    hsl(0 0% 100%);
+
+  /* ----------------------------------------------------------
+     Document Palette
+     A secondary neutral/blue scale used across print-style
+     document templates (brochures, letterheads, factsheets) —
+     distinct from the UI-facing scale above because these
+     documents were designed with finer-grained greys than the
+     app's --foreground/--muted-foreground pair provides. Kept
+     separate rather than forced onto UI tokens to avoid shifting
+     already-shipped document colours.
+     ---------------------------------------------------------- */
+  --doc-heading:       #16182A;  /* headings on white */
+  --doc-body:          #4B4E65;  /* body copy on white */
+  --doc-muted:         #9B9CAD;  /* eyebrow labels, secondary text */
+  --doc-muted-alt:     #6F7185;  /* letterhead date/sender labels */
+  --doc-subtle:        #C6C8D5;  /* footnotes, copyright lines */
+  --doc-border:        #E0E2EA;  /* standard rule/divider */
+  --doc-border-alt:    #E0E2EE;  /* divider variant */
+  --doc-border-light:  #ECEDF5;  /* lightest divider (most common) */
+  --doc-border-soft:   #E8EAF5;  /* icon-box border */
+  --doc-surface:       #F7F8FD;  /* light card/box background */
+  --doc-surface-alt:   #F2F3FE;  /* badge/box background */
+  --doc-wrapper:       #DDE0E8;  /* page-wrapper background */
+  --doc-pattern-1:     #DDE0EA;  /* diagonal stripe pattern, colour A */
+  --doc-pattern-2:     #E8EAF2;  /* diagonal stripe pattern, colour B */
+  --doc-primary-dark:  #0F1A2D;  /* near-black navy, gradient end */
+  --doc-primary-deep:  #000B2E;  /* near-black navy, solid block */
+  --doc-accent-deep:   #0A1260;  /* dark blue, solid block */
+  --doc-label-on-dark: #A8B3CD;  /* label text on dark backgrounds */
+  --doc-accent-alt:    #4A6CF7;  /* bright-blue label accent */
+  --doc-badge:         #3D51E8;  /* indigo badge / underline accent */
+
+  /* Consolidated from repeated inline hex (copy-paste drift, audit 2026-09) —
+     previously hardcoded across GiuCorporate/GiuCalendar/LeadMagnet brochure
+     templates and the Slides/Letterhead templates with no backing token. */
+  --doc-border-hairline: #F0F1F8;  /* table-cell column divider (border-left) */
+  --doc-label-faint:     #CACCD8;  /* faint numeric/date label text (page numbers, calendar dates) */
+  --doc-accent-soft:     #7B8FFF;  /* soft accent dot / index badge text */
+  --doc-border-strong:   #D6D8E8;  /* darker card/placeholder border */
+  --doc-ink-muted:       #6C6F8C;  /* muted eyebrow/caption text */
+  --doc-bg-soft-2:       #E8E9F7;  /* diagonal stripe pattern colour B (paired with --doc-surface-alt) */
+  --doc-ink-strong:      #343750;  /* body copy ink on white */
+}
+
+/* ----------------------------------------------------------
+   Dark Mode Semantic Tokens
+   Apply via class="dark" on <html> or <body>
+   ---------------------------------------------------------- */
+.dark {
+  --background:          hsl(233 100% 17%);
+  --foreground:          hsl(0 0% 100%);
+
+  --card:                hsl(234 100% 22%);
+  --card-foreground:     hsl(0 0% 100%);
+
+  --popover:             hsl(234 100% 22%);
+  --popover-foreground:  hsl(0 0% 100%);
+
+  --primary:             hsl(0 0% 100%);
+  --primary-foreground:  hsl(233 100% 17%);
+
+  --secondary:           hsl(220 43% 11%);
+  --secondary-foreground: hsl(0 0% 100%);
+
+  --muted:               hsl(220 43% 11%);
+  --muted-foreground:    hsl(215 20% 65%);
+
+  --foreground-secondary: hsl(0 0% 100% / 0.7);
+
+  --accent:              hsl(216 100% 62%);
+  --accent-foreground:   hsl(0 0% 100%);
+
+  --destructive:         hsl(0 63% 31%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  --border:              hsl(220 43% 11%);
+  --input:               hsl(220 43% 11%);
+  --ring:                hsl(0 0% 100%);
+
+  --sidebar-background:  hsl(234 100% 14%);
+  --sidebar-foreground:  hsl(0 0% 100%);
+  --sidebar-primary:     hsl(0 0% 100%);
+  --sidebar-accent:      hsl(220 43% 11%);
+  --sidebar-border:      hsl(220 43% 11%);
+  --sidebar-ring:        hsl(0 0% 100%);
+}

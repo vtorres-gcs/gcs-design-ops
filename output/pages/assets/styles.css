@@ -1,0 +1,16 @@
+/* ============================================================
+   GCS Design System — Global Styles Entry Point
+   Global Citizen Solutions
+   ============================================================
+   Import this single file in any consuming project.
+   All tokens, fonts, and utility classes are available
+   after linking this stylesheet.
+   ============================================================ */
+
+@import "./tokens/fonts.css";
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+@import "./tokens/radius.css";
+@import "./tokens/shadows.css";
+@import "./tokens/animations.css";

@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Countries — Global Citizen Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Yrsa:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="assets/_ds_bundle.js"></script>
+<style>
+/* Footer (components/core/sections/footer.reference.html) */
+
+.footer a{color:var(--primary-foreground);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+
+.footer{display:flex;flex-direction:column;gap:30px;width:100%;padding:66px 93px;background:var(--primary)}
+@media(max-width:1024px){.footer{padding:56px 48px}}
+@media(max-width:768px){.footer{padding:48px 24px;gap:24px}}
+@media(max-width:480px){.footer{padding:40px 20px}}
+
+.rule{height:1px;width:100%;flex-shrink:0;background:var(--night-blue-300)}
+
+/* Newsletter */
+.newsletter{display:flex;flex-wrap:wrap;align-items:center;gap:24px;width:100%;padding:30px 0}
+@media(max-width:768px){.newsletter{flex-direction:column;align-items:flex-start;padding:24px 0}}
+.newsletter .logo{height:41px;width:auto;flex-shrink:0}
+@media(max-width:480px){.newsletter .logo{height:32px}}
+.newsletter-box{flex:1 1 480px;display:flex;flex-wrap:wrap;align-items:center;gap:20px;border:1px solid var(--night-blue-300);padding:20px}
+@media(max-width:768px){.newsletter-box{flex-direction:column;align-items:flex-start;width:100%}}
+.newsletter-label{flex-shrink:0;font-family:var(--font-serif);font-weight:500;font-size:18px;line-height:28px}
+.form{display:flex;flex:1 1 320px;flex-wrap:wrap;gap:10px}
+@media(max-width:768px){.form{flex-direction:column;width:100%}}
+.field{flex:1 1 140px;min-width:0;height:40px;background:transparent;border:.75px solid var(--night-blue-300);padding:0 12px;color:var(--primary-foreground);font-family:var(--font-sans);font-size:14px;border-radius:0;outline:none}
+@media(max-width:768px){.field{flex:1 1 auto;width:100%}}
+.field::placeholder{color:var(--night-blue-100)}
+.field:focus{border-color:var(--accent)}
+.subscribe{flex:1 1 140px;height:40px;padding:10px 20px;background:var(--accent);color:var(--primary-foreground);border:1px solid var(--accent);font-size:14px;font-weight:600;line-height:20px;text-transform:uppercase;letter-spacing:.02em;cursor:pointer;box-shadow:var(--shadow-xs);white-space:nowrap}
+@media(max-width:768px){.subscribe{flex:1 1 auto;width:100%}}
+.subscribe:hover{background:var(--primary-foreground);color:var(--accent);border-color:var(--primary-foreground)}
+
+/* Columns */
+.columns{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;width:100%;flex-wrap:wrap}
+@media(max-width:1024px){.columns{gap:32px 24px}}
+@media(max-width:768px){.columns{flex-direction:column;align-items:stretch;gap:32px}}
+.col-rule{align-self:stretch;width:1px;flex-shrink:0;background:var(--night-blue-300)}
+@media(max-width:1024px){.col-rule{display:none}}
+
+.col{display:flex;flex-direction:column;gap:18px;flex:1 1 140px;min-width:140px;padding-top:12px}
+@media(max-width:1024px){.col{flex:1 1 calc(50% - 12px)}}
+@media(max-width:768px){.col{flex:1 1 auto;width:100%}}
+.col h3{margin:0;font-family:var(--font-serif);font-weight:500;font-size:18px;line-height:28px;color:var(--night-blue-50)}
+.col ul{display:flex;flex-direction:column;gap:13.5px;margin:0;padding:0;list-style:none;font-size:12px;line-height:1.4}
+
+.accordion{flex:1 1 320px;min-width:260px;max-width:440px;display:flex;flex-direction:column;gap:24px;padding-top:12px}
+@media(max-width:1024px){.accordion{flex:1 1 100%;max-width:none}}
+.accordion h3{margin:0;padding-left:6px;font-family:var(--font-serif);font-weight:500;font-size:18px;line-height:28px;color:var(--night-blue-50)}
+.accordion-group{border-top:1px solid var(--night-blue-300)}
+.accordion-label{padding:24px 8px;font-weight:500;font-size:12px;line-height:1.4}
+
+/* Membership */
+.membership{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;width:100%;padding-bottom:30px}
+@media(max-width:768px){.membership{flex-direction:column;align-items:flex-start;padding-bottom:24px}}
+.member{display:flex;align-items:center;gap:16px}
+.member-label{font-size:12px;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
+.member-logo{height:38px;width:auto}
+.partner-badges{height:22px;width:auto;max-width:100%}
+
+/* Bottom bar */
+.bottom{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:18px 0}
+@media(max-width:768px){.bottom{flex-direction:column;align-items:flex-start}}
+.legal{margin:0;font-size:12px;line-height:1.4;color:var(--night-blue-50)}
+.legal a{color:inherit;font-weight:700;text-decoration:underline}
+.socials{display:flex;align-items:center;gap:12px}
+.social-link{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex-shrink:0}
+.social-link img{width:100%;height:100%}
+.social-link:hover{opacity:.8}
+.social-sep{align-self:stretch;width:1px;background:var(--night-blue-300)}
+.social-decor{height:9px;width:auto;opacity:.6;flex-shrink:0}
+</style>
+<style>
+/* CtaSection (components/core/sections/CtaSection.jsx) */
+
+.gcs-cta{display:grid;grid-template-columns:1fr;min-height:400px}
+@media(min-width:768px){.gcs-cta{grid-template-columns:1fr 1fr;min-height:534px}}
+.gcs-cta__left{padding:var(--space-14) var(--space-10);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:var(--space-8)}
+@media(min-width:768px){.gcs-cta__left{padding:var(--space-12) var(--space-16)}}
+.gcs-cta__text{display:flex;flex-direction:column;gap:var(--space-1-5);width:100%}
+.gcs-cta__left h2{margin:0;font-family:var(--font-serif);font-weight:var(--weight-regular);font-size:36px;line-height:40px;letter-spacing:-0.02em}
+@media(min-width:768px){.gcs-cta__left h2{font-size:60px;line-height:64px}}
+.gcs-cta__left h2 em{font-style:italic;color:var(--night-blue-50)}
+.gcs-cta__left p{margin:0;font-family:var(--font-sans);font-weight:var(--weight-light);font-size:18px;line-height:1.4}
+.gcs-cta--light .gcs-cta__left{background:var(--background);color:var(--night-blue-400)}
+.gcs-cta--blue .gcs-cta__left{background:var(--night-blue-400);color:var(--primary-foreground)}
+.gcs-cta--blue .gcs-cta__left p{color:var(--night-blue-50)}
+.gcs-cta__right{position:relative;min-height:300px}
+.gcs-cta__right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* variant="overlay" — full-bleed background image, Night Blue gradient scrim,
+   left-aligned content stack, outlined button. Matches Figma node 10629:46606. */
+.gcs-cta--overlay{display:block;position:relative;min-height:420px;padding:var(--space-12) var(--space-6);overflow:hidden}
+@media(min-width:768px){.gcs-cta--overlay{padding:60px var(--space-16)}}
+.gcs-cta--overlay .gcs-cta__bg{position:absolute;inset:0;z-index:0}
+.gcs-cta--overlay .gcs-cta__bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.gcs-cta--overlay .gcs-cta__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(207.87deg,transparent 20.496%,var(--night-blue-400) 93.216%)}
+.gcs-cta--overlay .gcs-cta__content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-4);max-width:640px}
+.gcs-cta--overlay .gcs-cta__symbol{width:40px;height:40px;display:block}
+.gcs-cta--overlay h2{margin:var(--space-2) 0 0;font-family:var(--font-serif);font-weight:var(--weight-regular);font-size:36px;line-height:1.1;letter-spacing:0;color:var(--primary-foreground)}
+@media(min-width:768px){.gcs-cta--overlay h2{font-size:60px;line-height:64px}}
+.gcs-cta--overlay h2 em{font-style:italic;color:var(--night-blue-50)}
+.gcs-cta--overlay p{margin:0;font-family:var(--font-sans);font-size:18px;line-height:1.4;color:color-mix(in srgb,var(--primary-foreground) 80%,transparent)}
+
+</style>
+<style>
+
+/* Material Symbols inline mask (colour follows currentColor) */
+.icon-mask{display:inline-block;width:16px;height:16px;flex-shrink:0;color:currentColor}
+.icon-mask svg{display:block}
+body{margin:0;background:var(--primary-foreground)}
+
+/* ---- Regions + CountryProgramsTable (components/core/sections/CountryProgramsTable.jsx) ---- */
+.regions{max-width:1440px;margin:0 auto;padding:0 var(--space-16) var(--space-20);background:var(--primary-foreground)}
+:root{--filterbar-height:72px;--anchor-gap:32px}
+.region{margin-top:var(--space-16);scroll-margin-top:calc(var(--gcs-navbar-height, 96px) + var(--filterbar-height) + var(--anchor-gap))}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(max-width:700px){.regions{padding:0 var(--space-6) var(--space-12)}}
+
+/* ---- Programme Overview intro (text split, no component — page-specific) ---- */
+.gcs-overview{display:flex;flex-wrap:wrap;gap:var(--space-10) var(--space-16);padding:var(--space-16) 0 var(--space-12);border-bottom:1px solid var(--border)}
+.gcs-overview__heading{flex:1 1 360px;margin:0;font-family:var(--font-serif);font-weight:var(--weight-regular);font-size:clamp(32px,4vw,48px);line-height:1.15;letter-spacing:-0.02em;color:var(--night-blue-400)}
+.gcs-overview__heading em{display:block;font-style:italic;color:var(--night-blue-50)}
+.gcs-overview__body{flex:1 1 360px;margin:0;font-family:var(--font-sans);font-weight:var(--weight-light);font-size:18px;line-height:1.5;color:var(--night-blue-400)}
+
+/* Footer text colour (footer.reference.html set it on body) */
+.footer{color:var(--primary-foreground)}
+
+/* ---- Floating contact button (FloatingContactButton trigger) ---- */
+.fab{position:fixed;bottom:var(--space-8);right:var(--space-8);z-index:1001;width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--primary-foreground);border:0;box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s ease}
+.fab:hover{background:var(--primary)}
+.fab .icon-mask{width:24px;height:24px;color:#fff}
+
+</style>
+</head>
+<body>
+<div id="nav-root" style="display:contents"></div>
+<main>
+<div id="hero-root" style="display:contents"></div>
+<div id="filter-root" style="display:contents"></div>
+<div class="regions">
+<div class="gcs-overview">
+  <h2 class="gcs-overview__heading">Programme Overview:<br><em>Citizenship and Residency Options</em></h2>
+  <p class="gcs-overview__body">An increasing number of countries offer residency and citizenship programmes giving families and individuals the optionality to secure a plan B tailored to their needs. These programmes fall under two broad categories: Citizenship Planning and Residency Planning, which grant citizenship or residency based on investment in the country or exceptional contribution and achievement. Residency can also be secured through income, rather than investment — whether passive or active income. Below you will find the complete list of residency and citizenship options Global Citizen Solutions offers our clients.</p>
+</div>
+<section class="region" id="europe" data-region="europe"><div id="table-europe" class="js-table" data-region-label="Europe"></div></section>
+<section class="region" id="caribbean" data-region="caribbean"><div id="table-caribbean" class="js-table" data-region-label="Caribbean"></div></section>
+<section class="region" id="americas" data-region="americas"><div id="table-americas" class="js-table" data-region-label="Americas"></div></section>
+<section class="region" id="middle-east" data-region="middle-east"><div id="table-middle-east" class="js-table" data-region-label="Middle East"></div></section>
+<section class="region" id="africa" data-region="africa"><div id="table-africa" class="js-table" data-region-label="Africa"></div></section>
+<section class="region" id="asia-pacific" data-region="asia-pacific"><div id="table-asia-pacific" class="js-table" data-region-label="Asia Pacific"></div></section>
+</div>
+<section class="gcs-cta gcs-cta--light">
+  <div class="gcs-cta__left">
+    <img src="assets/logos/GCS-Symbol-Blue.svg" alt="" aria-hidden="true" style="width:69.4px;height:70.7px;display:block">
+    <div class="gcs-cta__text">
+      <h2>Let&rsquo;s Talk About<br><em>Your Next Move</em></h2>
+      <p>Whether you&rsquo;re exploring second citizenship or residency, wanting a relocation plan, interested in partnership, or simply have a question, we&rsquo;d be glad to hear from you.</p>
+    </div>
+    <span id="cta-contact-root"></span>
+  </div>
+  <div class="gcs-cta__right"><img src="assets/images/security-and-access/magnific_architectural-interior-ph_XmIGLuQBfo.jpg" alt="The Global Citizen Solutions office entrance"></div>
+</section>
+</main>
+<footer class="footer">
+  <div class="newsletter">
+    <img class="logo" src="assets/logos/GCS-Primary-White.svg" alt="Global Citizen Solutions">
+    <div class="newsletter-box">
+      <p class="newsletter-label">Stay up to date</p>
+      <form class="form">
+        <input class="field" type="text" placeholder="First Name">
+        <input class="field" type="text" placeholder="Last Name">
+        <input class="field" type="email" placeholder="Email">
+        <button type="submit" class="subscribe">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="rule"></div>
+
+  <div class="columns">
+    <div class="accordion">
+      <h3>Explore Opportunities</h3>
+      <div class="accordion-group"><p class="accordion-label">Countries</p></div>
+      <div class="accordion-group"><p class="accordion-label">Residency</p></div>
+      <div class="accordion-group"><p class="accordion-label">Citizenship</p></div>
+    </div>
+
+    <div class="col-rule"></div>
+    <div class="col">
+      <h3>About</h3>
+      <ul>
+        <li><a href="#">Our Company</a></li>
+        <li><a href="#">Why Choose Us</a></li>
+        <li><a href="#">Partnerships</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Spotlight</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Multimedia Hub</a></li>
+        <li><a href="#">Podcasts</a></li>
+      </ul>
+    </div>
+
+    <div class="col-rule"></div>
+    <div class="col">
+      <h3>Global Intelligence Unit</h3>
+      <ul>
+        <li><a href="#">Explore the GIU</a></li>
+        <li><a href="#">Reports</a></li>
+        <li><a href="#">Briefings</a></li>
+        <li><a href="#">Insights</a></li>
+        <li><a href="#">All Indexes</a></li>
+        <li><a href="#">Plan B</a></li>
+      </ul>
+    </div>
+
+    <div class="col-rule"></div>
+    <div class="col">
+      <h3>Services</h3>
+      <ul>
+        <li><a href="#">Citizenship planning</a></li>
+        <li><a href="#">Residency planning</a></li>
+        <li><a href="#">Corporate services</a></li>
+      </ul>
+    </div>
+
+    <div class="col-rule"></div>
+    <div class="col">
+      <h3>Support</h3>
+      <ul>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Request a Consultation</a></li>
+        <li><a href="#">FAQs/Wiki</a></li>
+        <li><a href="#">Disclaimers</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="mailto:info@globalcitizensolutions.com">info@globalcitizensolutions.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="rule"></div>
+
+  <div class="membership">
+    <div class="member">
+      <span class="member-label">We Are Member</span>
+      <img class="member-logo" src="assets/logos/partners/investment-migration-council.svg" alt="Investment Migration Council">
+    </div>
+    <img class="partner-badges" src="assets/logos/partners/lisboa2030-eu-badges.svg" alt="Lisboa 2030, Portugal 2030 and co-funded by the European Union">
+  </div>
+  <div class="rule"></div>
+
+  <div class="bottom">
+    <p class="legal">Copyright © 2025 Global Citizen Solutions | All Rights Reserved | <a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
+    <div class="socials">
+      <a class="social-link" href="#" aria-label="LinkedIn"><img src="assets/icons/social/linkedin.svg" alt=""></a>
+      <span class="social-sep" aria-hidden="true"></span>
+      <a class="social-link" href="#" aria-label="Facebook"><img src="assets/icons/social/facebook.svg" alt=""></a>
+      <span class="social-sep" aria-hidden="true"></span>
+      <a class="social-link" href="#" aria-label="Instagram"><img src="assets/icons/social/instagram.svg" alt=""></a>
+      <span class="social-sep" aria-hidden="true"></span>
+      <a class="social-link" href="#" aria-label="YouTube"><img src="assets/icons/social/youtube.svg" alt=""></a>
+      <span class="social-sep" aria-hidden="true"></span>
+      <img class="social-decor" src="assets/icons/social/elements.svg" alt="" aria-hidden="true">
+    </div>
+  </div>
+</footer>
+<button class="fab" type="button" aria-label="Contact us"><span class="icon-mask" data-icon="chat"><svg width="100%" height="100%" fill="currentColor" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg></span></button>
+<script type="text/babel">
+const Navbar = (() => { 
+const { useState, useRef, useEffect } = React;
+const { Icon, Button } = window.GCSDesignSystem_43c089;
+const basePath = 'assets/icons';
+
+function chunk(arr, size) {
+  const out = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+
+// ── Component Definition (mirror of Navbar.jsx) ──────────────────────────────
+
+const NAV_CSS = `
+.gcs-nav{position:sticky;top:0;width:100%;z-index:50;transition:transform var(--duration-slow, .3s) cubic-bezier(0.16,1,0.3,1)}
+@media(prefers-reduced-motion:reduce){.gcs-nav{transition:none}}
+.gcs-nav__top{background:var(--primary);display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:var(--space-2) var(--space-5);min-height:42px;padding:var(--space-2) var(--space-12)}
+.gcs-nav__top-item{display:flex;align-items:center;gap:var(--space-1);color:#fff;font-family:var(--font-sans);font-size:12px;line-height:1.4;text-decoration:none}
+.gcs-nav__lang{display:inline-flex;align-items:center;gap:var(--space-1);color:#fff;font-family:var(--font-sans);font-size:12px;line-height:1.4;background:none;border:0;padding:0;cursor:pointer}
+.gcs-nav__lang-mobile{display:none;align-items:center;gap:var(--space-1);color:var(--primary);font-family:var(--font-sans);font-size:12px;line-height:1.4;text-decoration:none;flex-shrink:0}
+.gcs-nav__main{background:#fefefe;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;height:96px;padding:0 var(--space-12);gap:var(--space-4)}
+.gcs-nav__left{display:flex;align-items:center;justify-content:space-between;flex:1;min-width:0;gap:var(--space-6)}
+.gcs-nav__brand{display:inline-flex;align-items:center;flex-shrink:0}
+.gcs-nav__brand img{height:42px;width:auto;display:block}
+.gcs-nav__links{display:none;align-items:center;gap:39px;height:100%}
+@media(min-width:1024px){.gcs-nav__links{display:flex}}
+.gcs-nav__link{display:inline-flex;align-items:center;gap:var(--space-1);color:var(--primary);font-family:var(--font-sans);font-size:18px;font-weight:400;text-decoration:none;white-space:nowrap;background:none;border:0;padding:0;cursor:pointer}
+.gcs-nav__link:hover{color:var(--accent)}
+.gcs-mega{position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid var(--electric-blue-50);border-top:none;box-shadow:0 12px 20px -4px rgba(150,144,155,.22);z-index:40}
+@media(max-width:1023px){.gcs-mega{display:none}}
+.gcs-mega__inner{max-width:1440px;margin:0 auto}
+.gcs-mega__sections{display:flex;flex-wrap:wrap}
+.gcs-mega__section{flex:1 1 260px;padding:var(--space-10);display:flex;flex-direction:column}
+.gcs-mega__section+.gcs-mega__section{border-left:1px solid var(--electric-blue-50)}
+.gcs-mega__section--featured{flex:1 1 280px;max-width:330px;min-height:554px}
+@media(max-width:1279px){.gcs-mega__section{padding:var(--space-6)}}
+.gcs-mega__label{width:100%;margin:0 0 var(--space-5);color:var(--night-blue-100);font-family:var(--font-sans);font-size:16px;letter-spacing:.8px;text-transform:uppercase}
+.gcs-mega__item-cols{display:flex;flex-wrap:wrap;gap:0 var(--space-6)}
+.gcs-mega__item-col{flex:1 1 200px;display:flex;flex-direction:column}
+.gcs-mega__item{display:flex;gap:var(--space-2);align-items:flex-start;padding:var(--space-2-5);text-decoration:none;color:var(--primary);border:0;background:none;text-align:left;font:inherit;cursor:pointer}
+.gcs-mega__item-title{display:block;font-family:var(--font-sans);font-size:16px;font-weight:400;color:var(--primary)}
+.gcs-mega__item-desc{display:block;margin-top:var(--space-1-5);font-family:var(--font-sans);font-size:14px;line-height:20px;color:var(--night-blue-100)}
+.gcs-mega__item:hover .gcs-mega__item-title{color:var(--accent)}
+.gcs-mega__link{display:block;padding:var(--space-2-5);color:var(--primary);font-family:var(--font-sans);font-size:16px;font-weight:400;text-decoration:none}
+.gcs-mega__link:hover{color:var(--accent)}
+.gcs-mega__featured{display:flex;flex-direction:column;flex:1;text-decoration:none;color:inherit}
+.gcs-mega__featured-img{width:100%;height:258px;object-fit:cover;display:block;background:var(--electric-blue-25)}
+.gcs-mega__featured-title{margin-top:var(--space-4);font-family:var(--font-sans);font-size:16px;font-weight:500;color:var(--primary);line-height:1.4}
+.gcs-mega__featured-desc{margin-top:var(--space-1);font-family:var(--font-sans);font-size:14px;line-height:1.5;color:var(--night-blue-100)}
+.gcs-mega__featured-link{margin-top:var(--space-8);display:inline-flex;align-items:center;gap:var(--space-1-5);font-family:var(--font-sans);font-size:14px;font-weight:500;color:var(--accent)}
+.gcs-mega__featured:hover .gcs-mega__featured-link{text-decoration:underline}
+.gcs-nav__mobile-submenu{display:flex;flex-direction:column;background:#fff;padding:var(--space-8) 25px}
+.gcs-nav__mobile-submenu-section{padding-bottom:var(--space-5)}
+.gcs-nav__mobile-submenu-section+.gcs-nav__mobile-submenu-section{padding-top:var(--space-10);border-top:1px solid var(--electric-blue-50)}
+.gcs-nav__mobile-submenu-section:last-child{padding-bottom:0}
+.gcs-nav__mobile-submenu-label{margin:0 0 var(--space-5);color:var(--night-blue-100);font-family:var(--font-sans);font-size:16px;line-height:1.4;letter-spacing:.8px;text-transform:uppercase}
+.gcs-nav__mobile-submenu-item{display:flex;gap:var(--space-2);align-items:center;padding:var(--space-2-5);text-decoration:none;color:var(--primary);font-family:var(--font-sans);font-size:16px;font-weight:400;line-height:1.4}
+.gcs-nav__cta{display:none}
+@media(min-width:1024px){.gcs-nav__cta{display:inline-flex}}
+.gcs-nav__toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:none;border:0;color:var(--primary);cursor:pointer;flex-shrink:0}
+@media(min-width:1024px){.gcs-nav__toggle{display:none}}
+.gcs-nav__mobile{display:none;background:#fefefe;border-bottom:1px solid var(--border);max-height:calc(100vh - 96px);overflow-y:auto}
+.gcs-nav__mobile--open{display:block}
+.gcs-nav__mobile-list{display:flex;flex-direction:column;width:100%}
+.gcs-nav__mobile-item{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);width:100%;padding:var(--space-4) 25px;border:0;border-top:1px solid var(--electric-blue-25);border-bottom:1px solid var(--electric-blue-25);font-family:var(--font-sans);font-size:18px;font-weight:400;color:var(--primary);text-decoration:none;background:#fff;cursor:pointer}
+.gcs-nav__mobile-back{display:flex;align-items:center;gap:var(--space-2);width:100%;padding:var(--space-4) 25px;background:#fff;border:0;color:var(--primary);font-family:var(--font-sans);font-size:18px;font-weight:400;line-height:1.4;text-align:left;cursor:pointer}
+.gcs-nav{--gcs-nav-ease:cubic-bezier(0.16,1,0.3,1)}
+@keyframes gcs-nav-reveal{from{opacity:0;transform:translateY(calc(var(--space-2) * -1))}to{opacity:1;transform:none}}
+@keyframes gcs-nav-in-forward{from{opacity:0;transform:translateX(var(--space-6))}to{opacity:1;transform:none}}
+@keyframes gcs-nav-in-back{from{opacity:0;transform:translateX(calc(var(--space-6) * -1))}to{opacity:1;transform:none}}
+@keyframes gcs-nav-item-in{from{opacity:0;transform:translateY(var(--space-2))}to{opacity:1;transform:none}}
+@keyframes gcs-nav-icon-in{from{opacity:0;transform:rotate(-90deg) scale(.6)}to{opacity:1;transform:none}}
+.gcs-nav__mobile--open{animation:gcs-nav-reveal var(--duration-slow) var(--gcs-nav-ease)}
+.gcs-nav__mobile-view--forward{animation:gcs-nav-in-forward var(--duration-slow) var(--gcs-nav-ease) both}
+.gcs-nav__mobile-view--back{animation:gcs-nav-in-back var(--duration-slow) var(--gcs-nav-ease) both}
+.gcs-nav__mobile-view--forward .gcs-nav__mobile-submenu-item{animation:gcs-nav-item-in var(--duration-slow) var(--gcs-nav-ease) both;animation-delay:calc(var(--i,0) * 30ms + 60ms)}
+.gcs-nav__toggle-icon{display:inline-flex;animation:gcs-nav-icon-in var(--duration-normal) var(--gcs-nav-ease)}
+.gcs-nav__mobile-item,.gcs-nav__mobile-back,.gcs-nav__mobile-submenu-item{transition:background-color var(--duration-fast) var(--ease-out)}
+.gcs-nav__mobile-item>:last-child,.gcs-nav__mobile-back>:first-child{transition:transform var(--duration-normal) var(--gcs-nav-ease)}
+.gcs-nav__mobile-item:active,.gcs-nav__mobile-back:active,.gcs-nav__mobile-submenu-item:active{background:var(--electric-blue-25)}
+.gcs-nav__mobile-item:active>:last-child{transform:translateX(var(--space-1))}
+.gcs-nav__mobile-back:active>:first-child{transform:translateX(calc(var(--space-1) * -1))}
+@media(hover:hover){.gcs-nav__mobile-item:hover>:last-child{transform:translateX(var(--space-1))}.gcs-nav__mobile-back:hover>:first-child{transform:translateX(calc(var(--space-1) * -1))}}
+@media(prefers-reduced-motion:reduce){.gcs-nav__mobile--open,.gcs-nav__mobile-view--forward,.gcs-nav__mobile-view--back,.gcs-nav__mobile-view--forward .gcs-nav__mobile-submenu-item,.gcs-nav__toggle-icon{animation:none}.gcs-nav__mobile-item,.gcs-nav__mobile-back,.gcs-nav__mobile-submenu-item,.gcs-nav__mobile-item>:last-child,.gcs-nav__mobile-back>:first-child{transition:none}}
+.gcs-nav__mobile-actions{display:flex;flex-direction:column;gap:var(--space-2-5);padding:var(--space-5) var(--space-6)}
+@media(min-width:1024px){.gcs-nav__mobile{display:none}}
+@media(max-width:1023px){.gcs-nav__top{padding:var(--space-2) var(--space-8)}.gcs-nav__main{padding:0 var(--space-8)}}
+@media(max-width:767px){
+  .gcs-nav__top{display:none}
+  .gcs-nav__lang-mobile{display:inline-flex}
+  .gcs-nav__main{padding:0 var(--space-5)}
+}
+@media(max-width:479px){
+  .gcs-nav__main{padding:0 var(--space-4)}
+  .gcs-nav__mobile-actions{padding:var(--space-4)}
+  .gcs-mega__featured-img{height:200px}
+}
+`;
+
+function Navbar({
+  topBarItems = [
+    { icon: 'phone_callback', label: 'Request a Callback', href: '#' },
+    { icon: 'call', label: '+351 211 337 060', href: 'tel:+351211337060' },
+    { icon: 'location_on', label: 'Worldwide Offices', href: '#' },
+  ],
+  language = 'EN',
+  languageHref = '#',
+  links = [
+    { label: 'Countries', href: 'countries.html' },
+    { label: 'Residency', href: 'residency.html' },
+    { label: 'Citizenship', href: 'citizenship.html' },
+    {
+      label: 'Services',
+      href: '#',
+      hasDropdown: true,
+      submenu: {
+        sections: [
+          {
+            label: 'All Services',
+            itemColumns: 2,
+            items: [
+              { icon: 'fact_check', title: 'Citizenship Planning', description: 'Explore pathways to global citizenship and secure your future.', href: '#' },
+              { icon: 'shield', title: 'Residency Planning', description: 'Discover your options for international residency and relocation.', href: '#' },
+              { icon: 'manage_search', title: 'Corporate Services', description: 'Explore detailed research and data-driven analysis on global citizenship.', href: '#' },
+              { icon: 'account_balance', title: 'Government Advisory Services', description: 'Government advisory for designing, launching, and optimizing migration programs.', href: '#' },
+            ],
+          },
+        ],
+      },
+    },
+    {
+      label: 'Intelligence',
+      href: '#',
+      hasDropdown: true,
+      submenu: {
+        sections: [
+          {
+            label: 'Reports and Briefings',
+            items: [
+              { icon: 'map', title: 'Explore the GIU', description: 'Discover in-depth analysis and resources from the Global Intelligence Unit.', href: '#' },
+              { icon: 'inventory_2', title: 'Briefings', description: 'Access concise summaries and key takeaways on current global trends.', href: '#' },
+              { icon: 'monitoring', title: 'Reports', description: 'Explore detailed research and data-driven analysis on global citizenship.', href: '#' },
+              { icon: 'lightbulb', title: 'Analyses', description: 'Explore concise articles on global mobility, investment migration, and RCBI programs for insights.', href: '#' },
+            ],
+          },
+          {
+            label: 'Resources',
+            items: [
+              { title: 'Global Intelligence Unit - All Indexes', href: '#' },
+              { title: 'Global Passport Index', href: '#' },
+              { title: 'Global Education Index', href: '#' },
+              { title: 'Digital Nomad Index', href: '#' },
+              { title: 'Global Retirement Index', href: '#' },
+              { title: 'Retirement Index for US Citizens', href: '#' },
+              { title: 'RCBI Index', href: '#' },
+            ],
+          },
+        ],
+        featured: {
+          label: 'Featured',
+          image: 'assets/images/optionality/airplane_window_wing_sky.png',
+          title: '20 Best Passports for Quality of Life in 2025',
+          description: 'Discover the passports offering highest quality of life and global freedom',
+          linkLabel: 'Explore the ranking',
+          href: '#',
+        },
+      },
+    },
+    {
+      label: 'About',
+      href: '#',
+      hasDropdown: true,
+      submenu: {
+        sections: [
+          {
+            label: 'Who We Are',
+            items: [
+              { icon: 'domain', title: 'Our Company', description: 'Discover our mission and the values that drive our commitment to global citizenship.', href: '#' },
+              { icon: 'workspace_premium', title: 'Why Choose Us', description: 'Learn about our expertise and personalized approach to your global mobility needs.', href: '#' },
+              { icon: 'call', title: 'Contact Us', description: 'Reach out to our dedicated team for expert guidance and support.', href: '#' },
+              { icon: 'balance', title: 'Code of Ethics', description: 'We uphold the highest ethical standards in the investment migration industry.', href: '#' },
+            ],
+          },
+          {
+            label: 'Work With Us',
+            items: [
+              { icon: 'groups', title: 'Partnerships', description: 'Explore opportunities to collaborate with us in empowering global citizens.', href: '#' },
+              { icon: 'work', title: 'Careers', description: 'Join our dynamic team and contribute to a world without borders.', href: '#' },
+            ],
+          },
+          {
+            label: 'Media',
+            items: [
+              { icon: 'star', title: 'Spotlight', description: 'Read inspiring stories and news highlighting the impact of global citizenship.', href: '#' },
+              { icon: 'video_library', title: 'Multimedia Hub', description: 'Access informative resources, videos, and guides on international living.', href: '#' },
+              { icon: 'podcasts', title: 'Podcasts', description: 'Listen to insightful discussions on global citizenship and related topics.', href: '#' },
+              { icon: 'event', title: 'Events', description: 'Stay informed about upcoming webinars and events focused on global mobility.', href: '#' },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+  ctaLabel = 'Book a Consultation',
+  ctaHref = '#',
+  logoSrc = 'assets/logos/GCS-Primary-Blue.svg',
+  brandHref = '/',
+  brandLabel = 'Global Citizen Solutions',
+}) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [openDesktopMenu, setOpenDesktopMenu] = useState(null);
+  const [openMobileAccordion, setOpenMobileAccordion] = useState(null);
+  const [mobileDir, setMobileDir] = useState(null);
+  const activeMobileLink = links.find((l) => l.label === openMobileAccordion && l.submenu && Array.isArray(l.submenu.sections) && l.submenu.sections.length > 0) || null;
+  const navRef = useRef(null);
+  const mobileRef = useRef(null);
+  const backRef = useRef(null);
+  const lastLabelRef = useRef(null);
+  const closeTimerRef = useRef(null);
+
+  const openDesktopMenuNow = (label) => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setOpenDesktopMenu(label);
+  };
+  const scheduleCloseDesktopMenu = () => {
+    closeTimerRef.current = setTimeout(() => setOpenDesktopMenu(null), 150);
+  };
+
+  useEffect(() => {
+    if (!openDesktopMenu) return undefined;
+    const handleClick = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) setOpenDesktopMenu(null);
+    };
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setOpenDesktopMenu(null);
+    };
+    document.addEventListener('mousedown', handleClick);
+    document.addEventListener('keydown', handleKey);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('keydown', handleKey);
+    };
+  }, [openDesktopMenu]);
+
+  useEffect(() => {
+    if (!mobileDir || !mobileRef.current) return;
+    mobileRef.current.scrollTop = 0;
+    const target = openMobileAccordion
+      ? backRef.current
+      : mobileRef.current.querySelector(`[data-label="${lastLabelRef.current}"]`);
+    if (target) target.focus({ preventScroll: true });
+  }, [openMobileAccordion]);
+
+  useEffect(() => () => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+  }, []);
+
+  // Scroll effect: scrolling down slides the Night Blue utility bar out of view
+  // (the white main bar stays stuck to the top); scrolling up brings it back.
+  // The header is sticky and translated up by the utility bar's height, so page
+  // layout never shifts. Stays expanded at the top of the page and while a menu is open.
+  const [topBarHidden, setTopBarHidden] = useState(false);
+  const [topBarHeight, setTopBarHeight] = useState(0);
+  const topBarRef = useRef(null);
+  const menuLockedRef = useRef(false);
+  menuLockedRef.current = menuOpen || Boolean(openDesktopMenu);
+
+  // Publishes the header's visible height as --gcs-navbar-height so sticky page
+  // elements (FilterBar `sticky`) and anchor targets (scroll-margin-top) can sit
+  // right under it. An in-page anchor click hides the utility bar and keeps it
+  // hidden until the jump ends, so the landing position is the same going up or down.
+  useEffect(() => {
+    const root = document.documentElement;
+    let lastY = window.scrollY;
+    let ticking = false;
+    let hidden = false;
+    let anchorLock = false;
+    let lockTimer;
+    const apply = (next) => {
+      hidden = next;
+      setTopBarHidden(next);
+      const h = topBarRef.current ? topBarRef.current.offsetHeight : 0;
+      const main = navRef.current ? navRef.current.querySelector('.gcs-nav__main') : null;
+      root.style.setProperty('--gcs-navbar-height', `${(main ? main.offsetHeight : 0) + (next ? 0 : h)}px`);
+    };
+    const releaseLock = () => {
+      clearTimeout(lockTimer);
+      lockTimer = setTimeout(() => { anchorLock = false; }, 200);
+    };
+    const update = () => {
+      ticking = false;
+      const y = Math.max(window.scrollY, 0);
+      const h = topBarRef.current ? topBarRef.current.offsetHeight : 0;
+      setTopBarHeight(h);
+      const delta = y - lastY;
+      if (y <= 0 || menuLockedRef.current) apply(false);
+      else if (anchorLock && y > h) apply(true);
+      else if (delta > 4 && y > h) apply(true);
+      else if (delta < -4) apply(false);
+      else apply(hidden);
+      if (Math.abs(delta) > 4 || y <= 0) lastY = y;
+    };
+    const onScroll = () => {
+      if (anchorLock) releaseLock();
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(update);
+      }
+    };
+    const onClick = (e) => {
+      const a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a || a.getAttribute('href') === '#' || menuLockedRef.current) return;
+      anchorLock = true;
+      releaseLock();
+      if (window.scrollY > (topBarRef.current ? topBarRef.current.offsetHeight : 0)) apply(true);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    document.addEventListener('click', onClick);
+    onScroll();
+    return () => {
+      clearTimeout(lockTimer);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      document.removeEventListener('click', onClick);
+      root.style.removeProperty('--gcs-navbar-height');
+    };
+  }, []);
+
+  return (
+    <header
+      className="gcs-nav"
+      style={{ transform: topBarHidden && topBarHeight ? `translateY(-${topBarHeight}px)` : undefined }}
+      ref={navRef}
+    >
+      <style>{NAV_CSS}</style>
+      <div className="gcs-nav__top" ref={topBarRef}>
+        {topBarItems.map((item) => (
+          <a key={item.label} className="gcs-nav__top-item" href={item.href || '#'}>
+            <Icon name={item.icon} basePath={basePath} size={16} color="#fff" />
+            <span>{item.label}</span>
+          </a>
+        ))}
+        <a className="gcs-nav__lang" href={languageHref}>
+          <span>{language}</span>
+          <Icon name="keyboard_arrow_down" basePath={basePath} size={14} color="#fff" />
+        </a>
+      </div>
+      <div className="gcs-nav__main">
+        <div className="gcs-nav__left">
+          <a className="gcs-nav__brand" href={brandHref} aria-label={brandLabel}>
+            <img src={logoSrc} alt={brandLabel} />
+          </a>
+          <nav className="gcs-nav__links" aria-label="Primary">
+            {links.map((link) => {
+              const hasSubmenu = Boolean(link.submenu) && Array.isArray(link.submenu.sections) && link.submenu.sections.length > 0;
+              const isOpen = openDesktopMenu === link.label;
+              if (!hasSubmenu) {
+                return (
+                  <a key={link.label} className="gcs-nav__link" href={link.href}>
+                    {link.label}
+                    {link.hasDropdown && <Icon name="keyboard_arrow_down" basePath={basePath} size={14} />}
+                  </a>
+                );
+              }
+              return (
+                <React.Fragment key={link.label}>
+                  <a
+                    className="gcs-nav__link"
+                    href={link.href}
+                    aria-expanded={isOpen}
+                    aria-haspopup="true"
+                    onMouseEnter={() => openDesktopMenuNow(link.label)}
+                    onMouseLeave={scheduleCloseDesktopMenu}
+                    onFocus={() => openDesktopMenuNow(link.label)}
+                  >
+                    {link.label}
+                    <Icon name="keyboard_arrow_down" basePath={basePath} size={14} style={{ transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform .2s ease' }} />
+                  </a>
+                  {isOpen && (
+                    <div
+                      className="gcs-mega"
+                      role="menu"
+                      onMouseEnter={() => openDesktopMenuNow(link.label)}
+                      onMouseLeave={scheduleCloseDesktopMenu}
+                    >
+                      <div className="gcs-mega__inner">
+                        <div className="gcs-mega__sections">
+                          {link.submenu.sections.map((section, sectionIndex) => {
+                            const isIconSection = section.items.some((item) => item.icon);
+                            const renderIconItem = (item) => (
+                              <a key={item.title} className="gcs-mega__item" href={item.href || '#'} onClick={() => setOpenDesktopMenu(null)}>
+                                <Icon name={item.icon} basePath={basePath} size={24} color="var(--night-blue-100)" />
+                                <span>
+                                  <span className="gcs-mega__item-title">{item.title}</span>
+                                  <span className="gcs-mega__item-desc">{item.description}</span>
+                                </span>
+                              </a>
+                            );
+                            return (
+                              <div className="gcs-mega__section" key={section.label || sectionIndex}>
+                                <p className="gcs-mega__label">{section.label}</p>
+                                {isIconSection ? (
+                                  section.itemColumns === 2 ? (
+                                    <div className="gcs-mega__item-cols">
+                                      {chunk(section.items, 2).map((col, colIndex) => (
+                                        <div className="gcs-mega__item-col" key={colIndex}>
+                                          {col.map(renderIconItem)}
+                                        </div>
+                                      ))}
+                                    </div>
+                                  ) : (
+                                    section.items.map(renderIconItem)
+                                  )
+                                ) : (
+                                  section.items.map((item) => (
+                                    <a key={item.title} className="gcs-mega__link" href={item.href || '#'} onClick={() => setOpenDesktopMenu(null)}>
+                                      {item.title}
+                                    </a>
+                                  ))
+                                )}
+                              </div>
+                            );
+                          })}
+                          {link.submenu.featured && (
+                            <div className="gcs-mega__section gcs-mega__section--featured">
+                              <p className="gcs-mega__label">{link.submenu.featured.label || 'Featured'}</p>
+                              <a className="gcs-mega__featured" href={link.submenu.featured.href || '#'} onClick={() => setOpenDesktopMenu(null)}>
+                                <img className="gcs-mega__featured-img" src={link.submenu.featured.image} alt="" />
+                                <span className="gcs-mega__featured-title">{link.submenu.featured.title}</span>
+                                <span className="gcs-mega__featured-desc">{link.submenu.featured.description}</span>
+                                <span className="gcs-mega__featured-link">
+                                  {link.submenu.featured.linkLabel}
+                                  <Icon name="arrow_right_alt" basePath={basePath} size={14} color="var(--accent)" />
+                                </span>
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </nav>
+          <div className="gcs-nav__cta">
+            <Button variant="primary" size="default">{ctaLabel}</Button>
+          </div>
+        </div>
+        <a className="gcs-nav__lang-mobile" href={languageHref}>
+          <span>{language}</span>
+          <Icon name="keyboard_arrow_down" basePath={basePath} size={14} />
+        </a>
+        <button className="gcs-nav__toggle" aria-expanded={menuOpen} aria-label="Toggle menu" onClick={() => { setMobileDir(null); setMenuOpen((o) => { if (o) setOpenMobileAccordion(null); return !o; }); }}>
+          <span key={menuOpen ? 'close' : 'menu'} className="gcs-nav__toggle-icon">
+            <Icon name={menuOpen ? 'close' : 'menu'} basePath={basePath} size={24} />
+          </span>
+        </button>
+      </div>
+      <div ref={mobileRef} className={`gcs-nav__mobile${menuOpen ? ' gcs-nav__mobile--open' : ''}`}>
+        {activeMobileLink ? (
+          <div className={`gcs-nav__mobile-panel gcs-nav__mobile-view${mobileDir ? ` gcs-nav__mobile-view--${mobileDir}` : ''}`}>
+            <button type="button" ref={backRef} className="gcs-nav__mobile-back" onClick={() => { setMobileDir('back'); setOpenMobileAccordion(null); }}>
+              <Icon name="chevron_left" basePath={basePath} size={24} />
+              <span>{activeMobileLink.label}</span>
+            </button>
+            <div className="gcs-nav__mobile-submenu">
+              {activeMobileLink.submenu.sections.map((section, sectionIndex) => (
+                <div className="gcs-nav__mobile-submenu-section" key={section.label || sectionIndex}>
+                  <p className="gcs-nav__mobile-submenu-label">{section.label}</p>
+                  {section.items.map((item, itemIndex) => (
+                    <a key={item.title} className="gcs-nav__mobile-submenu-item" style={{ '--i': Math.min(activeMobileLink.submenu.sections.slice(0, sectionIndex).reduce((n, sec) => n + sec.items.length, 0) + itemIndex, 8) }} href={item.href || '#'} onClick={() => { setMobileDir(null); setOpenMobileAccordion(null); setMenuOpen(false); }}>
+                      {item.icon && <Icon name={item.icon} basePath={basePath} size={24} color="var(--night-blue-100)" />}
+                      <span>{item.title}</span>
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className={`gcs-nav__mobile-view${mobileDir ? ` gcs-nav__mobile-view--${mobileDir}` : ''}`}>
+            <nav className="gcs-nav__mobile-list" aria-label="Primary">
+              {links.map((link) => {
+                const hasSubmenu = Boolean(link.submenu) && Array.isArray(link.submenu.sections) && link.submenu.sections.length > 0;
+                if (!hasSubmenu) {
+                  return (
+                    <a key={link.label} className="gcs-nav__mobile-item" href={link.href} onClick={() => setMenuOpen(false)}>
+                      <span>{link.label}</span>
+                      {link.hasDropdown && <Icon name="chevron_right" basePath={basePath} size={24} />}
+                    </a>
+                  );
+                }
+                return (
+                  <button key={link.label} type="button" data-label={link.label} className="gcs-nav__mobile-item" onClick={() => { lastLabelRef.current = link.label; setMobileDir('forward'); setOpenMobileAccordion(link.label); }}>
+                    <span>{link.label}</span>
+                    <Icon name="chevron_right" basePath={basePath} size={24} />
+                  </button>
+                );
+              })}
+            </nav>
+            <div className="gcs-nav__mobile-actions">
+              <Button variant="primary" size="default" fullWidth style={{ boxShadow: 'var(--shadow-xs)' }}>{ctaLabel}</Button>
+              {topBarItems.map((item) => (
+                <Button
+                  key={item.label}
+                  variant="primary"
+                  size="default"
+                  fullWidth
+                  style={{ boxShadow: 'var(--shadow-xs)' }}
+                  iconLeft={<Icon name={item.icon} basePath={basePath} size={16} color="#fff" />}
+                >
+                  {item.label}
+                </Button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+}
+
+
+return Navbar; })();
+const HeroInner = (() => { 
+const HERO_INNER_CSS = `
+.gcs-hero-inner{display:flex;align-items:center;width:100%;min-height:480px;background:var(--card);border-bottom:1px solid var(--border);box-sizing:border-box}
+
+.gcs-hero-inner__copy{display:flex;flex:1 0 0;min-width:0;flex-direction:column;align-items:flex-start;justify-content:center;gap:32px;align-self:stretch;padding:48px 64px 0;color:var(--primary)}
+
+.gcs-hero-inner__headline{margin:0;width:80%;font-family:var(--font-serif);font-weight:400;font-size:clamp(36px,4.4vw,60px);line-height:1.07;letter-spacing:-1.2px;color:var(--primary)}
+.gcs-hero-inner__headline em{font-style:italic;color:var(--night-blue-50)}
+
+.gcs-hero-inner__description{margin:0;width:80%;font-family:var(--font-sans);font-weight:300;font-size:18px;line-height:1.4;color:var(--primary)}
+
+.gcs-hero-inner__media{position:relative;flex:1 0 0;min-width:0;align-self:stretch}
+.gcs-hero-inner__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+
+@media(max-width:1024px){.gcs-hero-inner{min-height:400px}.gcs-hero-inner__copy{gap:24px;padding:40px 40px 0}}
+@media(max-width:768px){
+  .gcs-hero-inner{flex-direction:column;align-items:stretch;min-height:0}
+  .gcs-hero-inner__copy{padding:40px 24px;gap:20px}
+  .gcs-hero-inner__headline,.gcs-hero-inner__description{width:100%}
+  .gcs-hero-inner__media{height:280px;flex:none}
+}
+`;
+
+function HeroInner({
+  title = <>Explore Every<br /><em>Destination</em></>,
+  description = 'Browse every country offering citizenship or residency programmes — from EU Golden Visas and Caribbean CBI to LATAM investor routes and Middle East hubs.',
+  imageSrc,
+  imageAlt = '',
+  imagePosition = 'right',
+  style,
+}) {
+  const copy = (
+    <div className="gcs-hero-inner__copy" key="copy">
+      <h1 className="gcs-hero-inner__headline">{title}</h1>
+      {description && <p className="gcs-hero-inner__description">{description}</p>}
+    </div>
+  );
+
+  const media = imageSrc ? (
+    <div className="gcs-hero-inner__media" key="media">
+      <img src={imageSrc} alt={imageAlt} />
+    </div>
+  ) : null;
+
+  return (
+    <section className="gcs-hero-inner" style={style}>
+      <style>{HERO_INNER_CSS}</style>
+      {imagePosition === 'left' ? [media, copy] : [copy, media]}
+    </section>
+  );
+}
+
+
+
+return HeroInner; })();
+const FilterBar = (() => { 
+const { Icon } = window.GCSDesignSystem_43c089;
+
+// ── Component Definition (mirror of FilterBar.jsx) ───────────────────────────
+const COMPACT_BELOW = 768;
+const SCROLLER_CLASS = 'gcs-filterbar-scroller';
+const STICKY_CLASS = 'gcs-filterbar-sticky';
+
+function FilterBar({
+  items = [],
+  value,
+  defaultValue,
+  onChange,
+  collapseBelow,
+  sticky = false,
+  ariaLabel = 'Filter',
+  style,
+}) {
+  const options = items.map((it) => {
+    const item = typeof it === 'string' ? { label: it } : it;
+    const label = item.label.trim();
+    return { label, value: item.value ?? label, href: item.href };
+  });
+
+  const [inner, setInner] = React.useState(defaultValue ?? options[0]?.value);
+  const [hovered, setHovered] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+  const [width, setWidth] = React.useState(null);
+  const [edges, setEdges] = React.useState({ left: false, right: false });
+  const selected = value !== undefined ? value : inner;
+
+  const rootRef = React.useRef(null);
+  const scrollerRef = React.useRef(null);
+  const triggerRef = React.useRef(null);
+  const itemRefs = React.useRef({});
+  const panelId = React.useId();
+
+  const compact = width !== null && width < COMPACT_BELOW;
+  const collapsed = collapseBelow != null && width !== null && width < collapseBelow;
+  const panelOpen = open && collapsed;
+
+  const select = (v) => {
+    if (value === undefined) setInner(v);
+    if (onChange) onChange(v);
+    setOpen(false);
+  };
+
+  // Track the bar's own width so the layout follows its container.
+  React.useLayoutEffect(() => {
+    const root = rootRef.current;
+    if (!root) return undefined;
+    setWidth(root.clientWidth);
+    if (typeof ResizeObserver === 'undefined') return undefined;
+    const ro = new ResizeObserver(() => setWidth(root.clientWidth));
+    ro.observe(root);
+    return () => ro.disconnect();
+  }, []);
+
+  // Carousel: show a fade only on the side that still has hidden filters.
+  const updateEdges = React.useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const left = el.scrollLeft > 1;
+    const right = el.scrollLeft + el.clientWidth < el.scrollWidth - 1;
+    setEdges((e) => (e.left === left && e.right === right ? e : { left, right }));
+  }, []);
+
+  React.useLayoutEffect(() => {
+    updateEdges();
+  }, [updateEdges, width, collapsed, items.length]);
+
+  // Carousel: keep the selected filter centred, never cut off.
+  React.useEffect(() => {
+    const scroller = scrollerRef.current;
+    const el = itemRefs.current[selected];
+    if (!scroller || !el || !compact || collapsed) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    scroller.scrollTo({
+      left: el.offsetLeft - (scroller.clientWidth - el.offsetWidth) / 2,
+      behavior: reduce ? 'auto' : 'smooth',
+    });
+  }, [selected, compact, collapsed]);
+
+  // Dropdown: close on outside press.
+  React.useEffect(() => {
+    if (!panelOpen) return undefined;
+    const onDown = (e) => {
+      if (rootRef.current && !rootRef.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener('mousedown', onDown);
+    document.addEventListener('touchstart', onDown);
+    return () => {
+      document.removeEventListener('mousedown', onDown);
+      document.removeEventListener('touchstart', onDown);
+    };
+  }, [panelOpen]);
+
+  const onKeyDown = (e) => {
+    if (e.key === 'Escape' && panelOpen) {
+      setOpen(false);
+      if (triggerRef.current) triggerRef.current.focus();
+    }
+  };
+
+  const resetButton = {
+    margin: 0,
+    padding: 0,
+    border: 'none',
+    borderRadius: 0,
+    background: 'none',
+    fontFamily: 'var(--font-sans)',
+    fontSize: 14,
+    lineHeight: '20px',
+    fontWeight: 'var(--weight-regular)',
+    color: 'var(--primary-foreground)',
+    textDecoration: 'none',
+    whiteSpace: 'nowrap',
+    cursor: 'pointer',
+  };
+
+  const cellStyle = {
+    padding: compact ? 'var(--space-1) var(--space-4)' : 'var(--space-1-5) var(--space-4)',
+    borderRight: '1px solid var(--night-blue-200)',
+    flexShrink: 0,
+    scrollSnapAlign: 'center',
+  };
+
+  const controlStyle = (key, active) => ({
+    ...resetButton,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: compact ? 44 : 32,
+    boxShadow: active || hovered === key ? 'inset 0 -2px 0 var(--electric-blue-400)' : 'none',
+  });
+
+  const hoverHandlers = (key) => ({
+    onMouseEnter: () => setHovered(key),
+    onMouseLeave: () => setHovered(null),
+    onFocus: () => setHovered(key),
+    onBlur: () => setHovered(null),
+  });
+
+  const fade = (side, visible) => (
+    <div
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        [side]: 0,
+        width: 'var(--space-10)',
+        pointerEvents: 'none',
+        background: `linear-gradient(to ${side === 'left' ? 'right' : 'left'}, var(--night-blue-400), transparent)`,
+        opacity: visible ? 1 : 0,
+        transition: 'opacity var(--duration-normal) var(--ease-out)',
+      }}
+    />
+  );
+
+  const selectedOption = options.find((o) => o.value === selected) || options[0];
+
+  const renderControl = (opt, active, extra = {}) => {
+    const common = { ...hoverHandlers(opt.value), ...extra };
+    return opt.href ? (
+      <a href={opt.href} aria-current={active ? 'true' : undefined} onClick={() => select(opt.value)} {...common}>
+        {opt.label}
+      </a>
+    ) : (
+      <button type="button" aria-pressed={active} onClick={() => select(opt.value)} {...common}>
+        {opt.label}
+      </button>
+    );
+  };
+
+  return (
+    <div
+      ref={rootRef}
+      className={sticky ? STICKY_CLASS : undefined}
+      role="group"
+      aria-label={ariaLabel}
+      onKeyDown={onKeyDown}
+      style={{
+        position: sticky ? 'sticky' : 'relative',
+        ...(sticky && { top: 'var(--gcs-navbar-height, 0px)', zIndex: 40, transition: `top var(--duration-slow, .3s) var(--ease-out)` }),
+        height: 72,
+        background: 'var(--night-blue-400)',
+        fontFamily: 'var(--font-sans)',
+        ...style,
+      }}
+    >
+      <style>{`.${SCROLLER_CLASS}{scrollbar-width:none;-ms-overflow-style:none}.${SCROLLER_CLASS}::-webkit-scrollbar{display:none}@media(prefers-reduced-motion:reduce){.${STICKY_CLASS}{transition:none!important}}`}</style>
+
+      {collapsed ? (
+        <>
+          <button
+            ref={triggerRef}
+            type="button"
+            aria-expanded={panelOpen}
+            aria-controls={panelId}
+            onClick={() => setOpen((o) => !o)}
+            style={{
+              ...resetButton,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+              height: 72,
+              padding: '0 var(--space-4)',
+            }}
+          >
+            <span style={{ boxShadow: 'inset 0 -2px 0 var(--electric-blue-400)', padding: 'var(--space-1-5) 0' }}>
+              {selectedOption ? selectedOption.label : ''}
+            </span>
+            <span
+              style={{
+                display: 'inline-flex',
+                transform: panelOpen ? 'rotate(180deg)' : 'none',
+                transition: 'transform var(--duration-normal) var(--ease-out)',
+              }}
+            >
+              <Icon name="keyboard_arrow_down" size={24} />
+            </span>
+          </button>
+
+          {panelOpen && (
+            <ul
+              id={panelId}
+              style={{
+                position: 'absolute',
+                top: '100%',
+                left: 0,
+                right: 0,
+                zIndex: 10,
+                margin: 0,
+                padding: 0,
+                listStyle: 'none',
+                background: 'var(--night-blue-400)',
+                borderTop: '1px solid var(--night-blue-200)',
+                boxShadow: 'var(--shadow-md)',
+              }}
+            >
+              {options.map((opt) => {
+                const active = opt.value === selected;
+                return (
+                  <li key={opt.value} style={{ borderBottom: '1px solid var(--night-blue-200)' }}>
+                    {React.cloneElement(
+                      renderControl(opt, active),
+                      {
+                        style: {
+                          ...resetButton,
+                          display: 'flex',
+                          alignItems: 'center',
+                          width: '100%',
+                          minHeight: 48,
+                          padding: '0 var(--space-4)',
+                          boxShadow: active || hovered === opt.value ? 'inset 2px 0 0 var(--electric-blue-400)' : 'none',
+                        },
+                      },
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </>
+      ) : (
+        <>
+          <div
+            ref={scrollerRef}
+            className={SCROLLER_CLASS}
+            onScroll={updateEdges}
+            style={{
+              position: 'relative',
+              display: 'flex',
+              alignItems: 'center',
+              height: '100%',
+              padding: compact ? '0 var(--space-4)' : '0 var(--space-16)',
+              overflowX: 'auto',
+              scrollSnapType: compact ? 'x proximity' : 'none',
+              WebkitOverflowScrolling: 'touch',
+            }}
+          >
+            <ul style={{ display: 'flex', margin: 0, padding: 0, listStyle: 'none', flexShrink: 0 }}>
+              {options.map((opt) => {
+                const active = opt.value === selected;
+                return (
+                  <li key={opt.value} ref={(n) => { itemRefs.current[opt.value] = n; }} style={cellStyle}>
+                    {React.cloneElement(renderControl(opt, active), { style: controlStyle(opt.value, active) })}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          {compact && fade('left', edges.left)}
+          {compact && fade('right', edges.right)}
+        </>
+      )}
+    </div>
+  );
+}
+
+
+return FilterBar; })();
+const CountryProgramsTable = (() => {
+const { Button, Icon } = window.GCSDesignSystem_43c089;
+
+// ── Component Definition (mirror of CountryProgramsTable.jsx) ────────────────
+const COUNTRY_PROGRAMS_TABLE_CSS = `
+.gcs-cpt{display:flex;flex-direction:column;gap:40px;width:100%;font-family:var(--font-sans);box-sizing:border-box}
+.gcs-cpt *{box-sizing:border-box}
+
+.gcs-cpt__region{margin:0;padding-bottom:40px;border-bottom:1px solid var(--border);font-family:var(--font-serif);font-weight:400;font-size:clamp(28px,5vw,48px);line-height:1.125;letter-spacing:var(--tracking-tight);color:var(--night-blue-400)}
+@media(max-width:640px){.gcs-cpt__region{padding-bottom:24px}}
+
+.gcs-cpt__scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.gcs-cpt__header{display:flex;align-items:center;gap:12px;padding:20px 12px;min-width:1100px}
+.gcs-cpt__header-cell{padding:0 10px;font-size:12px;font-weight:var(--weight-bold);color:var(--night-blue-400);line-height:18px}
+
+.gcs-cpt__row{display:flex;align-items:center;gap:12px;padding:20px 12px;border-top:1px solid var(--border);min-width:1100px}
+.gcs-cpt__row:last-child{border-bottom:1px solid var(--border)}
+
+.gcs-cpt__col-country{display:flex;align-items:center;gap:10px;width:244px;flex-shrink:0}
+.gcs-cpt__coat{display:block;width:35px;height:39px;object-fit:contain;flex-shrink:0}
+.gcs-cpt__country-name{font-family:var(--font-serif);font-weight:400;font-size:24px;line-height:32px;color:var(--night-blue-400);white-space:nowrap}
+
+.gcs-cpt__col-programme{width:165px;flex-shrink:0;padding:0 10px}
+.gcs-cpt__programme{font-size:16px;line-height:1.4;color:var(--night-blue-400);text-decoration:underline;text-underline-offset:2px}
+
+.gcs-cpt__col-investment,.gcs-cpt__col-advantages{flex:1 0 0;min-width:0;padding:0 10px}
+.gcs-cpt__col-investment p,.gcs-cpt__col-advantages p{margin:0;font-size:16px;line-height:1.4;color:var(--night-blue-400)}
+
+.gcs-cpt__col-cta{width:140px;flex-shrink:0;padding:0 10px;display:flex;justify-content:center}
+
+.gcs-cpt__label{display:none}
+
+@media(max-width:1024px){
+  .gcs-cpt__header,.gcs-cpt__row{min-width:920px;gap:8px;padding:16px 8px}
+  .gcs-cpt__col-country{width:200px}
+  .gcs-cpt__col-programme{width:140px}
+  .gcs-cpt__country-name{font-size:20px;line-height:28px}
+}
+
+@media(max-width:640px){
+  .gcs-cpt{gap:24px}
+  .gcs-cpt__scroll{overflow-x:visible}
+  .gcs-cpt__header{display:none}
+  .gcs-cpt__row{flex-direction:column;align-items:stretch;gap:14px;min-width:0;padding:20px 4px}
+  .gcs-cpt__col-country{width:auto}
+  .gcs-cpt__country-name{font-size:20px;line-height:28px}
+  .gcs-cpt__col-programme,.gcs-cpt__col-investment,.gcs-cpt__col-advantages{width:auto;padding:0}
+  .gcs-cpt__col-cta{width:auto;padding:0;justify-content:flex-start}
+  .gcs-cpt__label{display:block;margin-bottom:4px;font-size:11px;font-weight:var(--weight-semibold);letter-spacing:.06em;text-transform:uppercase;color:var(--muted-foreground)}
+}
+`;
+
+const COL_COUNTRY = 244;
+const COL_PROGRAMME = 165;
+const COL_CTA = 140;
+
+function HeaderCell({ width, flex, children }) {
+  return (
+    <div
+      className="gcs-cpt__header-cell"
+      style={{ width, flex: flex ? '1 0 0' : undefined, minWidth: flex ? 0 : undefined, flexShrink: width ? 0 : undefined }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function CountryProgramsTable({ region, rows = [], style }) {
+  return (
+    <div className="gcs-cpt" style={style}>
+      <style>{COUNTRY_PROGRAMS_TABLE_CSS}</style>
+
+      {region && <h2 className="gcs-cpt__region">{region}</h2>}
+
+      <div className="gcs-cpt__scroll">
+        <div className="gcs-cpt__header">
+          <div style={{ width: COL_COUNTRY, flexShrink: 0 }} />
+          <HeaderCell width={COL_PROGRAMME}>TYPE OF PROGRAMME</HeaderCell>
+          <HeaderCell flex>MINIMUM INVESTMENT OR REQUIREMENT</HeaderCell>
+          <HeaderCell flex>MAIN ADVANTAGES</HeaderCell>
+          <div style={{ width: COL_CTA, flexShrink: 0 }} />
+        </div>
+
+        {rows.map((row, i) => (
+          <div className="gcs-cpt__row" key={i}>
+            <div className="gcs-cpt__col-country">
+              {row.coatSrc && (
+                <img className="gcs-cpt__coat" src={row.coatSrc} alt={row.coatAlt ?? ''} loading="lazy" />
+              )}
+              <span className="gcs-cpt__country-name">{row.country}</span>
+            </div>
+
+            <div className="gcs-cpt__col-programme">
+              <span className="gcs-cpt__label">Type of Programme</span>
+              <a className="gcs-cpt__programme" href={row.href ?? '#'}>{row.programme}</a>
+            </div>
+
+            <div className="gcs-cpt__col-investment">
+              <span className="gcs-cpt__label">Minimum Investment or Requirement</span>
+              <p>{row.minInvestment}</p>
+            </div>
+
+            <div className="gcs-cpt__col-advantages">
+              <span className="gcs-cpt__label">Main Advantages</span>
+              <p>{row.advantages}</p>
+            </div>
+
+            <div className="gcs-cpt__col-cta">
+              <Button variant="text" href={row.href ?? '#'} iconRight={<Icon name="arrow_forward" size={18} />}>
+                {row.ctaLabel ?? 'View details'}
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+return CountryProgramsTable; })();
+const { Button, Icon } = window.GCSDesignSystem_43c089;
+
+ReactDOM.createRoot(document.getElementById('nav-root')).render(<Navbar ctaLabel="Contact Us" />);
+
+ReactDOM.createRoot(document.getElementById('hero-root')).render(
+  <HeroInner
+    title={<>Explore Every<br /><em>Destinationy</em></>}
+    description="Browse every country offering citizenship or residency programmes — from EU Golden Visas and Caribbean CBI to LATAM investor routes and Middle East hubs."
+    imageSrc="assets/images/optionality/magnific_wide-hero-photograph-sing_vQELGmna47.png"
+    imageAlt="A wide hero photograph"
+  />
+);
+
+const filterItems = [
+  { label: 'All', value: 'all', href: '#europe' },
+  { label: 'Europe', value: 'europe', href: '#europe' },
+  { label: 'Caribbean', value: 'caribbean', href: '#caribbean' },
+  { label: 'Americas', value: 'americas', href: '#americas' },
+  { label: 'Middle East', value: 'middle-east', href: '#middle-east' },
+  { label: 'Africa', value: 'africa', href: '#africa' },
+  { label: 'Asia Pacific', value: 'asia-pacific', href: '#asia-pacific' },
+];
+ReactDOM.createRoot(document.getElementById('filter-root')).render(
+  <FilterBar items={filterItems} sticky collapseBelow={560} ariaLabel="Filter by region" />
+);
+
+// CountryProgramsTable: mount one table per region (components/core/sections/CountryProgramsTable.jsx)
+const COAT = (name) => `assets/coat-of-arms/svg/${name}.svg`;
+
+const EUROPE_ROWS = [
+  { country: 'Austria', coatSrc: COAT('austria'), programme: 'Citizenship Planning', minInvestment: 'Exceptional contribution to the country and the economy', advantages: 'Full citizenship for the entire family; visa-free access to 180+ countries; only route allowing dual citizenship in Austria.' },
+  { country: 'Austria', coatSrc: COAT('austria'), programme: 'Passive Income Residency', minInvestment: 'EUR 24,700 monthly in passive income and EUR 50,000 in personal bank savings', advantages: 'Right to live in Austria on proof of passive income; requires actual residency (183+ days/year); family inclusion.' },
+  { country: 'Cyprus', coatSrc: COAT('cyprus'), programme: 'Residency Planning', minInvestment: 'EUR 300,000', advantages: 'Permanent residence permit with right to live and study in Cyprus with minimum visit requirement once every two years; family inclusion; path to citizenship after 7 years*.' },
+  { country: 'Greece', coatSrc: COAT('greece'), programme: 'Residency Planning', minInvestment: 'EUR 250,000', advantages: 'Permanent residence permit with the right to live and study in Greece; visa-free Schengen travel with no minimum stay requirement; family inclusion; path to citizenship after 7 years*.' },
+  { country: 'Greece', coatSrc: COAT('greece'), programme: 'Passive Income Residency', minInvestment: 'EUR 3,500 monthly in passive income OR EUR 126,000 in savings', advantages: 'Right to live in Greece on proof of passive income or savings; requires actual residency (183+ days/year); family inclusion.' },
+  { country: 'Greece', coatSrc: COAT('greece'), programme: 'Digital Nomad Residency', minInvestment: 'EUR 3,500 monthly in active income from remote work', advantages: 'Right to live in Greece while working remotely for foreign employers/clients; requires actual residency (183+ days/year); family inclusion.' },
+  { country: 'Hungary', coatSrc: COAT('hungary'), programme: 'Residency Planning', minInvestment: 'EUR 250,000', advantages: 'Residence permit with the right to live, work, and study in Hungary; visa-free Schengen travel, with no minimum stay requirement; family inclusion; path to citizenship after 8 years*.' },
+  { country: 'Ireland', coatSrc: COAT('ireland'), programme: 'Passive Income Residency', minInvestment: 'Individual income of EUR 50,000 per year and lump-sum contingency', advantages: 'Right to live in Ireland on proof of passive income; requires actual residency (183+ days/year); family inclusion.' },
+  { country: 'Italy', coatSrc: COAT('italy'), programme: 'Residency Planning', minInvestment: 'EUR 250,000', advantages: 'Residence permit with the right to live, work and study in Italy; visa-free Schengen travel, with no minimum stay requirement; family inclusion; path to citizenship after 10 years*.' },
+  { country: 'Italy', coatSrc: COAT('italy'), programme: 'Passive Income Residency', minInvestment: 'EUR 32,000 yearly in passive income', advantages: 'Right to live in Italy on proof of passive income; requires actual residency (183+ days/year); family inclusion.' },
+  { country: 'Italy', coatSrc: COAT('italy'), programme: 'Digital Nomad Residency', minInvestment: 'EUR 24,789 yearly in active income from remote work', advantages: 'Right to live in Italy while working remotely for foreign employers/clients; requires actual residency (183+ days/year); family inclusion.' },
+  { country: 'Jersey', coatSrc: COAT('jersey'), programme: 'Residency Planning', minInvestment: 'GBP 1.75 million in real estate, annual income of no less than GBP 1.25 million, and GBP 250,000 annually in tax', advantages: 'Residence permit with the right to live, work and study in Jersey; family inclusion; must have intent to make Jersey your tax base (spend 183+ days/year); path to citizenship after 6 years*.' },
+  { country: 'Latvia', coatSrc: COAT('latvia'), programme: 'Residency Planning', minInvestment: 'EUR 50,000', advantages: 'Residence permit with the right to live, work and study in Latvia; visa-free Schengen travel, with no minimum stay requirement; family inclusion; path to citizenship after 10 years*.' },
+  { country: 'Luxembourg', coatSrc: COAT('luxembourg'), programme: 'Residency Planning', minInvestment: 'EUR 500,000', advantages: 'Residence permit with the right to live, work and study in Luxembourg; visa-free Schengen travel, with no minimum stay requirement; family inclusion; path to citizenship after 5 years*.' },
+  { country: 'Malta', coatSrc: COAT('malta'), programme: 'Citizenship Planning', minInvestment: 'Exceptional contribution to the country and the economy', advantages: 'Full citizenship granted by merit for exceptional achievement, with the right to live, work, and study anywhere in the EU for life.' },
+  { country: 'Malta', coatSrc: COAT('malta'), programme: 'Residency Planning', minInvestment: 'EUR 169,000', advantages: 'Permanent residence permit with the right to live and study in Malta; visa-free Schengen travel, with no minimum stay requirement; extended family inclusion; permanent residency valid for life.' },
+  { country: 'Monaco', coatSrc: COAT('monaco'), programme: 'Residency Planning', minInvestment: 'EUR 500,000', advantages: 'Residence permit with the right to live and study in Monaco; visa-free Schengen travel; residency required; family inclusion; path to citizenship after 10 years*.' },
+  { country: 'Portugal', coatSrc: COAT('portugal'), programme: 'Residency Planning', minInvestment: 'EUR 200,000', advantages: 'Residence permit with right to live, work, and study in Portugal; visa-free Schengen travel with minimum stay requirement of 7 days per year; family inclusion; path to citizenship after 10 years*.' },
+  { country: 'Portugal', coatSrc: COAT('portugal'), programme: 'Passive Income Residency', minInvestment: 'EUR 920 monthly in passive income and EUR 11,040 in savings', advantages: 'Right to live in Portugal on proof of passive income; requires actual residency (183+ days/year); family inclusion.' },
+  { country: 'Portugal', coatSrc: COAT('portugal'), programme: 'Digital Nomad Residency', minInvestment: 'EUR 3,680 monthly in active income from remote work and EUR 11,040 in savings', advantages: 'Right to live in Portugal while working remotely for foreign employers/clients; requires actual residency (183+ days/year); family inclusion.' },
+  { country: 'Serbia', coatSrc: COAT('serbia'), programme: 'Residency Planning', minInvestment: 'No minimum', advantages: 'Residence permit with right to live, work, and study in Serbia; requires actual residency (183+ days/year); family inclusion; path to citizenship after 6 years*.' },
+  { country: 'Spain', coatSrc: COAT('spain'), programme: 'Passive Income Residency', minInvestment: 'EUR 28,800 yearly in passive income', advantages: 'Right to live in Spain on proof of passive income; requires actual residency (183+ days/year); family inclusion.' },
+  { country: 'Spain', coatSrc: COAT('spain'), programme: 'Digital Nomad Residency', minInvestment: 'EUR 33,200 yearly in active income from remote work', advantages: 'Right to live in Spain while working remotely for foreign employers/clients; requires actual residency (183+ days/year); family inclusion.' },
+  { country: 'Switzerland', coatSrc: COAT('switzerland'), programme: 'Residency Planning', minInvestment: 'No investment — instead, minimum annual lump-sum tax. Effective annual tax burden typically CHF 150,000–800,000+', advantages: 'Residence permit with the right to live and study in Switzerland; visa-free Schengen travel; requires actual residency (183+ days/year); family inclusion; preferential tax treatment; path to citizenship after 10 years*.' },
+  { country: 'Turkey', coatSrc: COAT('turkey'), programme: 'Citizenship Planning', minInvestment: 'USD 400,000', advantages: 'Full citizenship for the entire family; visa-free access to 110+ countries; option for the US E-2 investor visa treaty; special favourable tax regime available.' },
+  { country: 'United Kingdom', coatSrc: COAT('united-kingdom'), programme: 'Residency Planning', minInvestment: 'No investment — innovative, scalable business idea endorsed by a UK endorsing body', advantages: 'Residence permit with right to live, work, and study in the UK; requires actual residency (183+ days/year); family inclusion; path to citizenship after 5 years*.' },
+].map((row) => ({ ...row, href: '#' }));
+
+const CARIBBEAN_ROWS = [
+  { country: 'Antigua and Barbuda', coatSrc: COAT('antigua-and-barbuda'), programme: 'Citizenship Planning', minInvestment: 'USD 230,000', advantages: 'Full citizenship for the entire family; visa-free access to 150+ countries; extended family included; best value for big families; favourable tax regime.' },
+  { country: 'Bahamas', coatSrc: COAT('bahamas'), programme: 'Residency Planning', minInvestment: 'USD 1 million', advantages: 'Permanent residence permit with right to live in the Bahamas with no minimum stay requirement; family inclusion; residency valid for life; path to citizenship after 10 years*.' },
+  { country: 'Cayman Islands', coatSrc: COAT('cayman-islands'), programme: 'Residency Planning', minInvestment: 'USD 1.2 million', advantages: 'Permanent residence permit with right to live in the Cayman Islands with no minimum stay requirement; family inclusion; residency valid for 25 years.' },
+  { country: 'Dominica', coatSrc: COAT('dominica'), programme: 'Citizenship Planning', minInvestment: 'USD 200,000', advantages: 'Full citizenship for the entire family; visa-free access to 145+ countries including Russia and China; favourable tax regime.' },
+  { country: 'Grenada', coatSrc: COAT('grenada'), programme: 'Citizenship Planning', minInvestment: 'USD 235,000', advantages: 'Full citizenship for the entire family; visa-free access to 147+ countries; option for the US E-2 investor visa treaty; citizenship extends to next generation; favourable tax regime.' },
+  { country: 'St. Kitts and Nevis', coatSrc: COAT('st-kitts-and-nevis'), programme: 'Citizenship Planning', minInvestment: 'USD 250,000', advantages: 'Full citizenship for the entire family; visa-free access to 150+ countries; oldest and most prestigious programme; favourable tax regime.' },
+  { country: 'St. Lucia', coatSrc: COAT('st-lucia'), programme: 'Citizenship Planning', minInvestment: 'USD 240,000', advantages: 'Full citizenship for the entire family; visa-free access to 140+ countries; citizenship extends to next generation; diverse investment options; favourable tax regime.' },
+].map((row) => ({ ...row, href: '#' }));
+
+const AMERICAS_ROWS = [
+  { country: 'Argentina', coatSrc: COAT('argentina'), programme: 'Citizenship Planning', minInvestment: 'Expected around USD 500,000', advantages: 'Full citizenship for the entire family; visa-free access to 170+ countries; gives the right to live and work across Mercosur states.' },
+  { country: 'Argentina', coatSrc: COAT('argentina'), programme: 'Passive Income Residency', minInvestment: 'USD 1,500 monthly in passive income', advantages: 'Right to live in Argentina on proof of passive income; flexible stay requirement; family inclusion.' },
+  { country: 'Brazil', coatSrc: COAT('brazil'), programme: 'Residency Planning', minInvestment: 'USD 150,000', advantages: 'Residence permit with right to live, work, and study in Brazil; 14 days in two years minimum stay requirement; family inclusion; path to citizenship after 8 years*.' },
+  { country: 'Canada', coatSrc: COAT('canada'), programme: 'Residency Planning', minInvestment: 'No investment — innovative, scalable business idea endorsed by a Canadian designated business organization', advantages: 'Permanent residence permit with right to live, work, and study in Canada; intent to relocate required; family inclusion; path to citizenship after 3 years*.' },
+  { country: 'Costa Rica', coatSrc: COAT('costa-rica'), programme: 'Residency Planning', minInvestment: 'USD 150,000', advantages: 'Permanent residence permit with right to live, work, and study in Costa Rica; no minimum stay requirement; family inclusion; path to citizenship after 7 years*.' },
+  { country: 'Panama', coatSrc: COAT('panama'), programme: 'Residency Planning', minInvestment: 'USD 300,000', advantages: 'Permanent residence permit with right to live, work, and study in Panama; no minimum stay requirement; family inclusion; path to citizenship after 5 years*.' },
+  { country: 'Paraguay', coatSrc: COAT('paraguay'), programme: 'Passive Income Residency', minInvestment: 'USD 1,500 monthly in passive or earned income', advantages: 'Right to live in Paraguay on proof of passive income; flexible stay requirement; family inclusion.' },
+  { country: 'United States', coatSrc: COAT('united-states'), programme: 'EB-5 Investor Visa', minInvestment: 'USD 800,000', advantages: 'Residence permit (Green Card) with right to live, work, and study in the US; requires actual residency (183+ days/year); family inclusion; path to citizenship after 5 years*.' },
+  { country: 'United States', coatSrc: COAT('united-states'), programme: 'E-2 Investor Visa', minInvestment: 'USD 100,000', advantages: 'Right to live in the US while running your own business; no minimum stay requirement; family inclusion; indefinite renewal of residency.' },
+  { country: 'Uruguay', coatSrc: COAT('uruguay'), programme: 'Passive Income Residency', minInvestment: 'USD 1,500 monthly in passive income', advantages: 'Right to live in Uruguay on proof of passive income; flexible stay requirement; family inclusion.' },
+].map((row) => ({ ...row, href: '#' }));
+
+const MIDDLE_EAST_ROWS = [
+  { country: 'Jordan', coatSrc: COAT('jordan'), programme: 'Citizenship Planning', minInvestment: 'JOD 700,000', advantages: 'Full citizenship for the entire family; visa-free access to 50+ countries.' },
+  { country: 'UAE', coatSrc: COAT('uae'), programme: 'Residency Planning', minInvestment: 'AED 2 million', advantages: 'Permanent residence permit with right to live, work, and study in the UAE; no minimum stay requirement; extended family inclusion; long-term 10-year residency.' },
+].map((row) => ({ ...row, href: '#' }));
+
+const AFRICA_ROWS = [
+  { country: 'Egypt', coatSrc: COAT('egypt'), programme: 'Citizenship Planning', minInvestment: 'USD 250,000', advantages: 'Full citizenship for the entire family; visa-free access to 50+ countries; option for the US E-2 investor visa treaty.' },
+  { country: 'São Tomé and Príncipe', coatSrc: COAT('sao-tome-and-principe'), programme: 'Citizenship Planning', minInvestment: 'USD 90,000', advantages: 'Full citizenship for the entire family; visa-free access to 60+ countries.' },
+].map((row) => ({ ...row, href: '#' }));
+
+const ASIA_PACIFIC_ROWS = [
+  { country: 'Cambodia', coatSrc: COAT('cambodia'), programme: 'Citizenship Planning', minInvestment: 'USD 245,000', advantages: 'Full citizenship for the entire family; visa-free access to 40+ countries with visa-free travel across ASEAN.' },
+  { country: 'Nauru', coatSrc: COAT('nauru'), programme: 'Citizenship Planning', minInvestment: 'USD 90,000 under promotion until 31 December 2026, after USD 115,000', advantages: 'Full citizenship for the entire family; visa-free access to 70+ countries; favourable tax regime.' },
+  { country: 'New Zealand', coatSrc: COAT('new-zealand'), programme: 'Residency Planning', minInvestment: 'NZD 5 million', advantages: 'Residence permit with right to live, work, and study in New Zealand; minimum stay requirement of 21 days in 3 years or 105 days in 5 years; family inclusion; path to citizenship after 5 years*.' },
+  { country: 'Vanuatu', coatSrc: COAT('vanuatu'), programme: 'Citizenship Planning', minInvestment: 'USD 130,000', advantages: 'Full citizenship for the entire family; visa-free access to 100+ countries; favourable tax regime.' },
+].map((row) => ({ ...row, href: '#' }));
+
+document.querySelectorAll('.js-table').forEach((el) => {
+  const dataByRegion = {
+    europe: EUROPE_ROWS,
+    caribbean: CARIBBEAN_ROWS,
+    americas: AMERICAS_ROWS,
+    'middle-east': MIDDLE_EAST_ROWS,
+    africa: AFRICA_ROWS,
+    'asia-pacific': ASIA_PACIFIC_ROWS,
+  };
+  const region = el.closest('.region').dataset.region;
+  ReactDOM.createRoot(el).render(
+    <CountryProgramsTable region={el.dataset.regionLabel} rows={dataByRegion[region]} />
+  );
+});
+
+// CtaSection button: canonical Button, theme="light" → variant="primary" (per CtaSection.jsx)
+ReactDOM.createRoot(document.getElementById('cta-contact-root')).render(
+  <Button variant="primary" size="default" href="#contact">Contact Us</Button>
+);
+</script>
+</body>
+</html>
