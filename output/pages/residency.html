@@ -135,15 +135,16 @@ html{scroll-behavior:smooth}
 .country-card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:0;color:var(--night-blue-400)}
 .country-card__body{display:flex;flex-direction:column;flex:1;padding:var(--space-6)}
 .country-card__top{display:flex;flex-direction:column;align-items:flex-start;gap:18px;flex:1;padding-bottom:var(--space-8);border-bottom:1px solid var(--border)}
-.country-card__head{display:flex;align-items:center;gap:var(--space-1-5);width:100%}
+.country-card__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);width:100%}
+.country-card__head-left{display:flex;align-items:center;gap:var(--space-1-5);min-width:0}
 .country-card__coat{display:block;width:35px;height:39px;object-fit:contain;flex-shrink:0}
 .country-card__name{margin:0;font-family:var(--font-serif);font-weight:var(--weight-regular);font-size:24px;line-height:32px;color:var(--night-blue-400)}
-.country-card__tag{display:inline-flex;align-items:center;padding:var(--space-1) var(--space-2-5);background:var(--electric-blue-50);border-radius:var(--radius-full);font-size:12px;line-height:1.4;white-space:nowrap}
+.country-card__tag{display:inline-flex;align-items:center;flex-shrink:0;padding:var(--space-1) var(--space-2-5);background:var(--electric-blue-50);border-radius:var(--radius-md);font-size:12px;line-height:1.4;white-space:nowrap}
 .country-card__desc{margin:0;font-size:16px;font-weight:var(--weight-light);line-height:1.4}
 .country-card__foot{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-4);padding-top:var(--space-8)}
 .country-card__invest{display:flex;flex-direction:column;line-height:1.4}
 .country-card__label{font-size:12px;color:var(--night-blue-100)}
-.country-card__value{font-size:18px;font-weight:var(--weight-semibold)}
+.country-card__value{font-size:18px;font-weight:var(--weight-regular)}
 
 /* Footer text colour (footer.reference.html set it on body) */
 .footer{color:var(--primary-foreground)}
@@ -167,8 +168,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/cyprus.svg" alt="" loading="lazy"><h3 class="country-card__name">Cyprus</h3></div>
-      <span class="country-card__tag">Golden Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/cyprus.svg" alt="" loading="lazy"><h3 class="country-card__name">Cyprus</h3></div>
+        <span class="country-card__tag">Golden Visa</span>
+      </div>
       <p class="country-card__desc">The Cyprus Golden Visa grants investors permanent residency for a minimum EUR 300,000 investment in real estate, business, or funds.</p>
     </div>
     <div class="country-card__foot">
@@ -180,8 +183,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/greece.svg" alt="" loading="lazy"><h3 class="country-card__name">Greece</h3></div>
-      <span class="country-card__tag">Golden Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/greece.svg" alt="" loading="lazy"><h3 class="country-card__name">Greece</h3></div>
+        <span class="country-card__tag">Golden Visa</span>
+      </div>
       <p class="country-card__desc">Under the Greece Golden Visa Program, a minimum real estate investment starting from EUR 250,000 grants investors a permanent residence permit with no minimum stay requirement.</p>
     </div>
     <div class="country-card__foot">
@@ -193,8 +198,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/greece.svg" alt="" loading="lazy"><h3 class="country-card__name">Greece</h3></div>
-      <span class="country-card__tag">Passive Income Residency</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/greece.svg" alt="" loading="lazy"><h3 class="country-card__name">Greece</h3></div>
+        <span class="country-card__tag">Passive Income Residency</span>
+      </div>
       <p class="country-card__desc">Applicants can qualify through monthly passive income or through a lump-sum bank deposit as an alternative. Requires relocation to Greece and offers an option for reduced flat tax rate on foreign pension income for qualifying retirees.</p>
     </div>
     <div class="country-card__foot">
@@ -206,8 +213,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/greece.svg" alt="" loading="lazy"><h3 class="country-card__name">Greece</h3></div>
-      <span class="country-card__tag">Digital Nomad Residency</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/greece.svg" alt="" loading="lazy"><h3 class="country-card__name">Greece</h3></div>
+        <span class="country-card__tag">Digital Nomad Residency</span>
+      </div>
       <p class="country-card__desc">Suited to remote professionals working for employers or clients based outside Greece. Among the fastest visa approvals in Europe, requires relocation to Greece.</p>
     </div>
     <div class="country-card__foot">
@@ -219,8 +228,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/hungary.svg" alt="" loading="lazy"><h3 class="country-card__name">Hungary</h3></div>
-      <span class="country-card__tag">Hungary Golden Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/hungary.svg" alt="" loading="lazy"><h3 class="country-card__name">Hungary</h3></div>
+        <span class="country-card__tag">Hungary Golden Visa</span>
+      </div>
       <p class="country-card__desc">Hungary Golden Visa from EUR 250,000 in an approved real estate fund. Best for investors who want the EU&#x27;s most affordable Golden Visa alongside a 10 year residency permit with no minimum stay requirement.</p>
     </div>
     <div class="country-card__foot">
@@ -232,8 +243,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/italy.svg" alt="" loading="lazy"><h3 class="country-card__name">Italy</h3></div>
-      <span class="country-card__tag">Investor Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/italy.svg" alt="" loading="lazy"><h3 class="country-card__name">Italy</h3></div>
+        <span class="country-card__tag">Investor Visa</span>
+      </div>
       <p class="country-card__desc">Italy Investor Visa offers one of the fastest approval timelines among EU Golden Visas, with entry points from EUR 250,000 in an innovative startup.</p>
     </div>
     <div class="country-card__foot">
@@ -245,8 +258,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/italy.svg" alt="" loading="lazy"><h3 class="country-card__name">Italy</h3></div>
-      <span class="country-card__tag">Passive Income Residency</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/italy.svg" alt="" loading="lazy"><h3 class="country-card__name">Italy</h3></div>
+        <span class="country-card__tag">Passive Income Residency</span>
+      </div>
       <p class="country-card__desc">Designed exclusively for passive-income earners and suited to retirees and those living entirely off income earned abroad. Requires relocation to Italy and offers possibility of applying for reduced tax rates on passive income.</p>
     </div>
     <div class="country-card__foot">
@@ -258,8 +273,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/italy.svg" alt="" loading="lazy"><h3 class="country-card__name">Italy</h3></div>
-      <span class="country-card__tag">Digital Nomad Residency</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/italy.svg" alt="" loading="lazy"><h3 class="country-card__name">Italy</h3></div>
+        <span class="country-card__tag">Digital Nomad Residency</span>
+      </div>
       <p class="country-card__desc">Built for highly qualified remote professionals, requiring a university degree or equivalent experience. It offers a more accessible income threshold than other routes in Italy. Requires relocation to Italy.</p>
     </div>
     <div class="country-card__foot">
@@ -271,8 +288,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/latvia.svg" alt="" loading="lazy"><h3 class="country-card__name">Latvia</h3></div>
-      <span class="country-card__tag">Latvia Golden Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/latvia.svg" alt="" loading="lazy"><h3 class="country-card__name">Latvia</h3></div>
+        <span class="country-card__tag">Latvia Golden Visa</span>
+      </div>
       <p class="country-card__desc">Latvia Golden Visa from EUR 50,000 in a qualifying local company. Best for investors seeking the EU&#x27;s lowest-cost Schengen residency route.</p>
     </div>
     <div class="country-card__foot">
@@ -284,8 +303,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/malta.svg" alt="" loading="lazy"><h3 class="country-card__name">Malta</h3></div>
-      <span class="country-card__tag">MPRP</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/malta.svg" alt="" loading="lazy"><h3 class="country-card__name">Malta</h3></div>
+        <span class="country-card__tag">MPRP</span>
+      </div>
       <p class="country-card__desc">The Malta Permanent Residence Programme grants lifelong residency through a government contribution combined with a qualifying property purchase or rental.</p>
     </div>
     <div class="country-card__foot">
@@ -297,8 +318,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/monaco.svg" alt="" loading="lazy"><h3 class="country-card__name">Monaco</h3></div>
-      <span class="country-card__tag">Monaco Carte de Séjour</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/monaco.svg" alt="" loading="lazy"><h3 class="country-card__name">Monaco</h3></div>
+        <span class="country-card__tag">Monaco Carte de Séjour</span>
+      </div>
       <p class="country-card__desc">Monaco Carte de Séjour offers residence in a nation with zero personal income tax, one of the few remaining in Europe. Minimum required is EUR 500,000 to confirm financial self-sufficiency.</p>
     </div>
     <div class="country-card__foot">
@@ -310,8 +333,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/portugal.svg" alt="" loading="lazy"><h3 class="country-card__name">Portugal</h3></div>
-      <span class="country-card__tag">Golden Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/portugal.svg" alt="" loading="lazy"><h3 class="country-card__name">Portugal</h3></div>
+        <span class="country-card__tag">Golden Visa</span>
+      </div>
       <p class="country-card__desc">Portugal Golden Visa starts at EUR 200,000 and offers an EU residency with minimum physical presence requirement and path to EU citizenship.</p>
     </div>
     <div class="country-card__foot">
@@ -323,8 +348,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/portugal.svg" alt="" loading="lazy"><h3 class="country-card__name">Portugal</h3></div>
-      <span class="country-card__tag">Passive Income Residency</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/portugal.svg" alt="" loading="lazy"><h3 class="country-card__name">Portugal</h3></div>
+        <span class="country-card__tag">Passive Income Residency</span>
+      </div>
       <p class="country-card__desc">The lowest income threshold requirement of any major European passive income visa, tied to Portugal&#x27;s minimum wage. Relocation to Portugal is required and can lead to permanent residence after 5 years and citizenship after 10 years.</p>
     </div>
     <div class="country-card__foot">
@@ -336,8 +363,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/portugal.svg" alt="" loading="lazy"><h3 class="country-card__name">Portugal</h3></div>
-      <span class="country-card__tag">Digital Nomad Residency</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/portugal.svg" alt="" loading="lazy"><h3 class="country-card__name">Portugal</h3></div>
+        <span class="country-card__tag">Digital Nomad Residency</span>
+      </div>
       <p class="country-card__desc">Residency permit for remote workers and entrepreneurs requiring proof of monthly income. Family members can be included with a minimum additional income requirement per dependent. Requires relocation and establishing a life in Portugal.</p>
     </div>
     <div class="country-card__foot">
@@ -349,8 +378,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/spain.svg" alt="" loading="lazy"><h3 class="country-card__name">Spain</h3></div>
-      <span class="country-card__tag">Passive Income Residency</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/spain.svg" alt="" loading="lazy"><h3 class="country-card__name">Spain</h3></div>
+        <span class="country-card__tag">Passive Income Residency</span>
+      </div>
       <p class="country-card__desc">Spain&#x27;s dedicated route for individuals who want to live in the country without engaging in local or remote employment. Its income threshold is one of the few that didn&#x27;t rise in 2026. Ideal for retirees who want to establish a life in Spain.</p>
     </div>
     <div class="country-card__foot">
@@ -362,8 +393,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/spain.svg" alt="" loading="lazy"><h3 class="country-card__name">Spain</h3></div>
-      <span class="country-card__tag">Digital Nomad Residency</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/spain.svg" alt="" loading="lazy"><h3 class="country-card__name">Spain</h3></div>
+        <span class="country-card__tag">Digital Nomad Residency</span>
+      </div>
       <p class="country-card__desc">Allows remote work for non-Spanish employers, income requirement is tied to Spain&#x27;s minimum wage. Requires relocation to Spain and offers an option to apply for a beneficial tax regime.</p>
     </div>
     <div class="country-card__foot">
@@ -375,8 +408,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/switzerland.svg" alt="" loading="lazy"><h3 class="country-card__name">Switzerland</h3></div>
-      <span class="country-card__tag">Lump Sum Tax</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/switzerland.svg" alt="" loading="lazy"><h3 class="country-card__name">Switzerland</h3></div>
+        <span class="country-card__tag">Lump Sum Tax</span>
+      </div>
       <p class="country-card__desc">Grants residence through a negotiated annual tax agreement rather than a capital investment. Offers access to one of the world&#x27;s most stable, high-quality living environments.</p>
     </div>
     <div class="country-card__foot">
@@ -388,8 +423,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/ireland.svg" alt="" loading="lazy"><h3 class="country-card__name">Ireland</h3></div>
-      <span class="country-card__tag">Passive Income Residency</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/ireland.svg" alt="" loading="lazy"><h3 class="country-card__name">Ireland</h3></div>
+        <span class="country-card__tag">Passive Income Residency</span>
+      </div>
       <p class="country-card__desc">Grants residence to financially independent individuals with no official stay requirement. Ideal for retirees or high earners who rely on passive income.</p>
     </div>
     <div class="country-card__foot">
@@ -401,8 +438,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/luxembourg.svg" alt="" loading="lazy"><h3 class="country-card__name">Luxembourg</h3></div>
-      <span class="country-card__tag">Luxembourg Golden Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/luxembourg.svg" alt="" loading="lazy"><h3 class="country-card__name">Luxembourg</h3></div>
+        <span class="country-card__tag">Luxembourg Golden Visa</span>
+      </div>
       <p class="country-card__desc">Luxembourg Golden Visa from EUR 500,000 offers a stable EU base for investors.</p>
     </div>
     <div class="country-card__foot">
@@ -414,8 +453,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/serbia.svg" alt="" loading="lazy"><h3 class="country-card__name">Serbia</h3></div>
-      <span class="country-card__tag">Serbia Residency by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/serbia.svg" alt="" loading="lazy"><h3 class="country-card__name">Serbia</h3></div>
+        <span class="country-card__tag">Serbia Residency by Investment</span>
+      </div>
       <p class="country-card__desc">Offers a straightforward route to European residence through real estate purchase or company formation, with no minimum investment threshold. Flexible stay requirement and family inclusion.</p>
     </div>
     <div class="country-card__foot">
@@ -427,8 +468,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/united-kingdom.svg" alt="" loading="lazy"><h3 class="country-card__name">United Kingdom</h3></div>
-      <span class="country-card__tag">Innovator Founder Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/united-kingdom.svg" alt="" loading="lazy"><h3 class="country-card__name">United Kingdom</h3></div>
+        <span class="country-card__tag">Innovator Founder Visa</span>
+      </div>
       <p class="country-card__desc">Built for entrepreneurs with a genuinely innovative, scalable business idea, backed by Home Office endorsement. Offers a clear three-year path to permanent settlement in the UK.</p>
     </div>
     <div class="country-card__foot">
@@ -440,8 +483,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/austria.svg" alt="" loading="lazy"><h3 class="country-card__name">Austria</h3></div>
-      <span class="country-card__tag">Passive Income Residency</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/austria.svg" alt="" loading="lazy"><h3 class="country-card__name">Austria</h3></div>
+        <span class="country-card__tag">Passive Income Residency</span>
+      </div>
       <p class="country-card__desc">Austria passive income residence permit grants the right to live in Austria without working, based on proof of stable foreign income. Best for financially independent individuals seeking EU residence, subject to a strict annual quota.</p>
     </div>
     <div class="country-card__foot">
@@ -453,8 +498,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/jersey.svg" alt="" loading="lazy"><h3 class="country-card__name">Jersey</h3></div>
-      <span class="country-card__tag">Jersey Residency by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/jersey.svg" alt="" loading="lazy"><h3 class="country-card__name">Jersey</h3></div>
+        <span class="country-card__tag">Jersey Residency by Investment</span>
+      </div>
       <p class="country-card__desc">Jersey High-Value Residency grants entitled status to individuals who can sustain a minimum annual tax contribution of GBP 250,000, alongside a qualifying property purchase. Best for ultra-high-net-worth individuals prioritizing a low-tax regime.</p>
     </div>
     <div class="country-card__foot">
@@ -471,8 +518,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/bahamas.svg" alt="" loading="lazy"><h3 class="country-card__name">Bahamas</h3></div>
-      <span class="country-card__tag">Economic Permanent Residency</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/bahamas.svg" alt="" loading="lazy"><h3 class="country-card__name">Bahamas</h3></div>
+        <span class="country-card__tag">Economic Permanent Residency</span>
+      </div>
       <p class="country-card__desc">The Bahamas grants qualifying investors and their families lifetime permanent residence through an investment in approved real estate or zero coupon bonds.</p>
     </div>
     <div class="country-card__foot">
@@ -484,8 +533,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/cayman-islands.svg" alt="" loading="lazy"><h3 class="country-card__name">Cayman Islands</h3></div>
-      <span class="country-card__tag">Persons of Independent Means</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/cayman-islands.svg" alt="" loading="lazy"><h3 class="country-card__name">Cayman Islands</h3></div>
+        <span class="country-card__tag">Persons of Independent Means</span>
+      </div>
       <p class="country-card__desc">The Cayman Islands offers long-term residence to investors and their families through property investment.</p>
     </div>
     <div class="country-card__foot">
@@ -502,8 +553,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/argentina.svg" alt="" loading="lazy"><h3 class="country-card__name">Argentina</h3></div>
-      <span class="country-card__tag">Independent Means Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/argentina.svg" alt="" loading="lazy"><h3 class="country-card__name">Argentina</h3></div>
+        <span class="country-card__tag">Independent Means Visa</span>
+      </div>
       <p class="country-card__desc">Grants a renewable one-year residence permit based on proof of stable passive income, with no minimum stay required to maintain it.</p>
     </div>
     <div class="country-card__foot">
@@ -515,8 +568,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/brazil.svg" alt="" loading="lazy"><h3 class="country-card__name">Brazil</h3></div>
-      <span class="country-card__tag">Brazil Investor Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/brazil.svg" alt="" loading="lazy"><h3 class="country-card__name">Brazil</h3></div>
+        <span class="country-card__tag">Brazil Investor Visa</span>
+      </div>
       <p class="country-card__desc">Grants residency through real estate investment, with properties in the North and Northeast regions qualifying at a reduced threshold. There is no minimum stay requirement to maintain the permit.</p>
     </div>
     <div class="country-card__foot">
@@ -528,8 +583,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/canada.svg" alt="" loading="lazy"><h3 class="country-card__name">Canada</h3></div>
-      <span class="country-card__tag">Entrepreneurship Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/canada.svg" alt="" loading="lazy"><h3 class="country-card__name">Canada</h3></div>
+        <span class="country-card__tag">Entrepreneurship Visa</span>
+      </div>
       <p class="country-card__desc">Leads directly to permanent residence, rather than a temporary status first, once a qualifying business is endorsed. Spouse and children can accompany the applicant from the outset of the process.</p>
     </div>
     <div class="country-card__foot">
@@ -541,8 +598,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/costa-rica.svg" alt="" loading="lazy"><h3 class="country-card__name">Costa Rica</h3></div>
-      <span class="country-card__tag">Investor Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/costa-rica.svg" alt="" loading="lazy"><h3 class="country-card__name">Costa Rica</h3></div>
+        <span class="country-card__tag">Investor Visa</span>
+      </div>
       <p class="country-card__desc">Offers residency through investment across multiple categories, including real estate, business shares, securities, or tourism projects.</p>
     </div>
     <div class="country-card__foot">
@@ -554,8 +613,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/panama.svg" alt="" loading="lazy"><h3 class="country-card__name">Panama</h3></div>
-      <span class="country-card__tag">Qualified Investor Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/panama.svg" alt="" loading="lazy"><h3 class="country-card__name">Panama</h3></div>
+        <span class="country-card__tag">Qualified Investor Visa</span>
+      </div>
       <p class="country-card__desc">Grants permanent residency directly, without a temporary residency stage first. Residency can be maintained with as little as one visit to Panama every two years.</p>
     </div>
     <div class="country-card__foot">
@@ -567,8 +628,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/paraguay.svg" alt="" loading="lazy"><h3 class="country-card__name">Paraguay</h3></div>
-      <span class="country-card__tag">Independent Means Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/paraguay.svg" alt="" loading="lazy"><h3 class="country-card__name">Paraguay</h3></div>
+        <span class="country-card__tag">Independent Means Visa</span>
+      </div>
       <p class="country-card__desc">Requires minimal physical presence, making it one of the most flexible residency routes in South America to maintain. Residents can apply with dependents, adding a modest income requirement per family member.</p>
     </div>
     <div class="country-card__foot">
@@ -580,8 +643,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/united-states.svg" alt="" loading="lazy"><h3 class="country-card__name">United States</h3></div>
-      <span class="country-card__tag">EB-5 Investor Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/united-states.svg" alt="" loading="lazy"><h3 class="country-card__name">United States</h3></div>
+        <span class="country-card__tag">EB-5 Investor Visa</span>
+      </div>
       <p class="country-card__desc">Provides a direct route to a US green card without requiring active, day-to-day management of the business. Most applicants invest through a Regional Center, with the reduced $800,000 threshold available in Targeted Employment Areas.</p>
     </div>
     <div class="country-card__foot">
@@ -593,8 +658,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/united-states.svg" alt="" loading="lazy"><h3 class="country-card__name">United States</h3></div>
-      <span class="country-card__tag">E-2 Investor Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/united-states.svg" alt="" loading="lazy"><h3 class="country-card__name">United States</h3></div>
+        <span class="country-card__tag">E-2 Investor Visa</span>
+      </div>
       <p class="country-card__desc">Has no fixed minimum investment — the amount only needs to be &quot;substantial&quot; relative to the business itself, giving investors flexibility in scale. Available to nationals of treaty countries and their families, with renewals possible indefinitely.</p>
     </div>
     <div class="country-card__foot">
@@ -606,8 +673,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/uruguay.svg" alt="" loading="lazy"><h3 class="country-card__name">Uruguay</h3></div>
-      <span class="country-card__tag">Independent Means Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/uruguay.svg" alt="" loading="lazy"><h3 class="country-card__name">Uruguay</h3></div>
+        <span class="country-card__tag">Independent Means Visa</span>
+      </div>
       <p class="country-card__desc">Grants permanent residency directly, without the multi-year temporary phase most countries require. New tax residents also benefit from up to 10 years of exemption on foreign-source capital income.</p>
     </div>
     <div class="country-card__foot">
@@ -624,8 +693,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/uae.svg" alt="" loading="lazy"><h3 class="country-card__name">UAE</h3></div>
-      <span class="country-card__tag">Residency Planning</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/uae.svg" alt="" loading="lazy"><h3 class="country-card__name">UAE</h3></div>
+        <span class="country-card__tag">Residency Planning</span>
+      </div>
       <p class="country-card__desc">Offers up to 10 years of renewable residency with zero personal income tax and no minimum stay requirement to maintain it. Immediate and extended family can be added at no additional investment.</p>
     </div>
     <div class="country-card__foot">
@@ -637,8 +708,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/new-zealand.svg" alt="" loading="lazy"><h3 class="country-card__name">New Zealand</h3></div>
-      <span class="country-card__tag">Active Investor Plus Visa</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/new-zealand.svg" alt="" loading="lazy"><h3 class="country-card__name">New Zealand</h3></div>
+        <span class="country-card__tag">Active Investor Plus Visa</span>
+      </div>
       <p class="country-card__desc">Offers a direct route to permanent residency, with the Growth category requiring as little as 21 days of physical presence over three years. Partner and dependent children up to 24 can be included.</p>
     </div>
     <div class="country-card__foot">

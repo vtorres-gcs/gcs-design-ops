@@ -135,15 +135,16 @@ html{scroll-behavior:smooth}
 .country-card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:0;color:var(--night-blue-400)}
 .country-card__body{display:flex;flex-direction:column;flex:1;padding:var(--space-6)}
 .country-card__top{display:flex;flex-direction:column;align-items:flex-start;gap:18px;flex:1;padding-bottom:var(--space-8);border-bottom:1px solid var(--border)}
-.country-card__head{display:flex;align-items:center;gap:var(--space-1-5);width:100%}
+.country-card__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);width:100%}
+.country-card__head-left{display:flex;align-items:center;gap:var(--space-1-5);min-width:0}
 .country-card__coat{display:block;width:35px;height:39px;object-fit:contain;flex-shrink:0}
 .country-card__name{margin:0;font-family:var(--font-serif);font-weight:var(--weight-regular);font-size:24px;line-height:32px;color:var(--night-blue-400)}
-.country-card__tag{display:inline-flex;align-items:center;padding:var(--space-1) var(--space-2-5);background:var(--electric-blue-50);border-radius:var(--radius-full);font-size:12px;line-height:1.4;white-space:nowrap}
+.country-card__tag{display:inline-flex;align-items:center;flex-shrink:0;padding:var(--space-1) var(--space-2-5);background:var(--electric-blue-50);border-radius:var(--radius-md);font-size:12px;line-height:1.4;white-space:nowrap}
 .country-card__desc{margin:0;font-size:16px;font-weight:var(--weight-light);line-height:1.4}
 .country-card__foot{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-4);padding-top:var(--space-8)}
 .country-card__invest{display:flex;flex-direction:column;line-height:1.4}
 .country-card__label{font-size:12px;color:var(--night-blue-100)}
-.country-card__value{font-size:18px;font-weight:var(--weight-semibold)}
+.country-card__value{font-size:18px;font-weight:var(--weight-regular)}
 
 /* Footer text colour (footer.reference.html set it on body) */
 .footer{color:var(--primary-foreground)}
@@ -167,8 +168,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/malta.svg" alt="" loading="lazy"><h3 class="country-card__name">Malta</h3></div>
-      <span class="country-card__tag">Citizenship by Merit</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/malta.svg" alt="" loading="lazy"><h3 class="country-card__name">Malta</h3></div>
+        <span class="country-card__tag">Citizenship by Merit</span>
+      </div>
       <p class="country-card__desc">Malta citizenship through exceptional achievements offers a discretionary naturalization pathway based on verified merit and contribution to the country.</p>
     </div>
     <div class="country-card__foot">
@@ -180,8 +183,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/austria.svg" alt="" loading="lazy"><h3 class="country-card__name">Austria</h3></div>
-      <span class="country-card__tag">Citizenship by Merit</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/austria.svg" alt="" loading="lazy"><h3 class="country-card__name">Austria</h3></div>
+        <span class="country-card__tag">Citizenship by Merit</span>
+      </div>
       <p class="country-card__desc">Austria citizenship by exceptional achievement offers a route to EU citizenship without any prior residence requirement. It is granted at the discretion of the federal government to individuals who demonstrate extraordinary contribution to the country.</p>
     </div>
     <div class="country-card__foot">
@@ -193,8 +198,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/turkey.svg" alt="" loading="lazy"><h3 class="country-card__name">Turkey</h3></div>
-      <span class="country-card__tag">Citizenship by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/turkey.svg" alt="" loading="lazy"><h3 class="country-card__name">Turkey</h3></div>
+        <span class="country-card__tag">Citizenship by Investment</span>
+      </div>
       <p class="country-card__desc">Turkey citizenship program grants citizenship through real estate ownership starting at USD 400,000. It allows family inclusion and has an optionality for USA E-2 Visa.</p>
     </div>
     <div class="country-card__foot">
@@ -211,8 +218,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/antigua-and-barbuda.svg" alt="" loading="lazy"><h3 class="country-card__name">Antigua and Barbuda</h3></div>
-      <span class="country-card__tag">Citizenship by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/antigua-and-barbuda.svg" alt="" loading="lazy"><h3 class="country-card__name">Antigua and Barbuda</h3></div>
+        <span class="country-card__tag">Citizenship by Investment</span>
+      </div>
       <p class="country-card__desc">Antigua and Barbuda contribution starts at USD 230,000 and citizenship cost does not increase with family size — spouse, children, and parents can all be included at the same base price.</p>
     </div>
     <div class="country-card__foot">
@@ -224,8 +233,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/dominica.svg" alt="" loading="lazy"><h3 class="country-card__name">Dominica</h3></div>
-      <span class="country-card__tag">Citizenship by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/dominica.svg" alt="" loading="lazy"><h3 class="country-card__name">Dominica</h3></div>
+        <span class="country-card__tag">Citizenship by Investment</span>
+      </div>
       <p class="country-card__desc">Known as the "Nature Island," Dominica offers the lowest minimum investment among established Caribbean citizenship programs, secured through a single donation route.</p>
     </div>
     <div class="country-card__foot">
@@ -237,8 +248,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/grenada.svg" alt="" loading="lazy"><h3 class="country-card__name">Grenada</h3></div>
-      <span class="country-card__tag">Citizenship by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/grenada.svg" alt="" loading="lazy"><h3 class="country-card__name">Grenada</h3></div>
+        <span class="country-card__tag">Citizenship by Investment</span>
+      </div>
       <p class="country-card__desc">Grenada citizenship program offers the only Caribbean route to the US E-2 Investor Visa and eligibility extends to siblings and parents, in addition to spouse and children — it also allows extension to the next generation.</p>
     </div>
     <div class="country-card__foot">
@@ -250,8 +263,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/st-kitts-and-nevis.svg" alt="" loading="lazy"><h3 class="country-card__name">St. Kitts and Nevis</h3></div>
-      <span class="country-card__tag">Citizenship by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/st-kitts-and-nevis.svg" alt="" loading="lazy"><h3 class="country-card__name">St. Kitts and Nevis</h3></div>
+        <span class="country-card__tag">Citizenship by Investment</span>
+      </div>
       <p class="country-card__desc">Citizenship program with the longest track record amongst the Caribbean countries, starting at USD 250,000. Best for investors who value the program's reputation and regulatory maturity.</p>
     </div>
     <div class="country-card__foot">
@@ -263,8 +278,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/st-lucia.svg" alt="" loading="lazy"><h3 class="country-card__name">St. Lucia</h3></div>
-      <span class="country-card__tag">Citizenship by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/st-lucia.svg" alt="" loading="lazy"><h3 class="country-card__name">St. Lucia</h3></div>
+        <span class="country-card__tag">Citizenship by Investment</span>
+      </div>
       <p class="country-card__desc">St Lucia citizenship program offers the widest choice of investment structures and the only Caribbean program offering a fully refundable government bond as an investment route. In addition, it allows extending the citizenship to the next generation.</p>
     </div>
     <div class="country-card__foot">
@@ -281,8 +298,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/argentina.svg" alt="" loading="lazy"><h3 class="country-card__name">Argentina</h3></div>
-      <span class="country-card__tag">Citizenship by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/argentina.svg" alt="" loading="lazy"><h3 class="country-card__name">Argentina</h3></div>
+        <span class="country-card__tag">Citizenship by Investment</span>
+      </div>
       <p class="country-card__desc">Argentina citizenship program will be South America's first citizenship program upon its planned late 2026 launch. Terms are not yet finalized, and early registration of interest is currently open.</p>
     </div>
     <div class="country-card__foot">
@@ -299,8 +318,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/egypt.svg" alt="" loading="lazy"><h3 class="country-card__name">Egypt</h3></div>
-      <span class="country-card__tag">Citizenship by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/egypt.svg" alt="" loading="lazy"><h3 class="country-card__name">Egypt</h3></div>
+        <span class="country-card__tag">Citizenship by Investment</span>
+      </div>
       <p class="country-card__desc">Egypt citizenship program includes a fully refundable bank deposit route, alongside donation, real estate, and business investment options. It is one of the few programs where investors can recover their full capital.</p>
     </div>
     <div class="country-card__foot">
@@ -312,8 +333,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/jordan.svg" alt="" loading="lazy"><h3 class="country-card__name">Jordan</h3></div>
-      <span class="country-card__tag">Citizenship by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/jordan.svg" alt="" loading="lazy"><h3 class="country-card__name">Jordan</h3></div>
+        <span class="country-card__tag">Citizenship by Investment</span>
+      </div>
       <p class="country-card__desc">Jordan citizenship program offers a productive-investment route that also qualifies holders for the US E-2 investor visa, starting at approximately JOD 700,000.</p>
     </div>
     <div class="country-card__foot">
@@ -325,8 +348,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/sao-tome-and-principe.svg" alt="" loading="lazy"><h3 class="country-card__name">São Tomé and Príncipe</h3></div>
-      <span class="country-card__tag">Citizenship by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/sao-tome-and-principe.svg" alt="" loading="lazy"><h3 class="country-card__name">São Tomé and Príncipe</h3></div>
+        <span class="country-card__tag">Citizenship by Investment</span>
+      </div>
       <p class="country-card__desc">São Tomé and Príncipe citizenship program launched in 2025, making it one of the newest citizenship options available to investors. It offers one of the lowest minimum investments of any program worldwide, starting at USD 90,000.</p>
     </div>
     <div class="country-card__foot">
@@ -343,8 +368,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/nauru.svg" alt="" loading="lazy"><h3 class="country-card__name">Nauru</h3></div>
-      <span class="country-card__tag">Citizenship by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/nauru.svg" alt="" loading="lazy"><h3 class="country-card__name">Nauru</h3></div>
+        <span class="country-card__tag">Citizenship by Investment</span>
+      </div>
       <p class="country-card__desc">Nauru citizenship program offers a fully digital, remote application process requiring no travel to complete. It remains one of the least-known citizenship options, offering added discretion for investors.</p>
     </div>
     <div class="country-card__foot">
@@ -356,8 +383,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/vanuatu.svg" alt="" loading="lazy"><h3 class="country-card__name">Vanuatu</h3></div>
-      <span class="country-card__tag">Citizenship by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/vanuatu.svg" alt="" loading="lazy"><h3 class="country-card__name">Vanuatu</h3></div>
+        <span class="country-card__tag">Citizenship by Investment</span>
+      </div>
       <p class="country-card__desc">Vanuatu citizenship program offers the fastest processing timeline of any current program, with citizenship possible in as little as 2 months. No interview or travel to the country is required for the process.</p>
     </div>
     <div class="country-card__foot">
@@ -369,8 +398,10 @@ html{scroll-behavior:smooth}
 <article class="country-card">
   <div class="country-card__body">
     <div class="country-card__top">
-      <div class="country-card__head"><img class="country-card__coat" src="assets/coat-of-arms/svg/cambodia.svg" alt="" loading="lazy"><h3 class="country-card__name">Cambodia</h3></div>
-      <span class="country-card__tag">Citizenship by Investment</span>
+      <div class="country-card__head">
+        <div class="country-card__head-left"><img class="country-card__coat" src="assets/coat-of-arms/svg/cambodia.svg" alt="" loading="lazy"><h3 class="country-card__name">Cambodia</h3></div>
+        <span class="country-card__tag">Citizenship by Investment</span>
+      </div>
       <p class="country-card__desc">Cambodia citizenship program grants full nationality by royal decree, including the right to own land outright — a right not otherwise available to foreign nationals. Investors can choose between a direct donation or an approved project investment.</p>
     </div>
     <div class="country-card__foot">
