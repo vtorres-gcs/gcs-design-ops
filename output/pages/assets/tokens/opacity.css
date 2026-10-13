@@ -1,0 +1,15 @@
+/* ============================================================
+   GCS Design System — Opacity Tokens
+   ============================================================
+   A small, fixed set of opacity values for state treatments
+   (disabled controls, muted/decorative elements, hover fades).
+   Pick the closest token instead of introducing a new literal.
+   ============================================================ */
+
+:root {
+  --opacity-disabled:        0.4;   /* disabled controls that keep their own (transparent) colors */
+  --opacity-disabled-filled: 0.5;   /* disabled controls with a solid fill */
+  --opacity-muted:           0.6;   /* decorative / secondary-emphasis elements */
+  --opacity-subtle:          0.7;   /* de-emphasized text on dark surfaces */
+  --opacity-strong:          0.85;  /* near-full-strength hover/press fade */
+}

@@ -1,0 +1,26 @@
+/* ============================================================
+   GCS Design System — Breakpoint Tokens
+   ============================================================
+   Canonical viewport widths. CSS cannot resolve var() inside an
+   @media condition, so these custom properties exist as the
+   single documented source of truth and for runtime reads via
+   getComputedStyle(document.documentElement) — they are not
+   meant to be interpolated into @media strings directly.
+
+   For CSS-in-JS component styles (the pattern most sections use),
+   import the matching numeric constants from tokens/breakpoints.js
+   instead and interpolate them into the template literal, e.g.
+   `@media (min-width: ${BREAKPOINTS.md}px)`.
+
+   Previously every section picked its own raw pixel value
+   (420/479/480/560/640/720/767/768/900/1023/1024/1100/1279px all
+   appeared across the repo). New and migrated components should
+   converge on the four values below instead of introducing more.
+   ============================================================ */
+
+:root {
+  --bp-sm: 480px;   /* phone landscape / small-tablet threshold */
+  --bp-md: 768px;   /* tablet */
+  --bp-lg: 1024px;  /* small desktop / tablet landscape */
+  --bp-xl: 1280px;  /* desktop */
+}

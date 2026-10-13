@@ -29,27 +29,17 @@
   --electric-blue-400: hsl(216 100% 62%);  /* #3F8CFF — accent */
 
   /* ----------------------------------------------------------
+     Dark Surface
+     Neutral charcoal for dark app chrome (e.g. the Admin Area
+     nav bar). Figma: brand/primary/white in dark mode.
+     ---------------------------------------------------------- */
+  --surface-dark: hsl(0 0% 9.4%);  /* #181818 */
+
+  /* ----------------------------------------------------------
      Brand Palette — Star (Rating)
      Used exclusively for star ratings and achievement badges.
      ---------------------------------------------------------- */
   --star: hsl(47 100% 44%);  /* #DFB300 */
-
-  /* ----------------------------------------------------------
-     Avatar Tint Palette
-     Deterministic background tints for initials-fallback avatars
-     (components/core/primitives/Avatar.jsx hashes a name to one
-     of these 8). Distinct from the Night Blue scale so avatars
-     stay visually differentiable at a glance; always paired with
-     white text.
-     ---------------------------------------------------------- */
-  --avatar-tint-1: #1a3a5c;
-  --avatar-tint-2: #1e4a6e;
-  --avatar-tint-3: #215a80;
-  --avatar-tint-4: #236a92;
-  --avatar-tint-5: #2580a8;
-  --avatar-tint-6: #1a4a6e;
-  --avatar-tint-7: #163358;
-  --avatar-tint-8: #0e2440;
 
   /* ----------------------------------------------------------
      Primary Scale (Night Blue aliases)
@@ -82,8 +72,8 @@
   /* ----------------------------------------------------------
      Semantic Tokens — Light Mode (default)
      ---------------------------------------------------------- */
-  --background:          hsl(210 20% 98%);
-  --foreground:          hsl(220 43% 11%);
+  --background:          hsl(220 20% 97%);
+  --foreground:          hsl(233 100% 17%);  /* #000957 */
 
   --card:                hsl(0 0% 100%);
   --card-foreground:     hsl(220 43% 11%);
@@ -195,6 +185,15 @@
    Apply via class="dark" on <html> or <body>
    ---------------------------------------------------------- */
 .dark {
+  /* Night Blue scale — dark values (50–400 are identical to light) */
+  --night-blue-25:  hsl(233 100% 5%);    /* #00031A */
+  --night-blue-50:  hsl(233 22% 75%);    /* #B3B5CD */
+  --night-blue-100: hsl(232 18% 59%);    /* #8084AB */
+  --night-blue-200: hsl(233 41% 34%);    /* #333A79 */
+  --night-blue-300: hsl(233 60% 26%);    /* #1A2268 */
+  --night-blue-400: hsl(233 100% 17%);   /* #000957 */
+  --primary-50:     hsl(233 100% 5%);    /* nightBlue-25 */
+
   --background:          hsl(233 100% 17%);
   --foreground:          hsl(0 0% 100%);
 
@@ -221,7 +220,7 @@
   --destructive:         hsl(0 63% 31%);
   --destructive-foreground: hsl(0 0% 100%);
 
-  --border:              hsl(220 43% 11%);
+  --border:              hsl(232 18% 59%);   /* Night Blue 100 — #8084AB */
   --input:               hsl(220 43% 11%);
   --ring:                hsl(0 0% 100%);
 

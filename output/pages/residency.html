@@ -86,16 +86,17 @@
 /* CtaSection (components/core/sections/CtaSection.jsx) */
 
 .gcs-cta{display:grid;grid-template-columns:1fr;min-height:400px}
-@media(min-width:768px){.gcs-cta{grid-template-columns:1fr 1fr;min-height:534px}}
+@media(min-width:768px){.gcs-cta{grid-template-columns:1fr 1fr;column-gap:var(--space-6);min-height:534px}}
 .gcs-cta__left{padding:var(--space-14) var(--space-10);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:var(--space-8)}
-@media(min-width:768px){.gcs-cta__left{padding:var(--space-12) var(--space-16)}}
+@media(min-width:768px){.gcs-cta__left{padding:var(--space-16)}}
 .gcs-cta__text{display:flex;flex-direction:column;gap:var(--space-1-5);width:100%}
-.gcs-cta__left h2{margin:0;font-family:var(--font-serif);font-weight:var(--weight-regular);font-size:36px;line-height:40px;letter-spacing:-0.02em}
-@media(min-width:768px){.gcs-cta__left h2{font-size:60px;line-height:64px}}
+.gcs-cta__left h2{margin:0;letter-spacing:0}
 .gcs-cta__left h2 em{font-style:italic;color:var(--night-blue-50)}
-.gcs-cta__left p{margin:0;font-family:var(--font-sans);font-weight:var(--weight-light);font-size:18px;line-height:1.4}
-.gcs-cta--light .gcs-cta__left{background:var(--background);color:var(--night-blue-400)}
-.gcs-cta--blue .gcs-cta__left{background:var(--night-blue-400);color:var(--primary-foreground)}
+.gcs-cta__left p{margin:0;font-family:var(--font-sans);font-weight:var(--weight-light);font-size:var(--text-sm);line-height:1.4}
+.gcs-cta--light{background:var(--background)}
+.gcs-cta--blue{background:var(--night-blue-400)}
+.gcs-cta--light .gcs-cta__left{color:var(--night-blue-400)}
+.gcs-cta--blue .gcs-cta__left{color:var(--primary-foreground)}
 .gcs-cta--blue .gcs-cta__left p{color:var(--night-blue-50)}
 .gcs-cta__right{position:relative;min-height:300px}
 .gcs-cta__right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
@@ -149,10 +150,8 @@ html{scroll-behavior:smooth}
 /* Footer text colour (footer.reference.html set it on body) */
 .footer{color:var(--primary-foreground)}
 
-/* ---- Floating contact button (FloatingContactButton trigger) ---- */
-.fab{position:fixed;bottom:var(--space-8);right:var(--space-8);z-index:1001;width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--primary-foreground);border:0;box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s ease}
-.fab:hover{background:var(--primary)}
-.fab .icon-mask{width:24px;height:24px;color:#fff}
+/* Mobile contact bar (NavbarMobileContact) is fixed to the bottom below 768px: reserve its height */
+@media(max-width:767px){body{padding-bottom:calc(59px + env(safe-area-inset-bottom))}}
 
 </style>
 </head>
@@ -727,7 +726,7 @@ html{scroll-behavior:smooth}
   <div class="gcs-cta__left">
     <img src="assets/logos/GCS-Symbol-Blue.svg" alt="" aria-hidden="true" style="width:69.4px;height:70.7px;display:block">
     <div class="gcs-cta__text">
-      <h2>Let&rsquo;s Talk About<br><em>Your Next Move</em></h2>
+      <h2 class="text-h2">Let&rsquo;s Talk About<br><em>Your Next Move</em></h2>
       <p>Whether you&rsquo;re exploring second citizenship or residency, wanting a relocation plan, interested in partnership, or simply have a question, we&rsquo;d be glad to hear from you.</p>
     </div>
     <span id="cta-contact-root"></span>
@@ -835,7 +834,7 @@ html{scroll-behavior:smooth}
     </div>
   </div>
 </footer>
-<button class="fab" type="button" aria-label="Contact us"><span class="icon-mask" data-icon="chat"><svg width="100%" height="100%" fill="currentColor" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg></span></button>
+<div id="mcbar-root" style="display:contents"></div>
 <script type="text/babel">
 const Navbar = (() => { 
 const { useState, useRef, useEffect } = React;
@@ -1343,15 +1342,14 @@ function Navbar({
               })}
             </nav>
             <div className="gcs-nav__mobile-actions">
-              <Button variant="primary" size="default" fullWidth style={{ boxShadow: 'var(--shadow-xs)' }}>{ctaLabel}</Button>
+              <Button variant="outline" size="small" fullWidth>{ctaLabel}</Button>
               {topBarItems.map((item) => (
                 <Button
                   key={item.label}
-                  variant="primary"
-                  size="default"
+                  variant="outline"
+                  size="small"
                   fullWidth
-                  style={{ boxShadow: 'var(--shadow-xs)' }}
-                  iconLeft={<Icon name={item.icon} basePath={basePath} size={16} color="#fff" />}
+                  iconLeft={<Icon name={item.icon} basePath={basePath} size={20} />}
                 >
                   {item.label}
                 </Button>
@@ -1368,7 +1366,7 @@ function Navbar({
 return Navbar; })();
 const HeroInner = (() => { 
 const HERO_INNER_CSS = `
-.gcs-hero-inner{display:flex;align-items:center;width:100%;min-height:480px;background:var(--card);border-bottom:1px solid var(--border);box-sizing:border-box}
+.gcs-hero-inner{display:flex;align-items:center;width:100%;min-height:480px;background:var(--card);box-sizing:border-box}
 
 .gcs-hero-inner__copy{display:flex;flex:1 0 0;min-width:0;flex-direction:column;align-items:flex-start;justify-content:center;gap:32px;align-self:stretch;padding:48px 64px 0;color:var(--primary)}
 
@@ -1725,9 +1723,69 @@ function FilterBar({
 
 
 return FilterBar; })();
+const NavbarMobileContact = (() => {
+const { Button, Icon } = window.GCSDesignSystem_43c089;
+
+// ── Component Definition (mirror of NavbarMobileContact.jsx) ─────────────────
+const DEFAULT_ITEMS = [
+  { label: 'Callback', icon: 'phone_callback', href: '#' },
+  { label: 'Call us', icon: 'call', href: 'tel:+351211337060' },
+  { label: 'Contact', icon: 'mail', href: 'mailto:info@globalcitizensolutions.com' },
+];
+
+function barCss(showBelow) {
+  return `
+.gcs-mcbar{display:flex;align-items:center;justify-content:center;gap:var(--space-5);width:100%;min-height:59px;box-sizing:border-box;padding:0 var(--space-12) env(safe-area-inset-bottom);background:var(--primary);border-top:1px solid var(--night-blue-300);color:var(--primary-foreground);font-family:var(--font-sans)}
+.gcs-mcbar--fixed{position:fixed;left:0;right:0;bottom:0;z-index:1000}
+.gcs-mcbar__divider{width:1px;height:36px;flex-shrink:0;background:var(--night-blue-300)}
+.gcs-mcbar .gcs-btn:focus-visible{box-shadow:0 0 0 2px var(--primary),0 0 0 4px var(--primary-foreground)}
+@media(min-width:${showBelow}px){.gcs-mcbar{display:none}}
+`;
+}
+
+const ITEM_STYLE = {
+  height: '44px',
+  padding: 0,
+  gap: 'var(--space-1)',
+  color: 'var(--primary-foreground)',
+  fontSize: 'var(--text-2xs)',
+};
+
+function NavbarMobileContact({
+  items = DEFAULT_ITEMS,
+  ariaLabel = 'Contact',
+  showBelow = 768,
+  fixed = true,
+  className,
+  style,
+}) {
+  const classes = ['gcs-mcbar', fixed && 'gcs-mcbar--fixed', className].filter(Boolean).join(' ');
+
+  return (
+    <nav className={classes} aria-label={ariaLabel} style={style}>
+      <style>{barCss(showBelow)}</style>
+      {items.map((item, i) => (
+        <React.Fragment key={`${item.label}-${i}`}>
+          {i > 0 && <span className="gcs-mcbar__divider" aria-hidden="true" />}
+          <Button
+            variant="text"
+            href={item.href}
+            iconLeft={<Icon name={item.icon} size={16} />}
+            style={ITEM_STYLE}
+          >
+            {item.label}
+          </Button>
+        </React.Fragment>
+      ))}
+    </nav>
+  );
+}
+
+return NavbarMobileContact; })();
 const { Button, Icon } = window.GCSDesignSystem_43c089;
 
 ReactDOM.createRoot(document.getElementById('nav-root')).render(<Navbar ctaLabel="Contact Us" />);
+ReactDOM.createRoot(document.getElementById('mcbar-root')).render(<NavbarMobileContact />);
 
 ReactDOM.createRoot(document.getElementById('hero-root')).render(
   <HeroInner

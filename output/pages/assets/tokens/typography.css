@@ -11,10 +11,27 @@
   --font-serif: 'Yrsa', Georgia, 'Times New Roman', serif;
   --font-mono:  'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
 
+  /* ----------------------------------------------------------
+     Type Scale
+     Modular scale, base 16px, ratio 1.2. --text-sm is the base
+     step (matches the 16px body font-size below).
+     ---------------------------------------------------------- */
+  --text-2xs: 11px;  /* 0.688rem */
+  --text-xs:  13px;  /* 0.813rem */
+  --text-sm:  16px;  /* 1rem — base */
+  --text-md:  19px;  /* 1.188rem */
+  --text-lg:  23px;  /* 1.438rem */
+  --text-xl:  28px;  /* 1.75rem */
+  --text-2xl: 33px;  /* 2.063rem */
+  --text-3xl: 40px;  /* 2.5rem — used by .text-h3 */
+  --text-4xl: 48px;  /* 3rem */
+  --text-5xl: 57px;  /* 3.563rem */
+  --text-6xl: 69px;  /* 4.313rem — used by .text-display-xl */
+
   /* Letter-spacing scale */
   --tracking-tighter: -0.05em;
   --tracking-tight:   -0.025em;
-  --tracking-normal:  -0.01em;
+  --tracking-normal:   0em;
   --tracking-wide:     0.025em;
   --tracking-wider:    0.05em;
   --tracking-widest:   0.1em;
@@ -36,7 +53,7 @@
 
 body {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: var(--text-sm);
   line-height: 1.4;
   color: var(--foreground);
   background-color: var(--background);
@@ -52,24 +69,8 @@ body {
 /* Serif Display — for heroes, page titles, editorial moments */
 .text-display-xl {
   font-family: var(--font-serif);
-  font-size: 60px;
-  line-height: 64px;
-  font-weight: 400;
-  letter-spacing: var(--tracking-tight);
-}
-
-.text-display-l {
-  font-family: var(--font-serif);
-  font-size: 48px;
-  line-height: 54px;
-  font-weight: 400;
-  letter-spacing: var(--tracking-tight);
-}
-
-.text-display-md {
-  font-family: var(--font-serif);
-  font-size: 36px;
-  line-height: 40px;
+  font-size: var(--text-6xl);
+  line-height: 74px;
   font-weight: 400;
   letter-spacing: var(--tracking-tight);
 }
@@ -77,72 +78,64 @@ body {
 /* Headings */
 .text-h1 {
   font-family: var(--font-serif);
-  font-size: 48px;
-  line-height: 54px;
-  font-weight: 400;
+  font-size: var(--text-5xl);
+  line-height: 64px;
+  font-weight: 500;
 }
 
 .text-h2 {
   font-family: var(--font-serif);
-  font-size: 36px;
-  line-height: 40px;
+  font-size: var(--text-4xl);
+  line-height: 54px;
   font-weight: 400;
+}
+
+/* H2 emphasis — wrap the highlighted part of an H2 in <em>: italic, Night Blue 50 */
+.text-h2 em {
+  font-style: italic;
+  color: var(--night-blue-50);
 }
 
 .text-h3 {
   font-family: var(--font-sans);
-  font-size: 30px;
-  line-height: 1.4;
+  font-size: var(--text-3xl);
+  line-height: 46px;
   font-weight: 300;
 }
 
 .text-h4 {
   font-family: var(--font-sans);
-  font-size: 24px;
-  line-height: 1.4;
-  font-weight: 400;
-}
-
-.text-display-xs {
-  font-family: var(--font-sans);
-  font-size: 24px;
+  font-size: var(--text-lg);
   line-height: 1.4;
   font-weight: 400;
 }
 
 /* Body / UI text */
-.text-text-xl {
-  font-family: var(--font-sans);
-  font-size: 20px;
-  line-height: 1.4;
-  font-weight: 400;
-}
-
 .text-body-large {
   font-family: var(--font-sans);
-  font-size: 18px;
+  font-size: var(--text-md);
   line-height: 1.4;
   font-weight: 400;
 }
 
 .text-body {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: var(--text-sm);
   line-height: 1.4;
   font-weight: 400;
 }
 
 .text-body-small {
   font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: var(--text-xs);
+  line-height: 18px;
   font-weight: 400;
 }
 
 /* Small / Label text */
 .text-caption {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: var(--text-2xs);
   line-height: 1.4;
   font-weight: 400;
   letter-spacing: var(--tracking-wide);
@@ -150,7 +143,7 @@ body {
 
 .text-overline {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: var(--text-2xs);
   line-height: 1.4;
   font-weight: 600;
   text-transform: uppercase;
@@ -160,22 +153,22 @@ body {
 /* Serif body — editorial pull quotes, bylines */
 .text-serif-lg {
   font-family: var(--font-serif);
-  font-size: 18px;
-  line-height: 28px;
+  font-size: var(--text-md);
+  line-height: 30px;
   font-weight: 500;
 }
 
 /* Monospace */
 .text-mono {
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: var(--text-xs);
   line-height: 1.5;
   font-weight: 400;
 }
 
 .text-mono-sm {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--text-2xs);
   line-height: 1.5;
   font-weight: 400;
 }
