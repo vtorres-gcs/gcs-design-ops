@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="GIU Calendar" description="A4 Global Intelligence Unit annual calendar — cover, year-at-a-glance grid, and detailed publication schedule" -->
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yrsa:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="./ds-base.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@page { size: 210mm 297mm; margin: 0; }
+@media print {
+  html, body { margin: 0 !important; padding: 0 !important; }
+  [data-doc-wrapper] { background: none !important; padding: 0 !important; min-height: unset !important; }
+  [data-doc-page] {
+    margin: 0 !important; box-shadow: none !important; border-radius: 0 !important;
+    page-break-after: always; break-after: page;
+    width: 210mm !important; height: 297mm !important;
+    min-height: unset !important; overflow: hidden !important; position: relative !important;
+  }
+  [data-doc-page]:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</helmet>
+
+<div data-doc-wrapper="" style="background: #DDE0E8; padding: 40px 24px; min-height: 100vh; font-family: 'Heebo', 'Helvetica Neue', sans-serif;">
+
+  <!-- ── PAGE 1: COVER ─────────────────────────────────────── -->
+  <div data-doc-page="" data-screen-label="01 Cover" style="width: 794px; height: 1123px; margin: 0 auto 32px; border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; overflow: hidden; position: relative; background: #000B2E;">
+    <img src="./background-cover.png" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0;">
+
+    <!-- Top bar -->
+    <div style="position: relative; z-index: 2; padding: 48px 56px 0; display: flex; justify-content: flex-start; align-items: center; gap: 14px;">
+      <img src="../../../assets/logos/GCS-Symbol-White.svg" style="width: 42px; height: 42px;">
+      <div style="width: 1px; height: 30px; background: rgba(255,255,255,0.2); flex-shrink: 0;"></div>
+      <img src="../../../assets/logos/others/GIU-Wordmark-White.svg" style="height: 13px; width: auto;">
+    </div>
+
+    <!-- Bottom text block -->
+    <div style="position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 56px 64px;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 20px;">{{ eyebrow }}</div>
+
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 64px; color: #FFFFFF; line-height: 1.06; letter-spacing: -1.5px;">{{ coverTitleLine1 }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 64px; color: #B3B5CD; line-height: 1.06; letter-spacing: -1.5px; margin-bottom: 36px;">{{ coverTitleLine2 }}</div>
+
+      <div style="width: 48px; height: 1px; background: rgba(255,255,255,0.25); margin-bottom: 28px;"></div>
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.65; max-width: 480px;">{{ coverSubtitle }}</div>
+    </div>
+  </div>
+
+  <!-- ── PAGE 2: YEAR-AT-A-GLANCE GRID ─────────────────────── -->
+  <div data-doc-page="" data-screen-label="02 Year at a Glance" style="width: 794px; height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <!-- Header -->
+    <div style="padding: 20px 56px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">Year at a Glance</span>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="../../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+        <div style="width: 1px; height: 16px; background: #D0D2E0; flex-shrink: 0;"></div>
+        <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 56px; flex-shrink: 0;"></div>
+
+    <!-- Title -->
+    <div style="padding: 32px 56px 24px; flex-shrink: 0;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 8px;">{{ calYear }} Publication Calendar</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 36px; color: #16182A; line-height: 1.08; letter-spacing: -0.6px;">{{ gridHeading }}</div>
+    </div>
+
+    <!-- Legend -->
+    <div style="padding: 0 56px 20px; display: flex; gap: 20px; flex-shrink: 0;">
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <div style="width: 10px; height: 10px; border-radius: 2px; background: #000957; flex-shrink: 0;"></div>
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; color: #6F7185; letter-spacing: 0.04em;">Report</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <div style="width: 10px; height: 10px; border-radius: 2px; background: #3D51E8; flex-shrink: 0;"></div>
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; color: #6F7185; letter-spacing: 0.04em;">Briefing</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <div style="width: 10px; height: 10px; border-radius: 2px; background: var(--doc-accent-soft); flex-shrink: 0;"></div>
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; color: #6F7185; letter-spacing: 0.04em;">Index</span>
+      </div>
+    </div>
+
+    <!-- Month grid: 3 cols × 4 rows -->
+    <div style="padding: 0 56px 0; flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 1fr); gap: 10px; overflow: hidden;">
+
+      <!-- January -->
+      <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">January</div>
+        <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ jan1 }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- February -->
+      <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">February</div>
+        <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ feb1 }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- March -->
+      <div style="border: 1.5px solid #000957; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; background: #F7F8FD; overflow: hidden;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #D4D6E8;">March</div>
+        <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #000957; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #000957; line-height: 1.45;">{{ mar1 }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- April -->
+      <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">April</div>
+        <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: var(--doc-accent-soft); flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ apr1 }}</span>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ apr2 }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- May -->
+      <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">May</div>
+        <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ may1 }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- June -->
+      <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">June</div>
+        <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ jun1 }}</span>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #000957; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ jun2 }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- July -->
+      <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">July</div>
+        <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ jul1 }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- August -->
+      <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">August</div>
+        <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ aug1 }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- September -->
+      <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">September</div>
+        <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ sep1 }}</span>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: var(--doc-accent-soft); flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ sep2 }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- October -->
+      <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">October</div>
+        <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #000957; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ oct1 }}</span>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ oct2 }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- November -->
+      <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">November</div>
+        <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">{{ nov1 }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- December -->
+      <div style="border: 1.5px solid #000957; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; background: #F7F8FD; overflow: hidden;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #D4D6E8;">December</div>
+        <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <div style="width: 6px; height: 6px; border-radius: 1px; background: #000957; flex-shrink: 0; margin-top: 3px;"></div>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #000957; line-height: 1.45;">{{ dec1 }}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Total count strip -->
+    <div style="margin: 16px 56px; display: flex; gap: 0; flex-shrink: 0; border: 1px solid #ECEDF5; border-radius: 4px; overflow: hidden;">
+      <div style="flex: 1; padding: 12px 18px; border-right: 1px solid #ECEDF5; display: flex; gap: 12px; align-items: center;">
+        <div style="width: 8px; height: 8px; border-radius: 2px; background: #000957; flex-shrink: 0;"></div>
+        <span style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: #16182A;">{{ totalReports }} Reports</span>
+      </div>
+      <div style="flex: 1; padding: 12px 18px; border-right: 1px solid #ECEDF5; display: flex; gap: 12px; align-items: center;">
+        <div style="width: 8px; height: 8px; border-radius: 2px; background: #3D51E8; flex-shrink: 0;"></div>
+        <span style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: #16182A;">{{ totalBriefings }} Briefings</span>
+      </div>
+      <div style="flex: 1; padding: 12px 18px; display: flex; gap: 12px; align-items: center;">
+        <div style="width: 8px; height: 8px; border-radius: 2px; background: var(--doc-accent-soft); flex-shrink: 0;"></div>
+        <span style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: #16182A;">{{ totalIndices }} Indices</span>
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 56px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ calYear }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">02</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 3: FULL PUBLICATION SCHEDULE ─────────────────── -->
+  <div data-doc-page="" data-screen-label="03 Publication Schedule" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 56px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">Publication Schedule</span>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="../../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+        <div style="width: 1px; height: 16px; background: #D0D2E0; flex-shrink: 0;"></div>
+        <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 56px; flex-shrink: 0;"></div>
+
+    <div style="padding: 40px 56px 0; flex-shrink: 0;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 8px;">Full Schedule</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 36px; color: #16182A; line-height: 1.08; letter-spacing: -0.6px; margin-bottom: 32px;">{{ scheduleHeading }}</div>
+    </div>
+
+    <!-- Schedule rows -->
+    <div style="padding: 0 56px; flex: 1; display: flex; flex-direction: column;">
+
+      <!-- Q1 -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 12px; margin-top: 4px;">Q1 — January · February · March</div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">January</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_jan1_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_jan1_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #EEF0FD; color: #3D51E8;">Briefing</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_jan1_date }}</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">February</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_feb1_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_feb1_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #EEF0FD; color: #3D51E8;">Briefing</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_feb1_date }}</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0; background: #F7F8FD; border-radius: 4px; padding-left: 12px; padding-right: 12px; margin: 0 -12px;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #000957; padding-right: 12px;">March</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 600; color: #000957; margin-bottom: 2px;">{{ s_mar1_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #6F7185; line-height: 1.55;">{{ s_mar1_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #000957; color: #FFFFFF;">Report</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #9B9CAD; text-align: right; padding-top: 2px;">{{ s_mar1_date }}</div>
+      </div>
+
+      <!-- Q2 -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 12px; margin-top: 22px;">Q2 — April · May · June</div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">April</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_apr1_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_apr1_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #EDEEFF; color: var(--doc-accent-soft);">Index</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_apr1_date }}</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">April</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_apr2_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_apr2_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #EEF0FD; color: #3D51E8;">Briefing</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_apr2_date }}</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">May</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_may1_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_may1_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #EEF0FD; color: #3D51E8;">Briefing</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_may1_date }}</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">June</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_jun1_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_jun1_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #EEF0FD; color: #3D51E8;">Briefing</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_jun1_date }}</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">June</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_jun2_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_jun2_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #000957; color: #FFFFFF;">Report</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_jun2_date }}</div>
+      </div>
+
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 56px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ calYear }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">03</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 4: SCHEDULE CONTINUED ────────────────────────── -->
+  <div data-doc-page="" data-screen-label="04 Publication Schedule (cont.)" style="width: 794px; min-height: 1123px; margin: 0 auto; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 56px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">Publication Schedule (cont.)</span>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="../../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+        <div style="width: 1px; height: 16px; background: #D0D2E0; flex-shrink: 0;"></div>
+        <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 56px; flex-shrink: 0;"></div>
+
+    <div style="padding: 40px 56px 0; flex: 1; display: flex; flex-direction: column;">
+
+      <!-- Q3 -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 12px;">Q3 — July · August · September</div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">July</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_jul1_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_jul1_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #EEF0FD; color: #3D51E8;">Briefing</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_jul1_date }}</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">August</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_aug1_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_aug1_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #EEF0FD; color: #3D51E8;">Briefing</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_aug1_date }}</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">September</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_sep1_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_sep1_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #EEF0FD; color: #3D51E8;">Briefing</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_sep1_date }}</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">September</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_sep2_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_sep2_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #EDEEFF; color: var(--doc-accent-soft);">Index</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_sep2_date }}</div>
+      </div>
+
+      <!-- Q4 -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 12px; margin-top: 22px;">Q4 — October · November · December</div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">October</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_oct1_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_oct1_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #000957; color: #FFFFFF;">Report</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_oct1_date }}</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">October</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_oct2_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_oct2_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #EEF0FD; color: #3D51E8;">Briefing</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_oct2_date }}</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #9B9CAD; padding-right: 12px;">November</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; margin-bottom: 2px;">{{ s_nov1_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.55;">{{ s_nov1_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #EEF0FD; color: #3D51E8;">Briefing</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-label-faint); text-align: right; padding-top: 2px;">{{ s_nov1_date }}</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 90px 1fr 80px 70px; border-top: 1px solid #ECEDF5; padding: 14px 0; align-items: start; gap: 0; background: #F7F8FD; border-radius: 4px; padding-left: 12px; padding-right: 12px; margin: 0 -12px;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; color: #000957; padding-right: 12px;">December</div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 600; color: #000957; margin-bottom: 2px;">{{ s_dec1_title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #6F7185; line-height: 1.55;">{{ s_dec1_desc }}</div>
+        </div>
+        <div style="display: flex; justify-content: center; padding-top: 1px;"><div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: #000957; color: #FFFFFF;">Report</div></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #9B9CAD; text-align: right; padding-top: 2px;">{{ s_dec1_date }}</div>
+      </div>
+
+      <!-- Closing note -->
+      <div style="margin-top: 36px; padding: 22px 26px; background: #000957; border-radius: 6px; flex-shrink: 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px;">About the GIU</div>
+        <div style="font-family: 'Yrsa', serif; font-size: 17px; font-style: italic; font-weight: 400; color: rgba(255,255,255,0.85); line-height: 1.6;">{{ closingNote }}</div>
+      </div>
+
+      <div style="flex: 1;"></div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 56px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ calYear }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">04</span>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 860, &quot;height&quot;: 1400},
+  &quot;calYear&quot;:         {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;2026&quot;, &quot;section&quot;: &quot;General&quot;},
+  &quot;eyebrow&quot;:         {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Global Intelligence Unit · 2026&quot;, &quot;section&quot;: &quot;Cover&quot;},
+  &quot;coverTitleLine1&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Annual Reports &amp;&quot;, &quot;section&quot;: &quot;Cover&quot;},
+  &quot;coverTitleLine2&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Briefings Calendar.&quot;, &quot;section&quot;: &quot;Cover&quot;},
+  &quot;coverSubtitle&quot;:   {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;A forward look at every GIU publication scheduled for 2026.&quot;, &quot;section&quot;: &quot;Cover&quot;},
+  &quot;totalReports&quot;:    {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;5&quot;, &quot;section&quot;: &quot;Totals&quot;},
+  &quot;totalBriefings&quot;:  {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;9&quot;, &quot;section&quot;: &quot;Totals&quot;},
+  &quot;totalIndices&quot;:    {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;2&quot;, &quot;section&quot;: &quot;Totals&quot;}
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const y = this.props.calYear ?? '2026';
+    return {
+      calYear: y,
+
+      // Cover
+      eyebrow:          this.props.eyebrow         ?? `Global Intelligence Unit · ${y}`,
+      coverTitleLine1:  this.props.coverTitleLine1  ?? 'Annual Reports &',
+      coverTitleLine2:  this.props.coverTitleLine2  ?? 'Briefings Calendar.',
+      coverSubtitle:    this.props.coverSubtitle    ?? `A forward look at every GIU publication scheduled for ${y} — from flagship annual reports to topical market briefings.`,
+
+      // Grid page
+      gridHeading:      this.props.gridHeading      ?? `All ${y} GIU Publications at a Glance`,
+
+      // Month summaries (grid)
+      jan1: this.props.jan1 ?? 'Q1 Global Mobility Briefing',
+      feb1: this.props.feb1 ?? 'Caribbean Market Update',
+      mar1: this.props.mar1 ?? 'Citizenship Programs Report — Annual Flagship',
+      apr1: this.props.apr1 ?? 'European Residency Index',
+      apr2: this.props.apr2 ?? 'Real Estate & CBI Markets Briefing',
+      may1: this.props.may1 ?? 'Tax & Wealth Planning Briefing',
+      jun1: this.props.jun1 ?? 'Mid-Year Market Briefing',
+      jun2: this.props.jun2 ?? 'Residency by Investment Report',
+      jul1: this.props.jul1 ?? 'Pacific Programs Spotlight Briefing',
+      aug1: this.props.aug1 ?? 'Regulatory Outlook Briefing',
+      sep1: this.props.sep1 ?? 'Q3 Intelligence Briefing',
+      sep2: this.props.sep2 ?? 'Global Passport Index',
+      oct1: this.props.oct1 ?? 'Investor Demand Report',
+      oct2: this.props.oct2 ?? 'End-of-Year Horizon Briefing',
+      nov1: this.props.nov1 ?? 'Due Diligence Standards Briefing',
+      dec1: this.props.dec1 ?? `GIU Year in Review ${y}`,
+
+      // Totals
+      totalReports:   this.props.totalReports   ?? '5',
+      totalBriefings: this.props.totalBriefings ?? '9',
+      totalIndices:   this.props.totalIndices   ?? '2',
+
+      // Schedule page headings
+      scheduleHeading: this.props.scheduleHeading ?? `${y} Publication Schedule`,
+
+      // Full schedule entries Q1
+      s_jan1_title: this.props.s_jan1_title ?? 'Q1 Global Mobility Briefing',
+      s_jan1_desc:  this.props.s_jan1_desc  ?? 'An overview of global mobility trends, regulatory shifts, and key market developments entering the new year.',
+      s_jan1_date:  this.props.s_jan1_date  ?? 'Jan 2026',
+
+      s_feb1_title: this.props.s_feb1_title ?? 'Caribbean Market Update',
+      s_feb1_desc:  this.props.s_feb1_desc  ?? 'Program-by-program updates across CARICOM citizenship programs, covering pricing, due diligence changes, and demand signals.',
+      s_feb1_date:  this.props.s_feb1_date  ?? 'Feb 2026',
+
+      s_mar1_title: this.props.s_mar1_title ?? 'Citizenship Programs Report',
+      s_mar1_desc:  this.props.s_mar1_desc  ?? `The GIU's annual flagship report — a comprehensive ranking and analysis of the world's leading citizenship by investment programs.`,
+      s_mar1_date:  this.props.s_mar1_date  ?? 'Mar 2026',
+
+      // Q2
+      s_apr1_title: this.props.s_apr1_title ?? 'European Residency Index',
+      s_apr1_desc:  this.props.s_apr1_desc  ?? 'A comparative index ranking European golden visa and residency programs across 12 criteria including access, cost, and stability.',
+      s_apr1_date:  this.props.s_apr1_date  ?? 'Apr 2026',
+
+      s_apr2_title: this.props.s_apr2_title ?? 'Real Estate & CBI Markets Briefing',
+      s_apr2_desc:  this.props.s_apr2_desc  ?? 'Analysis of how real estate-backed CBI options are performing across Caribbean and European markets in the current cycle.',
+      s_apr2_date:  this.props.s_apr2_date  ?? 'Apr 2026',
+
+      s_may1_title: this.props.s_may1_title ?? 'Tax & Wealth Planning Briefing',
+      s_may1_desc:  this.props.s_may1_desc  ?? 'How citizenship and residency intersect with tax planning obligations for HNWI clients — jurisdiction-by-jurisdiction guidance.',
+      s_may1_date:  this.props.s_may1_date  ?? 'May 2026',
+
+      s_jun1_title: this.props.s_jun1_title ?? 'Mid-Year Market Briefing',
+      s_jun1_desc:  this.props.s_jun1_desc  ?? 'A mid-year pulse check on demand, program changes, and emerging trends across the investment migration landscape.',
+      s_jun1_date:  this.props.s_jun1_date  ?? 'Jun 2026',
+
+      s_jun2_title: this.props.s_jun2_title ?? 'Residency by Investment Report',
+      s_jun2_desc:  this.props.s_jun2_desc  ?? 'An in-depth annual review of golden visa and residency by investment programs, covering Europe, the Middle East, and Asia.',
+      s_jun2_date:  this.props.s_jun2_date  ?? 'Jun 2026',
+
+      // Q3
+      s_jul1_title: this.props.s_jul1_title ?? 'Pacific Programs Spotlight',
+      s_jul1_desc:  this.props.s_jul1_desc  ?? 'A focused briefing on Vanuatu, Nauru, and Pacific citizenship programs — processing times, due diligence, and passport strength.',
+      s_jul1_date:  this.props.s_jul1_date  ?? 'Jul 2026',
+
+      s_aug1_title: this.props.s_aug1_title ?? 'Regulatory Outlook Briefing',
+      s_aug1_desc:  this.props.s_aug1_desc  ?? 'OECD, FATF, and EU regulatory developments affecting investment migration — what advisors and applicants need to know.',
+      s_aug1_date:  this.props.s_aug1_date  ?? 'Aug 2026',
+
+      s_sep1_title: this.props.s_sep1_title ?? 'Q3 Intelligence Briefing',
+      s_sep1_desc:  this.props.s_sep1_desc  ?? 'Quarterly market intelligence covering demand metrics, program changes, and advisor sentiment across key geographies.',
+      s_sep1_date:  this.props.s_sep1_date  ?? 'Sep 2026',
+
+      s_sep2_title: this.props.s_sep2_title ?? 'Global Passport Index',
+      s_sep2_desc:  this.props.s_sep2_desc  ?? 'The GIU annual passport strength ranking — 199 passports scored across visa-free access, global mobility, and travel utility.',
+      s_sep2_date:  this.props.s_sep2_date  ?? 'Sep 2026',
+
+      // Q4
+      s_oct1_title: this.props.s_oct1_title ?? 'Investor Demand Report',
+      s_oct1_desc:  this.props.s_oct1_desc  ?? 'A data-driven look at applicant profiles, originating countries, and demand trends across citizenship and residency programs.',
+      s_oct1_date:  this.props.s_oct1_date  ?? 'Oct 2026',
+
+      s_oct2_title: this.props.s_oct2_title ?? 'End-of-Year Horizon Briefing',
+      s_oct2_desc:  this.props.s_oct2_desc  ?? 'Forward-looking analysis of what to expect in 2027 — pricing changes, program launches, and regulatory shifts on the horizon.',
+      s_oct2_date:  this.props.s_oct2_date  ?? 'Oct 2026',
+
+      s_nov1_title: this.props.s_nov1_title ?? 'Due Diligence Standards Briefing',
+      s_nov1_desc:  this.props.s_nov1_desc  ?? 'An assessment of how programs compare on due diligence rigour — and why it matters for program credibility and long-term value.',
+      s_nov1_date:  this.props.s_nov1_date  ?? 'Nov 2026',
+
+      s_dec1_title: this.props.s_dec1_title ?? `GIU Year in Review ${y}`,
+      s_dec1_desc:  this.props.s_dec1_desc  ?? `A comprehensive end-of-year synthesis of the investment migration industry — the year's key events, data, and what they mean for ${Number(y)+1}.`,
+      s_dec1_date:  this.props.s_dec1_date  ?? 'Dec 2026',
+
+      closingNote: this.props.closingNote ?? 'The GCS Global Intelligence Unit produces independent research on global mobility, residency, and citizenship planning — drawing on program data, client insights, and expert assessments compiled by our in-house advisory team.',
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+{
+  "name": "factsheet",
+  "displayName": "Factsheet",
+  "brand": "gcs",
+  "implemented": true,
+  "pageCount": 3,
+  "pages": [
+    "Cover — full-bleed photo, GCS symbol, bottom block: 74px title (italic second line), 28px subtitle, supporting paragraph",
+    "Factsheet — header, round flag + 46px title + subtitle, 4 dark key-figure tiles, Overview (left, 4fr) beside 6 Key Benefit icon cards (right, 6fr, 2x3), 4 Investment Option cards, 6-step Application Procedure, footer",
+    "Back cover — 'Our Global Presence.', country list, social icons, London address (static copy, no props)"
+  ],
+  "propsSchema": {
+    "country": {
+      "type": "text",
+      "optional": true,
+      "note": "page-2 header eyebrow (uppercased); falls back to coverTitleLine1 + coverTitleLine2"
+    },
+    "coverTitleLine1": {
+      "type": "text",
+      "note": "Cover + page-2 title, first (upright) part, e.g. 'Italy'"
+    },
+    "coverTitleLine2": {
+      "type": "text",
+      "note": "Second (italic, night-blue-50) part, e.g. 'Investor Visa'"
+    },
+    "subtitle": {
+      "type": "text",
+      "note": "Cover 28px subtitle and page-2 14px subtitle"
+    },
+    "supportText": {
+      "type": "text",
+      "note": "Cover supporting paragraph, max 490px wide"
+    },
+    "flagIso2": {
+      "type": "text",
+      "optional": true,
+      "note": "ISO 3166-1 alpha-2 code for the round 44px flag on page 2 resolved by scripts/flags.py from the vendored msikma/country-flags set in assets/flags/ (atlas.png) (codes that set lacks, e.g. xk or gb-sct, are rejected). Omit only if the user wants no flag — the title then starts at the left margin."
+    },
+    "year": {
+      "type": "text",
+      "optional": true,
+      "note": "Declared by the template but never rendered; accepted and ignored."
+    },
+    "fig1Value": {
+      "type": "text"
+    },
+    "fig1Label": {
+      "type": "text"
+    },
+    "fig2Value": {
+      "type": "text"
+    },
+    "fig2Label": {
+      "type": "text"
+    },
+    "fig3Value": {
+      "type": "text"
+    },
+    "fig3Label": {
+      "type": "text"
+    },
+    "fig4Value": {
+      "type": "text"
+    },
+    "fig4Label": {
+      "type": "text"
+    },
+    "overview": {
+      "type": "text",
+      "maxLines": 18,
+      "note": "Pre-line text: '\\n\\n' makes a blank line between paragraphs. HARD LIMIT: 18 lines in the box (about 560-600 chars as 3 short paragraphs) — the mapper throws above that. The template's own 4-paragraph demo copy is 19 lines and makes the box grow."
+    },
+    "benefit1Title": {
+      "type": "text"
+    },
+    "benefit1Desc": {
+      "type": "text",
+      "note": "Template clamps to 2 lines (card width 160px) — keep to ~60 characters"
+    },
+    "benefit2Title": {
+      "type": "text"
+    },
+    "benefit2Desc": {
+      "type": "text"
+    },
+    "benefit3Title": {
+      "type": "text"
+    },
+    "benefit3Desc": {
+      "type": "text"
+    },
+    "benefit4Title": {
+      "type": "text"
+    },
+    "benefit4Desc": {
+      "type": "text"
+    },
+    "benefit5Title": {
+      "type": "text"
+    },
+    "benefit5Desc": {
+      "type": "text"
+    },
+    "benefit6Title": {
+      "type": "text"
+    },
+    "benefit6Desc": {
+      "type": "text"
+    },
+    "inv1Title": {
+      "type": "text"
+    },
+    "inv1Amount": {
+      "type": "text"
+    },
+    "inv1Desc": {
+      "type": "text"
+    },
+    "inv2Title": {
+      "type": "text"
+    },
+    "inv2Amount": {
+      "type": "text"
+    },
+    "inv2Desc": {
+      "type": "text"
+    },
+    "inv3Title": {
+      "type": "text"
+    },
+    "inv3Amount": {
+      "type": "text"
+    },
+    "inv3Desc": {
+      "type": "text"
+    },
+    "inv4Title": {
+      "type": "text"
+    },
+    "inv4Amount": {
+      "type": "text"
+    },
+    "inv4Desc": {
+      "type": "text"
+    },
+    "step1Title": {
+      "type": "text"
+    },
+    "step1Desc": {
+      "type": "text"
+    },
+    "step2Title": {
+      "type": "text"
+    },
+    "step2Desc": {
+      "type": "text"
+    },
+    "step3Title": {
+      "type": "text"
+    },
+    "step3Desc": {
+      "type": "text"
+    },
+    "step4Title": {
+      "type": "text"
+    },
+    "step4Desc": {
+      "type": "text"
+    },
+    "step5Title": {
+      "type": "text"
+    },
+    "step5Desc": {
+      "type": "text"
+    },
+    "step6Title": {
+      "type": "text"
+    },
+    "step6Desc": {
+      "type": "text"
+    }
+  },
+  "fixedIcons": {
+    "keyBenefits": [
+      "travel_explore",
+      "badge",
+      "family_restroom",
+      "work",
+      "savings",
+      "public"
+    ],
+    "note": "Hard-coded in the template, not props. Outlined Material Symbols, accent colour."
+  },
+  "droppedProps": {
+    "accentColor1": "Flag-stripe accent colours from the template's data-props; never referenced by any rendered element.",
+    "accentColor2": "same",
+    "accentColor3": "same"
+  }
+}

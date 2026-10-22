@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Factsheet" description="A4 programme factsheet — cover, key facts & investment options, global presence contact" -->
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yrsa:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="./ds-base.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@page { size: 210mm 297mm; margin: 0; }
+@media print {
+  html, body { margin: 0 !important; padding: 0 !important; }
+  [data-doc-wrapper] { background: none !important; padding: 0 !important; min-height: unset !important; }
+  [data-doc-page] {
+    margin: 0 !important; box-shadow: none !important; border-radius: 0 !important;
+    page-break-after: always; break-after: page;
+    width: 210mm !important; height: 297mm !important;
+    min-height: unset !important; overflow: hidden !important; position: relative !important;
+  }
+  [data-doc-page]:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</helmet>
+
+<div data-doc-wrapper="" style="background: var(--doc-wrapper); padding: 40px 24px; min-height: 100vh; font-family: 'Heebo', 'Helvetica Neue', sans-serif;">
+
+  <!-- ── PAGE 1: COVER ─────────────────────────────────────── -->
+  <div data-doc-page="" style="width: 794px; height: 1123px; margin: 0 auto 32px; border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; overflow: hidden; position: relative; background: var(--primary);">
+
+    <!-- Background photo -->
+    <img src="./background-cover.png" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0;">
+
+    <!-- GCS logo top-left -->
+    <div style="position: relative; z-index: 2; padding: 52px 60px 0;">
+      <img src="../../../assets/logos/GCS-Symbol-White.svg" style="width: 42px; height: 42px;">
+    </div>
+
+    <!-- Bottom text block -->
+    <div style="position: relative; z-index: 2; padding: 0 60px 64px; margin-top: auto;">
+
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 74px; color: var(--primary-foreground); line-height: 0.98; letter-spacing: -2px; margin-bottom: 20px;">{{ coverTitleLine1 }} <span style="font-style: italic; color: var(--night-blue-50);">{{ coverTitleLine2 }}</span></div>
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 28px; font-weight: 300; color: var(--primary-foreground); line-height: 1.3; margin-bottom: 16px;">{{ subtitle }}</div>
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.58); line-height: 1.65; max-width: 490px;">{{ supportText }}</div>
+    </div>
+  </div>
+
+  <!-- ── PAGE 2: FACTSHEET CONTENT ─────────────────────────── -->
+  <div data-doc-page="" style="width: 794px; height: 1123px; margin: 0 auto 32px; background: var(--card); border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+
+    <!-- Page header -->
+    <div style="padding: 18px 56px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--doc-muted);">{{ country }}</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary);">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid var(--doc-border); margin: 0 56px; flex-shrink: 0;"></div>
+
+    <!-- Programme title block (swap assets/flags/<iso2>.png per country) -->
+    <div style="padding: 28px 56px 4px; flex-shrink: 0; display: flex; align-items: flex-start; gap: 16px;">
+      <img src="../../../assets/flags/it.png" alt="" style="width: 44px; height: 44px; object-fit: cover; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,9,87,0.12); display: block; flex-shrink: 0;">
+      <div>
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 46px; line-height: 1; letter-spacing: -1px; color: var(--primary);">{{ coverTitleLine1 }} <span style="font-style: italic; color: var(--night-blue-50);">{{ coverTitleLine2 }}</span></div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: var(--doc-body); line-height: 1.5; margin-top: 8px;">{{ subtitle }}</div>
+      </div>
+    </div>
+
+    <!-- Key figures -->
+    <div style="padding: 18px 56px 0; flex-shrink: 0;">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
+        <div style="background: var(--primary); padding: 16px 16px 14px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 8px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">{{ fig1Label }}</div>
+          <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 28px; color: var(--primary-foreground); line-height: 1; letter-spacing: -0.5px; margin-bottom: 0;">{{ fig1Value }}</div>
+        </div>
+        <div style="background: var(--primary); padding: 16px 16px 14px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 8px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">{{ fig2Label }}</div>
+          <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 28px; color: var(--primary-foreground); line-height: 1; letter-spacing: -0.5px; margin-bottom: 0;">{{ fig2Value }}</div>
+        </div>
+        <div style="background: var(--primary); padding: 16px 16px 14px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 8px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">{{ fig3Label }}</div>
+          <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 28px; color: var(--primary-foreground); line-height: 1; letter-spacing: -0.5px; margin-bottom: 0;">{{ fig3Value }}</div>
+        </div>
+        <div style="background: var(--primary); padding: 16px 16px 14px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 8px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">{{ fig4Label }}</div>
+          <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 28px; color: var(--primary-foreground); line-height: 1; letter-spacing: -0.5px; margin-bottom: 0;">{{ fig4Value }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 20px 56px 0; flex: 1; display: flex; flex-direction: column; gap: 18px; min-height: 0;">
+
+      <!-- Overview + Key benefits -->
+      <div style="display: grid; grid-template-columns: 4fr 6fr; gap: 20px; align-items: stretch;">
+        <div style="display: flex; flex-direction: column;">
+          <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 28px; line-height: 1.1; color: var(--primary); letter-spacing: -0.3px; margin-bottom: 12px;">Overview</div>
+          <div style="flex: 1; background: var(--doc-surface); border: 1px solid var(--doc-border-soft); padding: 18px 18px;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: var(--doc-body); line-height: 1.6; white-space: pre-line;">{{ overview }}</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 28px; line-height: 1.1; color: var(--primary); letter-spacing: -0.3px; margin-bottom: 12px;">Key Benefits</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <div style="background: var(--doc-surface); border: 1px solid var(--doc-border-soft); padding: 14px 16px;">
+            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" style="display: block; margin-bottom: 10px; color: var(--accent);"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q146 0 255.5 91.5T872-559h-82q-19-73-68.5-130.5T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h80v120h-40L168-552q-3 18-5.5 36t-2.5 36q0 131 92 225t228 95v80Zm364-20L716-228q-21 12-45 20t-51 8q-75 0-127.5-52.5T440-380q0-75 52.5-127.5T620-560q75 0 127.5 52.5T800-380q0 27-8 51t-20 45l128 128-56 56ZM620-280q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Z"/></svg>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-heading); margin-bottom: 4px; line-height: 1.3;">{{ benefit1Title }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10.5px; font-weight: 300; color: var(--doc-body); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ benefit1Desc }}</div>
+          </div>
+          <div style="background: var(--doc-surface); border: 1px solid var(--doc-border-soft); padding: 14px 16px;">
+            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" style="display: block; margin-bottom: 10px; color: var(--accent);"><path d="M160-80q-33 0-56.5-23.5T80-160v-440q0-33 23.5-56.5T160-680h200v-120q0-33 23.5-56.5T440-880h80q33 0 56.5 23.5T600-800v120h200q33 0 56.5 23.5T880-600v440q0 33-23.5 56.5T800-80H160Zm0-80h640v-440H600q0 33-23.5 56.5T520-520h-80q-33 0-56.5-23.5T360-600H160v440Zm80-80h240v-18q0-17-9.5-31.5T444-312q-20-9-40.5-13.5T360-330q-23 0-43.5 4.5T276-312q-17 8-26.5 22.5T240-258v18Zm320-60h160v-60H560v60Zm-200-60q25 0 42.5-17.5T420-420q0-25-17.5-42.5T360-480q-25 0-42.5 17.5T300-420q0 25 17.5 42.5T360-360Zm200-60h160v-60H560v60ZM440-600h80v-200h-80v200Zm40 220Z"/></svg>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-heading); margin-bottom: 4px; line-height: 1.3;">{{ benefit2Title }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10.5px; font-weight: 300; color: var(--doc-body); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ benefit2Desc }}</div>
+          </div>
+          <div style="background: var(--doc-surface); border: 1px solid var(--doc-border-soft); padding: 14px 16px;">
+            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" style="display: block; margin-bottom: 10px; color: var(--accent);"><path d="M720-720q-33 0-56.5-23.5T640-800q0-33 23.5-56.5T720-880q33 0 56.5 23.5T800-800q0 33-23.5 56.5T720-720ZM680-80v-320q0-40-20.5-72T607-522l35-103q8-25 29.5-40t48.5-15q27 0 48.5 15t29.5 40l102 305H800v240H680ZM500-500q-25 0-42.5-17.5T440-560q0-25 17.5-42.5T500-620q25 0 42.5 17.5T560-560q0 25-17.5 42.5T500-500ZM220-720q-33 0-56.5-23.5T140-800q0-33 23.5-56.5T220-880q33 0 56.5 23.5T300-800q0 33-23.5 56.5T220-720ZM140-80v-280H80v-240q0-33 23.5-56.5T160-680h120q33 0 56.5 23.5T360-600v240h-60v280H140Zm300 0v-160h-40v-160q0-25 17.5-42.5T460-460h80q25 0 42.5 17.5T600-400v160h-40v160H440Z"/></svg>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-heading); margin-bottom: 4px; line-height: 1.3;">{{ benefit3Title }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10.5px; font-weight: 300; color: var(--doc-body); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ benefit3Desc }}</div>
+          </div>
+          <div style="background: var(--doc-surface); border: 1px solid var(--doc-border-soft); padding: 14px 16px;">
+            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" style="display: block; margin-bottom: 10px; color: var(--accent);"><path d="M160-120q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v440q0 33-23.5 56.5T800-120H160Zm0-80h640v-440H160v440Zm240-520h160v-80H400v80ZM160-200v-440 440Z"/></svg>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-heading); margin-bottom: 4px; line-height: 1.3;">{{ benefit4Title }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10.5px; font-weight: 300; color: var(--doc-body); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ benefit4Desc }}</div>
+          </div>
+          <div style="background: var(--doc-surface); border: 1px solid var(--doc-border-soft); padding: 14px 16px;">
+            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" style="display: block; margin-bottom: 10px; color: var(--accent);"><path d="M640-520q17 0 28.5-11.5T680-560q0-17-11.5-28.5T640-600q-17 0-28.5 11.5T600-560q0 17 11.5 28.5T640-520Zm-320-80h200v-80H320v80ZM180-120q-34-114-67-227.5T80-580q0-92 64-156t156-64h200q29-38 70.5-59t89.5-21q25 0 42.5 17.5T720-820q0 6-1.5 12t-3.5 11q-4 11-7.5 22.5T702-751l91 91h87v279l-113 37-67 224H480v-80h-80v80H180Zm60-80h80v-80h240v80h80l62-206 98-33v-141h-40L620-720q0-20 2.5-38.5T630-796q-29 8-51 27.5T547-720H300q-58 0-99 41t-41 99q0 98 27 191.5T240-200Zm240-298Z"/></svg>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-heading); margin-bottom: 4px; line-height: 1.3;">{{ benefit5Title }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10.5px; font-weight: 300; color: var(--doc-body); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ benefit5Desc }}</div>
+          </div>
+          <div style="background: var(--doc-surface); border: 1px solid var(--doc-border-soft); padding: 14px 16px;">
+            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" style="display: block; margin-bottom: 10px; color: var(--accent);"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-82v-78q-33 0-56.5-23.5T360-320v-40L168-552q-3 18-5.5 36t-2.5 36q0 121 79.5 212T440-162Zm276-102q20-22 36-47.5t26.5-53q10.5-27.5 16-56.5t5.5-59q0-98-54.5-179T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h240q17 0 28.5 11.5T600-440v120h40q26 0 47 15.5t29 40.5Z"/></svg>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-heading); margin-bottom: 4px; line-height: 1.3;">{{ benefit6Title }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 10.5px; font-weight: 300; color: var(--doc-body); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ benefit6Desc }}</div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Investment options -->
+      <div>
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 28px; line-height: 1.1; color: var(--primary); letter-spacing: -0.3px; margin-bottom: 12px;">Investment Options</div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
+        <div style="background: var(--doc-surface); border: 1px solid var(--doc-border-soft); padding: 12px 14px;">
+          <div style="font-family: 'Yrsa', serif; font-size: 20px; color: var(--accent); line-height: 1; margin-bottom: 6px;">01</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 500; color: var(--doc-heading); line-height: 1.3; margin-bottom: 2px;">{{ inv1Title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 5px;">{{ inv1Amount }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 300; color: var(--doc-body); line-height: 1.45;">{{ inv1Desc }}</div>
+        </div>
+        <div style="background: var(--doc-surface); border: 1px solid var(--doc-border-soft); padding: 12px 14px;">
+          <div style="font-family: 'Yrsa', serif; font-size: 20px; color: var(--accent); line-height: 1; margin-bottom: 6px;">02</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 500; color: var(--doc-heading); line-height: 1.3; margin-bottom: 2px;">{{ inv2Title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 5px;">{{ inv2Amount }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 300; color: var(--doc-body); line-height: 1.45;">{{ inv2Desc }}</div>
+        </div>
+        <div style="background: var(--doc-surface); border: 1px solid var(--doc-border-soft); padding: 12px 14px;">
+          <div style="font-family: 'Yrsa', serif; font-size: 20px; color: var(--accent); line-height: 1; margin-bottom: 6px;">03</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 500; color: var(--doc-heading); line-height: 1.3; margin-bottom: 2px;">{{ inv3Title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 5px;">{{ inv3Amount }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 300; color: var(--doc-body); line-height: 1.45;">{{ inv3Desc }}</div>
+        </div>
+        <div style="background: var(--doc-surface); border: 1px solid var(--doc-border-soft); padding: 12px 14px;">
+          <div style="font-family: 'Yrsa', serif; font-size: 20px; color: var(--accent); line-height: 1; margin-bottom: 6px;">04</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 500; color: var(--doc-heading); line-height: 1.3; margin-bottom: 2px;">{{ inv4Title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 5px;">{{ inv4Amount }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 300; color: var(--doc-body); line-height: 1.45;">{{ inv4Desc }}</div>
+        </div>
+        </div>
+      </div>
+
+      <!-- Application procedure -->
+      <div>
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 28px; line-height: 1.1; color: var(--primary); letter-spacing: -0.3px; margin-bottom: 12px;">Application Procedure</div>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;">
+        <div style="border-top: 2px solid var(--primary); padding-top: 8px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 3px;">1</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: var(--doc-heading); line-height: 1.3; margin-bottom: 3px;">{{ step1Title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9.5px; font-weight: 300; color: var(--doc-body); line-height: 1.4;">{{ step1Desc }}</div>
+        </div>
+        <div style="border-top: 2px solid var(--primary); padding-top: 8px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 3px;">2</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: var(--doc-heading); line-height: 1.3; margin-bottom: 3px;">{{ step2Title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9.5px; font-weight: 300; color: var(--doc-body); line-height: 1.4;">{{ step2Desc }}</div>
+        </div>
+        <div style="border-top: 2px solid var(--primary); padding-top: 8px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 3px;">3</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: var(--doc-heading); line-height: 1.3; margin-bottom: 3px;">{{ step3Title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9.5px; font-weight: 300; color: var(--doc-body); line-height: 1.4;">{{ step3Desc }}</div>
+        </div>
+        <div style="border-top: 2px solid var(--primary); padding-top: 8px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 3px;">4</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: var(--doc-heading); line-height: 1.3; margin-bottom: 3px;">{{ step4Title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9.5px; font-weight: 300; color: var(--doc-body); line-height: 1.4;">{{ step4Desc }}</div>
+        </div>
+        <div style="border-top: 2px solid var(--primary); padding-top: 8px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 3px;">5</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: var(--doc-heading); line-height: 1.3; margin-bottom: 3px;">{{ step5Title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9.5px; font-weight: 300; color: var(--doc-body); line-height: 1.4;">{{ step5Desc }}</div>
+        </div>
+        <div style="border-top: 2px solid var(--primary); padding-top: 8px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 3px;">6</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: var(--doc-heading); line-height: 1.3; margin-bottom: 3px;">{{ step6Title }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 9.5px; font-weight: 300; color: var(--doc-body); line-height: 1.4;">{{ step6Desc }}</div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div style="border-top: 1px solid var(--doc-border); padding: 14px 56px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; margin-top: 16px;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; color: var(--primary);">GLOBALCITIZENSOLUTIONS.COM</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; color: var(--doc-muted);">{{ coverTitleLine1 }} {{ coverTitleLine2 }} — Factsheet</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 3: BACK COVER / GLOBAL PRESENCE ──────────────── -->
+  <div data-doc-page="" style="width: 794px; height: 1123px; margin: 0 auto; background: radial-gradient(1146px 1196px at 101.45% 0%, var(--primary) 0%, var(--doc-primary-dark) 100%); border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; padding: 56px; overflow: hidden;">
+    <div>
+      <img src="../../../assets/logos/GCS-Primary-White.svg" style="height: 32px; width: auto;">
+    </div>
+    <div style="flex: 1;"></div>
+    <div style="margin-bottom: 44px;">
+      <div style="margin-bottom: 22px; line-height: 1.08;">
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 68px; color: var(--primary-foreground); letter-spacing: -1.5px;">Our Global</div>
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 68px; color: var(--night-blue-50); letter-spacing: -1.5px;">Presence.</div>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 400; color: rgb(168,179,205); line-height: 1.6; max-width: 520px; margin-bottom: 44px;">We operate globally, with teams supporting clients across different regions, both through local offices and dedicated contact points.</div>
+      <div style="margin-bottom: 10px; color: white;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 13.671 15.338" fill="currentColor" style="display: block;"><path d="M 6.836 0 C 3.06 0 0 3.06 0 6.836 C 0 8.889 1.07 10.675 2.26 12.036 C 3.459 13.407 4.859 14.436 5.692 14.991 C 6.388 15.454 7.283 15.454 7.979 14.991 C 8.812 14.436 10.212 13.407 11.411 12.036 C 12.601 10.675 13.671 8.889 13.671 6.836 C 13.671 3.06 10.611 0 6.836 0 Z M 6.836 3.798 C 5.158 3.798 3.798 5.158 3.798 6.836 C 3.798 8.513 5.158 9.874 6.836 9.874 C 8.513 9.874 9.874 8.513 9.874 6.836 C 9.874 5.158 8.513 3.798 6.836 3.798 Z" fill-rule="evenodd"></path></svg>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 17px; font-weight: 400; color: var(--primary-foreground); line-height: 1.65; letter-spacing: 0.01em;">ANTIGUA AND BARBUDA | BRAZIL | DUBAI | GRENADA | ITALY | MALTA | PORTUGAL | SPAIN | ST. LUCIA | SWITZERLAND | TURKEY | UNITED KINGDOM | VANUATU</div>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1);">
+      <div>
+        <a href="https://www.globalcitizensolutions.com" target="_blank" style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.2em; color: rgb(179,181,205); margin-bottom: 18px; text-decoration: none; display: block;">GLOBALCITIZENSOLUTIONS.COM</a>
+        <div style="display: flex; gap: 14px; align-items: center;">
+          <a href="https://www.linkedin.com/company/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg></a>
+          <a href="https://www.facebook.com/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"></path></svg></a>
+          <a href="https://www.instagram.com/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg></a>
+          <a href="https://beglobal.link/GCS-youtube" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg></a>
+        </div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: var(--primary-foreground); line-height: 1.6; margin-bottom: 8px;">8–10 Hill Street, London<br>W1J 5NG — United Kingdom</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: var(--primary-foreground); line-height: 1.6;">+44 20 8068 3119<br>info@globalcitizensolutions.com</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 860, &quot;height&quot;: 1200},
+    &quot;country&quot;:         {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Italy Investor Visa&quot;},
+  &quot;coverTitleLine1&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Italy&quot;},
+  &quot;coverTitleLine2&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Investor Visa&quot;},
+  &quot;year&quot;:            {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;2026&quot;}
+}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+            country:         this.props.country         ?? 'Italy Investor Visa',
+      coverTitleLine1: this.props.coverTitleLine1 ?? 'Italy',
+      coverTitleLine2: this.props.coverTitleLine2 ?? 'Investor Visa',
+      subtitle:        this.props.subtitle        ?? 'Golden Visa Programme',
+      supportText:     this.props.supportText     ?? "One of Europe's most accessible and fastest-processing investor visa programmes — offering a direct pathway to EU residency and, after 10 years, Italian citizenship.",
+      year:            this.props.year            ?? '2026',
+
+      accentColor1: this.props.accentColor1 ?? '#009246',
+      accentColor2: this.props.accentColor2 ?? '#FFFFFF',
+      accentColor3: this.props.accentColor3 ?? '#CE2B37',
+
+      fig1Value: this.props.fig1Value ?? '€250,000',
+      fig1Label: this.props.fig1Label ?? 'Min. Investment',
+      fig2Value: this.props.fig2Value ?? '1–2 Months',
+      fig2Label: this.props.fig2Label ?? 'Processing Time',
+      fig3Value: this.props.fig3Value ?? '10 Years',
+      fig3Label: this.props.fig3Label ?? 'Path to Citizenship',
+      fig4Value: this.props.fig4Value ?? 'Schengen',
+      fig4Label: this.props.fig4Label ?? 'Visa-Free Access',
+      overview: this.props.overview ?? "Italy offers one of Europe's most attractive Golden Visa programmes, granting permanent residency in as little as 1–2 months for one of the lowest minimum investments in the EU.\n\nApplicants receive pre-approval (Nulla Osta) before completing their investment, ensuring no funds are committed prior to confirmation. Investment options range from innovative startups to government bonds.\n\nAs the EU's 3rd largest economy, Italy provides stability, a Mediterranean lifestyle, and after 10 years of residence, eligibility to apply for citizenship and an EU passport.\n\nNo stay requirement: Golden Visa holders do not need to live in Italy continuously to maintain their residence permit, allowing full flexibility to travel.",
+      benefit1Title: this.props.benefit1Title ?? 'Visa-Free Travel',
+      benefit1Desc:  this.props.benefit1Desc  ?? 'Travel across the Schengen Area without a visa.',
+      benefit2Title: this.props.benefit2Title ?? 'Dual Citizenship',
+      benefit2Desc:  this.props.benefit2Desc  ?? 'Keep your original nationality alongside the new one.',
+      benefit3Title: this.props.benefit3Title ?? 'Full Family Inclusion',
+      benefit3Desc:  this.props.benefit3Desc  ?? 'Spouse and dependent children up to age 18 included.',
+      benefit4Title: this.props.benefit4Title ?? 'Right to Live & Work',
+      benefit4Desc:  this.props.benefit4Desc  ?? 'Live, work and study in the country from day one.',
+      benefit5Title: this.props.benefit5Title ?? 'Tax Incentives',
+      benefit5Desc:  this.props.benefit5Desc  ?? 'Attractive regimes for new residents on foreign income.',
+      benefit6Title: this.props.benefit6Title ?? 'Path to EU Citizenship',
+      benefit6Desc:  this.props.benefit6Desc  ?? 'Eligible to apply for citizenship after the qualifying period.',
+      inv1Title:  this.props.inv1Title  ?? 'Innovative Startup',
+      inv1Amount: this.props.inv1Amount ?? 'From €250k+',
+      inv1Desc:   this.props.inv1Desc   ?? 'Invest in a qualifying innovative company to support local growth.',
+      inv2Title:  this.props.inv2Title  ?? 'Listed or Unlisted Company',
+      inv2Amount: this.props.inv2Amount ?? 'From €500k+',
+      inv2Desc:   this.props.inv2Desc   ?? 'Support local business growth and job creation.',
+      inv3Title:  this.props.inv3Title  ?? 'Philanthropic Donation',
+      inv3Amount: this.props.inv3Amount ?? 'From €1M+',
+      inv3Desc:   this.props.inv3Desc   ?? 'Non-refundable contribution to a government-recognised initiative.',
+      inv4Title:  this.props.inv4Title  ?? 'Government Bonds',
+      inv4Amount: this.props.inv4Amount ?? 'From €2M+',
+      inv4Desc:   this.props.inv4Desc   ?? 'Stable, low-risk investment backed by the state.',
+      step1Title: this.props.step1Title ?? 'Intro Call',
+      step1Desc:  this.props.step1Desc  ?? 'Discuss goals and eligibility (1 day)',
+      step2Title: this.props.step2Title ?? 'Documents',
+      step2Desc:  this.props.step2Desc  ?? 'Collect and legalise the application file (2–4 weeks)',
+      step3Title: this.props.step3Title ?? 'Pre-approval',
+      step3Desc:  this.props.step3Desc  ?? 'Authorities review the application (4–6 weeks)',
+      step4Title: this.props.step4Title ?? 'Visa Approval',
+      step4Desc:  this.props.step4Desc  ?? 'Visa issued after the investment (2–4 weeks)',
+      step5Title: this.props.step5Title ?? 'Travel to Country',
+      step5Desc:  this.props.step5Desc  ?? 'Enter and complete local registration',
+      step6Title: this.props.step6Title ?? 'Visa Issued',
+      step6Desc:  this.props.step6Desc  ?? 'Receive residence permit and start your new life',
+    };
+  }
+}
+</script>
+</body>
+</html>

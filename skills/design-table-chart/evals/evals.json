@@ -1,0 +1,81 @@
+{
+  "skill_name": "gcs-table",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Preciso de uma tabela para o site comparando os principais programas de visto de investidor em Portugal (D7, D2 e Golden Visa) — mostrando investimento mínimo, tempo de residência necessário até a cidadania, e se dá acesso a cidadania ou não. Vai entrar dentro de um post do blog que já tem um título.",
+      "expected_output": "A light-theme, solid-header gcs-table with 4 columns (Programme, Min. Investment, Residency Timeline, Leads to Citizenship). Since rows are visa programme names, not countries, there should be no flag/country pairing forced onto that column. Headers carry Material icons. Every td has a matching data-label. Delivered as separate CSS + HTML blocks. No chart is forced (the columns mix currencies, durations, and yes/no — no single comparable numeric series), or if one is built it only charts a single-unit column.",
+      "files": [],
+      "assertions": [
+        "Output is a real <table> wrapped in a .gcs-table div using data-theme=\"light\" and data-header=\"solid\" (comparison embedded inside an article, matching the variant heuristic)",
+        "Every <th> contains an inlined Material Symbols <svg> icon (fill=\"currentColor\"), never a bare text label and never a Font Awesome/other icon library class",
+        "Every <td> has a data-label attribute whose text exactly matches its column's header text",
+        "The programme-name column (D7 / D2 / Golden Visa) is NOT forced into a flag/country pairing — flags are for country names only, and these rows are programme names, not countries",
+        "The CSS delivered matches the canonical assets/tables.css (no invented properties, no drift, no rewriting from scratch)",
+        "CSS and HTML are delivered as two separately labelled blocks, not one combined snippet with an inline <style> tag wrapping the markup",
+        "No JavaScript appears anywhere in the delivered code",
+        "No chart mixes different units (EUR amounts, months, yes/no) on a single axis"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Build me a standalone ranking table for our website showing the top 5 countries by Henley Passport Index score (Singapore 195, France 194, Germany 194, Italy 194, Spain 194). It needs to be able to stand alone if someone screenshots it or embeds it somewhere without any heading around it.",
+      "expected_output": "A dark-theme (after asking light/dark), minimal-header gcs-table (hero band + footer attribution bar) since it's meant to stand alone. 5 rows, each country paired with its flag via the msikma/country-flags repo PNGs. Headers carry Material icons. data-label present and correct on every td. A horizontal bar chart of the scores is a reasonable companion (single numeric series, long country labels). Delivered as separate CSS + HTML blocks plus transparent PNGs.",
+      "files": [],
+      "assertions": [
+        "The response asks the user whether the asset should be light or dark before (or while) delivering, rather than silently picking",
+        "Output uses data-header=\"minimal\" for the standalone editorial ranking, matching the variant heuristic",
+        "A .gcs-table__footer attribution band with the real inline GCS logo SVG is present when the dark standalone look is used",
+        "All 5 countries (Singapore, France, Germany, Italy, Spain) are paired with a flag image loaded from https://raw.githubusercontent.com/msikma/country-flags/master/flags/png/{code}.png with the correct lowercase codes (sg, fr, de, it, es) — no flagcdn, no other flag source, no hand-drawn flags",
+        "Every <th> contains an inlined Material Symbols <svg> icon (fill=\"currentColor\") — no Font Awesome or other icon libraries anywhere",
+        "Every <td> has a data-label attribute whose text exactly matches its column's header text",
+        "If a chart is included it is a horizontal bar chart (hbar) of the scores — not a pie/donut (scores are not parts of a whole) — with all 5 values plotted exactly as given (195, 194, 194, 194, 194) in the source order",
+        "CSS and HTML are delivered as separately labelled blocks and no JavaScript appears anywhere in the delivered code"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We have this data from a spreadsheet and just need a clean reference table for a resources page, nothing fancy: Country, Retirement Visa Available (Yes/No), Min Monthly Income Required. Rows: Portugal (Yes, €760), Spain (Yes, €2,400), Greece (Yes, €2,000), Malta (No, —), Panama (Yes, $1,000).",
+      "expected_output": "A light-theme, plain-header gcs-table (no title block, no footer band) since it's described as a quiet reference table. 5 rows, each country paired with its country-flags repo flag. Yes/No values rendered as badges. Malta's income cell stays as the source's own '—' marker. data-label present and correct on every td. No chart (mixed currencies EUR/USD on one column, plus a missing value) — or the response explicitly explains why the income column isn't charted as a single axis.",
+      "files": [],
+      "assertions": [
+        "Output uses data-header=\"plain\" (quiet, no-editorial-framing reference table, matching the variant heuristic and the user's own 'nothing fancy' framing)",
+        "All 5 countries are paired with a flag from https://raw.githubusercontent.com/msikma/country-flags/master/flags/png/{code}.png using correct codes (pt, es, gr, mt, pa) — no other flag source",
+        "Yes/No values are rendered as a styled <span class=\"badge ...\"> rather than bare 'Yes'/'No' text",
+        "Malta's missing income renders exactly as the source's '—' marker — not as 0, not as an invented value, not dropped",
+        "Every <th> contains an inlined Material Symbols <svg> icon (fill=\"currentColor\"), never a bare text label and never another icon library",
+        "Every <td> has a data-label attribute whose text exactly matches its column's header text",
+        "No chart plots the mixed EUR/USD income values on a single shared axis; if no chart is built, the response says why in at most a line or two",
+        "CSS and HTML are delivered as separately labelled blocks and no JavaScript appears anywhere"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Anexei o CSV com os pedidos de Golden Visa por ano (2019: 1245, 2020: 1182, 2021: 865, 2022: 1281, 2023: 1554). Quero isto no site como tabela e também um gráfico, e preciso dos PNGs para usar numa apresentação.",
+      "expected_output": "After the light/dark question: a gcs-table of the 5 rows exactly as in the CSV, plus a line (or area) chart generated via scripts/gcs_chart.py — years are an ordered sequence, so bar/pie would be wrong; line is the canonical choice. Values plotted exactly (1245, 1182, 865, 1281, 1554) in year order. Two transparent PNG files exported via scripts/export_png.py, with real file paths stated.",
+      "files": ["golden-visa-applications.csv"],
+      "assertions": [
+        "All five year/value pairs appear in the table exactly as in the CSV — no rounding, no reordering, no invented years",
+        "The chart is a line or area chart (ordered time sequence), not a pie/donut/unordered bar treatment",
+        "The chart SVG was produced by scripts/gcs_chart.py from a JSON spec (evidence: gcs-chart classes, viewBox geometry consistent with the generator), not hand-drawn ad-hoc SVG or a third-party charting library",
+        "The chart carries a real aria-label and is wrapped in <figure class=\"gcs-chart\"> with the charts.css classes",
+        "Both a table PNG and a chart PNG are exported with transparent backgrounds via scripts/export_png.py and their file paths are stated in the response",
+        "tables.css AND charts.css are both delivered (labelled paste-once-per-page), verbatim from assets/",
+        "No JavaScript appears anywhere in the delivered code"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Here's a screenshot of a fees table from an old PDF — one of the numbers is a bit blurry. Turn it into a table for WordPress.",
+      "expected_output": "The skill reads the image, transcribes the table cell by cell, marks the blurry cell as unreadable rather than guessing, echoes the extracted data back to the user for confirmation BEFORE delivering final HTML, and only then builds the gcs-table. The final response never contains an invented value for the unreadable cell.",
+      "files": ["fees-table-screenshot.png"],
+      "assertions": [
+        "The response transcribes the table from the image and shows the extracted data back to the user before (or instead of) delivering final production HTML",
+        "The blurry/unreadable cell is explicitly flagged as unreadable — no guessed or interpolated value appears for it anywhere",
+        "No rows or columns are added, dropped, merged, or reordered relative to the image",
+        "All legible values match the image exactly, including currency symbols and separators as printed",
+        "Once built, the table follows all structural rules: data-label on every td, Material SVG icons in every th, country-flags repo flags for any country rows"
+      ]
+    }
+  ]
+}

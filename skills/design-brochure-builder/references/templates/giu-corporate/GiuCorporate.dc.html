@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="GIU Corporate" description="A4 corporate/institutional report — cover, TOC, executive summary, six data-table variants (simple, comparative, zebra, indicator, financial, milestones) and three SVG charts (line, area, multi-line), plus global presence back cover" -->
+<helmet>
+<style>
+/* Self-hosted brand fonts — paths resolve relative to this template's directory */
+@font-face { font-family: 'Heebo'; src: url('../../assets/fonts/Heebo-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'Heebo'; src: url('../../assets/fonts/Heebo-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Heebo'; src: url('../../assets/fonts/Heebo-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'Heebo'; src: url('../../assets/fonts/Heebo-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; }
+@font-face { font-family: 'Heebo'; src: url('../../assets/fonts/Heebo-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'Yrsa'; src: url('../../assets/fonts/Yrsa-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'Yrsa'; src: url('../../assets/fonts/Yrsa-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Yrsa'; src: url('../../assets/fonts/Yrsa-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'Yrsa'; src: url('../../assets/fonts/Yrsa-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; }
+@font-face { font-family: 'Yrsa'; src: url('../../assets/fonts/Yrsa-LightItalic.ttf') format('truetype'); font-weight: 300; font-style: italic; }
+@font-face { font-family: 'Yrsa'; src: url('../../assets/fonts/Yrsa-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; }
+@font-face { font-family: 'Yrsa'; src: url('../../assets/fonts/Yrsa-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; }
+@font-face { font-family: 'Yrsa'; src: url('../../assets/fonts/Yrsa-SemiBoldItalic.ttf') format('truetype'); font-weight: 600; font-style: italic; }
+</style>
+<script src="./ds-base.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@page { size: 210mm 297mm; margin: 0; }
+/* Status badge chips — data-level must be one of green | amber | red */
+.gc-badge { display: inline-block; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; white-space: nowrap; background: #F2F3FE; color: #4B4E65; }
+.gc-badge[data-level="green"] { background: #E8F7EE; color: #15803D; }
+.gc-badge[data-level="amber"] { background: #FDF3E3; color: #B45309; }
+.gc-badge[data-level="red"] { background: #FDEBEB; color: #B91C1C; }
+@media print {
+  html, body { margin: 0 !important; padding: 0 !important; }
+  [data-doc-wrapper] { background: none !important; padding: 0 !important; min-height: unset !important; }
+  [data-doc-page] {
+    margin: 0 !important; box-shadow: none !important; border-radius: 0 !important;
+    page-break-after: always; break-after: page;
+    width: 210mm !important; height: 297mm !important;
+    min-height: unset !important; overflow: hidden !important; position: relative !important;
+  }
+  [data-doc-page]:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</helmet>
+
+<div data-doc-wrapper="" style="background: #DDE0E8; padding: 40px 24px; min-height: 100vh; font-family: 'Heebo', 'Helvetica Neue', sans-serif;">
+
+  <!-- ── PAGE 1: COVER ─────────────────────────────────────── -->
+  <div data-doc-page="" data-screen-label="01 Cover" style="width: 794px; height: 1123px; margin: 0 auto 32px; border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; overflow: hidden; position: relative; background: #000B2E;">
+    <img src="./background-cover.png" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0;">
+
+    <div style="position: relative; z-index: 2; padding: 48px 56px 0; display: flex; justify-content: flex-start; align-items: center; gap: 14px;">
+      <img src="../../assets/logos/GCS-Symbol-White.svg" style="width: 42px; height: 42px;">
+      <div style="width: 1px; height: 30px; background: rgba(255,255,255,0.2); flex-shrink: 0;"></div>
+      <img src="../../../assets/logos/others/GIU-Wordmark-White.svg" style="height: 13px; width: auto;">
+    </div>
+
+    <div style="position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 56px 64px;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 20px;">{{ eyebrow }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 64px; color: #FFFFFF; line-height: 1.06; letter-spacing: -1.5px;">{{ coverTitleLine1 }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 64px; color: #B3B5CD; line-height: 1.06; letter-spacing: -1.5px; margin-bottom: 36px;">{{ coverTitleLine2 }}</div>
+      <div style="width: 48px; height: 1px; background: rgba(255,255,255,0.25); margin-bottom: 28px;"></div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.65; max-width: 480px;">{{ coverSubtitle }}</div>
+    </div>
+  </div>
+
+  <!-- ── PAGE 2: TABLE OF CONTENTS ─────────────────────────── -->
+
+  <div data-doc-page="" data-screen-label="02 Table of Contents" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+      <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+    </div>
+
+    <div style="padding: 56px 64px; flex: 1; display: flex; flex-direction: column;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">In This Report</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 42px; color: #16182A; line-height: 1.08; letter-spacing: -0.8px; margin-bottom: 52px;">What's Inside</div>
+
+      <div style="display: flex; flex-direction: column; gap: 0;">
+
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 17px 0; border-top: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">01</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">Executive Summary</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">Headline results and the year at a glance</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-label-faint); letter-spacing: 0.06em;">03</div>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 17px 0; border-top: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">02</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">Performance Data</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">Core operating metrics in detail</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-label-faint); letter-spacing: 0.06em;">04</div>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 17px 0; border-top: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">03</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">Comparative Analysis</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">Options assessed side by side</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-label-faint); letter-spacing: 0.06em;">05</div>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 17px 0; border-top: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">04</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">Detailed Breakdown</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">Full data tables by segment</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-label-faint); letter-spacing: 0.06em;">06</div>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 17px 0; border-top: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">05</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">Programme Status</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">Delivery health across active initiatives</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-label-faint); letter-spacing: 0.06em;">07</div>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 17px 0; border-top: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">06</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">Financial Overview</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">Revenue, cost, and margin summary</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-label-faint); letter-spacing: 0.06em;">08</div>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 17px 0; border-top: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">07</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">Roadmap & Milestones</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">Delivery phases and what comes next</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-label-faint); letter-spacing: 0.06em;">09</div>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 0; padding: 17px 0; border-top: 1px solid #ECEDF5; border-bottom: 1px solid #ECEDF5;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">08</div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">Trends & Analysis</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">Charted market and performance trends</div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: var(--doc-label-faint); letter-spacing: 0.06em;">10</div>
+        </div>
+      </div>
+
+      <div style="margin-top: auto; padding-top: 44px; display: flex; gap: 18px; align-items: flex-start;">
+        <div style="width: 3px; flex-shrink: 0; background: #3D51E8; border-radius: 2px; align-self: stretch;"></div>
+        <div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #000957; margin-bottom: 6px;">About This Report</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #6F7185; line-height: 1.75;">{{ aboutNote }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">02</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 3: EXECUTIVE SUMMARY ─────────────────────────── -->
+
+  <div data-doc-page="" data-screen-label="03 Executive Summary" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+      <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+    </div>
+
+    <div style="padding: 52px 64px 0; flex-shrink: 0;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 14px;">Executive Summary</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 44px; color: #16182A; line-height: 1.05; letter-spacing: -1px; margin-bottom: 32px;">{{ execHeading }}</div>
+
+      <div style="font-family: 'Yrsa', serif; font-size: 21px; font-weight: 400; color: #252839; line-height: 1.6; margin-bottom: 26px; letter-spacing: -0.2px;">{{ execLead }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #4B4E65; line-height: 1.85; margin-bottom: 18px;">{{ execBody1 }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #4B4E65; line-height: 1.85; margin-bottom: 44px;">{{ execBody2 }}</div>
+    </div>
+
+    <div style="margin: 0 64px; flex-shrink: 0; background: #000957; border-radius: 6px; display: flex; overflow: hidden;">
+
+      <div style="flex: 1; padding: 26px 24px; border-right: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">{{ exStat1Value }}</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);">{{ exStat1Label }}</div>
+      </div>
+      <div style="flex: 1; padding: 26px 24px; border-right: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">{{ exStat2Value }}</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);">{{ exStat2Label }}</div>
+      </div>
+      <div style="flex: 1; padding: 26px 24px; border-right: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">{{ exStat3Value }}</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);">{{ exStat3Label }}</div>
+      </div>
+      <div style="flex: 1; padding: 26px 24px;">
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">{{ exStat4Value }}</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);">{{ exStat4Label }}</div>
+      </div>
+    </div>
+
+    <div style="flex: 1;"></div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">03</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 4: SIMPLE TABLE ──────────────────────────────── -->
+
+  <div data-doc-page="" data-screen-label="04 Simple Table" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+      <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+    </div>
+
+    <div style="padding: 48px 64px; flex: 1; display: flex; flex-direction: column;">
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">{{ simpleEyebrow }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 38px; color: #16182A; line-height: 1.08; letter-spacing: -0.7px; margin-bottom: 8px;">{{ simpleHeading }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #6F7185; margin-bottom: 30px; line-height: 1.65;">{{ simpleSubtitle }}</div>
+      <div style="border: 1px solid #ECEDF5; border-radius: 6px; overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957;">{{ stCol1 }}</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); width: 19%;">{{ stCol2 }}</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); width: 19%;">{{ stCol3 }}</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); width: 19%;">{{ stCol4 }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ st1c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st1c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st1c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st1c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ st2c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st2c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st2c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st2c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ st3c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st3c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st3c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st3c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ st4c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st4c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st4c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st4c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ st5c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st5c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st5c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st5c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ st6c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st6c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st6c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline);">{{ st6c4 }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 14px; font-family: 'Heebo', sans-serif; font-size: 11px; font-style: italic; color: #C6C8D5; line-height: 1.65;">{{ simpleNote }}</div>
+      <div style="flex: 1;"></div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">04</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 5: COMPARATIVE TABLE ─────────────────────────── -->
+
+  <div data-doc-page="" data-screen-label="05 Comparative Table" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+      <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+    </div>
+
+    <div style="padding: 48px 64px; flex: 1; display: flex; flex-direction: column;">
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">{{ compEyebrow }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 38px; color: #16182A; line-height: 1.08; letter-spacing: -0.7px; margin-bottom: 8px;">{{ compHeading }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #6F7185; margin-bottom: 30px; line-height: 1.65;">{{ compSubtitle }}</div>
+      <div style="border: 1px solid #ECEDF5; border-radius: 6px; overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957;">{{ compColLabel }}</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); text-align: center; width: 17%; color: #FFFFFF;">{{ compOptA }}</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); text-align: center; width: 17%; color: #FFFFFF;">{{ compOptB }}</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); text-align: center; width: 17%; color: #FFFFFF;">{{ compOptC }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ cmp1Label }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp1a }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp1b }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp1c }}</td>
+            </tr>
+            <tr style="background: #FAFBFF;">
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ cmp2Label }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp2a }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp2b }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp2c }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ cmp3Label }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp3a }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp3b }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp3c }}</td>
+            </tr>
+            <tr style="background: #FAFBFF;">
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ cmp4Label }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp4a }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp4b }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp4c }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ cmp5Label }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp5a }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp5b }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp5c }}</td>
+            </tr>
+            <tr style="background: #FAFBFF;">
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ cmp6Label }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp6a }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp6b }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp6c }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ cmp7Label }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp7a }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp7b }}</td>
+              <td class="gc-ind" style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: center; font-size: 15px; font-weight: 500;">{{ cmp7c }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 14px; font-family: 'Heebo', sans-serif; font-size: 11px; font-style: italic; color: #C6C8D5; line-height: 1.65;">{{ compNote }}</div>
+      <div style="flex: 1;"></div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">05</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 6: ZEBRA TABLE ───────────────────────────────── -->
+
+  <div data-doc-page="" data-screen-label="06 Zebra Table" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+      <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+    </div>
+
+    <div style="padding: 48px 64px; flex: 1; display: flex; flex-direction: column;">
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">{{ zebraEyebrow }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 38px; color: #16182A; line-height: 1.08; letter-spacing: -0.7px; margin-bottom: 8px;">{{ zebraHeading }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #6F7185; margin-bottom: 30px; line-height: 1.65;">{{ zebraSubtitle }}</div>
+      <div style="border: 1px solid #ECEDF5; border-radius: 6px; overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957;">{{ zCol1 }}</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); width: 19%; text-align: right;">{{ zCol2 }}</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); width: 19%; text-align: right;">{{ zCol3 }}</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); width: 19%; text-align: right;">{{ zCol4 }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ z1c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z1c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z1c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z1c4 }}</td>
+            </tr>
+            <tr style="background: #FAFBFF;">
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ z2c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z2c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z2c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z2c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ z3c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z3c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z3c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z3c4 }}</td>
+            </tr>
+            <tr style="background: #FAFBFF;">
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ z4c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z4c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z4c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z4c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ z5c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z5c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z5c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z5c4 }}</td>
+            </tr>
+            <tr style="background: #FAFBFF;">
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ z6c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z6c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z6c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z6c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ z7c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z7c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z7c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z7c4 }}</td>
+            </tr>
+            <tr style="background: #FAFBFF;">
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ z8c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z8c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z8c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; border-left: 1px solid var(--doc-border-hairline); text-align: right;">{{ z8c4 }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 14px; font-family: 'Heebo', sans-serif; font-size: 11px; font-style: italic; color: #C6C8D5; line-height: 1.65;">{{ zebraNote }}</div>
+      <div style="flex: 1;"></div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">06</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 7: INDICATOR TABLE ───────────────────────────── -->
+
+  <div data-doc-page="" data-screen-label="07 Indicator Table" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+      <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+    </div>
+
+    <div style="padding: 48px 64px; flex: 1; display: flex; flex-direction: column;">
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">{{ indEyebrow }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 38px; color: #16182A; line-height: 1.08; letter-spacing: -0.7px; margin-bottom: 8px;">{{ indHeading }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #6F7185; margin-bottom: 30px; line-height: 1.65;">{{ indSubtitle }}</div>
+      <div style="border: 1px solid #ECEDF5; border-radius: 6px; overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957;">Initiative</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); width: 22%;">Progress</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); width: 18%;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px;">
+                <div style="margin-bottom: 3px;">{{ ind1Label }}</div>
+                <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD;">{{ ind1Desc }}</div>
+              </td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px; border-left: 1px solid var(--doc-border-hairline);">{{ ind1Value }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px; border-left: 1px solid var(--doc-border-hairline);"><span class="gc-badge" data-level="{{ ind1Level }}">{{ ind1Status }}</span></td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px;">
+                <div style="margin-bottom: 3px;">{{ ind2Label }}</div>
+                <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD;">{{ ind2Desc }}</div>
+              </td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px; border-left: 1px solid var(--doc-border-hairline);">{{ ind2Value }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px; border-left: 1px solid var(--doc-border-hairline);"><span class="gc-badge" data-level="{{ ind2Level }}">{{ ind2Status }}</span></td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px;">
+                <div style="margin-bottom: 3px;">{{ ind3Label }}</div>
+                <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD;">{{ ind3Desc }}</div>
+              </td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px; border-left: 1px solid var(--doc-border-hairline);">{{ ind3Value }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px; border-left: 1px solid var(--doc-border-hairline);"><span class="gc-badge" data-level="{{ ind3Level }}">{{ ind3Status }}</span></td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px;">
+                <div style="margin-bottom: 3px;">{{ ind4Label }}</div>
+                <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD;">{{ ind4Desc }}</div>
+              </td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px; border-left: 1px solid var(--doc-border-hairline);">{{ ind4Value }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px; border-left: 1px solid var(--doc-border-hairline);"><span class="gc-badge" data-level="{{ ind4Level }}">{{ ind4Status }}</span></td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px;">
+                <div style="margin-bottom: 3px;">{{ ind5Label }}</div>
+                <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD;">{{ ind5Desc }}</div>
+              </td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px; border-left: 1px solid var(--doc-border-hairline);">{{ ind5Value }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px; border-left: 1px solid var(--doc-border-hairline);"><span class="gc-badge" data-level="{{ ind5Level }}">{{ ind5Status }}</span></td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px;">
+                <div style="margin-bottom: 3px;">{{ ind6Label }}</div>
+                <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD;">{{ ind6Desc }}</div>
+              </td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px; border-left: 1px solid var(--doc-border-hairline);">{{ ind6Value }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top; padding: 16px 14px; border-left: 1px solid var(--doc-border-hairline);"><span class="gc-badge" data-level="{{ ind6Level }}">{{ ind6Status }}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 14px; font-family: 'Heebo', sans-serif; font-size: 11px; font-style: italic; color: #C6C8D5; line-height: 1.65;">{{ indNote }}</div>
+      <div style="flex: 1;"></div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">07</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 8: FINANCIAL TABLE ───────────────────────────── -->
+
+  <div data-doc-page="" data-screen-label="08 Financial Table" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+      <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+    </div>
+
+    <div style="padding: 48px 64px; flex: 1; display: flex; flex-direction: column;">
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">{{ finEyebrow }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 38px; color: #16182A; line-height: 1.08; letter-spacing: -0.7px; margin-bottom: 8px;">{{ finHeading }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #6F7185; margin-bottom: 30px; line-height: 1.65;">{{ finSubtitle }}</div>
+      <div style="border: 1px solid #ECEDF5; border-radius: 6px; overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957;">{{ finCol1 }}</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); width: 17%; text-align: right;">{{ finCol2 }}</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); width: 17%; text-align: right;">{{ finCol3 }}</th>
+              <th style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-align: left; background: #000957; border-left: 1px solid rgba(255,255,255,0.08); width: 17%; text-align: right;">{{ finCol4 }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ f1c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f1c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f1c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f1c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ f2c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f2c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f2c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f2c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ f3c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f3c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f3c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f3c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ f4c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f4c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f4c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f4c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ f5c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f5c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f5c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f5c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ f6c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f6c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f6c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f6c4 }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; border-top: 1px solid #ECEDF5; vertical-align: top;">{{ f7c1 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f7c2 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f7c3 }}</td>
+              <td style="padding: 13px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #16182A; border-top: 1px solid #ECEDF5; border-left: 1px solid var(--doc-border-hairline); text-align: right; vertical-align: top;">{{ f7c4 }}</td>
+            </tr>
+            <tr style="background: #F2F3FE;">
+              <td style="padding: 15px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 700; color: #000957; border-top: 2px solid #000957;">{{ finTotalLabel }}</td>
+              <td style="padding: 15px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 700; color: #000957; border-top: 2px solid #000957; border-left: 1px solid #E0E2EA; text-align: right;">{{ finTotal2 }}</td>
+              <td style="padding: 15px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 700; color: #000957; border-top: 2px solid #000957; border-left: 1px solid #E0E2EA; text-align: right;">{{ finTotal3 }}</td>
+              <td style="padding: 15px 14px; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 700; color: #000957; border-top: 2px solid #000957; border-left: 1px solid #E0E2EA; text-align: right;">{{ finTotal4 }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 14px; font-family: 'Heebo', sans-serif; font-size: 11px; font-style: italic; color: #C6C8D5; line-height: 1.65;">{{ finNote }}</div>
+      <div style="flex: 1;"></div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">08</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 9: TIMELINE / MILESTONES ─────────────────────── -->
+
+  <div data-doc-page="" data-screen-label="09 Milestones" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+      <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+    </div>
+
+    <div style="padding: 48px 64px; flex: 1; display: flex; flex-direction: column;">
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">{{ mileEyebrow }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 38px; color: #16182A; line-height: 1.08; letter-spacing: -0.7px; margin-bottom: 8px;">{{ mileHeading }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #6F7185; margin-bottom: 30px; line-height: 1.65;">{{ mileSubtitle }}</div>
+      <div style="display: flex; flex-direction: column; gap: 0;">
+
+        <div style="padding: 21px 0; border-top: 1px solid #ECEDF5; display: flex; gap: 28px; align-items: flex-start;">
+          <div style="width: 128px; flex-shrink: 0;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #3D51E8; margin-bottom: 5px;">{{ m1Phase }}</div>
+            <div style="font-family: 'Yrsa', serif; font-size: 21px; font-weight: 400; color: #000957; line-height: 1.1;">{{ m1Date }}</div>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 6px; line-height: 1.4;">{{ m1Title }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; line-height: 1.75;">{{ m1Desc }}</div>
+          </div>
+          <div style="width: 104px; flex-shrink: 0; text-align: right; padding-top: 2px;">
+            <span class="gc-badge" data-level="{{ m1Level }}">{{ m1Status }}</span>
+          </div>
+        </div>
+        <div style="padding: 21px 0; border-top: 1px solid #ECEDF5; display: flex; gap: 28px; align-items: flex-start;">
+          <div style="width: 128px; flex-shrink: 0;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #3D51E8; margin-bottom: 5px;">{{ m2Phase }}</div>
+            <div style="font-family: 'Yrsa', serif; font-size: 21px; font-weight: 400; color: #000957; line-height: 1.1;">{{ m2Date }}</div>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 6px; line-height: 1.4;">{{ m2Title }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; line-height: 1.75;">{{ m2Desc }}</div>
+          </div>
+          <div style="width: 104px; flex-shrink: 0; text-align: right; padding-top: 2px;">
+            <span class="gc-badge" data-level="{{ m2Level }}">{{ m2Status }}</span>
+          </div>
+        </div>
+        <div style="padding: 21px 0; border-top: 1px solid #ECEDF5; display: flex; gap: 28px; align-items: flex-start;">
+          <div style="width: 128px; flex-shrink: 0;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #3D51E8; margin-bottom: 5px;">{{ m3Phase }}</div>
+            <div style="font-family: 'Yrsa', serif; font-size: 21px; font-weight: 400; color: #000957; line-height: 1.1;">{{ m3Date }}</div>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 6px; line-height: 1.4;">{{ m3Title }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; line-height: 1.75;">{{ m3Desc }}</div>
+          </div>
+          <div style="width: 104px; flex-shrink: 0; text-align: right; padding-top: 2px;">
+            <span class="gc-badge" data-level="{{ m3Level }}">{{ m3Status }}</span>
+          </div>
+        </div>
+        <div style="padding: 21px 0; border-top: 1px solid #ECEDF5; display: flex; gap: 28px; align-items: flex-start;">
+          <div style="width: 128px; flex-shrink: 0;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #3D51E8; margin-bottom: 5px;">{{ m4Phase }}</div>
+            <div style="font-family: 'Yrsa', serif; font-size: 21px; font-weight: 400; color: #000957; line-height: 1.1;">{{ m4Date }}</div>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 6px; line-height: 1.4;">{{ m4Title }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; line-height: 1.75;">{{ m4Desc }}</div>
+          </div>
+          <div style="width: 104px; flex-shrink: 0; text-align: right; padding-top: 2px;">
+            <span class="gc-badge" data-level="{{ m4Level }}">{{ m4Status }}</span>
+          </div>
+        </div>
+        <div style="padding: 21px 0; border-top: 1px solid #ECEDF5; display: flex; gap: 28px; align-items: flex-start;">
+          <div style="width: 128px; flex-shrink: 0;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #3D51E8; margin-bottom: 5px;">{{ m5Phase }}</div>
+            <div style="font-family: 'Yrsa', serif; font-size: 21px; font-weight: 400; color: #000957; line-height: 1.1;">{{ m5Date }}</div>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 6px; line-height: 1.4;">{{ m5Title }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; line-height: 1.75;">{{ m5Desc }}</div>
+          </div>
+          <div style="width: 104px; flex-shrink: 0; text-align: right; padding-top: 2px;">
+            <span class="gc-badge" data-level="{{ m5Level }}">{{ m5Status }}</span>
+          </div>
+        </div>
+        <div style="padding: 21px 0; border-top: 1px solid #ECEDF5; border-bottom: 1px solid #ECEDF5; display: flex; gap: 28px; align-items: flex-start;">
+          <div style="width: 128px; flex-shrink: 0;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #3D51E8; margin-bottom: 5px;">{{ m6Phase }}</div>
+            <div style="font-family: 'Yrsa', serif; font-size: 21px; font-weight: 400; color: #000957; line-height: 1.1;">{{ m6Date }}</div>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A; margin-bottom: 6px; line-height: 1.4;">{{ m6Title }}</div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #4B4E65; line-height: 1.75;">{{ m6Desc }}</div>
+          </div>
+          <div style="width: 104px; flex-shrink: 0; text-align: right; padding-top: 2px;">
+            <span class="gc-badge" data-level="{{ m6Level }}">{{ m6Status }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 14px; font-family: 'Heebo', sans-serif; font-size: 11px; font-style: italic; color: #C6C8D5; line-height: 1.65;">{{ mileNote }}</div>
+      <div style="flex: 1;"></div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">09</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 10: LINE CHART ──────────────────────────── -->
+
+  <div data-doc-page="" data-screen-label="10 Line Chart" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+      <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+    </div>
+
+    <div style="padding: 48px 64px; flex: 1; display: flex; flex-direction: column;">
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">{{ chart1Eyebrow }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 38px; color: #16182A; line-height: 1.08; letter-spacing: -0.7px; margin-bottom: 8px;">{{ chart1Heading }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #6F7185; margin-bottom: 30px; line-height: 1.65;">{{ chart1Subtitle }}</div>
+      <div style="border: 1px solid #ECEDF5; border-radius: 6px; padding: 24px 24px 18px; background: #FFFFFF;">
+        <div style="display: flex; gap: 22px; align-items: center; margin-bottom: 18px;">
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <div style="width: 18px; height: 3px; background: #3D51E8; border-radius: 2px;"></div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: #4B4E65;">{{ chart1SeriesName }}</div>
+          </div>
+        </div>
+        <div data-chart="line" data-chart-id="c1" data-labels="{{ chart1Labels }}" data-series1="{{ chart1Values }}" data-color1="#3D51E8">
+          <svg viewBox="0 0 666 330" style="width: 100%; height: auto; display: block;"></svg>
+        </div>
+      </div>
+      <div style="margin-top: 26px; border-top: 1px solid #3D51E8; padding: 16px 0 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #000957; margin-bottom: 6px;">What This Shows</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.8;">{{ chart1Insight }}</div>
+      </div>
+      <div style="margin-top: 14px; font-family: 'Heebo', sans-serif; font-size: 11px; font-style: italic; color: #C6C8D5;">{{ chart1Source }}</div>
+      <div style="flex: 1;"></div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">10</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 11: AREA CHART ──────────────────────────── -->
+
+  <div data-doc-page="" data-screen-label="11 Area Chart" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+      <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+    </div>
+
+    <div style="padding: 48px 64px; flex: 1; display: flex; flex-direction: column;">
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">{{ chart2Eyebrow }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 38px; color: #16182A; line-height: 1.08; letter-spacing: -0.7px; margin-bottom: 8px;">{{ chart2Heading }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #6F7185; margin-bottom: 30px; line-height: 1.65;">{{ chart2Subtitle }}</div>
+      <div style="border: 1px solid #ECEDF5; border-radius: 6px; padding: 24px 24px 18px; background: #FFFFFF;">
+        <div style="display: flex; gap: 22px; align-items: center; margin-bottom: 18px;">
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <div style="width: 18px; height: 3px; background: #3D51E8; border-radius: 2px;"></div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: #4B4E65;">{{ chart2SeriesName }}</div>
+          </div>
+        </div>
+        <div data-chart="area" data-chart-id="c2" data-labels="{{ chart2Labels }}" data-series1="{{ chart2Values }}" data-color1="#3D51E8">
+          <svg viewBox="0 0 666 330" style="width: 100%; height: auto; display: block;"></svg>
+        </div>
+      </div>
+      <div style="margin-top: 26px; border-top: 1px solid #3D51E8; padding: 16px 0 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #000957; margin-bottom: 6px;">What This Shows</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.8;">{{ chart2Insight }}</div>
+      </div>
+      <div style="margin-top: 14px; font-family: 'Heebo', sans-serif; font-size: 11px; font-style: italic; color: #C6C8D5;">{{ chart2Source }}</div>
+      <div style="flex: 1;"></div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">11</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 12: MULTI-LINE CHART ────────────────────── -->
+
+  <div data-doc-page="" data-screen-label="12 Multi-Line Chart" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 18px; width: auto;">
+      <img src="../../../assets/logos/others/GIU-Wordmark-Blue.svg" style="height: 9px; width: auto;">
+    </div>
+
+    <div style="padding: 48px 64px; flex: 1; display: flex; flex-direction: column;">
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">{{ chart3Eyebrow }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 38px; color: #16182A; line-height: 1.08; letter-spacing: -0.7px; margin-bottom: 8px;">{{ chart3Heading }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #6F7185; margin-bottom: 30px; line-height: 1.65;">{{ chart3Subtitle }}</div>
+      <div style="border: 1px solid #ECEDF5; border-radius: 6px; padding: 24px 24px 18px; background: #FFFFFF;">
+        <div style="display: flex; gap: 22px; align-items: center; margin-bottom: 18px;">
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <div style="width: 18px; height: 3px; background: #000957; border-radius: 2px;"></div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: #4B4E65;">{{ chart3Series1Name }}</div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <div style="width: 18px; height: 3px; background: #3D51E8; border-radius: 2px;"></div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: #4B4E65;">{{ chart3Series2Name }}</div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <div style="width: 18px; height: 3px; background: #9B9CAD; border-radius: 2px;"></div>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 500; color: #4B4E65;">{{ chart3Series3Name }}</div>
+          </div>
+        </div>
+        <div data-chart="multi" data-chart-id="c3" data-labels="{{ chart3Labels }}" data-series1="{{ chart3Series1Values }}" data-color1="#000957" data-series2="{{ chart3Series2Values }}" data-color2="#3D51E8" data-series3="{{ chart3Series3Values }}" data-color3="#9B9CAD">
+          <svg viewBox="0 0 666 330" style="width: 100%; height: auto; display: block;"></svg>
+        </div>
+      </div>
+      <div style="margin-top: 26px; border-top: 1px solid #3D51E8; padding: 16px 0 0;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #000957; margin-bottom: 6px;">What This Shows</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.8;">{{ chart3Insight }}</div>
+      </div>
+      <div style="margin-top: 14px; font-family: 'Heebo', sans-serif; font-size: 11px; font-style: italic; color: #C6C8D5;">{{ chart3Source }}</div>
+      <div style="flex: 1;"></div>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">12</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 13: GLOBAL PRESENCE (BACK COVER) ─────────────── -->
+  <div data-doc-page="" data-screen-label="13 Back Cover" style="width: 794px; height: 1123px; margin: 0 auto; background: radial-gradient(1146px 1196px at 101.45% 0%, #000957 0%, #0F1A2D 100%); border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; padding: 56px; overflow: hidden;">
+    <div>
+      <img src="../../assets/logos/GCS-Primary-White.svg" style="height: 32px; width: auto;">
+    </div>
+    <div style="flex: 1;"></div>
+    <div style="margin-bottom: 44px;">
+      <div style="margin-bottom: 22px; line-height: 1.08;">
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 68px; color: #FFFFFF; letter-spacing: -1.5px;">Our Global</div>
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 68px; color: #B3B5CD; letter-spacing: -1.5px;">Presence.</div>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 400; color: rgb(168,179,205); line-height: 1.6; max-width: 520px; margin-bottom: 44px;">We operate globally, with teams supporting clients across different regions, both through local offices and dedicated contact points.</div>
+      <div style="margin-bottom: 10px; color: white;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 13.671 15.338" fill="currentColor" style="display: block;"><path d="M 6.836 0 C 3.06 0 0 3.06 0 6.836 C 0 8.889 1.07 10.675 2.26 12.036 C 3.459 13.407 4.859 14.436 5.692 14.991 C 6.388 15.454 7.283 15.454 7.979 14.991 C 8.812 14.436 10.212 13.407 11.411 12.036 C 12.601 10.675 13.671 8.889 13.671 6.836 C 13.671 3.06 10.611 0 6.836 0 Z M 6.836 3.798 C 5.158 3.798 3.798 5.158 3.798 6.836 C 3.798 8.513 5.158 9.874 6.836 9.874 C 8.513 9.874 9.874 8.513 9.874 6.836 C 9.874 5.158 8.513 3.798 6.836 3.798 Z" fill-rule="evenodd"></path></svg>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 17px; font-weight: 400; color: #FFFFFF; line-height: 1.65; letter-spacing: 0.01em;">ANTIGUA AND BARBUDA | BRAZIL | DUBAI | GRENADA | ITALY | MALTA | PORTUGAL | SPAIN | ST. LUCIA | SWITZERLAND | TURKEY | UNITED KINGDOM | VANUATU</div>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1);">
+      <div>
+        <a href="https://www.globalcitizensolutions.com" target="_blank" style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.2em; color: rgb(179,181,205); margin-bottom: 18px; text-decoration: none; display: block;">GLOBALCITIZENSOLUTIONS.COM</a>
+        <div style="display: flex; gap: 14px; align-items: center;">
+          <a href="https://www.linkedin.com/company/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg></a>
+          <a href="https://www.facebook.com/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"></path></svg></a>
+          <a href="https://www.instagram.com/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg></a>
+          <a href="https://beglobal.link/GCS-youtube" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg></a>
+        </div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: #FFFFFF; line-height: 1.6; margin-bottom: 8px;">8–10 Hill Street, London<br>W1J 5NG — United Kingdom</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: #FFFFFF; line-height: 1.6;">+44 20 8068 3119<br>info@globalcitizensolutions.com</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* GIU Corporate chart renderer. Runs in the browser and inside Puppeteer
+   before PDF capture (html-to-pdf.js waits networkidle0 + fonts + 1s).
+   Reads comma-separated values from data-* attributes on each [data-chart]
+   container and builds pure-SVG line/area/multi-line charts. If a data
+   attribute still holds an unpopulated field token, built-in sample data
+   is used so the raw template stays previewable. */
+(function () {
+  var SAMPLES = {
+    c1: { labels: 'Q1 2024,Q2 2024,Q3 2024,Q4 2024,Q1 2025,Q2 2025,Q3 2025,Q4 2025'.split(','), series: ['1240,1385,1510,1620,1795,1930,2140,2385'] },
+    c2: { labels: '2019,2020,2021,2022,2023,2024,2025,2026'.split(','), series: ['38,52,74,96,132,178,224,286'] },
+    c3: { labels: '2020,2021,2022,2023,2024,2025,2026'.split(','), series: ['420,485,540,610,655,715,760', '180,235,310,405,520,650,810', '95,120,165,240,335,460,605'] }
+  };
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(name, attrs, text) {
+    var node = document.createElementNS(NS, name);
+    for (var k in attrs) node.setAttribute(k, attrs[k]);
+    if (text != null) node.textContent = text;
+    return node;
+  }
+  function parseNums(raw) {
+    if (!raw || raw.indexOf('{{') !== -1) return null;
+    var arr = raw.split(',').map(function (v) { return parseFloat(String(v).trim().replace(/[^0-9.\-]/g, '')); });
+    if (!arr.length || arr.some(function (n) { return isNaN(n); })) return null;
+    return arr;
+  }
+  function niceMax(v) {
+    if (v <= 0) return 1;
+    var p = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+    var n = v / p;
+    var c = n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10;
+    return c * p;
+  }
+  function fmt(v) {
+    if (Math.abs(v) >= 1000) {
+      var k = v / 1000;
+      return (k % 1 === 0 ? k : k.toFixed(1)) + 'k';
+    }
+    return (v % 1 === 0 ? v : v.toFixed(1)) + '';
+  }
+  function draw(box) {
+    var svg = box.querySelector('svg');
+    if (!svg) return;
+    var id = box.getAttribute('data-chart-id') || 'c1';
+    var type = box.getAttribute('data-chart');
+    var sample = SAMPLES[id] || SAMPLES.c1;
+    var series = [];
+    for (var i = 1; i <= 3; i++) {
+      var raw = box.getAttribute('data-series' + i);
+      if (raw == null) continue;
+      var vals = parseNums(raw) || parseNums((sample.series[i - 1] || ''));
+      if (vals) series.push({ values: vals, color: box.getAttribute('data-color' + i) || '#3D51E8' });
+    }
+    if (!series.length) return;
+    var rawLabels = box.getAttribute('data-labels') || '';
+    var labels = rawLabels.indexOf('{{') === -1 && rawLabels ? rawLabels.split(',').map(function (s) { return s.trim(); }) : sample.labels;
+    var n = series[0].values.length;
+    while (labels.length < n) labels.push('');
+
+    var W = 666, H = 330, padL = 54, padR = 30, padT = 14, padB = 36;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var maxVal = 0;
+    series.forEach(function (s) { s.values.forEach(function (v) { if (v > maxVal) maxVal = v; }); });
+    var yMax = niceMax(maxVal);
+    var x = function (i) { return padL + (n === 1 ? plotW / 2 : (i / (n - 1)) * plotW); };
+    var y = function (v) { return padT + plotH - (v / yMax) * plotH; };
+
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    // horizontal gridlines + y tick labels (5 ticks: 0..yMax)
+    for (var t = 0; t <= 4; t++) {
+      var tv = (yMax / 4) * t;
+      var ty = y(tv);
+      svg.appendChild(el('line', { x1: padL, y1: ty, x2: W - padR, y2: ty, stroke: t === 0 ? '#E0E2EA' : '#ECEDF5', 'stroke-width': 1 }));
+      svg.appendChild(el('text', { x: padL - 10, y: ty + 3.5, 'text-anchor': 'end', 'font-family': 'Heebo, sans-serif', 'font-size': 10, fill: '#9B9CAD' }, fmt(tv)));
+    }
+    // x labels
+    var step = labels.length > 10 ? 2 : 1;
+    for (var i = 0; i < n; i += step) {
+      svg.appendChild(el('text', { x: x(i), y: H - 12, 'text-anchor': 'middle', 'font-family': 'Heebo, sans-serif', 'font-size': 10, fill: '#9B9CAD' }, labels[i]));
+    }
+    // series (draw area fills first so lines sit on top)
+    if (type === 'area') {
+      series.forEach(function (s) {
+        var d = 'M ' + x(0) + ' ' + y(s.values[0]);
+        for (var i = 1; i < s.values.length; i++) d += ' L ' + x(i) + ' ' + y(s.values[i]);
+        d += ' L ' + x(s.values.length - 1) + ' ' + y(0) + ' L ' + x(0) + ' ' + y(0) + ' Z';
+        svg.appendChild(el('path', { d: d, fill: s.color, 'fill-opacity': 0.1, stroke: 'none' }));
+      });
+    }
+    series.forEach(function (s) {
+      var pts = s.values.map(function (v, i) { return x(i) + ',' + y(v); }).join(' ');
+      svg.appendChild(el('polyline', { points: pts, fill: 'none', stroke: s.color, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+      if (n <= 14) {
+        s.values.forEach(function (v, i) {
+          svg.appendChild(el('circle', { cx: x(i), cy: y(v), r: 3, fill: '#FFFFFF', stroke: s.color, 'stroke-width': 2 }));
+        });
+      }
+    });
+  }
+  function run() {
+    var boxes = document.querySelectorAll('[data-chart]');
+    for (var i = 0; i < boxes.length; i++) draw(boxes[i]);
+    // colour comparative-table indicators by their glyph
+    var inds = document.querySelectorAll('.gc-ind');
+    for (var j = 0; j < inds.length; j++) {
+      var t = inds[j].textContent.trim();
+      if (t.charAt(0) === '\u2713') inds[j].style.color = '#15803D';
+      else if (t.charAt(0) === '\u2717') inds[j].style.color = '#B91C1C';
+      else if (t === '\u2014' || t === '-') inds[j].style.color = '#C6C8D5';
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  else run();
+})();
+</script>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 860, &quot;height&quot;: 1400},
+  &quot;year&quot;:                {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;2026&quot;},
+  &quot;eyebrow&quot;:             {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Corporate Report · 2026&quot;},
+  &quot;coverTitleLine1&quot;:     {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Annual Corporate&quot;},
+  &quot;coverTitleLine2&quot;:     {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Review 2026.&quot;},
+  &quot;coverSubtitle&quot;:       {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;A data-driven review of performance, programme status, and market outlook — prepared by the GCS Global Intelligence Unit.&quot;},
+  &quot;execHeading&quot;:         {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;A Year of Disciplined Growth&quot;},
+  &quot;simpleHeading&quot;:       {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Core Operating Metrics&quot;},
+  &quot;compHeading&quot;:         {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;How the Options Compare&quot;},
+  &quot;finHeading&quot;:          {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Summary Income Statement&quot;},
+  &quot;chart1Heading&quot;:       {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Qualified Enquiries per Quarter&quot;}
+}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      year:                  this.props.year                  ?? '2026',
+      eyebrow:               this.props.eyebrow               ?? 'Corporate Report · 2026',
+      coverTitleLine1:       this.props.coverTitleLine1       ?? 'Annual Corporate',
+      coverTitleLine2:       this.props.coverTitleLine2       ?? 'Review 2026.',
+      coverSubtitle:         this.props.coverSubtitle         ?? 'A data-driven review of performance, programme status, and market outlook — prepared by the GCS Global Intelligence Unit.',
+      aboutNote:             this.props.aboutNote             ?? 'Prepared by the GCS Global Intelligence Unit. Figures are drawn from internal reporting and publicly available programme data, and are presented for information purposes only.',
+      execHeading:           this.props.execHeading           ?? 'A Year of Disciplined Growth',
+      execLead:              this.props.execLead              ?? '2026 delivered record demand for investment migration advisory, with growth across every region and a materially stronger compliance posture.',
+      execBody1:             this.props.execBody1             ?? 'Client demand rose sharply across all core markets, led by North America and the Gulf. The advisory practice expanded into three new jurisdictions while maintaining approval rates above 98% — the strongest operational year in the firm’s history.',
+      execBody2:             this.props.execBody2             ?? 'This report sets out the year’s performance data in full: operating metrics, comparative programme analysis, delivery status across active initiatives, and the financial results underpinning the 2027 plan.',
+      exStat1Value:          this.props.exStat1Value          ?? '€286M',
+      exStat1Label:          this.props.exStat1Label          ?? 'Assets under advisory',
+      exStat2Value:          this.props.exStat2Value          ?? '+31%',
+      exStat2Label:          this.props.exStat2Label          ?? 'Year-on-year growth',
+      exStat3Value:          this.props.exStat3Value          ?? '4,120',
+      exStat3Label:          this.props.exStat3Label          ?? 'Client families served',
+      exStat4Value:          this.props.exStat4Value          ?? '38',
+      exStat4Label:          this.props.exStat4Label          ?? 'Markets covered',
+      simpleEyebrow:         this.props.simpleEyebrow         ?? 'Performance Data',
+      simpleHeading:         this.props.simpleHeading         ?? 'Core Operating Metrics',
+      simpleSubtitle:        this.props.simpleSubtitle        ?? 'Headline delivery metrics for the reporting period, by business line.',
+      stCol1:                this.props.stCol1                ?? 'Business Line',
+      stCol2:                this.props.stCol2                ?? 'Applications',
+      stCol3:                this.props.stCol3                ?? 'Approval Rate',
+      stCol4:                this.props.stCol4                ?? 'Avg. Processing',
+      st1c1:                 this.props.st1c1                 ?? 'Citizenship by Investment',
+      st1c2:                 this.props.st1c2                 ?? '1,480',
+      st1c3:                 this.props.st1c3                 ?? '98.6%',
+      st1c4:                 this.props.st1c4                 ?? '4.2 months',
+      st2c1:                 this.props.st2c1                 ?? 'Residency by Investment',
+      st2c2:                 this.props.st2c2                 ?? '1,655',
+      st2c3:                 this.props.st2c3                 ?? '97.9%',
+      st2c4:                 this.props.st2c4                 ?? '5.8 months',
+      st3c1:                 this.props.st3c1                 ?? 'Tax & Wealth Advisory',
+      st3c2:                 this.props.st3c2                 ?? '512',
+      st3c3:                 this.props.st3c3                 ?? '—',
+      st3c4:                 this.props.st3c4                 ?? '2.1 months',
+      st4c1:                 this.props.st4c1                 ?? 'Real Estate Advisory',
+      st4c2:                 this.props.st4c2                 ?? '298',
+      st4c3:                 this.props.st4c3                 ?? '—',
+      st4c4:                 this.props.st4c4                 ?? '3.4 months',
+      st5c1:                 this.props.st5c1                 ?? 'Corporate Relocation',
+      st5c2:                 this.props.st5c2                 ?? '121',
+      st5c3:                 this.props.st5c3                 ?? '96.2%',
+      st5c4:                 this.props.st5c4                 ?? '6.5 months',
+      st6c1:                 this.props.st6c1                 ?? 'Family Office Services',
+      st6c2:                 this.props.st6c2                 ?? '54',
+      st6c3:                 this.props.st6c3                 ?? '—',
+      st6c4:                 this.props.st6c4                 ?? '1.8 months',
+      simpleNote:            this.props.simpleNote            ?? 'Figures cover 1 January – 31 December of the reporting year. Approval rate is shown only where GCS manages the full application lifecycle.',
+      compEyebrow:           this.props.compEyebrow           ?? 'Comparative Analysis',
+      compHeading:           this.props.compHeading           ?? 'How the Options Compare',
+      compSubtitle:          this.props.compSubtitle          ?? 'Side-by-side assessment of the three shortlisted routes against the criteria that matter most to applicants.',
+      compColLabel:          this.props.compColLabel          ?? 'Criterion',
+      compOptA:              this.props.compOptA              ?? 'St. Kitts CBI',
+      compOptB:              this.props.compOptB              ?? 'Malta CES',
+      compOptC:              this.props.compOptC              ?? 'Vanuatu DSP',
+      cmp1Label:             this.props.cmp1Label             ?? 'EU freedom of movement',
+      cmp1a:                 this.props.cmp1a                 ?? '✗',
+      cmp1b:                 this.props.cmp1b                 ?? '✓',
+      cmp1c:                 this.props.cmp1c                 ?? '✗',
+      cmp2Label:             this.props.cmp2Label             ?? 'Visa-free UK access',
+      cmp2a:                 this.props.cmp2a                 ?? '✓',
+      cmp2b:                 this.props.cmp2b                 ?? '✓',
+      cmp2c:                 this.props.cmp2c                 ?? '✗',
+      cmp3Label:             this.props.cmp3Label             ?? 'Processing under 6 months',
+      cmp3a:                 this.props.cmp3a                 ?? '✓',
+      cmp3b:                 this.props.cmp3b                 ?? '✗',
+      cmp3c:                 this.props.cmp3c                 ?? '✓',
+      cmp4Label:             this.props.cmp4Label             ?? 'Family members included',
+      cmp4a:                 this.props.cmp4a                 ?? '✓',
+      cmp4b:                 this.props.cmp4b                 ?? '✓',
+      cmp4c:                 this.props.cmp4c                 ?? '✓',
+      cmp5Label:             this.props.cmp5Label             ?? 'No physical residency requirement',
+      cmp5a:                 this.props.cmp5a                 ?? '✓',
+      cmp5b:                 this.props.cmp5b                 ?? '✗',
+      cmp5c:                 this.props.cmp5c                 ?? '✓',
+      cmp6Label:             this.props.cmp6Label             ?? 'Real estate investment route',
+      cmp6a:                 this.props.cmp6a                 ?? '✓',
+      cmp6b:                 this.props.cmp6b                 ?? '✗',
+      cmp6c:                 this.props.cmp6c                 ?? '—',
+      cmp7Label:             this.props.cmp7Label             ?? 'Investment below $300k',
+      cmp7a:                 this.props.cmp7a                 ?? '✓',
+      cmp7b:                 this.props.cmp7b                 ?? '✗',
+      cmp7c:                 this.props.cmp7c                 ?? '✓',
+      compNote:              this.props.compNote              ?? 'Use ✓ for a criterion the option meets, ✗ where it does not, and — where it is not applicable. Assessment reflects programme rules in force at the time of writing.',
+      zebraEyebrow:          this.props.zebraEyebrow          ?? 'Detailed Breakdown',
+      zebraHeading:          this.props.zebraHeading          ?? 'Demand by Source Market',
+      zebraSubtitle:         this.props.zebraSubtitle         ?? 'Enquiry volume, signed engagements, and conversion rate for the eight largest source markets.',
+      zCol1:                 this.props.zCol1                 ?? 'Market',
+      zCol2:                 this.props.zCol2                 ?? 'Enquiries',
+      zCol3:                 this.props.zCol3                 ?? 'Engagements',
+      zCol4:                 this.props.zCol4                 ?? 'Conversion',
+      z1c1:                  this.props.z1c1                  ?? 'United States',
+      z1c2:                  this.props.z1c2                  ?? '6,240',
+      z1c3:                  this.props.z1c3                  ?? '812',
+      z1c4:                  this.props.z1c4                  ?? '13.0%',
+      z2c1:                  this.props.z2c1                  ?? 'United Kingdom',
+      z2c2:                  this.props.z2c2                  ?? '3,180',
+      z2c3:                  this.props.z2c3                  ?? '426',
+      z2c4:                  this.props.z2c4                  ?? '13.4%',
+      z3c1:                  this.props.z3c1                  ?? 'United Arab Emirates',
+      z3c2:                  this.props.z3c2                  ?? '2,905',
+      z3c3:                  this.props.z3c3                  ?? '451',
+      z3c4:                  this.props.z3c4                  ?? '15.5%',
+      z4c1:                  this.props.z4c1                  ?? 'South Africa',
+      z4c2:                  this.props.z4c2                  ?? '2,410',
+      z4c3:                  this.props.z4c3                  ?? '287',
+      z4c4:                  this.props.z4c4                  ?? '11.9%',
+      z5c1:                  this.props.z5c1                  ?? 'India',
+      z5c2:                  this.props.z5c2                  ?? '2,155',
+      z5c3:                  this.props.z5c3                  ?? '198',
+      z5c4:                  this.props.z5c4                  ?? '9.2%',
+      z6c1:                  this.props.z6c1                  ?? 'China',
+      z6c2:                  this.props.z6c2                  ?? '1,870',
+      z6c3:                  this.props.z6c3                  ?? '214',
+      z6c4:                  this.props.z6c4                  ?? '11.4%',
+      z7c1:                  this.props.z7c1                  ?? 'Brazil',
+      z7c2:                  this.props.z7c2                  ?? '1,565',
+      z7c3:                  this.props.z7c3                  ?? '172',
+      z7c4:                  this.props.z7c4                  ?? '11.0%',
+      z8c1:                  this.props.z8c1                  ?? 'Nigeria',
+      z8c2:                  this.props.z8c2                  ?? '1,340',
+      z8c3:                  this.props.z8c3                  ?? '119',
+      z8c4:                  this.props.z8c4                  ?? '8.9%',
+      zebraNote:             this.props.zebraNote             ?? 'Conversion is signed engagements as a share of qualified enquiries. Markets ranked by enquiry volume.',
+      indEyebrow:            this.props.indEyebrow            ?? 'Programme Status',
+      indHeading:            this.props.indHeading            ?? 'Delivery Health at a Glance',
+      indSubtitle:           this.props.indSubtitle           ?? 'Status of the year’s strategic initiatives. Levels: green (on plan), amber (needs attention), red (intervention required).',
+      ind1Label:             this.props.ind1Label             ?? 'Lisbon Office Expansion',
+      ind1Desc:              this.props.ind1Desc              ?? 'New advisory hub for Southern Europe',
+      ind1Value:             this.props.ind1Value             ?? '92% complete',
+      ind1Level:             this.props.ind1Level             ?? 'green',
+      ind1Status:            this.props.ind1Status            ?? 'On Track',
+      ind2Label:             this.props.ind2Label             ?? 'Client Portal 2.0',
+      ind2Desc:              this.props.ind2Desc              ?? 'Digital case-tracking for all active clients',
+      ind2Value:             this.props.ind2Value             ?? 'Beta live',
+      ind2Level:             this.props.ind2Level             ?? 'green',
+      ind2Status:            this.props.ind2Status            ?? 'On Track',
+      ind3Label:             this.props.ind3Label             ?? 'Gulf Market Entry',
+      ind3Desc:              this.props.ind3Desc              ?? 'Licensing and local partnership in the UAE',
+      ind3Value:             this.props.ind3Value             ?? 'Licence pending',
+      ind3Level:             this.props.ind3Level             ?? 'amber',
+      ind3Status:            this.props.ind3Status            ?? 'At Risk',
+      ind4Label:             this.props.ind4Label             ?? 'Compliance Automation',
+      ind4Desc:              this.props.ind4Desc              ?? 'Automated KYC and due-diligence screening',
+      ind4Value:             this.props.ind4Value             ?? '61% complete',
+      ind4Level:             this.props.ind4Level             ?? 'green',
+      ind4Status:            this.props.ind4Status            ?? 'On Track',
+      ind5Label:             this.props.ind5Label             ?? 'LATAM Partner Network',
+      ind5Desc:              this.props.ind5Desc              ?? 'Referral partnerships across four markets',
+      ind5Value:             this.props.ind5Value             ?? '2 of 4 signed',
+      ind5Level:             this.props.ind5Level             ?? 'amber',
+      ind5Status:            this.props.ind5Status            ?? 'At Risk',
+      ind6Label:             this.props.ind6Label             ?? 'Legacy CRM Migration',
+      ind6Desc:              this.props.ind6Desc              ?? 'Retirement of the 2019 CRM platform',
+      ind6Value:             this.props.ind6Value             ?? 'Re-scoped',
+      ind6Level:             this.props.ind6Level             ?? 'red',
+      ind6Status:            this.props.ind6Status            ?? 'Delayed',
+      indNote:               this.props.indNote               ?? 'Status levels are reviewed monthly by the delivery board. “Level” values must be one of: green, amber, red.',
+      finEyebrow:            this.props.finEyebrow            ?? 'Financial Overview',
+      finHeading:            this.props.finHeading            ?? 'Summary Income Statement',
+      finSubtitle:           this.props.finSubtitle           ?? 'Consolidated revenue and operating cost summary for the reporting period, against the prior financial year.',
+      finCol1:               this.props.finCol1               ?? 'Line Item',
+      finCol2:               this.props.finCol2               ?? 'FY 2025',
+      finCol3:               this.props.finCol3               ?? 'FY 2026',
+      finCol4:               this.props.finCol4               ?? 'Change',
+      f1c1:                  this.props.f1c1                  ?? 'Advisory fee revenue',
+      f1c2:                  this.props.f1c2                  ?? '€24.6M',
+      f1c3:                  this.props.f1c3                  ?? '€32.1M',
+      f1c4:                  this.props.f1c4                  ?? '+30.5%',
+      f2c1:                  this.props.f2c1                  ?? 'Government processing fees',
+      f2c2:                  this.props.f2c2                  ?? '€8.2M',
+      f2c3:                  this.props.f2c3                  ?? '€10.9M',
+      f2c4:                  this.props.f2c4                  ?? '+32.9%',
+      f3c1:                  this.props.f3c1                  ?? 'Real estate advisory revenue',
+      f3c2:                  this.props.f3c2                  ?? '€3.1M',
+      f3c3:                  this.props.f3c3                  ?? '€4.4M',
+      f3c4:                  this.props.f3c4                  ?? '+41.9%',
+      f4c1:                  this.props.f4c1                  ?? 'Other operating income',
+      f4c2:                  this.props.f4c2                  ?? '€0.8M',
+      f4c3:                  this.props.f4c3                  ?? '€1.1M',
+      f4c4:                  this.props.f4c4                  ?? '+37.5%',
+      f5c1:                  this.props.f5c1                  ?? 'Direct programme costs',
+      f5c2:                  this.props.f5c2                  ?? '(€11.4M)',
+      f5c3:                  this.props.f5c3                  ?? '(€14.8M)',
+      f5c4:                  this.props.f5c4                  ?? '+29.8%',
+      f6c1:                  this.props.f6c1                  ?? 'Staff and office costs',
+      f6c2:                  this.props.f6c2                  ?? '(€9.7M)',
+      f6c3:                  this.props.f6c3                  ?? '(€12.2M)',
+      f6c4:                  this.props.f6c4                  ?? '+25.8%',
+      f7c1:                  this.props.f7c1                  ?? 'Marketing and distribution',
+      f7c2:                  this.props.f7c2                  ?? '(€4.1M)',
+      f7c3:                  this.props.f7c3                  ?? '(€5.6M)',
+      f7c4:                  this.props.f7c4                  ?? '+36.6%',
+      finTotalLabel:         this.props.finTotalLabel         ?? 'Operating profit',
+      finTotal2:             this.props.finTotal2             ?? '€11.5M',
+      finTotal3:             this.props.finTotal3             ?? '€15.9M',
+      finTotal4:             this.props.finTotal4             ?? '+38.3%',
+      finNote:               this.props.finNote               ?? 'Unaudited management accounts. Parentheses denote costs. Figures rounded to the nearest €0.1M; change is year on year.',
+      mileEyebrow:           this.props.mileEyebrow           ?? 'Roadmap & Milestones',
+      mileHeading:           this.props.mileHeading           ?? 'Delivery Phases and Timeline',
+      mileSubtitle:          this.props.mileSubtitle          ?? 'The programme’s six delivery phases, with current status against the committed schedule.',
+      m1Phase:               this.props.m1Phase               ?? 'Phase 1',
+      m1Date:                this.props.m1Date                ?? 'Q1 2026',
+      m1Title:               this.props.m1Title               ?? 'Foundation & Licensing',
+      m1Desc:                this.props.m1Desc                ?? 'Regulatory approvals secured in all target jurisdictions; delivery team hired and onboarded.',
+      m1Level:               this.props.m1Level               ?? 'green',
+      m1Status:              this.props.m1Status              ?? 'Complete',
+      m2Phase:               this.props.m2Phase               ?? 'Phase 2',
+      m2Date:                this.props.m2Date                ?? 'Q2 2026',
+      m2Title:               this.props.m2Title               ?? 'Platform Build',
+      m2Desc:                this.props.m2Desc                ?? 'Client portal, case-management workflows, and compliance screening built and tested.',
+      m2Level:               this.props.m2Level               ?? 'green',
+      m2Status:              this.props.m2Status              ?? 'Complete',
+      m3Phase:               this.props.m3Phase               ?? 'Phase 3',
+      m3Date:                this.props.m3Date                ?? 'Q3 2026',
+      m3Title:               this.props.m3Title               ?? 'Pilot Launch',
+      m3Desc:                this.props.m3Desc                ?? 'Controlled launch with 40 pilot client families across two flagship programmes.',
+      m3Level:               this.props.m3Level               ?? 'green',
+      m3Status:              this.props.m3Status              ?? 'Complete',
+      m4Phase:               this.props.m4Phase               ?? 'Phase 4',
+      m4Date:                this.props.m4Date                ?? 'Q4 2026',
+      m4Title:               this.props.m4Title               ?? 'Full Market Launch',
+      m4Desc:                this.props.m4Desc                ?? 'General availability across all markets, with partner network activated.',
+      m4Level:               this.props.m4Level               ?? 'amber',
+      m4Status:              this.props.m4Status              ?? 'In Progress',
+      m5Phase:               this.props.m5Phase               ?? 'Phase 5',
+      m5Date:                this.props.m5Date                ?? 'Q1 2027',
+      m5Title:               this.props.m5Title               ?? 'Scale & Optimise',
+      m5Desc:                this.props.m5Desc                ?? 'Volume scaling, unit-cost reduction, and second-wave jurisdiction rollout.',
+      m5Level:               this.props.m5Level               ?? 'amber',
+      m5Status:              this.props.m5Status              ?? 'Planned',
+      m6Phase:               this.props.m6Phase               ?? 'Phase 6',
+      m6Date:                this.props.m6Date                ?? 'Q3 2027',
+      m6Title:               this.props.m6Title               ?? 'Regional Expansion',
+      m6Desc:                this.props.m6Desc                ?? 'Entry into two additional advisory regions, subject to board approval.',
+      m6Level:               this.props.m6Level               ?? 'red',
+      m6Status:              this.props.m6Status              ?? 'Planned',
+      mileNote:              this.props.mileNote              ?? 'Status as at the date of publication. “Level” values must be one of: green, amber, red.',
+      chart1Labels:          this.props.chart1Labels          ?? 'Q1 2024,Q2 2024,Q3 2024,Q4 2024,Q1 2025,Q2 2025,Q3 2025,Q4 2025',
+      chart1Values:          this.props.chart1Values          ?? '1240,1385,1510,1620,1795,1930,2140,2385',
+      chart1SeriesName:      this.props.chart1SeriesName      ?? 'Qualified enquiries',
+      chart1Eyebrow:         this.props.chart1Eyebrow         ?? 'Trends & Analysis',
+      chart1Heading:         this.props.chart1Heading         ?? 'Qualified Enquiries per Quarter',
+      chart1Subtitle:        this.props.chart1Subtitle        ?? 'Quarterly volume of qualified client enquiries across all programmes, last eight quarters.',
+      chart1Insight:         this.props.chart1Insight         ?? 'Enquiry volume has grown for eight consecutive quarters, accelerating from mid-2025 as new source markets came online. Q4 2025 volume is 92% above the Q1 2024 baseline.',
+      chart1Source:          this.props.chart1Source          ?? 'Source: GCS internal CRM reporting, January 2026. Qualified enquiries only; duplicates and spam excluded.',
+      chart2Labels:          this.props.chart2Labels          ?? '2019,2020,2021,2022,2023,2024,2025,2026',
+      chart2Values:          this.props.chart2Values          ?? '38,52,74,96,132,178,224,286',
+      chart2SeriesName:      this.props.chart2SeriesName      ?? 'Assets under advisory (€M)',
+      chart2Eyebrow:         this.props.chart2Eyebrow         ?? 'Trends & Analysis',
+      chart2Heading:         this.props.chart2Heading         ?? 'Assets Under Advisory (€M)',
+      chart2Subtitle:        this.props.chart2Subtitle        ?? 'Cumulative client investment capital advised by GCS, at each year end.',
+      chart2Insight:         this.props.chart2Insight         ?? 'Assets under advisory have grown at a 33% compound annual rate since 2019, crossing the €250M threshold in 2026 — driven primarily by European residency programmes.',
+      chart2Source:          this.props.chart2Source          ?? 'Source: GCS management accounts. Figures are cumulative committed investment at 31 December each year.',
+      chart3Labels:          this.props.chart3Labels          ?? '2020,2021,2022,2023,2024,2025,2026',
+      chart3Series1Values:   this.props.chart3Series1Values   ?? '420,485,540,610,655,715,760',
+      chart3Series2Values:   this.props.chart3Series2Values   ?? '180,235,310,405,520,650,810',
+      chart3Series3Values:   this.props.chart3Series3Values   ?? '95,120,165,240,335,460,605',
+      chart3Series1Name:     this.props.chart3Series1Name     ?? 'Caribbean',
+      chart3Series2Name:     this.props.chart3Series2Name     ?? 'Europe',
+      chart3Series3Name:     this.props.chart3Series3Name     ?? 'Middle East',
+      chart3Eyebrow:         this.props.chart3Eyebrow         ?? 'Trends & Analysis',
+      chart3Heading:         this.props.chart3Heading         ?? 'Applications by Region',
+      chart3Subtitle:        this.props.chart3Subtitle        ?? 'Annual application volume handled by GCS, split across the three largest destination regions.',
+      chart3Insight:         this.props.chart3Insight         ?? 'Caribbean volume remains the largest but is maturing, while European and Middle Eastern programmes are compounding fastest — Europe overtook the Caribbean growth rate in 2023 and is on track to become the largest region by 2028.',
+      chart3Source:          this.props.chart3Source          ?? 'Source: GCS case-management system, January 2026. Applications counted at submission.',
+    };
+  }
+}
+</script>
+</body>
+</html>

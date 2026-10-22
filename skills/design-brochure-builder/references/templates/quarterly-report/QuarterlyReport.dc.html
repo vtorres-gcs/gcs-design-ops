@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Investment Migration Quarterly Report" description="A4 quarterly report — cover, about + articles, content, CTA with consultants, global presence back cover" -->
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yrsa:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="./ds-base.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@page { size: 210mm 297mm; margin: 0; }
+@media print {
+  html, body { margin: 0 !important; padding: 0 !important; }
+  [data-doc-wrapper] { background: none !important; padding: 0 !important; min-height: unset !important; }
+  [data-doc-page] {
+    margin: 0 !important; box-shadow: none !important; border-radius: 0 !important;
+    page-break-after: always; break-after: page;
+    width: 210mm !important; height: 297mm !important;
+    min-height: unset !important; overflow: hidden !important; position: relative !important;
+  }
+  [data-doc-page]:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</helmet>
+
+<div data-doc-wrapper="" style="background: var(--doc-wrapper); padding: 40px 24px; min-height: 100vh; font-family: 'Heebo', 'Helvetica Neue', sans-serif;">
+
+  <!-- ── PAGE 1: COVER ─────────────────────────────────────── -->
+  <div data-doc-page="" style="width: 794px; height: 1123px; margin: 0 auto 32px; border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; overflow: hidden; position: relative; background: var(--doc-primary-deep);">
+    <img src="./background-cover.png" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0;">
+
+    <!-- Logo -->
+    <div style="position: relative; z-index: 2; padding: 48px 56px 0;">
+      <img src="../../../assets/logos/GCS-Primary-White.svg" style="height: 40px; width: auto; display: block;">
+    </div>
+
+    <!-- Centered text block -->
+    <div style="position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 0 56px;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--doc-accent-alt); margin-bottom: 20px;">{{ quarter }}</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 62px; color: var(--primary-foreground); line-height: 1.05; letter-spacing: -1.5px;">Investment Migration</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 62px; color: var(--night-blue-50); line-height: 1.05; letter-spacing: -1.5px;">Quarterly Report</div>
+    </div>
+
+    <!-- Footer URL -->
+    <div style="position: relative; z-index: 2; padding: 0 56px 56px;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; color: var(--doc-label-on-dark);">GLOBALCITIZENSOLUTIONS.COM</div>
+    </div>
+  </div>
+
+  <!-- ── PAGE 2: ABOUT + ARTICLES ───────────────────────────── -->
+  <div data-doc-page="" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: var(--card); border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <!-- Header -->
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--doc-muted);">About this Report</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary);">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid var(--doc-border); margin: 0 64px; flex-shrink: 0;"></div>
+
+    <div style="padding: 48px 64px; flex: 1; display: flex; flex-direction: column;">
+      <!-- Heading -->
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 44px; color: var(--doc-heading); line-height: 1.06; letter-spacing: -0.8px; margin-bottom: 28px;">About this Report</div>
+
+      <!-- About text -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: var(--doc-body); line-height: 1.85; margin-bottom: 14px;">{{ aboutPara1 }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: var(--doc-body); line-height: 1.85; margin-bottom: 14px;">{{ aboutPara2 }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: var(--doc-body); line-height: 1.85; margin-bottom: 44px;">{{ aboutPara3 }}</div>
+
+      <!-- Article list -->
+      <div style="display: flex; flex-direction: column; gap: 0;">
+
+        <!-- Article 1 -->
+        <div style="display: flex; gap: 24px; align-items: flex-start; padding: 22px 0; border-top: 1px solid var(--doc-border-light);">
+          <div style="width: 120px; height: 80px; flex-shrink: 0; border-radius: 3px; overflow: hidden; background: var(--doc-pattern-2);">
+            <div style="width: 100%; height: 100%; background: repeating-linear-gradient(-45deg, var(--doc-pattern-1) 0px, var(--doc-pattern-1) 6px, var(--doc-pattern-2) 6px, var(--doc-pattern-2) 12px); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: monospace; font-size: 9px; color: var(--doc-muted); text-align: center; padding: 4px;">article image</span>
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <a href="{{ article1Url }}" style="font-family: 'Yrsa', serif; font-size: 19px; font-weight: 400; color: var(--doc-badge); line-height: 1.3; text-decoration: none; display: block; margin-bottom: 6px;">{{ article1Title }}</a>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: var(--doc-muted-alt); line-height: 1.65;">{{ article1Excerpt }} <span style="color: var(--doc-badge);">→</span></div>
+          </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div style="display: flex; gap: 24px; align-items: flex-start; padding: 22px 0; border-top: 1px solid var(--doc-border-light);">
+          <div style="width: 120px; height: 80px; flex-shrink: 0; border-radius: 3px; overflow: hidden; background: var(--doc-pattern-2);">
+            <div style="width: 100%; height: 100%; background: repeating-linear-gradient(-45deg, var(--doc-pattern-1) 0px, var(--doc-pattern-1) 6px, var(--doc-pattern-2) 6px, var(--doc-pattern-2) 12px); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: monospace; font-size: 9px; color: var(--doc-muted); text-align: center; padding: 4px;">article image</span>
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <a href="{{ article2Url }}" style="font-family: 'Yrsa', serif; font-size: 19px; font-weight: 400; color: var(--doc-badge); line-height: 1.3; text-decoration: none; display: block; margin-bottom: 6px;">{{ article2Title }}</a>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: var(--doc-muted-alt); line-height: 1.65;">{{ article2Excerpt }} <span style="color: var(--doc-badge);">→</span></div>
+          </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div style="display: flex; gap: 24px; align-items: flex-start; padding: 22px 0; border-top: 1px solid var(--doc-border-light);">
+          <div style="width: 120px; height: 80px; flex-shrink: 0; border-radius: 3px; overflow: hidden; background: var(--doc-pattern-2);">
+            <div style="width: 100%; height: 100%; background: repeating-linear-gradient(-45deg, var(--doc-pattern-1) 0px, var(--doc-pattern-1) 6px, var(--doc-pattern-2) 6px, var(--doc-pattern-2) 12px); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: monospace; font-size: 9px; color: var(--doc-muted); text-align: center; padding: 4px;">article image</span>
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <a href="{{ article3Url }}" style="font-family: 'Yrsa', serif; font-size: 19px; font-weight: 400; color: var(--doc-badge); line-height: 1.3; text-decoration: none; display: block; margin-bottom: 6px;">{{ article3Title }}</a>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: var(--doc-muted-alt); line-height: 1.65;">{{ article3Excerpt }} <span style="color: var(--doc-badge);">→</span></div>
+          </div>
+        </div>
+
+        <!-- Article 4 -->
+        <div style="display: flex; gap: 24px; align-items: flex-start; padding: 22px 0; border-top: 1px solid var(--doc-border-light);">
+          <div style="width: 120px; height: 80px; flex-shrink: 0; border-radius: 3px; overflow: hidden; background: var(--doc-pattern-2);">
+            <div style="width: 100%; height: 100%; background: repeating-linear-gradient(-45deg, var(--doc-pattern-1) 0px, var(--doc-pattern-1) 6px, var(--doc-pattern-2) 6px, var(--doc-pattern-2) 12px); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: monospace; font-size: 9px; color: var(--doc-muted); text-align: center; padding: 4px;">article image</span>
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <a href="{{ article4Url }}" style="font-family: 'Yrsa', serif; font-size: 19px; font-weight: 400; color: var(--doc-badge); line-height: 1.3; text-decoration: none; display: block; margin-bottom: 6px;">{{ article4Title }}</a>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: var(--doc-muted-alt); line-height: 1.65;">{{ article4Excerpt }} <span style="color: var(--doc-badge);">→</span></div>
+          </div>
+        </div>
+
+        <!-- Article 5 -->
+        <div style="display: flex; gap: 24px; align-items: flex-start; padding: 22px 0; border-top: 1px solid var(--doc-border-light); border-bottom: 1px solid var(--doc-border-light);">
+          <div style="width: 120px; height: 80px; flex-shrink: 0; border-radius: 3px; overflow: hidden; background: var(--doc-pattern-2);">
+            <div style="width: 100%; height: 100%; background: repeating-linear-gradient(-45deg, var(--doc-pattern-1) 0px, var(--doc-pattern-1) 6px, var(--doc-pattern-2) 6px, var(--doc-pattern-2) 12px); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: monospace; font-size: 9px; color: var(--doc-muted); text-align: center; padding: 4px;">article image</span>
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <a href="{{ article5Url }}" style="font-family: 'Yrsa', serif; font-size: 19px; font-weight: 400; color: var(--doc-badge); line-height: 1.3; text-decoration: none; display: block; margin-bottom: 6px;">{{ article5Title }}</a>
+            <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: var(--doc-muted-alt); line-height: 1.65;">{{ article5Excerpt }} <span style="color: var(--doc-badge);">→</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid var(--doc-border); padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-subtle);">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-subtle); letter-spacing: 0.08em;">02</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 3: CONTENT ───────────────────────────────────── -->
+  <div data-doc-page="" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: var(--card); border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--doc-muted);">{{ contentSectionLabel }}</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary);">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid var(--doc-border); margin: 0 64px; flex-shrink: 0;"></div>
+
+    <div style="padding: 52px 64px; flex: 1; display: flex; flex-direction: column; gap: 0;">
+      <!-- Page heading -->
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 44px; color: var(--doc-heading); line-height: 1.06; letter-spacing: -0.8px; margin-bottom: 44px;">{{ contentHeading }}</div>
+
+      <!-- Section 1 -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: var(--doc-badge); line-height: 1.4; margin-bottom: 10px;">{{ section1Heading }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: var(--doc-body); line-height: 1.85; margin-bottom: 30px;">{{ section1Body }}</div>
+
+      <!-- Section 2 -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: var(--doc-badge); line-height: 1.4; margin-bottom: 10px;">{{ section2Heading }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: var(--doc-body); line-height: 1.85; margin-bottom: 30px;">{{ section2Body }}</div>
+
+      <!-- Section 3 -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: var(--doc-badge); line-height: 1.4; margin-bottom: 10px;">{{ section3Heading }}</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: var(--doc-body); line-height: 1.85; margin-bottom: 44px;">{{ section3Body }}</div>
+
+      <!-- Pull quote with CEO photo -->
+      <div style="display: flex; gap: 28px; align-items: flex-start; padding: 36px 0 0; border-top: 1px solid var(--doc-border-light);">
+        <!-- Photo -->
+        <div style="width: 72px; height: 72px; border-radius: 50%; flex-shrink: 0; overflow: hidden; background: var(--doc-pattern-2);">
+          <img src="../../../assets/uploads/Patricia Casaburi.png" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
+        </div>
+        <!-- Quote -->
+        <div style="flex: 1;">
+          <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 22px; color: var(--doc-heading); line-height: 1.5; margin-bottom: 16px;">{{ pullQuote }}</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 700; color: var(--primary); letter-spacing: 0.04em;">{{ pullQuoteAuthor }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid var(--doc-border); padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-subtle);">© {{ year }} Global Citizen Solutions — Confidential</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: var(--doc-subtle); letter-spacing: 0.08em;">03</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 4: GLOBAL PRESENCE (BACK COVER) ──────────────── -->
+  <div data-doc-page="" style="width: 794px; height: 1123px; margin: 0 auto; background: radial-gradient(1146px 1196px at 101.45% 0%, var(--primary) 0%, var(--doc-primary-dark) 100%); border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; padding: 56px; overflow: hidden;">
+    <div>
+      <img src="../../../assets/logos/GCS-Primary-White.svg" style="height: 32px; width: auto;">
+    </div>
+    <div style="flex: 1;"></div>
+    <div style="margin-bottom: 44px;">
+      <div style="margin-bottom: 22px; line-height: 1.08;">
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 68px; color: var(--primary-foreground); letter-spacing: -1.5px;">Our Global</div>
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 68px; color: var(--night-blue-50); letter-spacing: -1.5px;">Presence.</div>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 400; color: rgb(168,179,205); line-height: 1.6; max-width: 520px; margin-bottom: 44px;">We operate globally, with teams supporting clients across different regions, both through local offices and dedicated contact points.</div>
+      <div style="margin-bottom: 10px; color: white;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 13.671 15.338" fill="currentColor" style="display: block;"><path d="M 6.836 0 C 3.06 0 0 3.06 0 6.836 C 0 8.889 1.07 10.675 2.26 12.036 C 3.459 13.407 4.859 14.436 5.692 14.991 C 6.388 15.454 7.283 15.454 7.979 14.991 C 8.812 14.436 10.212 13.407 11.411 12.036 C 12.601 10.675 13.671 8.889 13.671 6.836 C 13.671 3.06 10.611 0 6.836 0 Z M 6.836 3.798 C 5.158 3.798 3.798 5.158 3.798 6.836 C 3.798 8.513 5.158 9.874 6.836 9.874 C 8.513 9.874 9.874 8.513 9.874 6.836 C 9.874 5.158 8.513 3.798 6.836 3.798 Z" fill-rule="evenodd"></path></svg>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 17px; font-weight: 400; color: var(--primary-foreground); line-height: 1.65; letter-spacing: 0.01em;">ANTIGUA AND BARBUDA | BRAZIL | DUBAI | GRENADA | ITALY | MALTA | PORTUGAL | SPAIN | ST. LUCIA | SWITZERLAND | TURKEY | UNITED KINGDOM | VANUATU</div>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1);">
+      <div>
+        <a href="https://www.globalcitizensolutions.com" target="_blank" style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.2em; color: rgb(179,181,205); margin-bottom: 18px; text-decoration: none; display: block;">GLOBALCITIZENSOLUTIONS.COM</a>
+        <div style="display: flex; gap: 14px; align-items: center;">
+          <a href="https://www.linkedin.com/company/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg></a>
+          <a href="https://www.facebook.com/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"></path></svg></a>
+          <a href="https://www.instagram.com/globalcitizensolutions/" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg></a>
+          <a href="https://beglobal.link/GCS-youtube" target="_blank" style="display: flex; color: rgb(179,181,205); text-decoration: none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg></a>
+        </div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: var(--primary-foreground); line-height: 1.6; margin-bottom: 8px;">8–10 Hill Street, London<br>W1J 5NG — United Kingdom</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: var(--primary-foreground); line-height: 1.6;">+44 20 8068 3119<br>info@globalcitizensolutions.com</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 860, &quot;height&quot;: 1400},
+  &quot;quarter&quot;:             {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Q2 2026&quot;},
+  &quot;year&quot;:                {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;2026&quot;},
+  &quot;coverSubtitle&quot;:       {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;A quarterly intelligence briefing on the global residency and citizenship by investment landscape.&quot;},
+  &quot;contentHeading&quot;:      {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Key Regulatory &amp; Policy Developments&quot;},
+  &quot;pullQuote&quot;:           {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;\&quot;Collectively, these trends position investment migration as a more regulated, resilient, and strategically relevant pillar of global mobility in the years ahead.\&quot;&quot;},
+  &quot;pullQuoteAuthor&quot;:     {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Patricia Casaburi, CEO of Global Citizen Solutions&quot;},
+  &quot;ctaHeading&quot;:          {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;How Can Global Citizen Solutions Assist You?&quot;},
+  &quot;consultant1Name&quot;:     {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;João Pacheco Gonçalves&quot;},
+  &quot;consultant1Location&quot;: {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Zurich, Switzerland&quot;},
+  &quot;consultant2Name&quot;:     {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;Rohan Harris&quot;},
+  &quot;consultant2Location&quot;: {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;London, UK&quot;},
+  &quot;ctaEmail&quot;:            {&quot;editor&quot;: &quot;text&quot;,  &quot;default&quot;: &quot;INSTITUTIONAL@GLOBALCITIZENSOLUTIONS.COM&quot;}
+}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      quarter:             this.props.quarter             ?? 'Q2 2026',
+      year:                this.props.year                ?? '2026',
+
+      coverSubtitle:       this.props.coverSubtitle       ?? 'A quarterly intelligence briefing on the global residency and citizenship by investment landscape, prepared for institutional and advisory partners.',
+
+      aboutPara1:          this.props.aboutPara1          ?? 'The Global Citizen Solutions Investment Migration Quarterly Report is designed to distill and consolidate key developments across the residency and citizenship planning landscape.',
+      aboutPara2:          this.props.aboutPara2          ?? 'Tailored for our institutional audience, the report delivers timely, relevant and easily digestible insights to support strategic decision-making and stay ahead of industry trends.',
+      aboutPara3:          this.props.aboutPara3          ?? 'All analysis and insights are produced by Global Citizen Solutions industry experts and the Intelligence Unit Team.',
+
+      article1Title:       this.props.article1Title       ?? 'Why tax incentives are shaping HNWI migration in Europe',
+      article1Excerpt:     this.props.article1Excerpt     ?? 'As traditional visa pathways tighten, favorable tax regimes are becoming a key factor in how wealthy individuals choose where to live, structure wealth, and plan across borders.',
+      article1Url:         this.props.article1Url         ?? '#',
+
+      article2Title:       this.props.article2Title       ?? 'From International Mobility to the Quality of Life',
+      article2Excerpt:     this.props.article2Excerpt     ?? 'Looking beyond visa-free access, this article shows how quality of life has become a central measure in evaluating the real value of a passport.',
+      article2Url:         this.props.article2Url         ?? '#',
+
+      article3Title:       this.props.article3Title       ?? 'Crypto Secure Jurisdictions: Where Crypto Actually Works',
+      article3Excerpt:     this.props.article3Excerpt     ?? 'A comparative look at the jurisdictions where digital-asset investors can operate with greater legal certainty, stronger banking support, and more reliable long-term structuring options.',
+      article3Url:         this.props.article3Url         ?? '#',
+
+      article4Title:       this.props.article4Title       ?? 'Policy Over Borders: How Restrictive Migration Laws Are Reshaping Citizenship Planning',
+      article4Excerpt:     this.props.article4Excerpt     ?? 'As governments tighten migration rules, investment migration is moving toward a more controlled model shaped by stricter screening, clearer rules, and greater accountability.',
+      article4Url:         this.props.article4Url         ?? '#',
+
+      article5Title:       this.props.article5Title       ?? 'Global Atlas of Risk and Readiness Report 2026',
+      article5Excerpt:     this.props.article5Excerpt     ?? 'Our latest report examines which countries are best positioned to protect capital and sustain long-term competitiveness, using a comparative framework built around structural risk, institutional resilience, and future readiness.',
+      article5Url:         this.props.article5Url         ?? '#',
+
+      contentSectionLabel: this.props.contentSectionLabel ?? '01 · Market Overview',
+      contentHeading:      this.props.contentHeading      ?? 'Key Regulatory & Policy Developments',
+
+      section1Heading:     this.props.section1Heading     ?? 'A Shift Toward Long-Term Mobility Planning',
+      section1Body:        this.props.section1Body        ?? 'The final quarter of 2025 represented a period of consolidation and strategic evolution for the global investment migration industry, as changes in passport rankings, regulatory refinement in Europe, and closer international scrutiny encouraged a more sophisticated approach to global mobility. Rather than slowing demand, these developments reinforced a shift toward long-term, resilience-based mobility planning, where investors increasingly prioritize stability, legal certainty, and sustainable access over short-term convenience.',
+
+      section2Heading:     this.props.section2Heading     ?? 'Passport Rankings and Global Rebalancing',
+      section2Body:        this.props.section2Body        ?? 'The Global Citizen Solutions Global Passport Index 2025 illustrated this evolution clearly. While traditionally dominant passports such as that of the United States experienced a relative decline, European passports continued to strengthen, occupying nine of the top ten positions in the ranking. This rebalancing reflects not a loss of mobility overall, but a growing emphasis on quality-of-life indicators, economic opportunity, and investment potential.',
+
+      section3Heading:     this.props.section3Heading     ?? 'Regulatory Developments Strengthening the Industry',
+      section3Body:        this.props.section3Body        ?? 'Across regions, regulatory and programmatic developments pointed to a more robust and credible industry. Portugal\'s nationality law reforms signaled a maturing European framework that aligns investor pathways with integration and social cohesion. In the Caribbean, enhanced due diligence standards have accelerated regional efforts to reinforce transparency and compliance. At the same time, St. Vincent and the Grenadines\' announcement of a forthcoming Citizenship program underscores continued innovation and confidence in the model.',
+
+      pullQuote:           this.props.pullQuote           ?? '"Collectively, these trends position investment migration as a more regulated, resilient, and strategically relevant pillar of global mobility in the years ahead."',
+      pullQuoteAuthor:     this.props.pullQuoteAuthor     ?? 'Patricia Casaburi, CEO of Global Citizen Solutions',
+
+      ctaHeading:          this.props.ctaHeading          ?? 'How Can Global Citizen Solutions Assist You?',
+      ctaPara1:            this.props.ctaPara1            ?? 'We work closely with financial advisors, private banks, wealth managers, law firms, and other institutions to deliver bespoke residency or citizenship solutions to their clients.',
+      ctaPara2:            this.props.ctaPara2            ?? 'Our team is available to discuss specific needs, provide comprehensive jurisdiction analysis, or arrange confidential consultations.',
+
+      consultant1Name:     this.props.consultant1Name     ?? 'João Pacheco Gonçalves',
+      consultant1Location: this.props.consultant1Location ?? 'Zurich, Switzerland',
+      consultant2Name:     this.props.consultant2Name     ?? 'Rohan Harris',
+      consultant2Location: this.props.consultant2Location ?? 'London, UK',
+
+      ctaEmail:            this.props.ctaEmail            ?? 'INSTITUTIONAL@GLOBALCITIZENSOLUTIONS.COM',
+    };
+  }
+}
+
+</script>
+</body>
+</html>

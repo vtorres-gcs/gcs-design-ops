@@ -1,0 +1,879 @@
+{
+ "cell": 256,
+ "cols": 16,
+ "source": "https://github.com/msikma/country-flags @ 7feceb443c02cc07b7697c3596a945d4c2bd4373",
+ "flags": {
+  "ad": {
+   "name": "Andorra",
+   "cell": 0
+  },
+  "ae": {
+   "name": "United Arab Emirates",
+   "cell": 1
+  },
+  "af": {
+   "name": "Afghanistan",
+   "cell": 2
+  },
+  "ag": {
+   "name": "Antigua and Barbuda",
+   "cell": 3
+  },
+  "ai": {
+   "name": "Anguilla",
+   "cell": 4
+  },
+  "al": {
+   "name": "Albania",
+   "cell": 5
+  },
+  "am": {
+   "name": "Armenia",
+   "cell": 6
+  },
+  "ao": {
+   "name": "Angola",
+   "cell": 7
+  },
+  "ar": {
+   "name": "Argentina",
+   "cell": 8
+  },
+  "at": {
+   "name": "Austria",
+   "cell": 9
+  },
+  "au": {
+   "name": "Australia",
+   "cell": 10
+  },
+  "aw": {
+   "name": "Aruba",
+   "cell": 11
+  },
+  "ax": {
+   "name": "Åland Islands",
+   "cell": 12
+  },
+  "az": {
+   "name": "Azerbaijan",
+   "cell": 13
+  },
+  "ba": {
+   "name": "Bosnia and Herzegovina",
+   "cell": 14
+  },
+  "bb": {
+   "name": "Barbados",
+   "cell": 15
+  },
+  "bd": {
+   "name": "Bangladesh",
+   "cell": 16
+  },
+  "be": {
+   "name": "Belgium",
+   "cell": 17
+  },
+  "bf": {
+   "name": "Burkina Faso",
+   "cell": 18
+  },
+  "bg": {
+   "name": "Bulgaria",
+   "cell": 19
+  },
+  "bh": {
+   "name": "Bahrain",
+   "cell": 20
+  },
+  "bi": {
+   "name": "Burundi",
+   "cell": 21
+  },
+  "bj": {
+   "name": "Benin",
+   "cell": 22
+  },
+  "bm": {
+   "name": "Bermuda",
+   "cell": 23
+  },
+  "bn": {
+   "name": "Brunei",
+   "cell": 24
+  },
+  "bo": {
+   "name": "Bolivia",
+   "cell": 25
+  },
+  "br": {
+   "name": "Brasil",
+   "cell": 26
+  },
+  "bs": {
+   "name": "The Bahamas",
+   "cell": 27
+  },
+  "bt": {
+   "name": "Bhutan",
+   "cell": 28
+  },
+  "bw": {
+   "name": "Botswana",
+   "cell": 29
+  },
+  "by": {
+   "name": "Belarus",
+   "cell": 30
+  },
+  "bz": {
+   "name": "Belize",
+   "cell": 31
+  },
+  "ca": {
+   "name": "Canada",
+   "cell": 32
+  },
+  "cd": {
+   "name": "Democratic Republic of the Congo",
+   "cell": 33
+  },
+  "cf": {
+   "name": "Central African Republic",
+   "cell": 34
+  },
+  "cg": {
+   "name": "Republic of the Congo",
+   "cell": 35
+  },
+  "ch": {
+   "name": "Switzerland",
+   "cell": 36
+  },
+  "ci": {
+   "name": "Côte d'Ivoire",
+   "cell": 37
+  },
+  "ck": {
+   "name": "Cook Islands",
+   "cell": 38
+  },
+  "cl": {
+   "name": "Chile",
+   "cell": 39
+  },
+  "cm": {
+   "name": "Cameroon",
+   "cell": 40
+  },
+  "cn": {
+   "name": "China",
+   "cell": 41
+  },
+  "co": {
+   "name": "Colombia",
+   "cell": 42
+  },
+  "cr": {
+   "name": "Costa Rica",
+   "cell": 43
+  },
+  "cu": {
+   "name": "Cuba",
+   "cell": 44
+  },
+  "cv": {
+   "name": "Cape Verde",
+   "cell": 45
+  },
+  "cx": {
+   "name": "Christmas Island",
+   "cell": 46
+  },
+  "cy": {
+   "name": "Cyprus",
+   "cell": 47
+  },
+  "cz": {
+   "name": "Czech Republic",
+   "cell": 48
+  },
+  "de": {
+   "name": "Germany",
+   "cell": 49
+  },
+  "dj": {
+   "name": "Djibouti",
+   "cell": 50
+  },
+  "dk": {
+   "name": "Denmark",
+   "cell": 51
+  },
+  "dm": {
+   "name": "Dominica",
+   "cell": 52
+  },
+  "do": {
+   "name": "Dominican Republic",
+   "cell": 53
+  },
+  "dz": {
+   "name": "Algeria",
+   "cell": 54
+  },
+  "ec": {
+   "name": "Ecuador",
+   "cell": 55
+  },
+  "ee": {
+   "name": "Estonia",
+   "cell": 56
+  },
+  "eg": {
+   "name": "Egypt",
+   "cell": 57
+  },
+  "er": {
+   "name": "Eritrea",
+   "cell": 58
+  },
+  "es": {
+   "name": "Spain",
+   "cell": 59
+  },
+  "et": {
+   "name": "Ethiopia",
+   "cell": 60
+  },
+  "fi": {
+   "name": "Finland",
+   "cell": 61
+  },
+  "fj": {
+   "name": "Fiji",
+   "cell": 62
+  },
+  "fk": {
+   "name": "Falkland Islands",
+   "cell": 63
+  },
+  "fm": {
+   "name": "Federated States of Micronesia",
+   "cell": 64
+  },
+  "fo": {
+   "name": "Faroe Islands",
+   "cell": 65
+  },
+  "fr": {
+   "name": "France",
+   "cell": 66
+  },
+  "ga": {
+   "name": "Gabon",
+   "cell": 67
+  },
+  "gd": {
+   "name": "Grenada",
+   "cell": 68
+  },
+  "ge": {
+   "name": "Georgia",
+   "cell": 69
+  },
+  "gh": {
+   "name": "Ghana",
+   "cell": 70
+  },
+  "gl": {
+   "name": "Greenland",
+   "cell": 71
+  },
+  "gm": {
+   "name": "The Gambia",
+   "cell": 72
+  },
+  "gn": {
+   "name": "Guinea",
+   "cell": 73
+  },
+  "gq": {
+   "name": "Equatorial Guinea",
+   "cell": 74
+  },
+  "gr": {
+   "name": "Greece",
+   "cell": 75
+  },
+  "gt": {
+   "name": "Guatemala",
+   "cell": 76
+  },
+  "gw": {
+   "name": "Guinea-Bissau",
+   "cell": 77
+  },
+  "gy": {
+   "name": "Guyana",
+   "cell": 78
+  },
+  "hk": {
+   "name": "Hong Kong",
+   "cell": 79
+  },
+  "hn": {
+   "name": "Honduras",
+   "cell": 80
+  },
+  "hr": {
+   "name": "Croatia",
+   "cell": 81
+  },
+  "ht": {
+   "name": "Haiti",
+   "cell": 82
+  },
+  "hu": {
+   "name": "Hungary",
+   "cell": 83
+  },
+  "id": {
+   "name": "Indonesia",
+   "cell": 84
+  },
+  "ie": {
+   "name": "Ireland",
+   "cell": 85
+  },
+  "il": {
+   "name": "Israel",
+   "cell": 86
+  },
+  "in": {
+   "name": "India",
+   "cell": 87
+  },
+  "iq": {
+   "name": "Iraq",
+   "cell": 88
+  },
+  "ir": {
+   "name": "Iran",
+   "cell": 89
+  },
+  "is": {
+   "name": "Iceland",
+   "cell": 90
+  },
+  "it": {
+   "name": "Italy",
+   "cell": 91
+  },
+  "jm": {
+   "name": "Jamaica",
+   "cell": 92
+  },
+  "jo": {
+   "name": "Jordan",
+   "cell": 93
+  },
+  "jp": {
+   "name": "Japan",
+   "cell": 94
+  },
+  "ke": {
+   "name": "Kenya",
+   "cell": 95
+  },
+  "kg": {
+   "name": "Kyrgyzstan",
+   "cell": 96
+  },
+  "kh": {
+   "name": "Cambodia",
+   "cell": 97
+  },
+  "ki": {
+   "name": "Kiribati",
+   "cell": 98
+  },
+  "km": {
+   "name": "Comoros",
+   "cell": 99
+  },
+  "kn": {
+   "name": "Saint Kitts and Nevis",
+   "cell": 100
+  },
+  "kp": {
+   "name": "North Korea",
+   "cell": 101
+  },
+  "kr": {
+   "name": "South Korea",
+   "cell": 102
+  },
+  "kw": {
+   "name": "Kuwait",
+   "cell": 103
+  },
+  "ky": {
+   "name": "Cayman Islands",
+   "cell": 104
+  },
+  "kz": {
+   "name": "Kazakhstan",
+   "cell": 105
+  },
+  "la": {
+   "name": "Laos",
+   "cell": 106
+  },
+  "lb": {
+   "name": "Lebanon",
+   "cell": 107
+  },
+  "lc": {
+   "name": "Saint Lucia",
+   "cell": 108
+  },
+  "li": {
+   "name": "Liechtenstein",
+   "cell": 109
+  },
+  "lk": {
+   "name": "Sri Lanka",
+   "cell": 110
+  },
+  "lr": {
+   "name": "Liberia",
+   "cell": 111
+  },
+  "ls": {
+   "name": "Lesotho",
+   "cell": 112
+  },
+  "lt": {
+   "name": "Lithuania",
+   "cell": 113
+  },
+  "lu": {
+   "name": "Luxembourg",
+   "cell": 114
+  },
+  "lv": {
+   "name": "Latvia",
+   "cell": 115
+  },
+  "ly": {
+   "name": "Libya",
+   "cell": 116
+  },
+  "ma": {
+   "name": "Morocco",
+   "cell": 117
+  },
+  "mc": {
+   "name": "Monaco",
+   "cell": 118
+  },
+  "md": {
+   "name": "Moldova",
+   "cell": 119
+  },
+  "me": {
+   "name": "Montenegro",
+   "cell": 120
+  },
+  "mg": {
+   "name": "Madagascar",
+   "cell": 121
+  },
+  "mh": {
+   "name": "Marshall Islands",
+   "cell": 122
+  },
+  "mk": {
+   "name": "Macedonia",
+   "cell": 123
+  },
+  "ml": {
+   "name": "Mali",
+   "cell": 124
+  },
+  "mm": {
+   "name": "Myanmar",
+   "cell": 125
+  },
+  "mn": {
+   "name": "Mongolia",
+   "cell": 126
+  },
+  "mo": {
+   "name": "Macau",
+   "cell": 127
+  },
+  "mr": {
+   "name": "Mauritania",
+   "cell": 128
+  },
+  "ms": {
+   "name": "Montserrat",
+   "cell": 129
+  },
+  "mt": {
+   "name": "Malta",
+   "cell": 130
+  },
+  "mu": {
+   "name": "Mauritius",
+   "cell": 131
+  },
+  "mv": {
+   "name": "Maldives",
+   "cell": 132
+  },
+  "mw": {
+   "name": "Malawi",
+   "cell": 133
+  },
+  "mx": {
+   "name": "Mexico",
+   "cell": 134
+  },
+  "my": {
+   "name": "Malaysia",
+   "cell": 135
+  },
+  "mz": {
+   "name": "Mozambique",
+   "cell": 136
+  },
+  "na": {
+   "name": "Namibia",
+   "cell": 137
+  },
+  "nc": {
+   "name": "New Caledonia",
+   "cell": 138
+  },
+  "ne": {
+   "name": "Niger",
+   "cell": 139
+  },
+  "nf": {
+   "name": "Norfolk Island",
+   "cell": 140
+  },
+  "ng": {
+   "name": "Nigeria",
+   "cell": 141
+  },
+  "ni": {
+   "name": "Nicaragua",
+   "cell": 142
+  },
+  "nl": {
+   "name": "Netherlands",
+   "cell": 143
+  },
+  "no": {
+   "name": "Norway",
+   "cell": 144
+  },
+  "np": {
+   "name": "Nepal",
+   "cell": 145
+  },
+  "nr": {
+   "name": "Nauru",
+   "cell": 146
+  },
+  "nu": {
+   "name": "Niue",
+   "cell": 147
+  },
+  "nz": {
+   "name": "New Zealand",
+   "cell": 148
+  },
+  "om": {
+   "name": "Oman",
+   "cell": 149
+  },
+  "pa": {
+   "name": "Panama",
+   "cell": 150
+  },
+  "pe": {
+   "name": "Peru",
+   "cell": 151
+  },
+  "pg": {
+   "name": "Papua New Guinea",
+   "cell": 152
+  },
+  "ph": {
+   "name": "Philippines",
+   "cell": 153
+  },
+  "pk": {
+   "name": "Pakistan",
+   "cell": 154
+  },
+  "pl": {
+   "name": "Poland",
+   "cell": 155
+  },
+  "pm": {
+   "name": "Saint Pierre and Miquelon",
+   "cell": 156
+  },
+  "pn": {
+   "name": "Pitcairn Islands",
+   "cell": 157
+  },
+  "ps": {
+   "name": "Palestine",
+   "cell": 158
+  },
+  "pt": {
+   "name": "Portugal",
+   "cell": 159
+  },
+  "pw": {
+   "name": "Palau",
+   "cell": 160
+  },
+  "py": {
+   "name": "Paraguay",
+   "cell": 161
+  },
+  "qa": {
+   "name": "Qatar",
+   "cell": 162
+  },
+  "ro": {
+   "name": "Romania",
+   "cell": 163
+  },
+  "rs": {
+   "name": "Serbia",
+   "cell": 164
+  },
+  "ru": {
+   "name": "Russia",
+   "cell": 165
+  },
+  "rw": {
+   "name": "Rwanda",
+   "cell": 166
+  },
+  "sa": {
+   "name": "Saudi Arabia",
+   "cell": 167
+  },
+  "sb": {
+   "name": "Solomon Islands",
+   "cell": 168
+  },
+  "sc": {
+   "name": "Seychelles",
+   "cell": 169
+  },
+  "sd": {
+   "name": "Sudan",
+   "cell": 170
+  },
+  "se": {
+   "name": "Sweden",
+   "cell": 171
+  },
+  "sg": {
+   "name": "Singapore",
+   "cell": 172
+  },
+  "sh": {
+   "name": "Saint Helena",
+   "cell": 173
+  },
+  "si": {
+   "name": "Slovenia",
+   "cell": 174
+  },
+  "sk": {
+   "name": "Slovakia",
+   "cell": 175
+  },
+  "sl": {
+   "name": "Sierra Leone",
+   "cell": 176
+  },
+  "sm": {
+   "name": "San Marino",
+   "cell": 177
+  },
+  "sn": {
+   "name": "Senegal",
+   "cell": 178
+  },
+  "so": {
+   "name": "Somalia",
+   "cell": 179
+  },
+  "sr": {
+   "name": "Suriname",
+   "cell": 180
+  },
+  "ss": {
+   "name": "South Sudan",
+   "cell": 181
+  },
+  "st": {
+   "name": "São Tomé and Príncipe",
+   "cell": 182
+  },
+  "sv": {
+   "name": "El Salvador",
+   "cell": 183
+  },
+  "sy": {
+   "name": "Syria",
+   "cell": 184
+  },
+  "sz": {
+   "name": "Swaziland",
+   "cell": 185
+  },
+  "tc": {
+   "name": "Turks and Caicos Islands",
+   "cell": 186
+  },
+  "td": {
+   "name": "Chad",
+   "cell": 187
+  },
+  "tg": {
+   "name": "Togo",
+   "cell": 188
+  },
+  "th": {
+   "name": "Thailand",
+   "cell": 189
+  },
+  "tj": {
+   "name": "Tajikistan",
+   "cell": 190
+  },
+  "tk": {
+   "name": "Tokelau",
+   "cell": 191
+  },
+  "tl": {
+   "name": "East Timor",
+   "cell": 192
+  },
+  "tm": {
+   "name": "Turkmenistan",
+   "cell": 193
+  },
+  "tn": {
+   "name": "Tunisia",
+   "cell": 194
+  },
+  "to": {
+   "name": "Tonga",
+   "cell": 195
+  },
+  "tr": {
+   "name": "Turkey",
+   "cell": 196
+  },
+  "tt": {
+   "name": "Trinidad and Tobago",
+   "cell": 197
+  },
+  "tv": {
+   "name": "Tuvalu",
+   "cell": 198
+  },
+  "tw": {
+   "name": "Taiwan",
+   "cell": 199
+  },
+  "tz": {
+   "name": "Tanzania",
+   "cell": 200
+  },
+  "ua": {
+   "name": "Ukraine",
+   "cell": 201
+  },
+  "ug": {
+   "name": "Uganda",
+   "cell": 202
+  },
+  "uk": {
+   "name": "United Kingdom",
+   "cell": 203
+  },
+  "us": {
+   "name": "United States",
+   "cell": 204
+  },
+  "uy": {
+   "name": "Uruguay",
+   "cell": 205
+  },
+  "uz": {
+   "name": "Uzbekistan",
+   "cell": 206
+  },
+  "va": {
+   "name": "Vatican City",
+   "cell": 207
+  },
+  "vc": {
+   "name": "Saint Vincent and the Grenadines",
+   "cell": 208
+  },
+  "ve": {
+   "name": "Venezuela",
+   "cell": 209
+  },
+  "vg": {
+   "name": "British Virgin Islands",
+   "cell": 210
+  },
+  "vn": {
+   "name": "Vietnam",
+   "cell": 211
+  },
+  "vu": {
+   "name": "Vanuatu",
+   "cell": 212
+  },
+  "ws": {
+   "name": "Samoa",
+   "cell": 213
+  },
+  "ye": {
+   "name": "Yemen",
+   "cell": 214
+  },
+  "za": {
+   "name": "South Africa",
+   "cell": 215
+  },
+  "zm": {
+   "name": "Zambia",
+   "cell": 216
+  },
+  "zw": {
+   "name": "Zimbabwe",
+   "cell": 217
+  }
+ }
+}
