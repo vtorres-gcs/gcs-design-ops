@@ -110,6 +110,9 @@ body{margin:0;background:var(--primary-foreground)}
 /* Footer text colour */
 .footer{color:var(--primary-foreground)}
 
+/* MediaSection grid: fix 3 columns regardless of cardsPerView */
+#media-section-root .gcs-card-carousel__grid{--card-carousel-cols:3!important}
+
 </style>
 </head>
 <body>
@@ -1052,6 +1055,7 @@ ReactDOM.createRoot(document.getElementById('media-section-root')).render(
     eyebrowEmphasis="Our Advisors in The News."
     description="Explore how Global Citizen Solutions has been featured by the world's leading financial, business, and lifestyle publications covering investment migration and global mobility."
     coverage={ARTICLES}
+    cardsPerView={12}
     cardCtaLabel="View Article"
     ctaLabel="View All Coverage"
     ctaHref="#"
