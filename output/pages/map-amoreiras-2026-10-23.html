@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa Amoreiras Shopping</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f5f0e8; font-family: sans-serif; }
+  .map-container {
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 16px;
+    min-height: 100vh;
+  }
+  #svgMap {
+    background: #f5f0e8;
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .estrada { fill: #e8dfc8; stroke: #c9b98a; stroke-width: 0.5; }
+  .edificio { fill: #c8c2b8; stroke: #9e9890; stroke-width: 0.5; }
+  .arvore { fill: #6db26d; stroke: #4a9a4a; stroke-width: 0.5; }
+  .inside_svg_color { fill: #ffffff; }
+  .cor_pin { fill: #d63031; }
+  .mapLine { fill: none; }
+  .mapa__loja text { font-size: 6px; font-family: sans-serif; }
+</style>
+</head>
+<body>
+<div class="map-container">
+<svg id="svgMap" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-300 -300 1624 1368" editor-viewbox="0 0 1024 768" prod-viewbox="-300 -300 1624 1368" width="1024" height="768">
+  <!-- Generator: Adobe Illustrator 30.2.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 1)  -->
+
+  <path d="" class="mapLine"></path>
+
+  <g id="cenario">
+    <g id="estradas">
+      <path id="estrada" class="estrada" d="M136.6-532.9h.7c0,0,.3-.1.3-.1h0s0,0,0,0c0,0,0,0,0,0h0c0,0,0,0,0,0h0c0,0,0,0,0,0,0,0,0,0,0,0h0s0,0,0,0h.1s0,0,0,0c.1,0,.4,0,.8.1.9.1,2.6.4,6,1,6.8,1.1,20.1,3.3,46.5,7.6,26.7,4.3,40,6.5,46.7,7.6,3.3.5,5,.8,5.9,1,.4,0,.6,0,.7.1h0s.2,0,.2,0h.1s.1,0,.1,0h0s.1,0,.1,0h.2c0,0,0,0,0,0,.1,0,.3.2.4.3v.2c.1,0,.1,0,.1,0,.1.2.1.4.1.6h0s0,0,0,0h0c0,0,0,0,0,0h0s0,0,0,0h0s0,0,0,0,0,0,0,0h0s0,0,0,0c0,0,0,0,0,.1h0s0,.2,0,.2c0,.2,0,.6,0,1.1,0,1-.2,2.4-.3,4.3-.2,3.8-.6,9.4-1.1,16.7-1,14.5-2.4,35.6-4.3,62-1.8,26.3-.2,56.9,1.1,91.6,1.3,34.7,2.2,73.3-1.1,115.5-1.7,21.1-3.8,42.9-6.2,65.3L476.8,46l90.4,62.6,104.6,45.3,202.4,71.5,101.2,186.6,110,146.2-43.2,24.8-92.1-122.3c-2.3,3.8-6.3,8.6-12.8,15-.7,1-2.2,2.3-4.1,3.9l-.9.7c-2.5,2-5.8,4.4-9.5,7.1-7.6,5.4-17.3,11.9-27.2,18.3-19.7,12.8-40.1,25.5-46.3,29-1.5,1.6-4.5,3.7-8.2,6-3.9,2.4-8.7,5-13.6,7.6-9.8,5.2-19.7,10.1-23.6,12.3-13.6,7.8-31.5,17.4-42.8,22.3-6.1,2.6-15.5,7.4-25.9,12.6-10.5,5.2-21.9,10.8-32,15-20,8.4-63.4,32.4-109.3,57.3-45.8,24.9-94.1,50.8-123.8,63.1-121.7,65-128.5,69.3-220.9,107.3l-12.4,8.9h-.2c0,.1,0,.1,0,.1h0s0,0,0,0h0s0,0,0,0h0s0,0,0,0h0c-6.1,2.2-15.1,2.6-25.9,1.9-10.9-.7-23.8-2.7-37.8-5.4-23-4.5-49.1-11.2-74.5-18.2-.4,2.7-.8,5.5-1.2,8.2-5.4,36.8-9.5,71-13.1,101.6-3.6,30.6-6.7,57.6-10.1,80-3.4,22.4-6,40.2-7.9,52.4-.9,6.1-1.6,10.8-2.1,14-.2,1.6-.4,2.8-.5,3.6,0,.3,0,.6-.1.8h0c0,.2,0,.2,0,.3h0s0,0,0,0c0,0,0,0,0,0h0s0,0,0,0h0,0s0,0,0,0h0c0,.1,0,.1,0,.1h0c0,.1,0,.3,0,.3h-.1c0,0-.1.2-.1.2h0-.1c0,0,0,0,0,0-.4.3-.8.3-.9.3h-.2s0,0,0,0h0s-.2,0-.2,0c0,0,0,0,0,0h0s0,0,0,0c0,0,0,0,0,0-.1,0-.3,0-.8-.2-.9-.2-2.6-.7-5.9-1.5-6.7-1.8-19.9-5.3-46.1-12.2-26.4-7-39.7-10.5-46.3-12.3-3.3-.9-5-1.3-5.8-1.5-.4-.1-.6-.2-.7-.2h0s0,0,0,0h0s0,0,0,0h0s0,0,0,0h0s0,0,0,0h0s0,0,0,0h0s0,0,0,0h0c0,0,0-.1,0-.1h0c-.1,0-.2-.2-.3-.4h-.3s0-.4,0-.4v-.4s0,0,0,0h0s0-.1,0-.1h0s0-.1,0-.1h0c0,0,0-.1,0-.1,0-.2,0-.5.1-.9.1-.8.3-2,.5-3.6.5-3.2,1.2-7.8,2.1-13.9,1.8-12.1,4.5-29.9,7.8-52.2,6.7-44.7,11.3-79,22-152.5,16.7-114.8,31.5-246.4,44.9-385.4h-.3s-.4-.1-.4-.1h-.4c0,0-.6-.1-.6-.1h0s-163.7-22.3-163.7-22.3l.3.5-1.2-.6h0s0,0,0,0h0s0,0,0,0h0s-3.5-1.7-3.5-1.7c-4.7-2.3-10.9-6.2-15.9-11-4.9-4.7-10.2-11.8-8.8-20v-.7c.1,0,.2-.4.2-.4h.4s.4,0,.4,0h.4s34.2,2.9,34.2,2.9h0s0,0,0,0h.5s.5,0,.5,0h.5s0,.5,0,.5v.5c0,0,0,0,0,0v.5h0c0,.5.2,1.9,2.7,4.4,1.3,1.3,2.9,2.5,4.4,3.4l152.8,20.9c3-31.5,5.9-63.3,8.7-95.4,7.4-83.4,22-183.8,36.5-284.3,7.5-51.9,14.9-103.7,21.2-153.3-3.6-8.4-8.1-17.5-13.2-26.5-11.3-19.7-24-35.2-35.9-42.8-21.6-13.7-40.6-24.7-68.4-32.9-28.2-8.3-67.4-14.2-129.1-14.6h-1s-.5,0-.5,0v-.4s0-.9,0-.9l-2.5-44.3h0s0-.4,0-.4v-.4s0-.4,0-.4h1.4c65.5.5,111.6,6.7,148,17.4,36.8,10.8,61.9,25.7,85,40.3,9.7,6.1,18.3,13.8,26,22.2,1.7-16.5,3.2-32.5,4.4-47.9,6.7-83.8,12.1-157.1,15.7-209.5,1.8-26.2,3.3-47.2,4.2-61.5.5-7.2.8-12.7,1.1-16.5.1-1.9.2-3.3.3-4.2,0-.5,0-.8,0-1.1,0,0,0-.1,0-.2,0,0,0,0,0-.1h0s0,0,0,0h0s0,0,0,0h0s0,0,0,0h0c0,0,0,0,0,0v-.3s0,0,0,0v-.3s0-.3,0-.3h.4ZM216-15.6c-16.6,118-36.8,240.3-50.2,345-15.2,118.3-32.6,247.3-49.1,364.8-1.4,19.1,4.3,34.2,13.8,45.9,10,12.4,24.5,21.2,39.8,27.4,15.3,6.1,31.3,9.5,44.5,11,6.6.8,12.5,1.1,17.1,1,4.7,0,8-.5,9.7-1.1,46.1-19,88.4-42.3,134-67.1,45.6-24.8,94.4-51,153.6-75.5,63.8-32.8,95.3-50.6,135.5-67.5,24.4-10.3,58.3-27.1,65.5-31.6,7.3-4.6,26.3-13.9,29.6-15.4,1.6-.7,4.1-1.9,6.3-2.8,1.1-.5,2-.9,2.7-1.2.4-.2.6-.3.9-.4h.2c0,0,0,0,0,0,0,0,0,0,0,0h0s0,0,0,0,0,0,0,0c.4-.2,4.9-2.7,9.4-5.3,2.4-1.3,4.7-2.7,6.6-3.8.5-.3.9-.5,1.3-.8l1-.6.7-.5h.2c0-.2,0-.2,0-.2,0,0,0,0,0,0h0s0,0,0,0h.1c0-.1,0-.1,0-.1l.3.3-.3-.3c.1-.1.3-.2.5-.4.2-.2.6-.4.9-.6.7-.4,1.7-1,2.8-1.6,1.1-.6,2.4-1.4,3.8-2.2,1.4-.8,2.9-1.6,4.4-2.5,6.2-3.5,12.9-7.5,15.9-9.9,3.2-2.5,9.9-7.1,16.4-11.7,6.6-4.6,13-9.2,15.7-11.8.8-.8,2.6-2,4.8-3.6,2.3-1.6,5.3-3.7,8.6-6.3,6.6-5.1,14.6-11.9,21.6-20.4,12.1-14.8,21-34.5,13.8-58.3l-62.1-114.5-186.7-65.9-106.2-45-97.9-67.9-124.8-104.4c-1.3.9-2.6,1.9-4,2.8-8.6,5.9-18.6,11.9-27.6,15.3-5.8,2.2-13.6,2.1-21.3,1.3-7.9-.9-16.9-2.9-25.8-5.3-8.9-2.4-18.1-5.3-26.4-8.2ZM63.3,602.4l28.1,6.8,21.8-156.4-29,1.2-21,148.4ZM140.7,45.6c-12.6,49.7-36.3,173.6-44.7,275.5-8.5,101.9-12.7,103.7-7.1,103.4l24.3-1c13.6-87.3,38.3-267.2,43-288.9,4.7-21.8,10.9-69.7,13.5-91l-28.9,2ZM227.3-100.1c-3,23.9-6.2,48.2-9.6,72.7,8.8,3.1,18.5,6.2,28,8.8,8.6,2.3,16.7,4.1,23.6,4.9,7.2.8,11.9.5,14.3-.4,7.6-2.9,16.6-8.2,24.9-13.9.9-.6,1.7-1.2,2.5-1.8l-83.8-70.2ZM142.3,28.8l25.2-1,9.2-137.6L142.3,28.8ZM136.1-531.7s0,0,0,0c0,0,0,0,0,0h0ZM137.7-532.7h0s0,0,0,0h0Z"></path>
+    </g>
+    <g id="edificios">
+      <path id="edificio" class="edificio" d="M632,29.6l35.7-38.9,51.5,36.6-62,67.6-31.7-22.5-10.5,11.5-27.5-19.5-17,18.5-33.1-23.6,11.1-12.1-13.4-9.5-11.1,12.1L444.3-7l11.1-12.1-45.8-32.6,10.5-11.5-29.6-21,32.2-35.1L632,29.6Z"></path>
+      <path id="edificio1" data-name="edificio" class="edificio" d="M921.4,49.3l-20.2,51.6-38.8-13.3-19,52.5,121.9,39.5-19,52-215.8-70,19-52,34.5,11.2,19.4-53.5-29.7-10.2,20.2-51.6,127.5,43.8Z"></path>
+      <path id="edificio2" data-name="edificio" class="edificio" d="M955.5-60.9l-9.4,40.4-30.5-7.3-3,12.8-90.1-21.6,3-12.8-43.5-10.4,9.4-40.4,164.1,39.2Z"></path>
+      <polygon id="edificio3" data-name="edificio" class="edificio" points="1079.5 354.4 1098.1 333.3 1185.4 396.9 1166.8 418.1 1079.5 354.4"></polygon>
+      <polygon id="edificio4" data-name="edificio" class="edificio" points="1098.7 330 1117.3 308.9 1204.6 372.6 1186 393.7 1098.7 330"></polygon>
+      <path id="edificio5" data-name="edificio" class="edificio" d="M1113.4,306.7l-18.5,20.9-.6-.2-36.1-12.4-1-.4.5-.8,19.6-32.2.5-.8,35.6,26Z"></path>
+      <path id="edificio6" data-name="edificio" class="edificio" d="M69.6,21.3l-18.9,124.2-52.8-9.3L16.8,11.9l52.8,9.3Z"></path>
+      <path id="edificio7" data-name="edificio" class="edificio" d="M10.5,444.6l-4.5,38.6-66.7-9.4-8,69-54.9-7.7,12.5-107.6,121.6,17.1Z"></path>
+      <polygon id="edificio8" data-name="edificio" class="edificio" points="-21 576.9 -25.4 613.9 -53.8 609.8 -49.4 572.9 -21 576.9"></polygon>
+      <path id="edificio9" data-name="edificio" class="edificio" d="M48,163.5l-14.2,122.4,1.1.2-14.3,123.2-141.8-19.9,14.3-123.2,89.5,12.6L-3.3,156.3l51.3,7.2Z"></path>
+      <path id="edificio10" data-name="edificio" class="edificio" d="M1006.2,271.7l32.2,57.5h0s15.4,27.5,15.4,27.5h.2c0,0,7.5,13.3,7.5,13.3l8.8-3.6,52.8,94.1-68.2,28-52.8-94.1,19.2-7.9-1-1.8-19.3,7.9-21.9-39.1-11.2,4.6-32.3-57.5,70.5-29Z"></path>
+    </g>
+    <g id="arvores">
+      <path id="arvore" class="arvore" d="M1009.6,227.8c9.4-7.9,24.7-7.1,34.1,1.8,9.5,8.9,9.5,22.6.1,30.6-9.4,7.9-24.7,7.1-34.1-1.8-9.5-8.9-9.5-22.6-.1-30.6Z"></path>
+      <path id="arvore1" data-name="arvore" class="arvore" d="M1054.8,197.6c12.8-10.8,33.5-9.7,46.3,2.4,12.9,12.1,12.9,30.7.2,41.5-12.7,10.8-33.5,9.7-46.3-2.4-12.8-12.1-12.9-30.7-.2-41.5Z"></path>
+      <path id="arvore2" data-name="arvore" class="arvore" d="M-145.9,559.7c11.8-5.4,26.8-1,33.6,9.9s2.8,24.1-9,29.6c-11.8,5.4-26.8,1-33.6-9.9s-2.8-24.1,9-29.6Z"></path>
+      <path id="arvore3" data-name="arvore" class="arvore" d="M-99.3,583.3c14.2-6.5,32.2-1.2,40.4,12,8.2,13.1,3.3,29.1-10.8,35.6s-32.2,1.2-40.4-12c-8.2-13.1-3.3-29.1,10.8-35.6Z"></path>
+      <path id="arvore4" data-name="arvore" class="arvore" d="M-124.8,639.4c19.6-9,44.6-1.6,56,16.5,11.3,18.2,4.6,40.2-15,49.3-19.6,9-44.6,1.6-56-16.5-11.3-18.2-4.6-40.2,15-49.3Z"></path>
+      <path id="arvore5" data-name="arvore" class="arvore" d="M-169.8,641.3c7-3.2,15.9-.6,19.9,5.9,4,6.5,1.6,14.3-5.3,17.5-7,3.2-15.9.6-19.9-5.9-4-6.5-1.6-14.3,5.3-17.5Z"></path>
+      <path id="arvore6" data-name="arvore" class="arvore" d="M-40.6,574.1c15-6.9,34.2-1.3,42.9,12.7,8.7,13.9,3.5,30.9-11.5,37.8-15,6.9-34.2,1.3-42.9-12.7-8.7-13.9-3.5-30.9,11.5-37.8Z"></path>
+      <path id="arvore7" data-name="arvore" class="arvore" d="M36.6-45.3c11.5-5.3,26.3-1,33,9.7s2.7,23.7-8.8,29c-11.5,5.3-26.3,1-33-9.7-6.7-10.7-2.7-23.7,8.8-29Z"></path>
+      <path id="arvore8" data-name="arvore" class="arvore" d="M394.5-200.1c11.3-5.7,26.2-1.7,33.2,8.8,7,10.5,3.5,23.7-7.8,29.3-11.3,5.7-26.2,1.7-33.2-8.8-7-10.5-3.5-23.7,7.8-29.3Z"></path>
+      <path id="arvore9" data-name="arvore" class="arvore" d="M379.5-264.5c15.6-7.8,36.1-2.4,45.7,12.1,9.7,14.5,4.9,32.6-10.7,40.4-15.6,7.8-36.1,2.4-45.7-12.1-9.7-14.5-4.9-32.6,10.7-40.4Z"></path>
+      <path id="arvore10" data-name="arvore" class="arvore" d="M-86.4,776.1c15-6.9,34.2-1.3,42.9,12.7,8.7,13.9,3.5,30.9-11.5,37.8-15,6.9-34.2,1.3-42.9-12.7-8.7-13.9-3.5-30.9,11.5-37.8Z"></path>
+      <path id="arvore11" data-name="arvore" class="arvore" d="M-50.4,633.3c13.1-6,29.8-1.1,37.3,11,7.5,12.1,3.1,26.8-10,32.9-13.1,6-29.8,1.1-37.3-11-7.5-12.1-3.1-26.8,10-32.9Z"></path>
+      <path id="arvore12" data-name="arvore" class="arvore" d="M-91.5,834c13.1-6,29.8-1.1,37.3,11,7.5,12.1,3.1,26.8-10,32.9-13.1,6-29.8,1.1-37.3-11-7.5-12.1-3.1-26.8,10-32.9Z"></path>
+    </g>
+  </g>
+  <g id="piso2" display="none">
+    <g id="loja2011" class="mapa__loja">
+      <path id="entrada" d="M228.5,462.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="228.5" y="462.6" display="none"></path>
+      <path id="area" class="azul" d="M217.1,460.2l-32.4,17.1,10.2,14.6,32.4-17.1-10.2-14.6Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja2110" class="mapa__loja">
+      <path id="entrada1" data-name="entrada" d="M316.5,456.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="316.5" y="456.7" display="none"></path>
+      <path id="area1" data-name="area" class="verde" d="M324.6,460.3l-9.5,5,19.7,28.3,9.5-5-19.7-28.3Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2097" class="mapa__loja">
+      <path id="entrada2" data-name="entrada" d="M323.5,563.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="323.5" y="563.1" display="none"></path>
+      <path id="area2" data-name="area" class="azul" d="M330.7,523.7l-21,11.1,42.5,61,21-11.1-42.5-61Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja2101" class="mapa__loja">
+      <path id="entrada3" data-name="entrada" d="M382.6,614.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="382.6" y="614.8" display="none"></path>
+      <path id="area3" data-name="area" class="azul" d="M352.8,596.6l20.9-11,20.4,29.2-41.3-18.3Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja2105" class="mapa__loja">
+      <path id="entrada4" data-name="entrada" d="M452.9,590.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="452.9" y="590.1" display="none"></path>
+      <path id="area4" data-name="area" class="verde" d="M439,559.1l-14.8,7.8,16.3,23.4,14.8-7.8-16.3-23.4Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2108" class="mapa__loja">
+      <path id="entrada5" data-name="entrada" d="M368,510.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="368" y="510.9" display="none"></path>
+      <path id="area5" data-name="area" class="verde" d="M344.9,489.4l-27,14.2,36.6,52.4,27-14.2-36.6-52.4Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2036" class="mapa__loja">
+      <path id="entrada6" data-name="entrada" d="M602.9,518.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="602.9" y="518.9" display="none"></path>
+      <path id="area6" data-name="area" class="rosa" d="M619.7,515.9l-14.7,7.8,12.2,17.6,14.7-7.8-12.2-17.6Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja5018" class="mapa__loja">
+      <path id="entrada7" data-name="entrada" d="M337.5,608.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="337.5" y="608.2" display="none"></path>
+      <path id="area7" data-name="area" class="cinza" d="M334.3,590.5l-13.4,7,7.5,10.8,13.4-7-7.5-10.8Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja2088" class="mapa__loja">
+      <path id="entrada8" data-name="entrada" d="M282.4,305.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="282.4" y="305.6" display="none"></path>
+      <path id="area8" data-name="area" class="amarelo" d="M298.5,304l-27,14.2,37.3,53.5,27-14.2-37.3-53.5Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja2068" class="mapa__loja">
+      <path id="entrada9" data-name="entrada" d="M258.1,318.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="258.1" y="318.5" display="none"></path>
+      <path id="area9" data-name="area" class="amarelo" d="M270.4,319l-17.8,9.3,22.6,32.4,17.8-9.3-22.6-32.4Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja2081" class="mapa__loja">
+      <path id="entrada10" data-name="entrada" d="M342.8,417.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="342.8" y="417.6" display="none"></path>
+      <path id="area10" data-name="area" class="verde" d="M290.2,389.3l22.3-11.7-3.8-5.4,27-14.2,29.4,42.2-27.9,14.7-6.1,3.2-15.3,8-25.6-36.8Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2077" class="mapa__loja">
+      <path id="entrada11" data-name="entrada" d="M298.2,441l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="298.2" y="441" display="none"></path>
+      <path id="area11" data-name="area" class="azul" d="M268.3,400.6l-2.8-4.1-20,10.5,2.8,4.1,25.6,36.7,20-10.5,20.5-10.8-25.6-36.7-20.5,10.8Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja2046" class="mapa__loja">
+      <path id="entrada12" data-name="entrada" d="M483,300.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="483" y="300.4" display="none"></path>
+      <path id="area12" data-name="area" class="rosa" d="M511.6,277.9l-26.3,13.8,7,10.1,26.3-13.8-7-10.1Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2047" class="mapa__loja">
+      <path id="entrada13" data-name="entrada" d="M475,288.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="475" y="288.8" display="none"></path>
+      <path id="area13" data-name="area" class="rosa" d="M503.5,266.3l-26.3,13.8,7.5,10.8,26.3-13.8-7.5-10.8Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2048" class="mapa__loja">
+      <path id="entrada14" data-name="entrada" d="M466.6,276.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="466.6" y="276.8" display="none"></path>
+      <path id="area14" data-name="area" class="rosa" d="M504.8,249.7l-35.7,18.8,7.5,10.8,35.7-18.8-7.5-10.8Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2049" class="mapa__loja">
+      <path id="entrada15" data-name="entrada" d="M458.2,264.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="458.2" y="264.8" display="none"></path>
+      <path id="area15" data-name="area" class="rosa" d="M496.6,238l-35.7,18.8,7.5,10.8,35.7-18.8-7.5-10.8Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2050" class="mapa__loja">
+      <path id="entrada16" data-name="entrada" d="M445.6,246.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="445.6" y="246.7" display="none"></path>
+      <path id="area16" data-name="area" class="rosa" d="M479.9,213.9l-35.7,18.8,16.2,23.2,35.7-18.8-16.2-23.2Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2031" class="mapa__loja">
+      <path id="entrada17" data-name="entrada" d="M555.8,552.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="555.8" y="552.1" display="none"></path>
+      <path id="area17" data-name="area" class="verde" d="M609.1,531.7l-98.8,52,20.4,29.2,98.8-52-20.4-29.2Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2029" class="mapa__loja">
+      <path id="entrada18" data-name="entrada" d="M485.9,588.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="485.9" y="588.9" display="none"></path>
+      <path id="area18" data-name="area" class="verde" d="M509.4,584.2l-39,20.5,12.3,17.6,39-20.5-12.3-17.6Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2028" class="mapa__loja">
+      <path id="entrada19" data-name="entrada" d="M461.6,601.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="461.6" y="601.7" display="none"></path>
+      <path id="area19" data-name="area" class="verde" d="M469.5,605.2l-9,4.7,20.4,29.2,9-4.7-20.4-29.2Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2025" class="mapa__loja">
+      <path id="entrada20" data-name="entrada" d="M442.6,611.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="442.6" y="611.7" display="none"></path>
+      <path id="area20" data-name="area" class="verde" d="M459.5,610.4l-28.1,14.8,20.4,29.2,28.1-14.8-20.4-29.2Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2022" class="mapa__loja">
+      <path id="entrada21" data-name="entrada" d="M413.9,626.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="413.9" y="626.8" display="none"></path>
+      <path id="area21" data-name="area" class="verde" d="M410.2,636.4l-9.4,21.4,12,17.2,38.1-20-20.4-29.2-20.3,10.7Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2020" class="mapa__loja">
+      <path id="entrada22" data-name="entrada" d="M380.3,660.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="380.3" y="660.1" display="none"></path>
+      <path id="area22" data-name="area" class="azul" d="M400.4,659l-32.2,16.9,11.5,16.4,32.2-16.9-11.5-16.4Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja2018" class="mapa__loja">
+      <path id="entrada23" data-name="entrada" d="M350.4,673l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="350.4" y="673" display="none"></path>
+      <path id="area23" data-name="area" class="azul" d="M378.8,692.8l-12.5-17.9-23,12.1-12.5-17.6-17.2,9,24.8,35.7,40.5-21.3Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja2003" class="mapa__loja">
+      <path id="entrada24" data-name="entrada" d="M227.3,289.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="227.3" y="289.1" display="none"></path>
+      <path id="area24" data-name="area" class="amarelo" d="M216.2,255.7l-15.8,8.3,16.9,24.3,15.8-8.3-16.9-24.3Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja2063" class="mapa__loja">
+      <path id="entrada25" data-name="entrada" d="M309.5,245.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="309.5" y="245.9" display="none"></path>
+      <path id="area25" data-name="area" class="amarelo" d="M265.6,192.3l28.1-14.8,36.1,51.7-48,25.3-22-31.6,19.9-10.5-14-20.1Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja2153" class="mapa__loja">
+      <path id="entrada26" data-name="entrada" d="M371.4,213.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="371.4" y="213.3" display="none"></path>
+      <path id="area26" data-name="area" class="amarelo" d="M347.2,149l-31.6,16.6,36.3,52.1,31.6-16.6-36.3-52.1Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja2052" class="mapa__loja">
+      <path id="entrada27" data-name="entrada" d="M431,225.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="431" y="225.8" display="none"></path>
+      <path id="area27" data-name="area" class="rosa" d="M463.1,153.1l-38.8-44.4-32,16.8,34.6,49.6,2,2.9-16.7,8.8,7.2,10.4,9.2-4.8,11.1,15.9-9.2,4.8,13,18.7,36.6-19.3,33.5,48.1-9.4,5.1,15.1,21.7,9.4-5.1,14.5-7.6,95.9-50.5-176.2-71.2Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2054" class="mapa__loja">
+      <path id="entrada28" data-name="entrada" d="M417.5,207.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="417.5" y="207.3" display="none"></path>
+      <path id="area28" data-name="area" class="rosa" d="M428.4,193.6l-8.5,4.5,10.1,14.4,8.5-4.5-10.1-14.4Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2056" class="mapa__loja">
+      <path id="entrada29" data-name="entrada" d="M408.9,194.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="408.9" y="194.5" display="none"></path>
+      <path id="area29" data-name="area" class="amarelo" d="M424.3,108.8l-17-19.2h0s-45.3-51-45.3-51h0c-15.3-17.5-39.2-19.4-57.5-9.8l-66.2,34.8c-6.1,3.2-8.5,6.4-11.9,11.5l17.8,25.5,7.2,10.3,31,44.4,8.7-4.6,11.8-6.2,29.7-15.6,17.6-9.2,5.1-2.7,14,20.1-21.6,11.4,36.6,52.5,44.7-23.5-36.3-52.1,31.7-16.7Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja2102" class="mapa__loja">
+      <path id="entrada30" data-name="entrada" d="M405.7,615l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="405.7" y="615" display="none"></path>
+      <path id="area30" data-name="area" class="verde" d="M382,542.7l-14.5,7.6-12.5,6.6,19.1,27.3,20.9,30,12.5-6.6-20.9-30,14.5-7.6-19.1-27.3Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2103" class="mapa__loja">
+      <path id="entrada31" data-name="entrada" d="M419.9,607.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="419.9" y="607.5" display="none"></path>
+      <path id="area31" data-name="area" class="verde" d="M401.7,570.8l-13.6,7.2,20.4,29.2,13.6-7.2-20.4-29.2Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja4004" class="mapa__loja">
+      <path id="entrada32" data-name="entrada" d="M324.2,647.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="324.2" y="647.9" display="none"></path>
+      <path id="area32" data-name="area" class="azul" d="M313.8,598.9l-19.8-28.4-33.3,17.5-29-41.5,33.3-17.5-37.2-53.4-33.3,17.5-23-33-23.9,170.9c-5.3,23-.4,47,14.1,67.9,30.3,43.5,93.6,58.9,140.5,34.2l35.2-18.5-25.3-36.3,18.3-9.7-20.5-29.4,3.8-40.3h0Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja2104" class="mapa__loja">
+      <path id="entrada33" data-name="entrada" d="M435.7,599.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="435.7" y="599.2" display="none"></path>
+      <path id="area33" data-name="area" class="verde" d="M423.1,567.1l16.5,23.7-16.7,8.8-16.9-24.2-1.7-2.5-1.7-2.5,10.7-5.6,9.8,2.4Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2106" class="mapa__loja">
+      <path id="entrada34" data-name="entrada" d="M430.7,536.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="430.7" y="536.3" display="none"></path>
+      <path id="area34" data-name="area" class="verde" d="M382.4,541.4l32.4-17.1,23.7,34-15.1,7.9-10.3-2.5-11.1,5.8-19.6-28.2Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2004" class="mapa__loja">
+      <path id="entrada35" data-name="entrada" d="M222.1,310.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="222.1" y="310.7" display="none"></path>
+      <path id="area35" data-name="area" class="amarelo" d="M190.7,324.9l5.5-39,20.8,3.8-5.5,39.1-20.8-3.8Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja2005" class="mapa__loja">
+      <path id="entrada36" data-name="entrada" d="M218.9,339.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="218.9" y="339.7" display="none"></path>
+      <path id="area36" data-name="area" class="azul" d="M185.5,364.6l5-38.8,20.8,3.8-5.3,37.7-20.5-2.8Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja2008" class="mapa__loja">
+      <path id="entrada37" data-name="entrada" d="M207.5,432.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="207.5" y="432.5" display="none"></path>
+      <path id="area37" data-name="area" class="azul" d="M205.5,367.9l-20.5-3h0s0,0,0,0l-13.3,93.8,1.4,2,10.9,15.7,32.4-17.1-19.5-28,8.6-63.4h0Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja2001" class="mapa__loja">
+      <path id="entrada38" data-name="entrada" d="M260,271.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="260" y="271.9" display="none"></path>
+      <path id="area38" data-name="area" class="amarelo" d="M247.6,218.6l9.1-39.5-37.3-53.5-19.5,137.7,16.7-8.8,17.5,25.1,41-21.6-27.5-39.4Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja2111" class="mapa__loja">
+      <path id="entrada39" data-name="entrada" d="M446.1,528.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="446.1" y="528.2" display="none"></path>
+      <path id="area39" data-name="area" class="verde" d="M441.8,510.1l14-7.4,19.3,27.6,14.5-7.6,7.6,10.9c-9.9,5.2-18.6,9.8-28.5,15l-26.9-38.5h0Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2123" class="mapa__loja">
+      <path id="entrada40" data-name="entrada" d="M489.2,476.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="489.2" y="476.1" display="none"></path>
+      <path id="area40" data-name="area" class="verde" d="M507.2,475.7l-26.8,14.1,18.8,26.9,26.8-14.1-18.8-26.9Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2124" class="mapa__loja">
+      <path id="entrada41" data-name="entrada" d="M340.7,273.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="340.7" y="273.2" display="none"></path>
+      <path id="area41" data-name="area" class="amarelo" d="M363.7,270l-34.9,18.4,9.3,13.4,34.9-18.4-9.3-13.4Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja2113" class="mapa__loja">
+      <path id="entrada42" data-name="entrada" d="M524.8,552.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="524.8" y="552.3" display="none"></path>
+      <path id="area42" data-name="area" class="verde" d="M469.3,549.5l29.3-15.4-8.1-11.6,46.4-24.4,9.7,13.9,11.6,16.6-75.8,39.9-13.1-18.8Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2121" class="mapa__loja">
+      <path id="entrada43" data-name="entrada" d="M515.5,462.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="515.5" y="462.3" display="none"></path>
+      <path id="area43" data-name="area" class="verde" d="M531.7,462.8l-23.5,12.4,18.8,26.9,23.5-12.4-18.8-26.9Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2117" class="mapa__loja">
+      <path id="entrada44" data-name="entrada" d="M570.1,528.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="570.1" y="528.4" display="none"></path>
+      <path id="area44" data-name="area" class="verde" d="M537.8,497.5l14.2-7.5-5-7.2,20.7-10.9,26.3,37.7-34.9,18.4-21.3-30.5h0Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2120" class="mapa__loja">
+      <path id="entrada45" data-name="entrada" d="M539.9,449.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="539.9" y="449.4" display="none"></path>
+      <path id="area45" data-name="area" class="verde" d="M553.4,451.4l-20.7,10.9,13.8,19.8,20.7-10.9-13.8-19.8Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2140" class="mapa__loja">
+      <path id="entrada46" data-name="entrada" d="M514.2,381.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="514.2" y="381.1" display="none"></path>
+      <path id="area46" data-name="area" class="rosa" d="M499.3,373.7l-40.9,21.5,15.1,21.7,40.9-21.5-15.1-21.7Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2142" class="mapa__loja">
+      <path id="entrada47" data-name="entrada" d="M501,362.2l-1.5.8,1,1.5,1.5-.8-1-1.5Z" x="501" y="362.2" display="none"></path>
+      <path id="area47" data-name="area" class="rosa" d="M488.9,358.9l-40.9,21.5,10.5,15.1,40.9-21.5-10.5-15.1Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2132" class="mapa__loja">
+      <path id="entrada48" data-name="entrada" d="M404.1,406.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="404.1" y="406.5" display="none"></path>
+      <path id="area48" data-name="area" class="verde" d="M399.7,390.1l40.2-21.1,18.1,26.5-39.9,21-18.4-26.4Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2144" class="mapa__loja">
+      <path id="entrada49" data-name="entrada" d="M483.6,337.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="483.6" y="337.5" display="none"></path>
+      <path id="area49" data-name="area" class="rosa" d="M383.4,366.7l81.2-42.7,15.7,22.6,8,11.5-40.2,21.1-8-11.5-41,21.6-15.7-22.6Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2136" class="mapa__loja">
+      <path id="entrada50" data-name="entrada" d="M437.2,454.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="437.2" y="454.2" display="none"></path>
+      <path id="area50" data-name="area" class="verde" d="M494.5,406l-61.3,32.2,18.5,26.6,61.3-32.2-18.5-26.6Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2139" class="mapa__loja">
+      <path id="entrada51" data-name="entrada" d="M528.8,401.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="528.8" y="401.7" display="none"></path>
+      <path id="area51" data-name="area" class="rosa" d="M514.4,395.5l-19.6,10.3,18.5,26.6,19.6-10.3-18.5-26.6Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2146" class="mapa__loja">
+      <path id="entrada52" data-name="entrada" d="M462,306.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="462" y="306.4" display="none"></path>
+      <path id="area52" data-name="area" class="rosa" d="M447,298.7l-81,42.6,17.6,25.2,81-42.6-17.6-25.2Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2148" class="mapa__loja">
+      <path id="entrada53" data-name="entrada" d="M446.1,283.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="446.1" y="283.6" display="none"></path>
+      <path id="area53" data-name="area" class="rosa" d="M429,272.9l-81.2,42.7,18.2,26.1,81.2-42.7-18.2-26.1Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2125" class="mapa__loja">
+      <path id="entrada54" data-name="entrada" d="M386.6,285l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="386.6" y="285" display="none"></path>
+      <path id="area54" data-name="area" class="amarelo" d="M373.9,300.7h0s-26.7,14.1-26.7,14.1h0s0,0,0,0l-8.5-12.2,34.9-18.4,8.5,12.2-8.2,4.3Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja2086A" class="mapa__loja">
+      <path id="entrada55" data-name="entrada" d="M384.1,395.4l-1.6.8,1,1.4,1.6-.8-1-1.4Z" x="384.1" y="395.4" display="none"></path>
+      <path id="area55" data-name="area" class="verde" d="M365.9,341.9l-30,15.8,29.4,42.1,30-15.8-29.4-42.1Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2090A" class="mapa__loja">
+      <path id="entrada56" data-name="entrada" d="M310.6,290.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="310.6" y="290.7" display="none"></path>
+      <path id="area56" data-name="area" class="amarelo" d="M328.2,289.3l-28.5,15,36.3,52.1,28.5-15-36.3-52.1Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja2091" class="mapa__loja">
+      <path id="entrada57" data-name="entrada" d="M286.9,510.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="286.9" y="510.6" display="none"></path>
+      <path id="area57" data-name="area" class="azul" d="M275.7,486l38.5-20.2,19.7,28.3-17.5,9.2,13.7,19.6-21,11.1-13.7-19.6-2.8-4-16.9-24.3Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja2074" class="mapa__loja">
+      <path id="entrada58" data-name="entrada" d="M267.2,457.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="267.2" y="457.4" display="none"></path>
+      <path id="area58" data-name="area" class="azul" d="M235.6,401.8l-3.1,22.2,23.3,33.5,17.2-9.1-29-41.6,14.2-7.5-4.7-6.8-18,9.2Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja2070" class="mapa__loja">
+      <path id="entrada59" data-name="entrada" d="M236.9,342l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="236.9" y="342" display="none"></path>
+      <path id="area59" data-name="area" class="amarelo" d="M245.3,332.3l6.5-3.4,22.6,32.4-21,11-11.4-16.4,3.4-23.6Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja2072" class="mapa__loja">
+      <path id="entrada60" data-name="entrada" d="M232.7,375.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="232.7" y="375.4" display="none"></path>
+      <path id="area60" data-name="area" class="azul" d="M257.6,378.9l-20.5,10.8,4.4-33.9,16.1,23.1Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja2073" class="mapa__loja">
+      <path id="entrada61" data-name="entrada" d="M229.2,395.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="229.2" y="395.1" display="none"></path>
+      <path id="area61" data-name="area" class="azul" d="M254,392.9l-18.7,9.9,1.7-12.3,11.2-5.9,5.8,8.3Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja5033" class="mapa__loja">
+      <path id="entrada62" data-name="entrada" d="M601,392.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="601" y="392.4" display="none"></path>
+      <path id="area62" data-name="area" class="rosa" d="M589.5,385.4l11.7-6.2,7.6,10.9-19.3-4.7Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2044" class="mapa__loja">
+      <path id="entrada63" data-name="entrada" d="M520,351.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="520" y="351.5" display="none"></path>
+      <path id="area63" data-name="area" class="rosa" d="M605.6,360.7l-15.5-22.2-19.1-27.4-24.8,13.1-28,14.7,19.1,27.4,28-14.7,23.2,33.2,12.2-6.4-5.6-8,15.1-7.9,23.4,33.6,19.6-10.3-25.5-36.5-22,11.6Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2043" class="mapa__loja">
+      <path id="entrada64" data-name="entrada" d="M564,384.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="564" y="384.5" display="none"></path>
+      <path id="area64" data-name="area" class="rosa" d="M537.9,367.1l27.1-14.3,22.3,31.9-44.7-10.9-4.7-6.7Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2039" class="mapa__loja">
+      <path id="entrada65" data-name="entrada" d="M616.1,459.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="616.1" y="459.2" display="none"></path>
+      <path id="area65" data-name="area" class="rosa" d="M635.9,456.3l-26.3,13.8,9,13,26.3-13.8-9-13Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2040" class="mapa__loja">
+      <path id="entrada66" data-name="entrada" d="M588.9,448.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="588.9" y="448.8" display="none"></path>
+      <path id="area66" data-name="area" class="rosa" d="M614.3,427l-25.4,13.3,9.8,14,25.4-13.3-9.8-14Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3026" class="mapa__loja">
+      <path id="entrada67" data-name="entrada" d="M635.6,342.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="635.6" y="342.6" display="none"></path>
+      <path id="area67" data-name="area" class="rosa" d="M607.2,280l-35.3,18.6,36.2,51.9,35.3-18.6-36.2-51.9Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja2041" class="mapa__loja">
+      <path id="entrada68" data-name="entrada" d="M570.1,393.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="570.1" y="393.2" display="none"></path>
+      <path id="area68" data-name="area" class="rosa" d="M659.8,422.2l-34.9,18.3-10.3-14.8-26.3,13.8-29.3-42,100.8,24.7ZM660.6,396.4l-1.3,6-24.4-6,18.9-9.9,6.9,9.9ZM632.2,395.8l-21.9-5.4-14.2-20.4,13.3-7,22.9,32.8Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3047" class="mapa__loja">
+      <path id="entrada69" data-name="entrada" d="M722.8,403l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="722.8" y="403" display="none"></path>
+      <path id="area69" data-name="area" class="rosa" d="M732.4,405.6l-12.9,6.8,15.3,22,12.9-6.8-15.3-22Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3046" class="mapa__loja">
+      <path id="entrada70" data-name="entrada" d="M745.3,391.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="745.3" y="391.2" display="none"></path>
+      <path id="area70" data-name="area" class="rosa" d="M764.3,388.8l-30.9,16.3,8,11.5,30.9-16.3-8-11.5Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3045" class="mapa__loja">
+      <path id="entrada71" data-name="entrada" d="M774.9,375.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="774.9" y="375.6" display="none"></path>
+      <path id="area71" data-name="area" class="rosa" d="M790,375.2l-24.8,13.1,8,11.5,24.8-13.1-8-11.5Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3042" class="mapa__loja">
+      <path id="entrada72" data-name="entrada" d="M746,354.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="746" y="354.7" display="none"></path>
+      <path id="area72" data-name="area" class="rosa" d="M728.7,339.2l-30.7,16.1,23.9,34.2,30.7-16.1-23.9-34.2Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3040" class="mapa__loja">
+      <path id="entrada73" data-name="entrada" d="M722.5,321l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="722.5" y="321" display="none"></path>
+      <path id="area73" data-name="area" class="rosa" d="M712.9,316.5l-30.7,16.1,9.4,13.5,30.7-16.1-9.4-13.5Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3038" class="mapa__loja">
+      <path id="entrada74" data-name="entrada" d="M651.2,357.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="651.2" y="357.7" display="none"></path>
+      <path id="area74" data-name="area" class="rosa" d="M682.1,332.8l-31.3,16.5,9.4,13.5,31.3-16.5-9.4-13.5Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3037" class="mapa__loja">
+      <path id="entrada75" data-name="entrada" d="M660.9,371.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="660.9" y="371.5" display="none"></path>
+      <path id="area75" data-name="area" class="cinza" d="M692.2,347l-31.5,16.6,9.2,13.2,31.5-16.6-9.2-13.2Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja3036" class="mapa__loja">
+      <path id="entrada76" data-name="entrada" d="M670.4,385l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="670.4" y="385" display="none"></path>
+      <path id="area76" data-name="area" class="cinza" d="M701.9,360.9l-31.5,16.6,9.7,13.9,31.5-16.6-9.7-13.9Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja3035" class="mapa__loja">
+      <path id="entrada77" data-name="entrada" d="M685.2,399.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="685.2" y="399.1" display="none"></path>
+      <path id="area77" data-name="area" class="rosa" d="M712,375.7l-27.5,14.5,9.7,13.9,27.5-14.5-9.7-13.9Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3021" class="mapa__loja">
+      <path id="entrada78" data-name="entrada" d="M802.1,350.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="802.1" y="350.2" display="none"></path>
+      <path id="area78" data-name="area" class="rosa" d="M798.7,330.1l-18.2,9.6,9.7,13.9,18.2-9.6-9.7-13.9Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3020" class="mapa__loja">
+      <path id="entrada79" data-name="entrada" d="M759.6,358l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="759.6" y="358" display="none"></path>
+      <path id="area79" data-name="area" class="rosa" d="M779.6,340.1l-19.9,10.5,9.7,13.9,19.9-10.5-9.7-13.9Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3019" class="mapa__loja">
+      <path id="entrada80" data-name="entrada" d="M743.4,334.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="743.4" y="334.8" display="none"></path>
+      <path id="area80" data-name="area" class="cinza" d="M737,318.1l46.2-24.3,43,20.1c8,11.5,2.5,3.6,10.6,15.2l-27.5,14.5-10.3-14.8-39.9,21-22.1-31.6Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja3017" class="mapa__loja">
+      <path id="entrada81" data-name="entrada" d="M826.5,370.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="826.5" y="370.3" display="none"></path>
+      <path id="area81" data-name="area" class="rosa" d="M847.8,344.8l-23.9,12.6,15.9,22.8,23.9-12.6-15.9-22.8Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3015" class="mapa__loja">
+      <path id="entrada82" data-name="entrada" d="M841.5,391.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="841.5" y="391.8" display="none"></path>
+      <path id="area82" data-name="area" class="rosa" d="M864.2,368.5l-23.9,12.6,14.3,20.5,23.9-12.6-14.3-20.5Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3012" class="mapa__loja">
+      <path id="entrada83" data-name="entrada" d="M821.3,409.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="821.3" y="409.1" display="none"></path>
+      <path id="area83" data-name="area" class="rosa" d="M809.7,403.5l-21.6,11.3,11,15.8,21.6-11.3-11-15.8Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3014" class="mapa__loja">
+      <path id="entrada84" data-name="entrada" d="M808.9,391.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="808.9" y="391.4" display="none"></path>
+      <path id="area84" data-name="area" class="cinza" d="M784.2,409.2l4.7-2.5-7.2-10.3,16.9-8.9,7.2,10.3,1.4,2,2,2.8-21.6,11.3-3.4-4.9Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja3011" class="mapa__loja">
+      <path id="entrada85" data-name="entrada" d="M788.5,440.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="788.5" y="440.6" display="none"></path>
+      <path id="area85" data-name="area" class="rosa" d="M790.3,419.6l-24.8,13.1,8,11.5,24.8-13.1-8-11.5Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3010" class="mapa__loja">
+      <path id="entrada86" data-name="entrada" d="M764.1,453.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="764.1" y="453.4" display="none"></path>
+      <path id="area86" data-name="area" class="rosa" d="M757.8,423.4l-22.4,11.8,14.8,21.3,22.4-11.8-14.8-21.3Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3006" class="mapa__loja">
+      <path id="entrada87" data-name="entrada" d="M707.2,483.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="707.2" y="483.4" display="none"></path>
+      <path id="area87" data-name="area" class="rosa" d="M701.9,492.7l13.1-6.9,15.3,22-23.6,12.4-8.4-12,10.4-5.5-7-10Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3004" class="mapa__loja">
+      <path id="entrada88" data-name="entrada" d="M693.2,472.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="693.2" y="472.2" display="none"></path>
+      <path id="area88" data-name="area" class="rosa" d="M667.9,488.4l-8.5-12.2,21.6-11.4,16.4,23.5-9.3,4.9-7.9-11.3-12.3,6.5Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3001" class="mapa__loja">
+      <path id="entrada89" data-name="entrada" d="M647.4,442.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="647.4" y="442.7" display="none"></path>
+      <path id="area89" data-name="area" class="rosa" d="M648,450l16.6-8.7,15.9,22.8-27.7,14.6-10.8-15.6-5-7.2,11.1-5.9Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3025" class="mapa__loja">
+      <path id="entrada90" data-name="entrada" d="M661.1,329.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="661.1" y="329.2" display="none"></path>
+      <path id="area90" data-name="area" class="rosa" d="M647.5,284.5l-26.3,13.8,23.1,33.1,26.3-13.8-23.1-33.1Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3024" class="mapa__loja">
+      <path id="entrada91" data-name="entrada" d="M708.6,410.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="708.6" y="410.5" display="none"></path>
+      <path id="area91" data-name="area" class="rosa" d="M715.6,414.4l-13.4,7.1,8,11.5,13.4-7.1-8-11.5Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja3008" class="mapa__loja">
+      <path id="entrada92" data-name="entrada" d="M728.7,462.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="728.7" y="462.1" display="none"></path>
+      <path id="area92" data-name="area" class="rosa" d="M744.1,449.4l-13.4,7.1,5.2,7.5,13.4-7.1-5.2-7.5Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja5019" class="mapa__loja">
+      <path id="entrada93" data-name="entrada" d="M360.4,626.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="360.4" y="626.5" display="none"></path>
+      <path id="area93" data-name="area" class="cinza" d="M359.4,608.5l-4.9,11.3,14.9,5.8,4.9-11.3-14.9-5.8Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5082" class="mapa__loja">
+      <path id="entrada94" data-name="entrada" d="M271.3,532.9v1.6c-.1,0,1.7.2,1.7.2v-1.6c.1,0-1.7-.2-1.7-.2Z" x="271.3" y="532.9v1.6c-.1" display="none"></path>
+      <path id="area94" data-name="area" class="cinza" d="M272.5,524.9l8.6,12.4,11.6-6.1-8.6-12.4-11.6,6.1Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5025" class="mapa__loja">
+      <path id="entrada95" data-name="entrada" d="M531,386.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="531" y="386.1" display="none"></path>
+      <path id="area95" data-name="area" class="cinza" d="M527.5,366.8l-15,7.9,8.4,12.1,15-7.9-8.4-12.1Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5082A" class="mapa__loja">
+      <path id="entrada96" data-name="entrada" d="M289.3,558.9v1.6c-.1,0,1.7.2,1.7.2v-1.6c.1,0-1.7-.2-1.7-.2Z" x="289.3" y="558.9v1.6c-.1" display="none"></path>
+      <path id="area96" data-name="area" class="cinza" d="M290.6,550.9l8.6,12.4,11.6-6.1-8.6-12.4-11.6,6.1Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5001" class="mapa__loja">
+      <path id="entrada97" data-name="entrada" d="M604.2,492.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="604.2" y="492.4" display="none"></path>
+      <path id="area97" data-name="area" class="cinza" d="M613.3,494.4l-13,6.9,9.7,13.9,13-6.9-9.7-13.9Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja2135" class="mapa__loja">
+      <path id="entrada98" data-name="entrada" d="M420.5,430.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="420.5" y="430.1" display="none"></path>
+      <path id="area98" data-name="area" class="verde" d="M458.1,395.7l-39.9,21,15,21.5,39.9-21-15-21.5Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja2038" class="mapa__loja">
+      <path id="entrada99" data-name="entrada" d="M634.6,518.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="634.6" y="518.4" display="none"></path>
+      <path id="area99" data-name="area" class="rosa" d="M619.3,483.9l31.2,44.8-16.1,8.5-2-2.8-14.7,7.7,12.7,18.2,30.8-16.2h0s26.3-13.8,26.3-13.8l-42-60.2-26.3,13.8Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja-empty">
+      <path id="entrada100" data-name="entrada" d="M274.7,174.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="274.7" y="174.9" display="none"></path>
+      <a href="https://www.amoreiras360view.com/pt/" target="_blank"><path id="area100" data-name="area" class="amoreiras" d="M219.5,124l6.6-47.2,60.3,86.3-29.1,15.3-37.9-54.3Z" style="fill: rgb(204, 204, 204);"></path></a>
+      <path id="logo" class="inside_svg_color" d="M251.1,164c0,0,.2,0,.1.1v.4c0,0-.1.1-.1.1.2-.2.5,0,.7.2.2.2.1.5-.1.7-.2.1-.5.1-.7-.1,0,0,0-.2.1,0,.2.2.4.1.5,0,.3-.2.1-.6-.2-.6h0s0,0-.1,0c0,0,0,0,0,0,0,0-.1,0-.1,0,0,0,0,0,0,0v-.5c.1,0-.4.3-.4.3,0,0-.2,0,0-.1l.7-.4ZM252,163.6c.1-.2.4-.3.6-.2,0,0,0,.2,0,.1-.1,0-.2,0-.3,0,0,0-.1,0-.1.1,0,.1,0,.3,0,.4h0c0,0,0-.2.2-.3.2-.1.6,0,.7.2.2.3.1.6-.1.7-.2.1-.5,0-.7-.2l-.3-.4c-.1-.2-.2-.3,0-.5ZM253,164.1c-.1-.2-.3-.2-.5-.1-.2.1-.2.3,0,.5.1.2.3.2.5.1.2,0,.2-.3,0-.5ZM253.4,162.8c.2-.1.5,0,.8.2l.2.3c.2.3.1.6-.1.7-.2.1-.5,0-.8-.2l-.2-.3c-.2-.3,0-.6.1-.7ZM254,163.1c-.2-.2-.4-.2-.5-.2-.1,0-.2.3,0,.5l.2.3c.2.2.4.3.5.2.2,0,.2-.3,0-.5l-.2-.3ZM252.6,162.2l-.7.4-.9-.9-1,.5.5,1.1-.7.4-2.1-5.1.6-.3,4.2,3.9ZM256.2,161.3c.3-.2.6,0,.8.2.2.2.1.5-.2.7l-.3.2.2.3c0,0,0,.2-.1,0l-.8-1.1s0,0,0-.1l.4-.2ZM254.4,162.2c.1,0,.3,0,.4.1,0,.1,0,.3,0,.3-.1,0-.3,0-.4-.1,0-.1,0-.3,0-.3ZM254.5,162.3c0,0,0,.1,0,.2,0,0,.1,0,.2,0,0,0,0-.1,0-.2,0,0-.1,0-.2,0ZM256.9,161.6c-.1-.2-.3-.3-.6-.1l-.3.2.4.6.3-.2c.2-.1.2-.3.1-.5ZM257.7,160.6l1.4.8c.1,0,0,.2,0,.1l-.4-.2-.7.4v.4c0,0,0,.1,0,0l-.2-1.4s0,0,0,0c0,0,0,0,0,0ZM256.1,160.3l-.7.4-1.9-2.7h0s.7,2.3.7,2.3l-.4.2-2-1.6h0s1.9,2.8,1.9,2.8l-.7.4-3.2-4.5h0s.7-.3.7-.3l2.6,1.9h0s-.8-2.9-.8-2.9l.7-.4,3.2,4.5ZM257.8,161.5l.6-.3-.7-.5v.8ZM249,159.7l.8,1.8.7-.4-1.5-1.5h0ZM259.6,159.6c0,0,0-.2.1,0l.8,1.1c0,0,0,.2-.1.1l-1.4-.6.2.3.5.7c0,0,0,.2-.1,0l-.8-1.1c0,0,0-.2.1-.1l1.4.6-.2-.3-.5-.7h0ZM260.8,158.9c.3-.1.7,0,.9.3.3.4.2.8-.1,1-.3.2-.8,0-1.1-.3-.2-.3-.2-.7,0-.9,0,0,.1,0,.2-.1ZM261.6,159.3c-.2-.3-.5-.4-.7-.3,0,0-.1,0-.2,0-.2.2-.2.4,0,.7.2.3.6.4.8.3.3-.1.3-.4.1-.8ZM255.2,154.7c.2,0,.3,0,.5,0,.2,0,.3.1.5.2.2.1.3.2.4.4l1.7,2.4c.1.2.2.4.2.5,0,.2,0,.3,0,.5,0,.1-.1.3-.2.4-.1.1-.2.2-.4.3-.1,0-.3.1-.5.2-.2,0-.3,0-.5,0-.2,0-.3-.1-.5-.2-.2-.1-.3-.2-.4-.4l-1.7-2.4c-.1-.2-.2-.4-.2-.5,0-.2,0-.3,0-.5,0-.1.1-.3.2-.4.1-.1.2-.2.4-.3.1,0,.3-.1.5-.2ZM262.4,158.1c.3-.2.6,0,.8.2.1.2.1.4,0,.6l.5.2c.1,0,0,.2,0,.1l-.7-.2-.4.2.3.4c0,0,0,.2-.1,0l-.8-1.1s0,0,0-.1l.4-.2ZM263,158.3c-.1-.2-.3-.2-.6-.1l-.4.2.4.5.4-.2c.2-.1.3-.3.2-.4ZM255.6,155.4c-.1,0-.3,0-.4,0-.1,0-.2.2-.3.3,0,.1,0,.3,0,.4l1.7,2.4c.1.2.2.2.4.3.1,0,.3,0,.4,0,.1,0,.2-.2.3-.3,0-.1,0-.3-.1-.4l-1.7-2.4c-.1-.2-.2-.2-.4-.3ZM263.9,157.3l1.4.8c.1,0,0,.2,0,.1l-.4-.2-.7.4v.4c0,0,0,.1,0,0l-.2-1.4s0,0,0,0c0,0,0,0,0,0ZM257.7,153.4c.8-.4,1.5-.2,2.2.7.2.3.3.5.3.7,0,.2,0,.5-.2.7l2.2,1.7-.7.4-2-1.6-.4.2,1.3,1.9-.7.4-3.1-4.5,1.1-.6ZM264.1,158.3l.6-.3-.7-.4v.8ZM266,156.2c0,0,0-.1.2,0l.8,1.1c0,0,0,.2-.1,0l-.6-.9v.8c0,0,0,.1,0,0l-.8-.4.6.9c0,0,0,.2-.1,0l-.8-1.1c0,0,0-.2.1-.1l1,.5v-1ZM266.6,155.9c0,0,0-.2.1,0l.8,1.2c0,0,0,.2-.1,0l-.8-1.2ZM262,151.9l-1.4.7.9,1.3,1.2-.6.4.6-1.2.6.9,1.3,1.4-.7.5.6-2.1,1.1-3.2-4.5,2.1-1.1.4.6ZM267.7,155.2c.2-.1.4-.2.7-.1.1,0,0,.2,0,.1-.2,0-.4,0-.5,0-.2.2-.3.4,0,.7.2.3.6.4.8.3,0,0,.1-.1.2-.2,0,0,0-.1,0-.2,0,0,.2,0,.2,0,0,.1,0,.2,0,.3,0,0-.1.2-.2.2-.3.2-.8,0-1.1-.3-.2-.3-.2-.7,0-.9ZM258.4,153.9c0,0-.2,0-.3.1l-.4.2,1,1.4h0s.4-.2.4-.2c.1,0,.2-.1.3-.2,0,0,0-.1,0-.2,0,0,0-.2,0-.3,0,0-.1-.2-.2-.3,0-.1-.2-.2-.2-.3,0,0-.2-.1-.2-.2,0,0-.2,0-.3,0ZM265.9,155.2l-.7.4-3.2-4.5.7-.4,3.2,4.5ZM270.5,153.8c0,0,.1-.1.2,0l.2,1.4c0,0,0,.1-.1,0l-1.3-.8c0,0,0-.2,0-.1l1.2.7-.2-1.2ZM264.5,149.8c.8-.4,1.5-.2,2.2.7.2.3.3.5.3.7,0,.2,0,.5-.2.7l2.2,1.7-.7.4-2-1.6-.4.2,1.3,1.9-.7.4-3.1-4.5,1.1-.6ZM271.1,153.5c0,0,0-.2.1,0l.8,1.2c0,0,0,.2-.1,0l-.8-1.2ZM272.6,152.7c0,0,.2,0,0,.1l-.7.4.3.4.7-.4c0,0,.2,0,0,.1l-.7.4.3.4h0s.7-.4.7-.4c0,0,.2,0,0,.1l-.8.4c0,0-.1,0-.1,0l-.7-1.1s0,0,0-.1l.8-.4ZM249.4,126.3c.1,0,.2,0,.3,0l2.9,4.1s0,.1,0,.2l-.4,1.4.7,1,.7-.4c.1,0,.2,0,.3,0l9.7,14c0,0,0,.2,0,.3-.1,0-.2,0-.3,0l-9.6-13.8-.7.4c-.1,0-.2,0-.3,0l-.9-1.3s0-.1,0-.2l.4-1.3-2.7-3.9-6,3.2c0,0-.1,0-.2,0l-.8-.2-.2.7s0,0-.1.1l-6,3.1,2.7,3.9,1.6.3c0,0,.1,0,.2,0l.9,1.3c0,0,0,.2,0,.3l-.7.4,9.6,13.8c0,0,0,.2,0,.3-.1,0-.2,0-.3,0l-9.7-14c0,0,0-.2,0-.3l.7-.4-.7-1-1.6-.3c0,0-.1,0-.2,0l-2.9-4.1c0,0,0-.2,0-.3l6.1-3.2.2-.8c0-.1.1-.2.3-.1l.9.2,6.2-3.2ZM271.9,152l-.7.4-.9-.9-1,.5.5,1.1-.7.4-2.1-5.1.6-.3,4.2,3.9ZM275,151.5c0,0,.1-.1.2,0l.3,1.4c0,0,0,.1-.1,0l-1-.7.2,1.1c0,0,0,.1-.1,0l-1.3-.9c0,0,0-.2.1-.1l1.1.8-.2-1.1c0,0,0-.1.1,0l1,.6-.3-1.2ZM265.2,150.3c0,0-.2,0-.3.1l-.4.2,1,1.4.4-.2c.1,0,.2-.1.3-.2,0,0,0-.1,0-.2,0,0,0-.2,0-.3,0,0-.1-.2-.2-.3,0-.1-.2-.2-.2-.3,0,0-.2-.1-.2-.2,0,0-.2,0-.3,0ZM270.7,146.6c.2,0,.4,0,.5,0,.2,0,.3.1.5.2.1,0,.3.2.3.3l.2.3-.7.4h-.1c-.1-.3-.2-.4-.4-.5-.1,0-.3,0-.5,0,0,0-.2.1-.2.2,0,0,0,.1,0,.2,0,0,0,.1,0,.2,0,0,0,.2.1.2,0,0,.1.2.2.2,0,0,.1.1.2.1,0,0,.1,0,.2,0,0,0,.2,0,.3,0h.7c.2-.1.4-.1.5,0,.2,0,.3,0,.4.1.1,0,.2.2.3.3.1.1.2.3.3.4.1.2.2.4.3.6,0,.2.1.4,0,.5,0,.2,0,.3-.2.5-.1.2-.3.3-.5.4-.2,0-.4.1-.5.2-.2,0-.4,0-.5,0-.2,0-.3-.1-.5-.2-.2-.1-.3-.2-.4-.4l-.2-.2.7-.4v.2c.2.1.3.2.5.3.1,0,.3,0,.5,0,.1,0,.2-.1.2-.2,0,0,0-.1,0-.2,0,0,0-.2,0-.3,0,0-.1-.2-.2-.3,0-.1-.2-.2-.2-.3,0,0-.1-.1-.2-.2,0,0-.1,0-.2,0s-.2,0-.3,0h-.6c-.4.1-.7,0-.9,0-.2-.1-.5-.3-.7-.6-.1-.2-.2-.3-.3-.5,0-.2,0-.4,0-.5,0-.2,0-.3.2-.5.1-.1.3-.3.5-.4.2,0,.3-.1.5-.2ZM268.3,149.6l.8,1.8.7-.4-1.5-1.5h0Z"></path>
+    </g>
+    <g id="utilidades">
+      <g id="fraldario">
+        <path id="circulo" d="M282,698.1c6.9,0,12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5-12.5-5.6-12.5-12.5,5.6-12.5,12.5-12.5Z"></path>
+        <path id="bebe" class="inside_svg_color" d="M284.4,712.7s1.6,1.5,1.6,1.5c.5.5.4,1.4-.1,1.8l-2.3,2.2c-.9.8-2-.3-1.2-1.1l1.4-1.4-1.4-1.3,1.9-1.8h0ZM279.4,712.7h0s-1.6,1.5-1.6,1.5c-.5.5-.4,1.4,0,1.8l2.3,2.2c.9.8,2-.3,1.2-1.1l-1.4-1.4,1.4-1.3-1.9-1.8M282,707c1.3,0,2.4-1,2.4-2.2s-1.1-2.2-2.4-2.2-2.4,1-2.4,2.2,1.1,2.2,2.4,2.2h0ZM284.3,711.9v-1.5c.1,0,2.2,1.7,2.2,1.7.2.1.4.2.6.2s.5,0,.6-.2c.3-.3.3-.8,0-1.1,0,0-2.2-2.4-2.6-2.7-.6-.5-1.5-.9-2.9-.9h-.4c-1.4,0-2.3.4-2.9.9-.3.3-2.6,2.6-2.6,2.6-.3.3-.4.8,0,1.1.2.2.4.3.6.3s.4,0,.6-.2l2-1.8v1.5h4.9Z"></path>
+      </g>
+      <g id="sanitdefic">
+        <path id="circulo" data-name="circulo" d="M254.8,710c6.9,0,12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5-12.5-5.6-12.5-12.5,5.6-12.5,12.5-12.5Z"></path>
+        <g id="cadeirinha">
+          <path id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" d="M256.5,723.8c-.1-.3-.4-.4-.7-.4h-2.4v-.5h2c.2,0,.4-.1.5-.3,0,0,.1-.2.1-.3,0-.3-.3-.6-.6-.6h-2v-1.8c0-.5-.4-1.2-1.2-1.2s-1.2.5-1.2,1.2v3.8c0,.7.6,1.2,1.2,1.2h3l1.6,3.1c.1.3.4.4.7.4s.2,0,.4,0c.4-.2.6-.7.4-1.1l-1.8-3.5Z"></path>
+          <path id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" d="M254.3,725.7c-.4,1.2-1.5,2.1-2.9,2.1s-3-1.3-3-2.9.7-2.2,1.8-2.7v-1.2c-1.7.5-3,2.1-3,3.9s1.9,4.1,4.3,4.1,3.2-1,3.9-2.4l-.5-.9c-.1,0-.3,0-.5,0Z"></path>
+          <path id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" d="M252.2,718.2c.8,0,1.4-.6,1.4-1.3s-.6-1.3-1.4-1.3-1.4.6-1.4,1.3.6,1.3,1.4,1.3Z"></path>
+          <path id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" d="M262.2,719h0c0,.5,0,.7-.1.9,0,.2-.2.3-.4.3s-.4-.1-.5-.4c0-.3-.1-.7-.1-1.4v-.2c0-.2,0-.4,0-.6,0-.2,0-.3,0-.4,0-.1,0-.3,0-.3,0,0,0-.2.1-.2,0,0,.1-.1.2-.1,0,0,.1,0,.2,0,.2,0,.3,0,.4.3,0,.2.1.5.1.9h0s.5,0,.5,0c0,0,0,0,0,0,0,0,0,0,0,0,0-.2,0-.3,0-.5,0-.1,0-.3-.1-.4,0-.1-.1-.2-.2-.3,0,0-.2-.2-.3-.2-.1,0-.3,0-.4,0s-.3,0-.4,0c-.1,0-.2.1-.3.2,0,0-.1.2-.2.3,0,.1,0,.2-.1.3,0,0,0,.2,0,.4,0,.2,0,.3,0,.4,0,.1,0,.2,0,.4v.2c0,.2,0,.3,0,.4,0,0,0,.2,0,.4,0,.2,0,.3,0,.4,0,0,0,.2,0,.3,0,.1,0,.2.1.3,0,0,.1.1.2.2,0,0,.2.1.3.1.1,0,.2,0,.4,0s.3,0,.4,0c.1,0,.2-.1.3-.2,0,0,.1-.2.2-.3,0-.1,0-.3.1-.4,0-.1,0-.3,0-.5h0s-.5,0-.5,0Z"></path>
+          <polygon id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" points="259 719.9 258.3 716.2 257.8 716.2 257.2 719.9 256.6 716.2 256.1 716.2 256.8 720.5 257.4 720.5 258.1 717 258.8 720.5 259.3 720.5 260 716.2 259.5 716.2 259 719.9"></polygon>
+        </g>
+      </g>
+      <g id="sanitdefic1" data-name="sanitdefic">
+        <path id="circulo" data-name="circulo" d="M313.8,131.1c6.9,0,12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5-12.5-5.6-12.5-12.5,5.6-12.5,12.5-12.5Z"></path>
+        <g id="cadeirinha6" data-name="cadeirinha">
+          <path id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" d="M315.5,144.9c-.1-.3-.4-.4-.7-.4h-2.4v-.5h2c.2,0,.4-.1.5-.3,0,0,.1-.2.1-.3,0-.3-.3-.6-.6-.6h-2v-1.8c0-.5-.4-1.2-1.2-1.2s-1.2.5-1.2,1.2v3.8c0,.7.6,1.2,1.2,1.2h3l1.6,3.1c.1.3.4.4.7.4s.2,0,.4,0c.4-.2.6-.7.4-1.1l-1.8-3.5Z"></path>
+          <path id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" d="M313.3,146.9c-.4,1.2-1.5,2.1-2.9,2.1s-3-1.3-3-2.9.7-2.2,1.8-2.7v-1.2c-1.7.5-3,2.1-3,3.9s1.9,4.1,4.3,4.1,3.2-1,3.9-2.4l-.5-.9c-.1,0-.3,0-.5,0Z"></path>
+          <path id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" d="M311.2,139.3c.8,0,1.4-.6,1.4-1.3s-.6-1.3-1.4-1.3-1.4.6-1.4,1.3.6,1.3,1.4,1.3Z"></path>
+          <path id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" d="M321.2,140.2h0c0,.5,0,.7-.1.9,0,.2-.2.3-.4.3s-.4-.1-.5-.4c0-.3-.1-.7-.1-1.4v-.2c0-.2,0-.4,0-.6,0-.2,0-.3,0-.4,0-.1,0-.3,0-.3,0,0,0-.2.1-.2,0,0,.1-.1.2-.1,0,0,.1,0,.2,0,.2,0,.3,0,.4.3,0,.2.1.5.1.9h0s.5,0,.5,0c0,0,0,0,0,0,0,0,0,0,0,0,0-.2,0-.3,0-.5,0-.1,0-.3-.1-.4,0-.1-.1-.2-.2-.3,0,0-.2-.2-.3-.2-.1,0-.3,0-.4,0s-.3,0-.4,0c-.1,0-.2.1-.3.2,0,0-.1.2-.2.3,0,.1,0,.2-.1.3,0,0,0,.2,0,.4,0,.2,0,.3,0,.4,0,.1,0,.2,0,.4v.2c0,.2,0,.3,0,.4,0,0,0,.2,0,.4,0,.2,0,.3,0,.4,0,0,0,.2,0,.3,0,.1,0,.2.1.3,0,0,.1.1.2.2,0,0,.2.1.3.1.1,0,.2,0,.4,0s.3,0,.4,0c.1,0,.2-.1.3-.2,0,0,.1-.2.2-.3,0-.1,0-.3.1-.4,0-.1,0-.3,0-.5h0s-.5,0-.5,0Z"></path>
+          <polygon id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" points="318 141 317.4 137.3 316.8 137.3 316.2 141 315.6 137.3 315.1 137.3 315.8 141.6 316.4 141.6 317.1 138.1 317.8 141.6 318.3 141.6 319 137.3 318.5 137.3 318 141"></polygon>
+        </g>
+      </g>
+      <g id="sanitarios">
+        <path id="circulo" data-name="circulo" d="M256.3,205.6c6.9,0,12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5-12.5-5.6-12.5-12.5,5.6-12.5,12.5-12.5Z"></path>
+        <path id="pessoas" class="inside_svg_color" d="M260.8,214c-.7,0-1.3-.6-1.3-1.3s.6-1.3,1.3-1.3,1.3.6,1.3,1.3-.6,1.3-1.3,1.3h0ZM264.1,219.4c0,0-.2,0-.2,0-.2,0-.4-.1-.5-.3l-.9-2v2.1s0,0,0,0v4.8c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-4h-.5v4c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-4.8s0,0,0,0v-2.1l-.9,2c0,.2-.3.3-.5.3s-.2,0-.2,0c-.3-.1-.4-.5-.3-.7l1.9-4.1c.1-.2.3-.3.6-.3h2.2c.2,0,.5,0,.6.3l1.9,4.1c.1.3,0,.6-.3.7h0ZM251.7,214c-.7,0-1.3-.6-1.3-1.3s.6-1.3,1.3-1.3,1.3.6,1.3,1.3-.6,1.3-1.3,1.3h0ZM255,219.4c0,0-.2,0-.2,0-.2,0-.4-.1-.5-.3l-.6-1.3.5,2.4c0,0,0,.2,0,.2,0,0-.1,0-.2,0h-.6v3.5c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-3.5h-.5v3.5c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-3.5h-.6c0,0-.2,0-.2,0,0,0,0-.1,0-.2l.5-2.4-.6,1.3c0,.2-.3.3-.5.3s-.2,0-.2,0c-.3-.1-.4-.5-.3-.7l1.9-4.1c0-.2.3-.3.5-.3h2.3c.2,0,.4.1.5.3l1.9,4.1c.1.3,0,.6-.3.7h0ZM256.3,223.9c-.2,0-.5-.2-.5-.4v-10.6c0-.2.2-.4.5-.4s.5.2.5.4v10.6c0,.2-.2.4-.5.4h0Z"></path>
+      </g>
+      <g id="sanitarios1" data-name="sanitarios">
+        <path id="circulo" data-name="circulo" d="M627.9,257.7c6.9,0,12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5-12.5-5.6-12.5-12.5,5.6-12.5,12.5-12.5Z"></path>
+        <path id="pessoas" data-name="pessoas" class="inside_svg_color" d="M632.5,266.1c-.7,0-1.3-.6-1.3-1.3s.6-1.3,1.3-1.3,1.3.6,1.3,1.3-.6,1.3-1.3,1.3h0ZM635.7,271.5c0,0-.2,0-.2,0-.2,0-.4-.1-.5-.3l-.9-2v2.1s0,0,0,0v4.8c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-4h-.5v4c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-4.8s0,0,0,0v-2.1l-.9,2c0,.2-.3.3-.5.3s-.2,0-.2,0c-.3-.1-.4-.5-.3-.7l1.9-4.1c.1-.2.3-.3.6-.3h2.2c.2,0,.5,0,.6.3l1.9,4.1c.1.3,0,.6-.3.7h0ZM623.4,266.1c-.7,0-1.3-.6-1.3-1.3s.6-1.3,1.3-1.3,1.3.6,1.3,1.3-.6,1.3-1.3,1.3h0ZM626.7,271.5c0,0-.2,0-.2,0-.2,0-.4-.1-.5-.3l-.6-1.3.5,2.4c0,0,0,.2,0,.2,0,0-.1,0-.2,0h-.6v3.5c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-3.5h-.5v3.5c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-3.5h-.6c0,0-.2,0-.2,0,0,0,0-.1,0-.2l.5-2.4-.6,1.3c0,.2-.3.3-.5.3s-.2,0-.2,0c-.3-.1-.4-.5-.3-.7l1.9-4.1c0-.2.3-.3.5-.3h2.3c.2,0,.4.1.5.3l1.9,4.1c.1.3,0,.6-.3.7h0ZM628,275.9c-.2,0-.5-.2-.5-.4v-10.6c0-.2.2-.4.5-.4s.5.2.5.4v10.6c0,.2-.2.4-.5.4h0Z"></path>
+      </g>
+      <g id="sanitarios2" data-name="sanitarios">
+        <path id="circulo" data-name="circulo" d="M686.2,505.2c6.9,0,12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5-12.5-5.6-12.5-12.5,5.6-12.5,12.5-12.5Z"></path>
+        <path id="pessoas" data-name="pessoas" class="inside_svg_color" d="M690.8,513.6c-.7,0-1.3-.6-1.3-1.3s.6-1.3,1.3-1.3,1.3.6,1.3,1.3-.6,1.3-1.3,1.3h0ZM694,519c0,0-.2,0-.2,0-.2,0-.4-.1-.5-.3l-.9-2v2.1s0,0,0,0v4.8c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-4h-.5v4c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-4.8s0,0,0,0v-2.1l-.9,2c0,.2-.3.3-.5.3s-.2,0-.2,0c-.3-.1-.4-.5-.3-.7l1.9-4.1c.1-.2.3-.3.6-.3h2.2c.2,0,.5,0,.6.3l1.9,4.1c.1.3,0,.6-.3.7h0ZM681.7,513.6c-.7,0-1.3-.6-1.3-1.3s.6-1.3,1.3-1.3,1.3.6,1.3,1.3-.6,1.3-1.3,1.3h0ZM684.9,519c0,0-.2,0-.2,0-.2,0-.4-.1-.5-.3l-.6-1.3.5,2.4c0,0,0,.2,0,.2,0,0-.1,0-.2,0h-.6v3.5c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-3.5h-.5v3.5c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-3.5h-.6c0,0-.2,0-.2,0,0,0,0-.1,0-.2l.5-2.4-.6,1.3c0,.2-.3.3-.5.3s-.2,0-.2,0c-.3-.1-.4-.5-.3-.7l1.9-4.1c0-.2.3-.3.5-.3h2.3c.2,0,.4.1.5.3l1.9,4.1c.1.3,0,.6-.3.7h0ZM686.3,523.4c-.2,0-.5-.2-.5-.4v-10.6c0-.2.2-.4.5-.4s.5.2.5.4v10.6c0,.2-.2.4-.5.4h0Z"></path>
+      </g>
+      <g id="sanitarios3" data-name="sanitarios">
+        <path id="circulo" data-name="circulo" d="M307.6,686.5c6.9,0,12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5-12.5-5.6-12.5-12.5,5.6-12.5,12.5-12.5Z"></path>
+        <path id="pessoas" data-name="pessoas" class="inside_svg_color" d="M312.1,694.9c-.7,0-1.3-.6-1.3-1.3s.6-1.3,1.3-1.3,1.3.6,1.3,1.3-.6,1.3-1.3,1.3h0ZM315.4,700.2c0,0-.2,0-.2,0-.2,0-.4-.1-.5-.3l-.9-2v2.1s0,0,0,0v4.8c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-4h-.5v4c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-4.8s0,0,0,0v-2.1l-.9,2c0,.2-.3.3-.5.3s-.2,0-.2,0c-.3-.1-.4-.5-.3-.7l1.9-4.1c.1-.2.3-.3.6-.3h2.2c.2,0,.5,0,.6.3l1.9,4.1c.1.3,0,.6-.3.7h0ZM303.1,694.9c-.7,0-1.3-.6-1.3-1.3s.6-1.3,1.3-1.3,1.3.6,1.3,1.3-.6,1.3-1.3,1.3h0ZM306.3,700.2c0,0-.2,0-.2,0-.2,0-.4-.1-.5-.3l-.6-1.3.5,2.4c0,0,0,.2,0,.2,0,0-.1,0-.2,0h-.6v3.5c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-3.5h-.5v3.5c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-3.5h-.6c0,0-.2,0-.2,0,0,0,0-.1,0-.2l.5-2.4-.6,1.3c0,.2-.3.3-.5.3s-.2,0-.2,0c-.3-.1-.4-.5-.3-.7l1.9-4.1c0-.2.3-.3.5-.3h2.3c.2,0,.4.1.5.3l1.9,4.1c.1.3,0,.6-.3.7h0ZM307.6,704.7c-.2,0-.5-.2-.5-.4v-10.6c0-.2.2-.4.5-.4s.5.2.5.4v10.6c0,.2-.2.4-.5.4h0Z"></path>
+      </g>
+      <g id="multibanco">
+        <path d="M676.5,412c6.8,0,12.4,5.6,12.4,12.4s-5.6,12.4-12.4,12.4-12.4-5.6-12.4-12.4,5.6-12.4,12.4-12.4Z"></path>
+        <path class="inside_svg_color" d="M680.9,421.1h-2.5c-.3,0-.5.2-.5.5v5.7c0,.3.2.5.5.5h3c1.1,0,1.9-.8,1.9-1.8s-.4-1.3-1.1-1.6c.3-.3.5-.8.5-1.3,0-1-.9-1.9-1.9-1.9ZM682.3,425.8c0,.5-.4.9-.9.9h-2.4v-4.7h1.9c.5,0,.9.4.9.9s-.3.8-.8.9h-.9c-.3,0-.5.2-.5.5s.2.5.5.5h1.3c.5,0,.9.4.9.9h0Z"></path>
+        <path class="inside_svg_color" d="M670.1,427.8c.3,0,.6-.2.7-.5l.5-4.5,1.7,4.4h0c0,.1,0,.1,0,.2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0h0c0,0,.1,0,.2,0h0c0,0,.1,0,.2,0h0s0,0,.1,0h0c0,0,0-.1.1-.2h0c0,0,1.7-4.5,1.7-4.5l.5,4.5c0,.3.3.6.7.5.3,0,.6-.3.5-.7l-.6-5.3c0,0,0-.1,0-.2,0,0,0-.1,0-.2-.1-.3-.4-.5-.7-.5h-.2c0,0-.1,0-.2,0-.3,0-.6.3-.7.6l-1.5,3.8-1.5-3.8c-.1-.3-.4-.5-.7-.6,0,0-.1,0-.2,0h-.2c-.3,0-.6.2-.7.5,0,0,0,.1,0,.2,0,0,0,.1,0,.2l-.6,5.3c0,.3.2.6.5.7h.2Z"></path>
+        <path class="inside_svg_color" d="M672.2,417.5h9.1c.6,0,1.2.6,1.2,1.2v.6c0,.8-1.1.8-1.1,0v-.3c0-.2-.2-.4-.4-.4h-9.2c-.2,0-.4.2-.4.4v.3c0,.8-1.1.8-1.1,0v-.6c0-.7.5-1.2,1.2-1.2h.6ZM676.4,431.3h5.9c1.4,0,1.4-1.4,1.2-2.2,0-.5-.9-.5-1,0v.6c0,.3-.2.5-.5.5h-11.4c-.3,0-.5-.2-.5-.5v-.6c0-.5-.9-.5-1,0-.1.7-.1,2.2,1.2,2.2h5.8,0Z"></path>
+      </g>
+      <g id="multibanco1" data-name="multibanco">
+        <path d="M364.4,229.4c6.8,0,12.4,5.6,12.4,12.4s-5.6,12.4-12.4,12.4c-6.8,0-12.4-5.6-12.4-12.4,0-6.8,5.6-12.4,12.4-12.4Z"></path>
+        <path class="inside_svg_color" d="M368.9,238.5h-2.5c-.3,0-.5.2-.5.5v5.7c0,.3.2.5.5.5h3c1.1,0,1.9-.8,1.9-1.8s-.4-1.3-1.1-1.6c.3-.3.5-.8.5-1.3,0-1-.9-1.9-1.9-1.9ZM370.3,243.2c0,.5-.4.9-.9.9h-2.4v-4.7h1.9c.5,0,.9.4.9.9s-.3.8-.8.9h-.9c-.3,0-.5.2-.5.5s.2.5.5.5h1.3c.5,0,.9.4.9.9h0Z"></path>
+        <path class="inside_svg_color" d="M358,245.2c.3,0,.6-.2.7-.5l.5-4.5,1.7,4.4h0c0,.1,0,.1,0,.2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0h0c0,0,.1,0,.2,0h0c0,0,.1,0,.2,0h0s0,0,.1,0h0c0,0,0-.1.1-.2h0c0,0,1.7-4.5,1.7-4.5l.5,4.5c0,.3.3.6.7.5s.6-.3.5-.7l-.6-5.3c0,0,0-.1,0-.2,0,0,0-.1,0-.2-.1-.3-.4-.5-.7-.5h-.2c0,0-.1,0-.2,0-.3,0-.6.3-.7.6l-1.5,3.8-1.5-3.8c-.1-.3-.4-.5-.7-.6,0,0-.1,0-.2,0h-.2c-.3,0-.6.2-.7.5,0,0,0,.1,0,.2,0,0,0,.1,0,.2l-.6,5.3c0,.3.2.6.5.7h.2Z"></path>
+        <path class="inside_svg_color" d="M360.2,234.9h9.1c.6,0,1.2.6,1.2,1.2v.6c0,.8-1.1.8-1.1,0v-.3c0-.2-.2-.4-.4-.4h-9.2c-.2,0-.4.2-.4.4v.3c0,.8-1.1.8-1.1,0v-.6c0-.7.5-1.2,1.2-1.2h.6ZM364.3,248.7h5.9c1.4,0,1.4-1.4,1.2-2.2,0-.5-.9-.5-1,0v.6c0,.3-.2.5-.5.5h-11.4c-.3,0-.5-.2-.5-.5v-.6c0-.5-.9-.5-1,0-.1.7-.1,2.2,1.2,2.2h5.8,0Z"></path>
+      </g>
+      <g id="rolantes">
+        <path d="M391,219.6c6.8,0,12.4,5.6,12.4,12.4s-5.6,12.4-12.4,12.4-12.4-5.6-12.4-12.4c0-6.8,5.6-12.4,12.4-12.4Z"></path>
+        <path class="inside_svg_color" d="M388.1,233.8l-.9,1.1h-1.3c-1,0-1.8.8-1.8,1.8s.8,1.8,1.8,1.8h2.1c.5,0,1-.2,1.3-.6l6.3-7.4h1.5c1,0,1.8-.8,1.8-1.8s-.8-1.8-1.8-1.8h-2.3c-.5,0-1,.2-1.3.6"></path>
+        <path id="Vector_561" class="inside_svg_color" d="M384.9,228.7h.7v1.9c0,.1.1.3.3.3h1.2c.1,0,.3-.1.3-.3v-1.9h.7c0,0,.1,0,.1-.1,0,0,0-.1,0-.2l-1.5-1.5c-.1-.1-.3-.1-.4,0l-1.5,1.5s0,.1,0,.2c0,0,0,.1.1.1Z"></path>
+      </g>
+      <g id="rolantes1" data-name="rolantes">
+        <path d="M353.7,635.4c6.8,0,12.4,5.6,12.4,12.4s-5.6,12.4-12.4,12.4-12.4-5.6-12.4-12.4c0-6.8,5.6-12.4,12.4-12.4Z"></path>
+        <path class="inside_svg_color" d="M350.8,649.6l-.9,1.1h-1.3c-1,0-1.8.8-1.8,1.8s.8,1.8,1.8,1.8h2.1c.5,0,1-.2,1.3-.6l6.3-7.4h1.5c1,0,1.8-.8,1.8-1.8s-.8-1.8-1.8-1.8h-2.3c-.5,0-1,.2-1.3.6"></path>
+        <path class="inside_svg_color" d="M347.6,644.5h.7v1.9c0,.1.1.3.3.3h1.2c.1,0,.3-.1.3-.3v-1.9h.7c0,0,.1,0,.1-.1,0,0,0-.1,0-.2l-1.5-1.5c-.1-.1-.3-.1-.4,0l-1.5,1.5s0,.1,0,.2c0,0,0,.1.1.1Z"></path>
+      </g>
+      <g id="escadas">
+        <path d="M418.4,475.9c6.8,0,12.3,5.5,12.3,12.3,0,6.8-5.5,12.3-12.3,12.3s-12.3-5.5-12.3-12.3c0-6.8,5.5-12.3,12.3-12.3Z"></path>
+        <path class="inside_svg_color" d="M415.6,494.2v-3.4h3.7v-3.4h3.7v-3.4h2.6v-1.7h-4v3.4h-3.7v3.4h-3.7v3.4h-2.8v1.7"></path>
+      </g>
+      <g id="elevadores">
+        <path id="circulo" data-name="circulo" d="M265.9,550.7c6.8,0,12.4,5.5,12.4,12.4s-5.5,12.4-12.4,12.4-12.4-5.5-12.4-12.4c0-6.8,5.5-12.4,12.4-12.4Z"></path>
+        <path id="pessoas" data-name="pessoas" class="inside_svg_color" d="M269.2,570.9h-6.8c-.5,0-.9-.5-.9-1v-13.5c0-.6.4-1,.9-1h6.8c.5,0,.9.5.9,1v13.5c0,.6-.4,1-.9,1h0ZM269.2,557.6c0-.3-.2-.5-.5-.5h-5.9c-.3,0-.5.2-.5.5v11.9c0,.3.2.5.5.5h5.9c.3,0,.5-.2.5-.5v-11.9h0ZM273.9,562.7c0,.2-.3.2-.5.2l-.6-.2v2.3c0,.2-.2.4-.4.4h-.5c-.2,0-.4-.2-.4-.4v-2.3l-.6.2c-.2,0-.4,0-.5-.2,0-.2,0-.4,0-.5l1.4-1.4c.2-.2.4-.2.6,0l1.4,1.4c.1.1.2.3,0,.5h0ZM261.3,564l-1.4,1.4c-.2.2-.4.2-.6,0l-1.4-1.4c-.1-.1-.2-.3,0-.5,0-.2.3-.2.5-.2l.6.2v-2.6c0-.2.2-.4.4-.4h.5c.2,0,.4.2.4.4v2.6l.6-.2c.2,0,.4,0,.5.2,0,.2,0,.4,0,.5h0ZM267.6,564.2c0,0-.1,0-.2,0h-.5v4.7c0,.1-.1.2-.3.2h-.4c-.1,0-.2-.1-.2-.2v-3.9c0,0,0-.1-.1-.1s-.1,0-.1.1v3.9c0,.1-.1.2-.3.2h-.4c-.1,0-.3-.1-.3-.2v-4.7h-.5c0,0-.1,0-.2,0,0,0,0-.1,0-.2l.3-2.9c0-.4.4-.8.8-.8h1.5c.4,0,.8.3.8.8l.3,2.9c0,0,0,.1,0,.2h0ZM265.8,560c-.6,0-1-.5-1-1.1s.5-1.1,1-1.1,1,.5,1,1.1-.5,1.1-1,1.1h0Z"></path>
+      </g>
+      <g id="elevadores1" data-name="elevadores">
+        <path id="circulo" data-name="circulo" d="M473.8,492.1c6.8,0,12.4,5.5,12.4,12.4s-5.5,12.4-12.4,12.4-12.4-5.5-12.4-12.4c0-6.8,5.5-12.4,12.4-12.4Z"></path>
+        <path id="pessoas" data-name="pessoas" class="inside_svg_color" d="M477.2,512.2h-6.8c-.5,0-.9-.5-.9-1v-13.5c0-.6.4-1,.9-1h6.8c.5,0,.9.5.9,1v13.5c0,.6-.4,1-.9,1h0ZM477.2,498.9c0-.3-.2-.5-.5-.5h-5.9c-.3,0-.5.2-.5.5v11.9c0,.3.2.5.5.5h5.9c.3,0,.5-.2.5-.5v-11.9h0ZM481.8,504.1c0,.2-.3.2-.5.2l-.6-.2v2.3c0,.2-.2.4-.4.4h-.5c-.2,0-.4-.2-.4-.4v-2.3l-.6.2c-.2,0-.4,0-.5-.2,0-.2,0-.4,0-.5l1.4-1.4c.2-.2.4-.2.6,0l1.4,1.4c.1.1.2.3,0,.5h0ZM469.2,505.4l-1.4,1.4c-.2.2-.4.2-.6,0l-1.4-1.4c-.1-.1-.2-.3,0-.5,0-.2.3-.2.5-.2l.6.2v-2.6c0-.2.2-.4.4-.4h.5c.2,0,.4.2.4.4v2.6l.6-.2c.2,0,.4,0,.5.2,0,.2,0,.4,0,.5h0ZM475.5,505.5c0,0-.1,0-.2,0h-.5v4.7c0,.1-.1.2-.3.2h-.4c-.1,0-.2-.1-.2-.2v-3.9c0,0,0-.1-.1-.1s-.1,0-.1.1v3.9c0,.1-.1.2-.3.2h-.4c-.1,0-.3-.1-.3-.2v-4.7h-.5c0,0-.1,0-.2,0,0,0,0-.1,0-.2l.3-2.9c0-.4.4-.8.8-.8h1.5c.4,0,.8.3.8.8l.3,2.9c0,0,0,.1,0,.2h0ZM473.8,501.3c-.6,0-1-.5-1-1.1s.5-1.1,1-1.1,1,.5,1,1.1-.5,1.1-1,1.1h0Z"></path>
+      </g>
+      <g id="elevadores2" data-name="elevadores">
+        <path id="circulo" data-name="circulo" d="M520.7,304.8c6.8,0,12.4,5.5,12.4,12.4s-5.5,12.4-12.4,12.4-12.4-5.5-12.4-12.4c0-6.8,5.5-12.4,12.4-12.4Z"></path>
+        <path id="pessoas" data-name="pessoas" class="inside_svg_color" d="M524,324.9h-6.8c-.5,0-.9-.5-.9-1v-13.5c0-.6.4-1,.9-1h6.8c.5,0,.9.5.9,1v13.5c0,.6-.4,1-.9,1h0ZM524,311.6c0-.3-.2-.5-.5-.5h-5.9c-.3,0-.5.2-.5.5v11.9c0,.3.2.5.5.5h5.9c.3,0,.5-.2.5-.5v-11.9h0ZM528.7,316.8c0,.2-.3.2-.5.2l-.6-.2v2.3c0,.2-.2.4-.4.4h-.5c-.2,0-.4-.2-.4-.4v-2.3l-.6.2c-.2,0-.4,0-.5-.2,0-.2,0-.4,0-.5l1.4-1.4c.2-.2.4-.2.6,0l1.4,1.4c.1.1.2.3,0,.5h0ZM516,318l-1.4,1.4c-.2.2-.4.2-.6,0l-1.4-1.4c-.1-.1-.2-.3,0-.5,0-.2.3-.2.5-.2l.6.2v-2.6c0-.2.2-.4.4-.4h.5c.2,0,.4.2.4.4v2.6l.6-.2c.2,0,.4,0,.5.2,0,.2,0,.4,0,.5h0ZM522.4,318.2c0,0-.1,0-.2,0h-.5v4.7c0,.1-.1.2-.3.2h-.4c-.1,0-.2-.1-.2-.2v-3.9c0,0,0-.1-.1-.1s-.1,0-.1.1v3.9c0,.1-.1.2-.3.2h-.4c-.1,0-.3-.1-.3-.2v-4.7h-.5c0,0-.1,0-.2,0,0,0,0-.1,0-.2l.3-2.9c0-.4.4-.8.8-.8h1.5c.4,0,.8.3.8.8l.3,2.9c0,0,0,.1,0,.2h0ZM520.6,314c-.6,0-1-.5-1-1.1s.5-1.1,1-1.1,1,.5,1,1.1-.5,1.1-1,1.1h0Z"></path>
+      </g>
+      <g id="elevadores3" data-name="elevadores">
+        <path id="circulo" data-name="circulo" d="M260.3,173.2c6.8,0,12.4,5.5,12.4,12.4s-5.5,12.4-12.4,12.4-12.4-5.5-12.4-12.4c0-6.8,5.5-12.4,12.4-12.4Z"></path>
+        <path id="pessoas" data-name="pessoas" class="inside_svg_color" d="M263.6,193.3h-6.8c-.5,0-.9-.5-.9-1v-13.5c0-.6.4-1,.9-1h6.8c.5,0,.9.5.9,1v13.5c0,.6-.4,1-.9,1h0ZM263.6,180c0-.3-.2-.5-.5-.5h-5.9c-.3,0-.5.2-.5.5v11.9c0,.3.2.5.5.5h5.9c.3,0,.5-.2.5-.5v-11.9h0ZM268.3,185.2c0,.2-.3.2-.5.2l-.6-.2v2.3c0,.2-.2.4-.4.4h-.5c-.2,0-.4-.2-.4-.4v-2.3l-.6.2c-.2,0-.4,0-.5-.2,0-.2,0-.4,0-.5l1.4-1.4c.2-.2.4-.2.6,0l1.4,1.4c.1.1.2.3,0,.5h0ZM255.6,186.5l-1.4,1.4c-.2.2-.4.2-.6,0l-1.4-1.4c-.1-.1-.2-.3,0-.5,0-.2.3-.2.5-.2l.6.2v-2.6c0-.2.2-.4.4-.4h.5c.2,0,.4.2.4.4v2.6l.6-.2c.2,0,.4,0,.5.2,0,.2,0,.4,0,.5h0ZM262,186.7c0,0-.1,0-.2,0h-.5v4.7c0,.1-.1.2-.3.2h-.4c-.1,0-.2-.1-.2-.2v-3.9c0,0,0-.1-.1-.1s-.1,0-.1.1v3.9c0,.1-.1.2-.3.2h-.4c-.1,0-.3-.1-.3-.2v-4.7h-.5c0,0-.1,0-.2,0,0,0,0-.1,0-.2l.3-2.9c0-.4.4-.8.8-.8h1.5c.4,0,.8.3.8.8l.3,2.9c0,0,0,.1,0,.2h0ZM260.2,182.5c-.6,0-1-.5-1-1.1s.5-1.1,1-1.1,1,.5,1,1.1-.5,1.1-1,1.1h0Z"></path>
+      </g>
+    </g>
+  </g>
+  <g id="piso1" display="block">
+    <g id="loja5008B" class="mapa__loja">
+      <path id="entrada101" data-name="entrada" d="M408.3,452.2l.9,1.4,1.5-.7-.9-1.4-1.5.7Z" x="408.3" y="452.2" display="none"></path>
+      <path id="area101" data-name="area" class="cinza" d="M392.2,439.5l7.9,11.5,12.7-6.6-7.9-11.5-12.7,6.6Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5011" class="mapa__loja">
+      <path id="entrada102" data-name="entrada" d="M477.5,452.5l.9,1.4,1.5-.7-.9-1.4-1.5.7Z" x="477.5" y="452.5" display="none"></path>
+      <path id="area102" data-name="area" class="cinza" d="M480.1,444.5l8.1,11.8,12.4-6.4-8.2-11.8-12.4,6.4Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5002" class="mapa__loja">
+      <path id="entrada103" data-name="entrada" d="M258.2,470.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="258.2" y="470.5" display="none"></path>
+      <path id="area103" data-name="area" class="cinza" d="M238.8,462l-1.9,13.3,14.6,2.4,1.9-13.3-14.6-2.4Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5004" class="mapa__loja">
+      <path id="entrada104" data-name="entrada" d="M229.5,113l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="229.5" y="113" display="none"></path>
+      <path id="area104" data-name="area" class="amarelo" d="M238,101.2h-.1c0,0,0,0,0,0l-3.1,29.6,17.3-9.1,35.6,51,9.4,13.5,15.6-8.2-59.2-85-15.5,8.2Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1003" class="mapa__loja">
+      <path id="entrada105" data-name="entrada" d="M240.8,481.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="240.8" y="481.3" display="none"></path>
+      <path id="area105" data-name="area" class="azul" d="M227.8,474.9l-24.7,13,9.5,13.6,24.7-13-9.5-13.6Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1002" class="mapa__loja">
+      <path id="entrada106" data-name="entrada" d="M228,463l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="228" y="463" display="none"></path>
+      <path id="area106" data-name="area" class="azul" d="M217.7,460.4l-24.7,13,9.5,13.6,24.7-13-9.5-13.6Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1001" class="mapa__loja">
+      <path id="entrada107" data-name="entrada" d="M214.8,444l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="214.8" y="444" display="none"></path>
+      <path id="area107" data-name="area" class="azul" d="M198.4,432.8l18.7,26.8-24.7,13h0c0,0,6-39.8,6-39.8Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja5041" class="mapa__loja">
+      <path id="entrada108" data-name="entrada" d="M490.5,188l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="490.5" y="188" display="none"></path>
+      <path id="area108" data-name="area" class="rosa" d="M482.7,166.5l-12.3,6.5,9.8,14,12.3-6.5-9.8-14Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja5003" class="mapa__loja">
+      <path id="entrada109" data-name="entrada" d="M391.2,59.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="391.2" y="59.4" display="none"></path>
+      <path id="area109" data-name="area" class="amarelo" d="M411.5,90.5l-60.6-67.7-110.6,58.2-2,19.5.3.4,15.7-8.3,14.4,20.7,14.1,20.2h0c0,0,12.7,18.1,12.7,18.1l26.9-14.2-12.7-18.2,53.7-28.3,12.6,18.1,35.3-18.6Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja5006" class="mapa__loja">
+      <path id="entrada110" data-name="entrada" d="M209.9,276.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="209.9" y="276.8" display="none"></path>
+      <path id="area110" data-name="area" class="cinza" d="M190,267l-1.9,13.3,14.6,2.4,1.9-13.3-14.6-2.4Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5005" class="mapa__loja">
+      <path id="entrada111" data-name="entrada" d="M232.7,254.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="232.7" y="254.4" display="none"></path>
+      <path id="area111" data-name="area" class="cinza" d="M213,243.5l-1.9,13.3,14.6,2.4,1.9-13.3-14.6-2.4Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5007" class="mapa__loja">
+      <path id="entrada112" data-name="entrada" d="M216.4,231.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="216.4" y="231.1" display="none"></path>
+      <path id="area112" data-name="area" class="cinza" d="M195.9,220.2l-1.9,13.3,14.6,2.4,1.9-13.3-14.6-2.4Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja1082" class="mapa__loja">
+      <path id="entrada113" data-name="entrada" d="M287.8,512.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="287.8" y="512.5" display="none"></path>
+      <path id="area113" data-name="area" class="azul" d="M307.6,492.1l-21,11.1,27.2,38.8,21-11.1-27.2-38.8Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1080" class="mapa__loja">
+      <path id="entrada114" data-name="entrada" d="M273.9,463.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="273.9" y="463.4" display="none"></path>
+      <path id="area114" data-name="area" class="azul" d="M287.5,463.3l-21,11.1,19.5,28,21-11.1-19.5-28Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1060" class="mapa__loja">
+      <path id="entrada115" data-name="entrada" d="M240,444.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="240" y="444.2" display="none"></path>
+      <path id="area115" data-name="area" class="azul" d="M265.5,423.3l-25.4,13.3,7.9,11.3,25.4-13.3-7.9-11.3Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1059" class="mapa__loja">
+      <path id="entrada116" data-name="entrada" d="M231.3,431.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="231.3" y="431.7" display="none"></path>
+      <path id="area116" data-name="area" class="azul" d="M256,409.6l-25.4,13.3,8.9,12.8,25.4-13.3-8.9-12.8Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1055" class="mapa__loja">
+      <path id="entrada117" data-name="entrada" d="M212.4,404.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="212.4" y="404.6" display="none"></path>
+      <path id="area117" data-name="area" class="azul" d="M223.5,363.1l31.9,45.7-25.4,13.3-31.8-45.6,5.4-17.3,19.9,3.8Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1079" class="mapa__loja">
+      <path id="entrada118" data-name="entrada" d="M291.1,454.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="291.1" y="454.3" display="none"></path>
+      <path id="area118" data-name="area" class="azul" d="M300.4,456.5l-12,6.3,19.5,28,12-6.3-19.5-28Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1101" class="mapa__loja">
+      <path id="entrada119" data-name="entrada" d="M305,447l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="305" y="447" display="none"></path>
+      <path id="area119" data-name="area" class="verde" d="M315.4,448.6l-14.1,7.4,9.3,13.3,14.1-7.4-9.3-13.3Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1099" class="mapa__loja">
+      <path id="entrada120" data-name="entrada" d="M340.2,472.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="340.2" y="472.6" display="none"></path>
+      <path id="area120" data-name="area" class="verde" d="M308.5,491.6l12.9-6.8-10.3-14.8,14.1-7.4,12.9,18.5,4.6,6.6-27,14.2-7.2-10.3Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja5012" class="mapa__loja">
+      <path id="entrada121" data-name="entrada" d="M360.1,493l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="360.1" y="493" display="none"></path>
+      <path id="area121" data-name="area" class="verde" d="M344.7,464.7l18.7-9.9,19.4,27.8,21-11,6.6,9.4c-13.2,7-26.5,13.9-39.7,20.9l-25.9-37.2Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1102" class="mapa__loja">
+      <path id="entrada122" data-name="entrada" d="M439.1,488.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="439.1" y="488.9" display="none"></path>
+      <path id="area122" data-name="area" class="verde" d="M436.3,497.3l12.5-6.6,16.7,23.9,14-7.4,6.6,9.4c-8.8,4.6-17.6,9.3-26.5,13.9l-23.3-33.4Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1088" class="mapa__loja">
+      <path id="entrada124" data-name="entrada" d="M391,599.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="391" y="599.7" display="none"></path>
+      <path id="area124" data-name="area" class="azul" d="M382.9,561.7l-28.7,15.1,19.1,27.3,28.7-15.1-19.1-27.3Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1009" class="mapa__loja">
+      <path id="entrada125" data-name="entrada" d="M407.5,629.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="407.5" y="629.3" display="none"></path>
+      <path id="area125" data-name="area" class="azul" d="M431.8,620.8l-76.2,40.1,11.5,16.4,76.2-40.1-11.5-16.4Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1093" class="mapa__loja">
+      <path id="entrada126" data-name="entrada" d="M439.3,574.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="439.3" y="574.3" display="none"></path>
+      <path id="area126" data-name="area" class="verde" d="M429.9,547.4l-13.6,7.2,13.7,19.7,13.6-7.2-13.7-19.7Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1104" class="mapa__loja">
+      <path id="entrada127" data-name="entrada" d="M497.8,543.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="497.8" y="543.5" display="none"></path>
+      <path id="area127" data-name="area" class="verde" d="M501.9,509.5l-41.8,22,13.7,19.7,41.8-22-13.7-19.7Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1107" class="mapa__loja">
+      <path id="entrada128" data-name="entrada" d="M534.8,524l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="534.8" y="524" display="none"></path>
+      <path id="area128" data-name="area" class="verde" d="M532.7,493.4l-29.6,15.6,13.7,19.7,29.6-15.6-13.7-19.7Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1108" class="mapa__loja">
+      <path id="entrada129" data-name="entrada" d="M563.3,509l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="563.3" y="509" display="none"></path>
+      <path id="area129" data-name="area" class="verde" d="M550.1,470.5l-23.5,12.4,20.7,29.7,23.5-12.4-20.7-29.7Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1109" class="mapa__loja">
+      <path id="entrada130" data-name="entrada" d="M580.9,499.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="580.9" y="499.7" display="none"></path>
+      <path id="area130" data-name="area" class="verde" d="M564.4,463l-13.3,7,20.7,29.7,13.3-7-20.7-29.7Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1037" class="mapa__loja">
+      <path id="entrada131" data-name="entrada" d="M590.7,469.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="590.7" y="469.9" display="none"></path>
+      <path id="area131" data-name="area" class="rosa" d="M597.2,473.1l-8.2,4.3,10.5,15,8.2-4.3-10.5-15Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1113" class="mapa__loja">
+      <path id="entrada132" data-name="entrada" d="M492,461.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="492" y="461.1" display="none"></path>
+      <path id="area132" data-name="area" class="verde" d="M508.8,459.1l-26.9,14.1,13.7,19.7,26.9-14.1-13.7-19.7Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1097" class="mapa__loja">
+      <path id="entrada133" data-name="entrada" d="M366.4,510.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="366.4" y="510.1" display="none"></path>
+      <path id="area133" data-name="area" class="verde" d="M316.3,502.8l39,56,9.5-5,8.2,11.8,17.5-9.2-8.2-11.8-9.3-13.3-29.7-42.7-27,14.2Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1085" class="mapa__loja">
+      <path id="entrada134" data-name="entrada" d="M320.9,560.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="320.9" y="560.1" display="none"></path>
+      <path id="area134" data-name="area" class="azul" d="M355,560.1l-19.7-28.2-21,11.1,20.4,29.3,11.9-6.2,7,10,18.7-9.8-7.7-11.1-9.5,5Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1094" class="mapa__loja">
+      <path id="entrada135" data-name="entrada" d="M388.7,505.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="388.7" y="505.7" display="none"></path>
+      <path id="area135" data-name="area" class="verde" d="M381.1,514.7l-13,6.9,6.4,9.2,17.6,25.2,13.2-6.9,10.4,4.7,13.8-7.3-29.2-41.9-19.1,10.1Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1091" class="mapa__loja">
+      <path id="entrada136" data-name="entrada" class="verde" d="M420.1,584.2l-1.5.8.9,1.4,1.5-.8-.9-1.4Z" x="420.1" y="584.2" display="none"></path>
+      <path id="area136" data-name="area" class="verde" d="M384.5,561.8l20.9-11,9.9,4.3,13.7,19.7-26,13.7-18.6-26.6Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1111" class="mapa__loja">
+      <path id="entrada137" data-name="entrada" d="M518.9,446.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="518.9" y="446.9" display="none"></path>
+      <path id="area137" data-name="area" class="verde" d="M533.2,446.4l-23.2,12.2,16.1,23.1,23.2-12.2-16.1-23.1Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1110" class="mapa__loja">
+      <path id="entrada138" data-name="entrada" d="M538,436.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="538" y="436.8" display="none"></path>
+      <path id="area138" data-name="area" class="verde" d="M547.5,438.8l-13.3,7,16.3,23.4,13.3-7-16.3-23.4Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1126" class="mapa__loja">
+      <path id="entrada139" data-name="entrada" d="M522.1,392.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="522.1" y="392.1" display="none"></path>
+      <path id="area139" data-name="area" class="rosa" d="M508.3,382.6l-40.2,21.1,18.5,26.6,40.2-21.1-18.5-26.6Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1129" class="mapa__loja">
+      <path id="entrada140" data-name="entrada" d="M501.8,362.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="501.8" y="362.9" display="none"></path>
+      <path id="area140" data-name="area" class="rosa" d="M489.2,355.1l-40.2,21.1,18.5,26.6,40.2-21.1-18.5-26.6Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1130" class="mapa__loja">
+      <path id="entrada141" data-name="entrada" d="M486,336.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="486" y="336.5" display="none"></path>
+      <path id="area141" data-name="area" class="rosa" d="M470.1,327.7l-40.2,21.1,18.5,26.6,40.2-21.1-18.5-26.6Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1131" class="mapa__loja">
+      <path id="entrada142" data-name="entrada" d="M465.3,308.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="465.3" y="308.1" display="none"></path>
+      <path id="area142" data-name="area" class="rosa" d="M451,300.3l-40.2,21.1,18.5,26.6,40.2-21.1-18.5-26.6Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1132" class="mapa__loja">
+      <path id="entrada143" data-name="entrada" d="M448.4,285.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="448.4" y="285.1" display="none"></path>
+      <path id="area143" data-name="area" class="rosa" d="M434.6,276.8l-40.2,21.1,15.8,22.7,40.2-21.1-15.8-22.7Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1114" class="mapa__loja">
+      <path id="entrada144" data-name="entrada" d="M360.6,250.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="360.6" y="250.6" display="none"></path>
+      <path id="area144" data-name="area" class="amarelo" d="M377.8,249.4l-26,13.7,28.6,41,26-13.7-28.6-41Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1038" class="mapa__loja">
+      <path id="entrada145" data-name="entrada" d="M599,465.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="599" y="465.5" display="none"></path>
+      <path id="area145" data-name="area" class="rosa" d="M606.2,468.4l-8.2,4.3,10.5,15,8.2-4.3-10.5-15Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1036" class="mapa__loja">
+      <path id="entrada146" data-name="entrada" d="M599.2,499.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="599.2" y="499.6" display="none"></path>
+      <path id="area146" data-name="area" class="rosa" d="M609.7,488.2l-9.6,5.1,5.8,8.3,9.6-5.1-5.8-8.3Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1123" class="mapa__loja">
+      <path id="entrada147" data-name="entrada" d="M431.1,441.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="431.1" y="441.4" display="none"></path>
+      <path id="area147" data-name="area" class="verde" d="M467.3,404.2l-40.2,21.1,18.5,26.6,40.2-21.1-18.5-26.6Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1122" class="mapa__loja">
+      <path id="entrada148" data-name="entrada" d="M411.8,413.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="411.8" y="413.6" display="none"></path>
+      <path id="area148" data-name="area" class="verde" d="M448.2,376.7l-40.2,21.1,18.5,26.6,40.2-21.1-18.5-26.6Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1121" class="mapa__loja">
+      <path id="entrada149" data-name="entrada" d="M393.1,386.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="393.1" y="386.9" display="none"></path>
+      <path id="area149" data-name="area" class="verde" d="M429,349.3l-40.2,21.1,18.5,26.6,40.2-21.1-18.5-26.6Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1118" class="mapa__loja">
+      <path id="entrada150" data-name="entrada" d="M365.6,347.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="365.6" y="347.5" display="none"></path>
+      <path id="area150" data-name="area" class="verde" d="M393.8,298.7l-40.2,21.1,34.7,49.8,40.2-21.1-34.7-49.8Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1133" class="mapa__loja">
+      <path id="entrada151" data-name="entrada" d="M433,264.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="433" y="264.3" display="none"></path>
+      <path id="area151" data-name="area" class="rosa" d="M413.2,246.2l-26.7,14,20.5,29.4,26.7-14-20.5-29.4Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1117" class="mapa__loja">
+      <path id="entrada152" data-name="entrada" d="M342,313.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="342" y="313.6" display="none"></path>
+      <path id="area152" data-name="area" class="amarelo" d="M369.9,290.4l-27,14.2,9.7,13.9,27-14.2-9.7-13.9Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1116" class="mapa__loja">
+      <path id="entrada153" data-name="entrada" d="M330.4,296.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="330.4" y="296.9" display="none"></path>
+      <path id="area153" data-name="area" class="amarelo" d="M359,275.2l-26.7,14,10,14.3,26.7-14-10-14.3Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1135" class="mapa__loja">
+      <path id="entrada154" data-name="entrada" d="M388,236.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="388" y="236.3" display="none"></path>
+      <path id="area154" data-name="area" class="rosa" d="M405.4,234.9l-26.7,14,7.5,10.8,26.7-14-7.5-10.8Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1115" class="mapa__loja">
+      <path id="entrada155" data-name="entrada" d="M335.5,263.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="335.5" y="263.9" display="none"></path>
+      <path id="area155" data-name="area" class="amarelo" d="M350.9,263.6l-26.7,14,7.5,10.8,26.7-14-7.5-10.8Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1072" class="mapa__loja">
+      <path id="entrada156" data-name="entrada" d="M320.4,319.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="320.4" y="319.4" display="none"></path>
+      <path id="area156" data-name="area" class="amarelo" d="M311.7,316.7l-19.5,10.3,7.8,11.1,19.5-10.3-7.8-11.1Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1071" class="mapa__loja">
+      <path id="entrada157" data-name="entrada" d="M327.8,330l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="327.8" y="330" display="none"></path>
+      <path id="area157" data-name="area" class="amarelo" d="M320,328.6l-19.5,10.3,6.7,9.7,19.5-10.3-6.7-9.7Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1070" class="mapa__loja">
+      <path id="entrada158" data-name="entrada" d="M336.1,341.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="336.1" y="341.9" display="none"></path>
+      <path id="area158" data-name="area" class="verde" d="M327.3,339.1l-22.8,12,7.5,10.7,22.8-12-7.5-10.7Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1069" class="mapa__loja">
+      <path id="entrada159" data-name="entrada" d="M344.9,354.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="344.9" y="354.3" display="none"></path>
+      <path id="area159" data-name="area" class="verde" d="M335.4,350.7l-22.8,12,8.6,12.4,22.8-12-8.6-12.4Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1067" class="mapa__loja">
+      <path id="entrada160" data-name="entrada" d="M353.2,397.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="353.2" y="397.2" display="none"></path>
+      <path id="area160" data-name="area" class="verde" d="M344.6,363.9l-22.8,12,16.9,24.3,22.8-12-16.9-24.3Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1064" class="mapa__loja">
+      <path id="entrada161" data-name="entrada" d="M319.1,415.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="319.1" y="415.1" display="none"></path>
+      <path id="area161" data-name="area" class="verde" d="M315.6,369.6l-41.8,22,21.8,31.3,41.8-22-21.8-31.3Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1061" class="mapa__loja">
+      <path id="entrada162" data-name="entrada" d="M280.6,435.2l-1.5.8.9,1.3,1.5-.8-.9-1.3Z" x="280.6" y="435.2" display="none"></path>
+      <path id="area162" data-name="area" class="azul" d="M277.6,399.7l-20,10.5,16.7,23.9,20-10.5-16.7-23.9Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1075" class="mapa__loja">
+      <path id="entrada163" data-name="entrada" d="M252.9,298.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="252.9" y="298.8" display="none"></path>
+      <path id="area163" data-name="area" class="amarelo" d="M271.5,305.4l7.9,11.3,8.1,11.7-21.2,11.2-8.1-11.6-8-11.4-3.2-4.5c2.2-2.6,5.4-5.2,9.3-7.2,4-2.1,8.2-3.4,12-3.8l3.1,4.4Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1078" class="mapa__loja">
+      <path id="entrada164" data-name="entrada" d="M234.5,316.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="234.5" y="316.5" display="none"></path>
+      <path id="area164" data-name="area" class="amarelo" d="M228.8,327.9l14.7-7.7c0-2.3,1.1-4.8,3-7.3l2.9,4.2h0s16,23,16,23l-20.6,10.8-16.1-23Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1016" class="mapa__loja">
+      <path id="entrada165" data-name="entrada" d="M491.4,585.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="491.4" y="585.1" display="none"></path>
+      <path id="area165" data-name="area" class="verde" d="M508.8,580.3l-76.2,40.1,11.5,16.4,76.2-40.1-11.5-16.4Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1021" class="mapa__loja">
+      <path id="entrada166" data-name="entrada" d="M546.8,556l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="546.8" y="556" display="none"></path>
+      <path id="area166" data-name="area" class="verde" d="M571.5,547.3l-61.8,32.5,11.5,16.4,61.8-32.5-11.5-16.4Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1032" class="mapa__loja">
+      <path id="entrada167" data-name="entrada" d="M549.3,534.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="549.3" y="534.3" display="none"></path>
+      <path id="area167" data-name="area" class="verde" d="M560.8,534l-19.7,10.4,6.3,9.1,19.7-10.4-6.3-9.1Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1031" class="mapa__loja">
+      <path id="entrada168" data-name="entrada" d="M522.5,548.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="522.5" y="548.2" display="none"></path>
+      <path id="area168" data-name="area" class="verde" d="M535.3,547.5l-19.7,10.4,6.3,9.1,19.7-10.4-6.3-9.1Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1034" class="mapa__loja">
+      <path id="entrada169" data-name="entrada" d="M575.6,528.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="575.6" y="528.2" display="none"></path>
+      <path id="area169" data-name="area" class="verde" d="M583.8,563.2l25.2-13.4-24.7-35.4-9.2,4.8,8.1,11.6-16,8.6,16.6,23.8h0Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1029" class="mapa__loja">
+      <path id="entrada170" data-name="entrada" d="M482.3,569.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="482.3" y="569.4" display="none"></path>
+      <polygon id="area170" data-name="area" class="cinza" points="513.6 571.3 507.2 562.2 507.2 562.3 507.2 562.3 487.4 572.6 487.4 572.6 459.5 587.4 465.8 596.5 493.8 581.7 493.8 581.7 513.5 571.4 513.5 571.4 513.6 571.3" style="fill: rgb(233, 240, 247);"></polygon>
+    </g>
+    <g id="loja1028" class="mapa__loja">
+      <path id="entrada171" data-name="entrada" d="M439,592.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="439" y="592.2" display="none"></path>
+      <path id="area171" data-name="area" class="verde" d="M451.2,591.7l-19.7,10.4,6.3,9.1,19.7-10.4-6.3-9.1Z" style="fill: rgb(193, 241, 166);"></path>
+    </g>
+    <g id="loja1027" class="mapa__loja">
+      <path id="entrada172" data-name="entrada" d="M410.9,607l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="410.9" y="607" display="none"></path>
+      <path id="area172" data-name="area" class="azul" d="M423.2,606.4l-19.7,10.4,6.3,9.1,19.7-10.4-6.3-9.1Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1026" class="mapa__loja">
+      <path id="entrada173" data-name="entrada" d="M383.2,621.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="383.2" y="621.6" display="none"></path>
+      <path id="area173" data-name="area" class="azul" d="M395.3,621.2l-19.7,10.4,6.3,9.1,19.7-10.4-6.3-9.1Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1025" class="mapa__loja">
+      <path id="entrada174" data-name="entrada" d="M355.4,636.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="355.4" y="636.2" display="none"></path>
+      <path id="area174" data-name="area" class="azul" d="M367.3,635.9l-19.7,10.4,6.3,9.1,19.7-10.4-6.3-9.1Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1008" class="mapa__loja">
+      <path id="entrada175" data-name="entrada" d="M335.5,677.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="335.5" y="677.3" display="none"></path>
+      <path id="area175" data-name="area" class="azul" d="M322.2,668.5l-12.2,6.4,16.6,23.8,12.2-6.4-16.6-23.8Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja1006" class="mapa__loja">
+      <path id="entrada176" data-name="entrada" d="M325.6,644.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="325.6" y="644.4" display="none"></path>
+      <path id="area176" data-name="area" class="azul" d="M287.5,642.6l21.9,31.5,9.1-4.8,4.1-2.1,7.1-3.7-11.2-16-1.8-2.5-9-12.9-20.3,10.7Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja4002" class="mapa__loja">
+      <path id="entrada177" data-name="entrada" d="M279.9,624l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="279.9" y="624" display="none"></path>
+      <path id="area177" data-name="area" class="azul" d="M232.9,532.4l-10.5,5.5,21.8,31.2-73,38.4-7.8,53.5,4.7,6.7,39.6,56.8,18.8,26.9,64-33.7,21.4-11.3,13.8-7.3-62.8-90.1,41.7-21.9-19-27.3-24.5,12.9-28.1-40.3Z" style="fill: rgb(96, 107, 118);"></path>
+    </g>
+    <g id="loja1039" class="mapa__loja">
+      <path id="entrada178" data-name="entrada" d="M520.7,323.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="520.7" y="323.1" display="none"></path>
+      <path id="area178" data-name="area" class="rosa" d="M532.9,323.4l-18.3,9.6,7.4,10.6,18.3-9.6-7.4-10.6Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1040" class="mapa__loja">
+      <path id="entrada179" data-name="entrada" d="M555,305.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="555" y="305.5" display="none"></path>
+      <path id="area179" data-name="area" class="rosa" d="M568.9,304.9l-22.8,12,7.4,10.6,22.8-12-7.4-10.6Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1041" class="mapa__loja">
+      <path id="entrada180" data-name="entrada" d="M578.6,293.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="578.6" y="293.1" display="none"></path>
+      <path id="area180" data-name="area" class="rosa" d="M591.2,293.1l-21.4,11.3,7.4,10.6,21.4-11.3-7.4-10.6Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1042" class="mapa__loja">
+      <path id="entrada181" data-name="entrada" d="M531.4,214.4l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="531.4" y="214.4" display="none"></path>
+      <path id="area181" data-name="area" class="rosa" d="M513.8,179.7l181.3,73.3-95.2,50.1-86-123.4Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1141" class="mapa__loja">
+      <path id="entrada182" data-name="entrada" d="M481.3,298.2l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="481.3" y="298.2" display="none"></path>
+      <path id="area182" data-name="area" class="rosa" d="M500.2,278.7l-18.3,9.6,10.2,14.7,18.3-9.6-10.2-14.7Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1139" class="mapa__loja">
+      <path id="entrada183" data-name="entrada" d="M471.6,280.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="471.6" y="280.5" display="none"></path>
+      <path id="area183" data-name="area" class="rosa" d="M487.4,260.4l-18.3,9.6,12.2,17.5,18.3-9.6-12.2-17.5Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1137" class="mapa__loja">
+      <path id="entrada184" data-name="entrada" d="M458.4,262.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="458.4" y="262.8" display="none"></path>
+      <path id="area184" data-name="area" class="rosa" d="M479.8,239.3l-23.4,12.3,12.2,17.5,23.4-12.3-12.2-17.5Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1136" class="mapa__loja">
+      <path id="entrada185" data-name="entrada" d="M455,228.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="455" y="228.9" display="none"></path>
+      <path id="area185" data-name="area" class="rosa" d="M497.6,213.7l-49.5,26.1,7.7,11.1,49.5-26.1-7.7-11.1Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1143" class="mapa__loja">
+      <path id="entrada186" data-name="entrada" d="M515.8,231.6l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="515.8" y="231.6" display="none"></path>
+      <path id="area186" data-name="area" class="rosa" d="M505.8,225.6l-25.2,13.3,18.8,27,25.2-13.3-18.8-27Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1045" class="mapa__loja">
+      <path id="entrada187" data-name="entrada" d="M448.6,210.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="448.6" y="210.1" display="none"></path>
+      <path id="area187" data-name="area" class="rosa" d="M443,174.4l-29.7,15.6,16.4,23.5,29.7-15.6-16.4-23.5Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1047" class="mapa__loja">
+      <path id="entrada188" data-name="entrada" d="M331.7,221.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="331.7" y="221.7" display="none"></path>
+      <path id="area188" data-name="area" class="amarelo" d="M312.8,179l-15.4,8.1,23.3,33.4,15.4-8.1-23.3-33.4Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1151" class="mapa__loja">
+      <path id="entrada189" data-name="entrada" d="M343.8,193.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="343.8" y="193.5" display="none"></path>
+      <path id="area189" data-name="area" class="amarelo" d="M323,138.2l-26.9,14.2,30.9,44.4,26.9-14.2-30.9-44.4Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1150" class="mapa__loja">
+      <path id="entrada190" data-name="entrada" d="M425.6,131.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="425.6" y="131.5" display="none"></path>
+      <path id="area190" data-name="area" class="amarelo" d="M422.4,85.8l-46,24.2,19.4,27.8,46-24.2-19.4-27.8Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1048" class="mapa__loja">
+      <path id="entrada191" data-name="entrada" d="M318.3,228.8l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="318.3" y="228.8" display="none"></path>
+      <path id="area191" data-name="area" class="amarelo" d="M296.6,187.6l-11.9,6.3,23.3,33.4,11.9-6.3-23.3-33.4Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1049" class="mapa__loja">
+      <path id="entrada192" data-name="entrada" d="M304.8,235.9l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="304.8" y="235.9" display="none"></path>
+      <path id="area192" data-name="area" class="amarelo" d="M283.8,194.3l-11.9,6.3,23.3,33.4,11.9-6.3-23.3-33.4Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1043" class="mapa__loja">
+      <path id="entrada193" data-name="entrada" d="M474.4,196.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="474.4" y="196.5" display="none"></path>
+      <path id="area193" data-name="area" class="rosa" d="M462.9,164l-18.9,9.9,16.4,23.5,18.9-9.9-16.4-23.5Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja1050" class="mapa__loja">
+      <path id="entrada194" data-name="entrada" d="M283.1,247.3l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="283.1" y="247.3" display="none"></path>
+      <path id="area194" data-name="area" class="amarelo" d="M270.5,200.2l25.7-13.5-17.5-25.2-49.4,26-4.7,20.7,7.3,10.5,13.3,19.1c7.3.6,14.9,5,19.9,12l29.3-15.4-23.9-34.2Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1148" class="mapa__loja">
+      <path id="entrada195" data-name="entrada" d="M391.3,168.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="391.3" y="168.5" display="none"></path>
+      <path id="area195" data-name="area" class="amarelo" d="M386.3,165.5l-31.5,16.6-43.5-62.4,51.6-27.1,43.5,62.4-20.1,10.6Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1152" class="mapa__loja">
+      <path id="entrada196" data-name="entrada" d="M227.8,149.7l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="227.8" y="149.7" display="none"></path>
+      <path id="area196" data-name="area" class="amarelo" d="M249.2,151l-16.9,8.9,3-28.7h.1c0,0,13.8,19.8,13.8,19.8Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja1073" class="mapa__loja">
+      <path id="entrada197" data-name="entrada" d="M280.2,292.5l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="280.2" y="292.5" display="none"></path>
+      <path id="area197" data-name="area" class="amarelo" d="M278,302l17.1-9,16.1,23-22.8,12-16-23h0s-2.8-4.1-2.8-4.1c3.2-.3,6.2.1,8.5,1.1Z" style="fill: rgb(255, 222, 145);"></path>
+    </g>
+    <g id="loja5077" class="mapa__loja">
+      <path id="entrada198" data-name="entrada" d="M509.4,435.8l.9,1.4,1.5-.7-.9-1.4-1.5.7Z" x="509.4" y="435.8" display="none"></path>
+      <path id="area198" data-name="area" class="cinza" d="M512,427.8l8.2,11.8,12.4-6.4-8.2-11.8-12.4,6.4Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5858" class="mapa__loja">
+      <path id="entrada199" data-name="entrada" d="M448.7,270.5l.9,1.4,1.5-.7-.9-1.4-1.5.7Z" x="448.7" y="270.5" display="none"></path>
+      <path id="area199" data-name="area" class="cinza" d="M432.7,257.7l7.9,11.5,12.7-6.6-7.9-11.5-12.7,6.6Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5078" class="mapa__loja">
+      <path id="entrada200" data-name="entrada" d="M536.7,396.8l.9,1.4,1.5-.7-.9-1.4-1.5.7Z" x="536.7" y="396.8" display="none"></path>
+      <path id="area200" data-name="area" class="cinza" d="M520.7,384.1l7.9,11.5,12.7-6.6-7.9-11.5-12.7,6.6Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5076" class="mapa__loja">
+      <path id="entrada201" data-name="entrada" d="M515.1,365l.9,1.4,1.5-.7-.9-1.4-1.5.7Z" x="515.1" y="365" display="none"></path>
+      <path id="area201" data-name="area" class="cinza" d="M499.1,352.2l7.9,11.5,12.7-6.6-7.9-11.5-12.7,6.6Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja4003" class="mapa__loja">
+      <path id="entrada202" data-name="entrada" d="M529.3,367.6l1,1.6,1.7-.8-1-1.6-1.7.8Z" x="529.3" y="367.6" display="none"></path>
+      <path id="area202" data-name="area" class="rosa" d="M522.9,344.9l174-91.6c30.3,12.7,62.4,24.4,92.7,37,21.5,9.4,30.7,21.7,28.8,41.3-2.9,29.5-5.8,59-8.7,88.6-2.6,25.7-3.8,26.2-14,31.6l-145.2,76.4-127.7-183.2Z" style="fill: rgb(255, 220, 234);"></path>
+    </g>
+    <g id="loja5059" class="mapa__loja">
+      <path id="entrada203" data-name="entrada" d="M487.9,326.7l.9,1.4,1.5-.7-.9-1.4-1.5.7Z" x="487.9" y="326.7" display="none"></path>
+      <path id="area203" data-name="area" class="cinza" d="M471.9,313.9l7.9,11.5,12.7-6.6-7.9-11.5-12.7,6.6Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5084" class="mapa__loja">
+      <path id="entrada204" data-name="entrada" d="M467.4,297.2l.9,1.4,1.5-.7-.9-1.4-1.5.7Z" x="467.4" y="297.2" display="none"></path>
+      <path id="area204" data-name="area" class="cinza" d="M451.3,284.5l7.9,11.5,12.7-6.6-7.9-11.5-12.7,6.6Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5057" class="mapa__loja">
+      <path id="entrada205" data-name="entrada" d="M362.7,362.2l.9,1.4,1.5-.7-.9-1.4-1.5.7Z" x="362.7" y="362.2" display="none"></path>
+      <path id="area205" data-name="area" class="cinza" d="M360.6,370.9l7.9,11.5,12.7-6.6-7.9-11.5-12.7,6.6Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5085" class="mapa__loja">
+      <path id="entrada206" data-name="entrada" d="M337.7,327.2l.9,1.4,1.5-.7-.9-1.4-1.5.7Z" x="337.7" y="327.2" display="none"></path>
+      <path id="area206" data-name="area" class="cinza" d="M335.6,335.9l7.9,11.5,12.7-6.6-7.9-11.5-12.7,6.6Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5069" class="mapa__loja">
+      <path id="entrada207" data-name="entrada" d="M313.9,294l.9,1.4,1.5-.7-.9-1.4-1.5.7Z" x="313.9" y="294" display="none"></path>
+      <path id="area207" data-name="area" class="cinza" d="M311.8,302.6l7.9,11.5,12.7-6.6-7.9-11.5-12.7,6.6Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5045" class="mapa__loja">
+      <path id="entrada208" data-name="entrada" d="M306.2,247.7l.9,1.4,1.5-.7-.9-1.4-1.5.7Z" x="306.2" y="247.7" display="none"></path>
+      <path id="area208" data-name="area" class="cinza" d="M304.1,256.4l7.9,11.5,12.7-6.6-7.9-11.5-12.7,6.6Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja5078A" class="mapa__loja">
+      <path id="entrada209" data-name="entrada" d="M551.9,418.5l.9,1.4,1.5-.7-.9-1.4-1.5.7Z" x="551.9" y="418.5" display="none"></path>
+      <path id="area209" data-name="area" class="cinza" d="M535.8,405.8l7.9,11.5,12.7-6.6-7.9-11.5-12.7,6.6Z" style="fill: rgb(233, 240, 247);"></path>
+    </g>
+    <g id="loja1004" class="mapa__loja">
+      <path id="entrada210" data-name="entrada" d="M253.9,500l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="253.9" y="500" display="none"></path>
+      <path id="area210" data-name="area" class="azul" d="M171.5,606.4l71.5-37.6-22.1-31.7,36.8-19.4-19.7-28.3-25.6,13.5-20-28.7-20.8,132.3Z" style="fill: rgb(187, 221, 235);"></path>
+    </g>
+    <g id="loja-empty1" data-name="loja-empty">
+      <path id="entrada211" data-name="entrada" d="M586.8,507.1l-1.5.8,1,1.4,1.5-.8-1-1.4Z" x="586.8" y="507.1" display="none"></path>
+      <path id="area211" data-name="area" class="empty" d="M624.1,494.4l-38.2,20.1,24.4,35.1,38.2-20.1-24.4-35.1Z" style="fill: rgb(204, 204, 204);"></path>
+    </g>
+    <g id="utilidades1" data-name="utilidades">
+      <g id="sanitdefic2" data-name="sanitdefic" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M232.5,517.7c6.9,0,12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5-12.5-5.6-12.5-12.5,5.6-12.5,12.5-12.5Z"></path>
+        <g id="cadeirinha12" data-name="cadeirinha">
+          <path id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" d="M234.2,531.5c-.1-.3-.4-.4-.7-.4h-2.4v-.5h2c.2,0,.4-.1.5-.3,0,0,.1-.2.1-.3,0-.3-.3-.6-.6-.6h-2v-1.8c0-.5-.4-1.2-1.2-1.2s-1.2.5-1.2,1.2v3.8c0,.7.6,1.2,1.2,1.2h3l1.6,3.1c.1.3.4.4.7.4s.2,0,.4,0c.4-.2.6-.7.4-1.1l-1.8-3.5Z"></path>
+          <path id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" d="M232,533.5c-.4,1.2-1.5,2.1-2.9,2.1s-3-1.3-3-2.9.7-2.2,1.8-2.7v-1.2c-1.7.5-3,2.1-3,3.9s1.9,4.1,4.3,4.1,3.2-1,3.9-2.4l-.5-.9c-.1,0-.3,0-.5,0Z"></path>
+          <path id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" d="M229.9,525.9c.8,0,1.4-.6,1.4-1.3s-.6-1.3-1.4-1.3-1.4.6-1.4,1.3.6,1.3,1.4,1.3Z"></path>
+          <path id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" d="M239.9,526.8h0c0,.5,0,.7-.1.9,0,.2-.2.3-.4.3s-.4-.1-.5-.4c0-.3-.1-.7-.1-1.4v-.2c0-.2,0-.4,0-.6,0-.2,0-.3,0-.4,0-.1,0-.3,0-.3,0,0,0-.2.1-.2,0,0,.1-.1.2-.1,0,0,.1,0,.2,0,.2,0,.3,0,.4.3,0,.2.1.5.1.9h0s.5,0,.5,0c0,0,0,0,0,0,0,0,0,0,0,0,0-.2,0-.3,0-.5,0-.1,0-.3-.1-.4,0-.1-.1-.2-.2-.3,0,0-.2-.2-.3-.2-.1,0-.3,0-.4,0s-.3,0-.4,0c-.1,0-.2.1-.3.2,0,0-.1.2-.2.3,0,.1,0,.2-.1.3,0,0,0,.2,0,.4,0,.2,0,.3,0,.4,0,.1,0,.2,0,.4v.2c0,.2,0,.3,0,.4,0,0,0,.2,0,.4,0,.2,0,.3,0,.4,0,0,0,.2,0,.3,0,.1,0,.2.1.3,0,0,.1.1.2.2,0,0,.2.1.3.1.1,0,.2,0,.4,0s.3,0,.4,0c.1,0,.2-.1.3-.2,0,0,.1-.2.2-.3,0-.1,0-.3.1-.4,0-.1,0-.3,0-.5h0s-.5,0-.5,0Z"></path>
+          <polygon id="cadeirinha" data-name="cadeirinha" class="inside_svg_color" points="236.7 527.6 236.1 523.9 235.5 523.9 234.9 527.6 234.3 523.9 233.9 523.9 234.6 528.2 235.1 528.2 235.8 524.7 236.5 528.2 237 528.2 237.7 523.9 237.3 523.9 236.7 527.6"></polygon>
+        </g>
+      </g>
+      <g id="sanitarios4" data-name="sanitarios" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M260.5,517.8c6.9,0,12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5-12.5-5.6-12.5-12.5,5.6-12.5,12.5-12.5Z"></path>
+        <path id="pessoas" data-name="pessoas" class="inside_svg_color" d="M265,526.2c-.7,0-1.3-.6-1.3-1.3s.6-1.3,1.3-1.3,1.3.6,1.3,1.3-.6,1.3-1.3,1.3h0ZM268.3,531.6c0,0-.2,0-.2,0-.2,0-.4-.1-.5-.3l-.9-2v2.1s0,0,0,0v4.8c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-4h-.5v4c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-4.8s0,0,0,0v-2.1l-.9,2c0,.2-.3.3-.5.3s-.2,0-.2,0c-.3-.1-.4-.5-.3-.7l1.9-4.1c.1-.2.3-.3.6-.3h2.2c.2,0,.5,0,.6.3l1.9,4.1c.1.3,0,.6-.3.7h0ZM255.9,526.2c-.7,0-1.3-.6-1.3-1.3s.6-1.3,1.3-1.3,1.3.6,1.3,1.3-.6,1.3-1.3,1.3h0ZM259.2,531.6c0,0-.2,0-.2,0-.2,0-.4-.1-.5-.3l-.6-1.3.5,2.4c0,0,0,.2,0,.2,0,0-.1,0-.2,0h-.6v3.5c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-3.5h-.5v3.5c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-3.5h-.6c0,0-.2,0-.2,0,0,0,0-.1,0-.2l.5-2.4-.6,1.3c0,.2-.3.3-.5.3s-.2,0-.2,0c-.3-.1-.4-.5-.3-.7l1.9-4.1c0-.2.3-.3.5-.3h2.3c.2,0,.4.1.5.3l1.9,4.1c.1.3,0,.6-.3.7h0ZM260.5,536c-.2,0-.5-.2-.5-.4v-10.6c0-.2.2-.4.5-.4s.5.2.5.4v10.6c0,.2-.2.4-.5.4h0Z"></path>
+      </g>
+      <g id="sanitarios5" data-name="sanitarios" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M501.5,152.3c6.9,0,12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5-12.5-5.6-12.5-12.5,5.6-12.5,12.5-12.5Z"></path>
+        <path id="pessoas" data-name="pessoas" class="inside_svg_color" d="M506,160.7c-.7,0-1.3-.6-1.3-1.3s.6-1.3,1.3-1.3,1.3.6,1.3,1.3-.6,1.3-1.3,1.3h0ZM509.3,166.1c0,0-.2,0-.2,0-.2,0-.4-.1-.5-.3l-.9-2v2.1s0,0,0,0v4.8c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-4h-.5v4c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-4.8s0,0,0,0v-2.1l-.9,2c0,.2-.3.3-.5.3s-.2,0-.2,0c-.3-.1-.4-.5-.3-.7l1.9-4.1c.1-.2.3-.3.6-.3h2.2c.2,0,.5,0,.6.3l1.9,4.1c.1.3,0,.6-.3.7h0ZM497,160.7c-.7,0-1.3-.6-1.3-1.3s.6-1.3,1.3-1.3,1.3.6,1.3,1.3-.6,1.3-1.3,1.3h0ZM500.2,166.1c0,0-.2,0-.2,0-.2,0-.4-.1-.5-.3l-.6-1.3.5,2.4c0,0,0,.2,0,.2,0,0-.1,0-.2,0h-.6v3.5c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-3.5h-.5v3.5c0,.4-.3.7-.7.7s-.7-.3-.7-.7v-3.5h-.6c0,0-.2,0-.2,0,0,0,0-.1,0-.2l.5-2.4-.6,1.3c0,.2-.3.3-.5.3s-.2,0-.2,0c-.3-.1-.4-.5-.3-.7l1.9-4.1c0-.2.3-.3.5-.3h2.3c.2,0,.4.1.5.3l1.9,4.1c.1.3,0,.6-.3.7h0ZM501.5,170.5c-.2,0-.5-.2-.5-.4v-10.6c0-.2.2-.4.5-.4s.5.2.5.4v10.6c0,.2-.2.4-.5.4h0Z"></path>
+      </g>
+      <g id="parque" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M457.6,103c6.3,0,11.3,5.1,11.3,11.3s-5.1,11.3-11.3,11.3-11.3-5.1-11.3-11.3,5.1-11.3,11.3-11.3Z"></path>
+        <path id="carro" class="inside_svg_color" d="M461.5,112.8c-.1-.3-.5-.6-.8-.6h-6.3c-.4,0-.7.2-.8.6l-1.2,3.4v4.6c0,.3.2.6.6.6h.6c.3,0,.6-.2.6-.6v-.6h6.8v.6c0,.3.2.6.6.6h.6c.3,0,.6-.2.6-.6v-4.6l-1.2-3.4h0ZM454.5,118.5c-.5,0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9ZM460.8,118.5c-.5,0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9ZM453.6,115.6l.9-2.6h6.3l.9,2.6h-8Z"></path>
+        <path id="carro" data-name="carro" class="inside_svg_color" d="M457.6,110.5c1.4,0,2.5-1.1,2.5-2.5s-1.1-2.5-2.5-2.5-2.5,1.1-2.5,2.5,1.1,2.5,2.5,2.5Z"></path>
+        <path id="carro" data-name="carro" d="M457.9,107c.2,0,.4,0,.5.2v-.6c0,0-.3-.1-.5-.1-.4,0-.8.1-1.1.4-.2.2-.3.4-.4.7h-.3v.3c0,0,.2,0,.2,0v.2h0c0,.1-.2.1-.2.1v.3c0,0,.3,0,.3,0,0,.3.2.5.4.7.3.3.6.4,1,.4s.5,0,.7-.1v-.7c-.2.2-.4.3-.7.3s-.4,0-.6-.3c0,0-.1-.2-.2-.4h1v-.3c0,0-1,0-1,0v-.2h0c0-.1,1.2-.1,1.2-.1v-.3c0,0-1.1,0-1.1,0,0-.1,0-.3.2-.4.1-.2.3-.3.6-.3h0Z"></path>
+      </g>
+      <g id="parque1" data-name="parque" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M183.8,306.8c6.3,0,11.3,5.1,11.3,11.3s-5.1,11.3-11.3,11.3-11.3-5.1-11.3-11.3,5.1-11.3,11.3-11.3Z"></path>
+        <path id="carro3" data-name="carro" class="inside_svg_color" d="M187.7,316.6c-.1-.3-.5-.6-.8-.6h-6.3c-.4,0-.7.2-.8.6l-1.2,3.4v4.6c0,.3.2.6.6.6h.6c.3,0,.6-.2.6-.6v-.6h6.8v.6c0,.3.2.6.6.6h.6c.3,0,.6-.2.6-.6v-4.6l-1.2-3.4h0ZM180.6,322.3c-.5,0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9ZM186.9,322.3c-.5,0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9ZM179.8,319.4l.9-2.6h6.3l.9,2.6h-8Z"></path>
+        <path id="carro4" data-name="carro" class="inside_svg_color" d="M183.7,314.3c1.4,0,2.5-1.1,2.5-2.5s-1.1-2.5-2.5-2.5-2.5,1.1-2.5,2.5,1.1,2.5,2.5,2.5Z"></path>
+        <path id="carro5" data-name="carro" d="M184,310.8c.2,0,.4,0,.5.2v-.6c0,0-.3-.1-.5-.1-.4,0-.8.1-1.1.4-.2.2-.3.4-.4.7h-.3v.3c0,0,.2,0,.2,0v.2h0c0,.1-.2.1-.2.1v.3c0,0,.3,0,.3,0,0,.3.2.5.4.7.3.3.6.4,1,.4s.5,0,.7-.1v-.7c-.2.2-.4.3-.7.3s-.4,0-.6-.3c0,0-.1-.2-.2-.4h1v-.3c0,0-1,0-1,0v-.2h0c0-.1,1.2-.1,1.2-.1v-.3c0,0-1.1,0-1.1,0,0-.1,0-.3.2-.4.1-.2.3-.3.6-.3h0Z"></path>
+      </g>
+      <g id="multibanco2" data-name="multibanco" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M567.1,414c6.8,0,12.4,5.6,12.4,12.4s-5.6,12.4-12.4,12.4-12.4-5.6-12.4-12.4,5.6-12.4,12.4-12.4Z"></path>
+        <path id="mb" class="inside_svg_color" d="M571.6,423.1h-2.5c-.3,0-.5.2-.5.5v5.7c0,.3.2.5.5.5h3c1.1,0,1.9-.8,1.9-1.8s-.4-1.3-1.1-1.6c.3-.3.5-.8.5-1.3,0-1-.9-1.9-1.9-1.9ZM573,427.8c0,.5-.4.9-.9.9h-2.4v-4.7h1.9c.5,0,.9.4.9.9s-.3.8-.8.9h-.9c-.3,0-.5.2-.5.5s.2.5.5.5h1.3c.5,0,.9.4.9.9h0Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M560.7,429.8c.3,0,.6-.2.7-.5l.5-4.5,1.7,4.4h0c0,.1,0,.1,0,.2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0h0c0,0,.1,0,.2,0h0c0,0,.1,0,.2,0h0s0,0,.1,0h0c0,0,0-.1.1-.2h0c0,0,1.7-4.5,1.7-4.5l.5,4.5c0,.3.3.6.7.5.3,0,.6-.3.5-.7l-.6-5.3c0,0,0-.1,0-.2,0,0,0-.1,0-.2-.1-.3-.4-.5-.7-.5h-.2c0,0-.1,0-.2,0-.3,0-.6.3-.7.6l-1.5,3.8-1.5-3.8c-.1-.3-.4-.5-.7-.6,0,0-.1,0-.2,0h-.2c-.3,0-.6.2-.7.5,0,0,0,.1,0,.2,0,0,0,.1,0,.2l-.6,5.3c0,.3.2.6.5.7h.2Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M562.9,419.5h9.1c.6,0,1.2.6,1.2,1.2v.6c0,.8-1.1.8-1.1,0v-.3c0-.2-.2-.4-.4-.4h-9.2c-.2,0-.4.2-.4.4v.3c0,.8-1.1.8-1.1,0v-.6c0-.7.5-1.2,1.2-1.2h.6ZM567.1,433.3h5.9c1.4,0,1.4-1.4,1.2-2.1,0-.5-.9-.5-1,0v.6c0,.3-.2.5-.5.5h-11.4c-.3,0-.5-.2-.5-.5v-.6c0-.5-.9-.5-1,0-.1.7-.1,2.1,1.2,2.1h5.8,0Z"></path>
+      </g>
+      <g id="multibanco3" data-name="multibanco" style="display: block;">
+        <path id="circulo" data-name="circulo" class="st6" d="M366.7,243.2c4.7,0,8.6,3.8,8.6,8.6s-3.8,8.6-8.6,8.6-8.6-3.8-8.6-8.6,3.8-8.6,8.6-8.6Z"></path>
+        <path id="mb" class="inside_svg_color" d="M369.8,249.4h-1.7c-.2,0-.3.2-.3.3v3.9c0,.2.2.3.4.3h2.1c.7,0,1.3-.6,1.3-1.3s-.3-.9-.7-1.1c.2-.2.4-.6.4-.9,0-.7-.6-1.3-1.3-1.3ZM370.8,252.7c0,.4-.3.6-.6.6h-1.7v-3.2h1.3c.3,0,.6.3.6.6s-.2.6-.5.6h-.7c-.2,0-.4.2-.4.4s.2.4.4.4h.9c.4,0,.6.3.6.6h0Z"></path>
+        <path id="mb" class="inside_svg_color" d="M362.3,254.1c.2,0,.4-.1.5-.4l.3-3.1,1.2,3h0c0,0,0,0,0,.1,0,0,0,0,0,0h0s0,0,0,0c0,0,0,0,0,0,0,0,0,0,0,0h0s0,0,.1,0h0s0,0,.1,0h0s0,0,0,0h0s0,0,0-.1h0s1.2-3.1,1.2-3.1l.3,3.1c0,.2.2.4.5.4.2,0,.4-.2.4-.5l-.4-3.7s0,0,0-.1c0,0,0,0,0-.1,0-.2-.3-.3-.5-.4h-.1s0,0-.1,0c-.2,0-.4.2-.5.4l-1,2.6-1-2.6c0-.2-.3-.4-.5-.4,0,0,0,0-.1,0h-.1c-.2,0-.4.2-.5.4,0,0,0,0,0,.1,0,0,0,0,0,.1l-.4,3.7c0,.2.1.4.4.5h.2Z"></path>
+        <path id="mb" class="inside_svg_color" d="M363.8,247h6.3c.4,0,.8.4.8.9v.4c0,.6-.8.6-.8,0v-.2c0-.1-.1-.3-.3-.3h-6.3c-.1,0-.3.1-.3.3v.2c0,.6-.7.6-.7,0v-.4c0-.5.4-.9.8-.9h.4ZM366.7,256.5h4.1c.9,0,.9-1,.8-1.5,0-.3-.6-.3-.7,0v.4c0,.2-.1.3-.3.3h-7.8c-.2,0-.3-.1-.3-.3v-.4c0-.3-.6-.3-.7,0,0,.5,0,1.5.8,1.5h4,0Z"></path>
+      </g>
+      <g id="multibanco4" data-name="multibanco" style="display: block;">
+        <path id="circulo" data-name="circulo" class="st6" d="M350.8,187.3c4.7,0,8.6,3.8,8.6,8.6s-3.8,8.6-8.6,8.6-8.6-3.8-8.6-8.6,3.8-8.6,8.6-8.6Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M353.9,193.6h-1.7c-.2,0-.3.2-.3.3v3.9c0,.2.2.3.4.3h2.1c.7,0,1.3-.6,1.3-1.3s-.3-.9-.7-1.1c.2-.2.4-.6.4-.9,0-.7-.6-1.3-1.3-1.3ZM354.8,196.8c0,.4-.3.6-.6.6h-1.7v-3.2h1.3c.3,0,.6.3.6.6s-.2.6-.5.6h-.7c-.2,0-.4.2-.4.4s.2.4.4.4h.9c.4,0,.6.3.6.6h0Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M346.4,198.2c.2,0,.4-.1.5-.4l.3-3.1,1.2,3h0c0,0,0,0,0,.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0h0s0,0,.1,0h0s0,0,.1,0h0s0,0,0,0h0s0,0,0-.1h0s1.2-3.1,1.2-3.1l.3,3.1c0,.2.2.4.5.4.2,0,.4-.2.4-.5l-.4-3.7s0,0,0-.1c0,0,0,0,0-.1,0-.2-.3-.3-.5-.4h-.1s0,0-.1,0c-.2,0-.4.2-.5.4l-1,2.6-1-2.6c0-.2-.3-.4-.5-.4,0,0,0,0-.1,0h-.1c-.2,0-.4.2-.5.4,0,0,0,0,0,.1,0,0,0,0,0,.1l-.4,3.7c0,.2.1.4.4.5h.2Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M347.8,191.1h6.3c.4,0,.8.4.8.9v.4c0,.6-.8.6-.8,0v-.2c0-.1-.1-.3-.3-.3h-6.3c-.1,0-.3.1-.3.3v.2c0,.6-.7.6-.7,0v-.4c0-.5.4-.9.8-.9h.4ZM350.7,200.6h4.1c.9,0,.9-1,.8-1.5,0-.3-.6-.3-.7,0v.4c0,.2-.1.3-.3.3h-7.8c-.2,0-.3-.1-.3-.3v-.4c0-.3-.6-.3-.7,0,0,.5,0,1.5.8,1.5h4,0Z"></path>
+      </g>
+      <g id="multibanco5" data-name="multibanco" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M247.1,240.2c6.8,0,12.4,5.6,12.4,12.4s-5.6,12.4-12.4,12.4-12.4-5.6-12.4-12.4,5.6-12.4,12.4-12.4Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M251.5,249.3h-2.5c-.3,0-.5.2-.5.5v5.7c0,.3.2.5.5.5h3c1.1,0,1.9-.8,1.9-1.8s-.4-1.3-1.1-1.6c.3-.3.5-.8.5-1.3,0-1-.9-1.9-1.9-1.9ZM252.9,254c0,.5-.4.9-.9.9h-2.4v-4.7h1.9c.5,0,.9.4.9.9s-.3.8-.8.9h-.9c-.3,0-.5.2-.5.5s.2.5.5.5h1.3c.5,0,.9.4.9.9h0Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M240.7,256c.3,0,.6-.2.7-.5l.5-4.5,1.7,4.4h0c0,.1,0,.1,0,.2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0h0c0,0,.1,0,.2,0h0c0,0,.1,0,.2,0h0s0,0,.1,0h0c0,0,0-.1.1-.2h0c0,0,1.7-4.5,1.7-4.5l.5,4.5c0,.3.3.6.7.5.3,0,.6-.3.5-.7l-.6-5.3c0,0,0-.1,0-.2,0,0,0-.1,0-.2-.1-.3-.4-.5-.7-.5h-.2c0,0-.1,0-.2,0-.3,0-.6.3-.7.6l-1.5,3.8-1.5-3.8c-.1-.3-.4-.5-.7-.6,0,0-.1,0-.2,0h-.2c-.3,0-.6.2-.7.5,0,0,0,.1,0,.2,0,0,0,.1,0,.2l-.6,5.3c0,.3.2.6.5.7h.2Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M242.8,245.7h9.1c.6,0,1.2.6,1.2,1.2v.6c0,.8-1.1.8-1.1,0v-.3c0-.2-.2-.4-.4-.4h-9.2c-.2,0-.4.2-.4.4v.3c0,.8-1.1.8-1.1,0v-.6c0-.7.5-1.2,1.2-1.2h.6ZM247,259.5h5.9c1.4,0,1.4-1.4,1.2-2.1,0-.5-.9-.5-1,0v.6c0,.3-.2.5-.5.5h-11.4c-.3,0-.5-.2-.5-.5v-.6c0-.5-.9-.5-1,0-.1.7-.1,2.1,1.2,2.1h5.8,0Z"></path>
+      </g>
+      <g id="multibanco6" data-name="multibanco" style="display: block;">
+        <path id="circulo" data-name="circulo" class="st6" d="M257.7,278.6c4.7,0,8.6,3.8,8.6,8.6s-3.8,8.6-8.6,8.6-8.6-3.8-8.6-8.6,3.8-8.6,8.6-8.6Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M260.8,284.9h-1.7c-.2,0-.3.2-.3.3v3.9c0,.2.2.3.4.3h2.1c.7,0,1.3-.6,1.3-1.3s-.3-.9-.7-1.1c.2-.2.4-.6.4-.9,0-.7-.6-1.3-1.3-1.3ZM261.7,288.2c0,.4-.3.6-.6.6h-1.7v-3.2h1.3c.3,0,.6.3.6.6s-.2.6-.5.6h-.7c-.2,0-.4.2-.4.4s.2.4.4.4h.9c.4,0,.6.3.6.6h0Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M253.3,289.5c.2,0,.4-.1.5-.4l.3-3.1,1.2,3h0c0,0,0,0,0,.1,0,0,0,0,0,0h0s0,0,0,0c0,0,0,0,0,0,0,0,0,0,0,0h0s0,0,.1,0h0s0,0,.1,0h0s0,0,0,0h0s0,0,0-.1h0s1.2-3.1,1.2-3.1l.3,3.1c0,.2.2.4.5.4.2,0,.4-.2.4-.5l-.4-3.7s0,0,0-.1c0,0,0,0,0-.1,0-.2-.3-.3-.5-.4h-.1s0,0-.1,0c-.2,0-.4.2-.5.4l-1,2.6-1-2.6c0-.2-.3-.4-.5-.4,0,0,0,0-.1,0h-.1c-.2,0-.4.2-.5.4,0,0,0,0,0,.1,0,0,0,0,0,.1l-.4,3.7c0,.2.1.4.4.5h.2Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M254.8,282.4h6.3c.4,0,.8.4.8.9v.4c0,.6-.8.6-.8,0v-.2c0-.1-.1-.3-.3-.3h-6.3c-.1,0-.3.1-.3.3v.2c0,.6-.7.6-.7,0v-.4c0-.5.4-.9.8-.9h.4ZM257.7,291.9h4.1c.9,0,.9-1,.8-1.5,0-.3-.6-.3-.7,0v.4c0,.2-.1.3-.3.3h-7.8c-.2,0-.3-.1-.3-.3v-.4c0-.3-.6-.3-.7,0,0,.5,0,1.5.8,1.5h4,0Z"></path>
+      </g>
+      <g id="multibanco7" data-name="multibanco" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M431.5,465.4c6.8,0,12.4,5.6,12.4,12.4s-5.6,12.4-12.4,12.4-12.4-5.6-12.4-12.4,5.6-12.4,12.4-12.4Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M435.9,474.5h-2.5c-.3,0-.5.2-.5.5v5.7c0,.3.2.5.5.5h3c1.1,0,1.9-.8,1.9-1.8s-.4-1.3-1.1-1.6c.3-.3.5-.8.5-1.3,0-1-.9-1.9-1.9-1.9ZM437.3,479.2c0,.5-.4.9-.9.9h-2.4v-4.7h1.9c.5,0,.9.4.9.9s-.3.8-.8.9h-.9c-.3,0-.5.2-.5.5s.2.5.5.5h1.3c.5,0,.9.4.9.9h0Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M425.1,481.2c.3,0,.6-.2.7-.5l.5-4.5,1.7,4.4h0c0,.1,0,.1,0,.2,0,0,0,0,0,0h0s0,0,0,0c0,0,0,0,0,0,0,0,0,0,0,0h0c0,0,.1,0,.2,0h0c0,0,.1,0,.2,0h0s0,0,.1,0h0c0,0,0-.1.1-.2h0c0,0,1.7-4.5,1.7-4.5l.5,4.5c0,.3.3.6.7.5.3,0,.6-.3.5-.7l-.6-5.3c0,0,0-.1,0-.2,0,0,0-.1,0-.2-.1-.3-.4-.5-.7-.5h-.2c0,0-.1,0-.2,0-.3,0-.6.3-.7.6l-1.5,3.8-1.5-3.8c-.1-.3-.4-.5-.7-.6,0,0-.1,0-.2,0h-.2c-.3,0-.6.2-.7.5,0,0,0,.1,0,.2,0,0,0,.1,0,.2l-.6,5.3c0,.3.2.6.5.7h.2Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M427.2,470.9h9.1c.6,0,1.2.6,1.2,1.2v.6c0,.8-1.1.8-1.1,0v-.3c0-.2-.2-.4-.4-.4h-9.2c-.2,0-.4.2-.4.4v.3c0,.8-1.1.8-1.1,0v-.6c0-.7.5-1.2,1.2-1.2h.6ZM431.4,484.7h5.9c1.4,0,1.4-1.4,1.2-2.1,0-.5-.9-.5-1,0v.6c0,.3-.2.5-.5.5h-11.4c-.3,0-.5-.2-.5-.5v-.6c0-.5-.9-.5-1,0-.1.7-.1,2.1,1.2,2.1h5.8,0Z"></path>
+      </g>
+      <g id="multibanco8" data-name="multibanco" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M185,349.3c6.8,0,12.4,5.6,12.4,12.4s-5.6,12.4-12.4,12.4-12.4-5.6-12.4-12.4,5.6-12.4,12.4-12.4Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M189.5,358.4h-2.5c-.3,0-.5.2-.5.5v5.7c0,.3.2.5.5.5h3c1.1,0,1.9-.8,1.9-1.8s-.4-1.3-1.1-1.6c.3-.3.5-.8.5-1.3,0-1-.9-1.9-1.9-1.9ZM190.9,363.1c0,.5-.4.9-.9.9h-2.4v-4.7h1.9c.5,0,.9.4.9.9s-.3.8-.8.9h-.9c-.3,0-.5.2-.5.5s.2.5.5.5h1.3c.5,0,.9.4.9.9h0Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M178.6,365.1c.3,0,.6-.2.7-.5l.5-4.5,1.7,4.4h0c0,.1,0,.1,0,.2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0h0c0,0,.1,0,.2,0h0c0,0,.1,0,.2,0h0s0,0,.1,0h0c0,0,0-.1.1-.2h0c0,0,1.7-4.5,1.7-4.5l.5,4.5c0,.3.3.6.7.5.3,0,.6-.3.5-.7l-.6-5.3c0,0,0-.1,0-.2,0,0,0-.1,0-.2-.1-.3-.4-.5-.7-.5h-.2c0,0-.1,0-.2,0-.3,0-.6.3-.7.6l-1.5,3.8-1.5-3.8c-.1-.3-.4-.5-.7-.6,0,0-.1,0-.2,0h-.2c-.3,0-.6.2-.7.5,0,0,0,.1,0,.2,0,0,0,.1,0,.2l-.6,5.3c0,.3.2.6.5.7h.2Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M180.8,354.8h9.1c.6,0,1.2.6,1.2,1.2v.6c0,.8-1.1.8-1.1,0v-.3c0-.2-.2-.4-.4-.4h-9.2c-.2,0-.4.2-.4.4v.3c0,.8-1.1.8-1.1,0v-.6c0-.7.5-1.2,1.2-1.2h.6ZM185,368.6h5.9c1.4,0,1.4-1.4,1.2-2.1,0-.5-.9-.5-1,0v.6c0,.3-.2.5-.5.5h-11.4c-.3,0-.5-.2-.5-.5v-.6c0-.5-.9-.5-1,0-.1.7-.1,2.1,1.2,2.1h5.8,0Z"></path>
+      </g>
+      <g id="multibanco9" data-name="multibanco" style="display: block;">
+        <path id="circulo" data-name="circulo" class="st6" d="M217.8,117.3c4.7,0,8.6,3.8,8.6,8.6s-3.8,8.6-8.6,8.6-8.6-3.8-8.6-8.6,3.8-8.6,8.6-8.6Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M220.9,123.5h-1.7c-.2,0-.3.2-.3.3v3.9c0,.2.2.3.4.3h2.1c.7,0,1.3-.6,1.3-1.3s-.3-.9-.7-1.1c.2-.2.4-.6.4-.9,0-.7-.6-1.3-1.3-1.3ZM221.8,126.8c0,.4-.3.6-.6.6h-1.7v-3.2h1.3c.3,0,.6.3.6.6s-.2.6-.5.6h-.7c-.2,0-.4.2-.4.4s.2.4.4.4h.9c.4,0,.6.3.6.6h0Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M213.4,128.2c.2,0,.4-.1.5-.4l.3-3.1,1.2,3h0c0,0,0,0,0,.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0h0s0,0,.1,0h0s0,0,.1,0h0s0,0,0,0h0s0,0,0-.1h0s1.2-3.1,1.2-3.1l.3,3.1c0,.2.2.4.5.4.2,0,.4-.2.4-.5l-.4-3.7s0,0,0-.1c0,0,0,0,0-.1,0-.2-.3-.3-.5-.4h-.1s0,0-.1,0c-.2,0-.4.2-.5.4l-1,2.6-1-2.6c0-.2-.3-.4-.5-.4,0,0,0,0-.1,0h-.1c-.2,0-.4.2-.5.4,0,0,0,0,0,.1,0,0,0,0,0,.1l-.4,3.7c0,.2.1.4.4.5h.2Z"></path>
+        <path id="mb" data-name="mb" class="inside_svg_color" d="M214.9,121.1h6.3c.4,0,.8.4.8.9v.4c0,.6-.8.6-.8,0v-.2c0-.1-.1-.3-.3-.3h-6.3c-.1,0-.3.1-.3.3v.2c0,.6-.7.6-.7,0v-.4c0-.5.4-.9.8-.9h.4ZM217.8,130.6h4.1c.9,0,.9-1,.8-1.5,0-.3-.6-.3-.7,0v.4c0,.2-.1.3-.3.3h-7.8c-.2,0-.3-.1-.3-.3v-.4c0-.3-.6-.3-.7,0,0,.5,0,1.5.8,1.5h4,0Z"></path>
+      </g>
+      <g id="rolantes2" data-name="rolantes" style="display: block;">
+        <path id="circulos" d="M348.1,218.1c6.8,0,12.4,5.6,12.4,12.4s-5.6,12.4-12.4,12.4-12.4-5.6-12.4-12.4,5.6-12.4,12.4-12.4Z"></path>
+        <path id="escada" class="inside_svg_color" d="M345.2,232.3l-.9,1.1h-1.3c-1,0-1.8.8-1.8,1.8s.8,1.8,1.8,1.8h2.1c.5,0,1-.2,1.3-.6l6.3-7.4h1.5c1,0,1.8-.8,1.8-1.8s-.8-1.8-1.8-1.8h-2.3c-.5,0-1,.2-1.3.6l-5.4,6.4Z"></path>
+        <path id="escada" data-name="escada" class="inside_svg_color" d="M342,227.1h.7v1.9c0,.1.1.3.3.3h1.2c.1,0,.3-.1.3-.3v-1.9h.7c0,0,.1,0,.1-.1,0,0,0-.1,0-.2l-1.5-1.5c-.1-.1-.3-.1-.4,0l-1.5,1.5s0,.1,0,.2c0,0,0,.1.1.1Z"></path>
+      </g>
+      <g id="rolantes3" data-name="rolantes" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M326.8,614.4c6.8,0,12.4,5.6,12.4,12.4s-5.6,12.4-12.4,12.4-12.4-5.6-12.4-12.4,5.6-12.4,12.4-12.4Z"></path>
+        <path id="escada" data-name="escada" class="inside_svg_color" d="M323.9,628.6l-.9,1.1h-1.3c-1,0-1.8.8-1.8,1.8s.8,1.8,1.8,1.8h2.1c.5,0,1-.2,1.3-.6l6.3-7.4h1.5c1,0,1.8-.8,1.8-1.8s-.8-1.8-1.8-1.8h-2.3c-.5,0-1,.2-1.3.6l-5.4,6.4Z"></path>
+        <path id="escada" data-name="escada" class="inside_svg_color" d="M320.7,623.4h.7v1.9c0,.1.1.3.3.3h1.2c.1,0,.3-.1.3-.3v-1.9h.7c0,0,.1,0,.1-.1,0,0,0-.1,0-.2l-1.5-1.5c-.1-.1-.3-.1-.4,0l-1.5,1.5s0,.1,0,.2c0,0,0,.1.1.1Z"></path>
+      </g>
+      <g id="rolantes4" data-name="rolantes" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M287.4,517.9c6.8,0,12.4,5.6,12.4,12.4s-5.6,12.4-12.4,12.4-12.4-5.6-12.4-12.4,5.6-12.4,12.4-12.4Z"></path>
+        <path id="escada" data-name="escada" class="inside_svg_color" d="M284.5,532.1l-.9,1.1h-1.3c-1,0-1.8.8-1.8,1.8s.8,1.8,1.8,1.8h2.1c.5,0,1-.2,1.3-.6l6.3-7.4h1.5c1,0,1.8-.8,1.8-1.8s-.8-1.8-1.8-1.8h-2.3c-.5,0-1,.2-1.3.6l-5.4,6.4Z"></path>
+        <path id="escada" data-name="escada" class="inside_svg_color" d="M281.3,526.9h.7v1.9c0,.1.1.3.3.3h1.2c.1,0,.3-.1.3-.3v-1.9h.7c0,0,.1,0,.1-.1,0,0,0-.1,0-.2l-1.5-1.5c-.1-.1-.3-.1-.4,0l-1.5,1.5s0,.1,0,.2c0,0,0,.1.1.1Z"></path>
+      </g>
+      <g id="escadas1" data-name="escadas" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M382.6,441.5c6.8,0,12.3,5.5,12.3,12.3,0,6.8-5.5,12.3-12.3,12.3s-12.3-5.5-12.3-12.3,5.5-12.3,12.3-12.3Z"></path>
+        <path id="escada" data-name="escada" class="inside_svg_color" d="M379.8,459.9v-3.4h3.7v-3.4h3.7v-3.4h2.6v-1.7h-4v3.4h-3.7v3.4h-3.7v3.4h-2.8v1.7h4.3Z"></path>
+      </g>
+      <g id="informacoes" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M396.4,196.8c7.1,0,12.8,5.7,12.8,12.8s-5.7,12.8-12.8,12.8-12.8-5.7-12.8-12.8,5.7-12.8,12.8-12.8Z"></path>
+        <path id="info" class="inside_svg_color" d="M396,206.5c1,0,1.8.8,1.8,1.8v6.2c0,1-.8,1.8-1.8,1.8s-1.8-.8-1.8-1.8v-6.2c0-1,.8-1.8,1.8-1.8ZM396,202.1c1,0,1.8.8,1.8,1.8s-.8,1.8-1.8,1.8-1.8-.8-1.8-1.8.8-1.8,1.8-1.8Z"></path>
+      </g>
+      <g id="elevadores4" data-name="elevadores" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M224.5,155.8c6.8,0,12.4,5.5,12.4,12.4s-5.5,12.4-12.4,12.4-12.4-5.5-12.4-12.4c0-6.8,5.5-12.4,12.4-12.4Z"></path>
+        <path id="pessoas" data-name="pessoas" class="inside_svg_color" d="M227.9,175.9h-6.8c-.5,0-.9-.5-.9-1v-13.5c0-.6.4-1,.9-1h6.8c.5,0,.9.5.9,1v13.5c0,.6-.4,1-.9,1h0ZM227.9,162.6c0-.3-.2-.5-.5-.5h-5.9c-.3,0-.5.2-.5.5v11.9c0,.3.2.5.5.5h5.9c.3,0,.5-.2.5-.5v-11.9h0ZM232.5,167.8c0,.2-.3.2-.5.2l-.6-.2v2.3c0,.2-.2.4-.4.4h-.5c-.2,0-.4-.2-.4-.4v-2.3l-.6.2c-.2,0-.4,0-.5-.2,0-.2,0-.4,0-.5l1.4-1.4c.2-.2.4-.2.6,0l1.4,1.4c.1.1.2.3,0,.5h0ZM219.9,169.1l-1.4,1.4c-.2.2-.4.2-.6,0l-1.4-1.4c-.1-.1-.2-.3,0-.5,0-.2.3-.2.5-.2l.6.2v-2.6c0-.2.2-.4.4-.4h.5c.2,0,.4.2.4.4v2.6l.6-.2c.2,0,.4,0,.5.2,0,.2,0,.4,0,.5h0ZM226.2,169.2c0,0-.1,0-.2,0h-.5v4.7c0,.1-.1.2-.3.2h-.4c-.1,0-.2-.1-.2-.2v-3.9c0,0,0-.1-.1-.1s-.1,0-.1.1v3.9c0,.1-.1.2-.3.2h-.4c-.1,0-.3-.1-.3-.2v-4.7h-.5c0,0-.1,0-.2,0,0,0,0-.1,0-.2l.3-2.9c0-.4.4-.8.8-.8h1.5c.4,0,.8.3.8.8l.3,2.9c0,0,0,.1,0,.2h0ZM224.5,165c-.6,0-1-.5-1-1.1s.5-1.1,1-1.1,1,.5,1,1.1-.5,1.1-1,1.1h0Z"></path>
+      </g>
+      <g id="elevadores5" data-name="elevadores" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M525.3,258.9c6.8,0,12.4,5.5,12.4,12.4s-5.5,12.4-12.4,12.4-12.4-5.5-12.4-12.4c0-6.8,5.5-12.4,12.4-12.4Z"></path>
+        <path id="pessoas" data-name="pessoas" class="inside_svg_color" d="M528.6,279h-6.8c-.5,0-.9-.5-.9-1v-13.5c0-.6.4-1,.9-1h6.8c.5,0,.9.5.9,1v13.5c0,.6-.4,1-.9,1h0ZM528.6,265.7c0-.3-.2-.5-.5-.5h-5.9c-.3,0-.5.2-.5.5v11.9c0,.3.2.5.5.5h5.9c.3,0,.5-.2.5-.5v-11.9h0ZM533.3,270.9c0,.2-.3.2-.5.2l-.6-.2v2.3c0,.2-.2.4-.4.4h-.5c-.2,0-.4-.2-.4-.4v-2.3l-.6.2c-.2,0-.4,0-.5-.2,0-.2,0-.4,0-.5l1.4-1.4c.2-.2.4-.2.6,0l1.4,1.4c.1.1.2.3,0,.5h0ZM520.7,272.2l-1.4,1.4c-.2.2-.4.2-.6,0l-1.4-1.4c-.1-.1-.2-.3,0-.5,0-.2.3-.2.5-.2l.6.2v-2.6c0-.2.2-.4.4-.4h.5c.2,0,.4.2.4.4v2.6l.6-.2c.2,0,.4,0,.5.2,0,.2,0,.4,0,.5h0ZM527,272.3c0,0-.1,0-.2,0h-.5v4.7c0,.1-.1.2-.3.2h-.4c-.1,0-.2-.1-.2-.2v-3.9c0,0,0-.1-.1-.1s-.1,0-.1.1v3.9c0,.1-.1.2-.3.2h-.4c-.1,0-.3-.1-.3-.2v-4.7h-.5c0,0-.1,0-.2,0,0,0,0-.1,0-.2l.3-2.9c0-.4.4-.8.8-.8h1.5c.4,0,.8.3.8.8l.3,2.9c0,0,0,.1,0,.2h0ZM525.2,268.1c-.6,0-1-.5-1-1.1s.5-1.1,1-1.1,1,.5,1,1.1-.5,1.1-1,1.1h0Z"></path>
+      </g>
+      <g id="elevadores6" data-name="elevadores" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M473.9,481.4c6.8,0,12.4,5.5,12.4,12.4s-5.5,12.4-12.4,12.4-12.4-5.5-12.4-12.4c0-6.8,5.5-12.4,12.4-12.4Z"></path>
+        <path id="pessoas" data-name="pessoas" class="inside_svg_color" d="M477.2,501.5h-6.8c-.5,0-.9-.5-.9-1v-13.5c0-.6.4-1,.9-1h6.8c.5,0,.9.5.9,1v13.5c0,.6-.4,1-.9,1h0ZM477.2,488.2c0-.3-.2-.5-.5-.5h-5.9c-.3,0-.5.2-.5.5v11.9c0,.3.2.5.5.5h5.9c.3,0,.5-.2.5-.5v-11.9h0ZM481.8,493.4c0,.2-.3.2-.5.2l-.6-.2v2.3c0,.2-.2.4-.4.4h-.5c-.2,0-.4-.2-.4-.4v-2.3l-.6.2c-.2,0-.4,0-.5-.2,0-.2,0-.4,0-.5l1.4-1.4c.2-.2.4-.2.6,0l1.4,1.4c.1.1.2.3,0,.5h0ZM469.2,494.7l-1.4,1.4c-.2.2-.4.2-.6,0l-1.4-1.4c-.1-.1-.2-.3,0-.5,0-.2.3-.2.5-.2l.6.2v-2.6c0-.2.2-.4.4-.4h.5c.2,0,.4.2.4.4v2.6l.6-.2c.2,0,.4,0,.5.2,0,.2,0,.4,0,.5h0ZM475.5,494.8c0,0-.1,0-.2,0h-.5v4.7c0,.1-.1.2-.3.2h-.4c-.1,0-.2-.1-.2-.2v-3.9c0,0,0-.1-.1-.1s-.1,0-.1.1v3.9c0,.1-.1.2-.3.2h-.4c-.1,0-.3-.1-.3-.2v-4.7h-.5c0,0-.1,0-.2,0,0,0,0-.1,0-.2l.3-2.9c0-.4.4-.8.8-.8h1.5c.4,0,.8.3.8.8l.3,2.9c0,0,0,.1,0,.2h0ZM473.8,490.6c-.6,0-1-.5-1-1.1s.5-1.1,1-1.1,1,.5,1,1.1-.5,1.1-1,1.1h0Z"></path>
+      </g>
+      <g id="elevadores7" data-name="elevadores" style="display: block;">
+        <path id="circulo" data-name="circulo" d="M260.7,546.3c6.8,0,12.4,5.5,12.4,12.4s-5.5,12.4-12.4,12.4-12.4-5.5-12.4-12.4c0-6.8,5.5-12.4,12.4-12.4Z"></path>
+        <path id="pessoas" data-name="pessoas" class="inside_svg_color" d="M264.1,566.4h-6.8c-.5,0-.9-.5-.9-1v-13.5c0-.6.4-1,.9-1h6.8c.5,0,.9.5.9,1v13.5c0,.6-.4,1-.9,1h0ZM264.1,553.1c0-.3-.2-.5-.5-.5h-5.9c-.3,0-.5.2-.5.5v11.9c0,.3.2.5.5.5h5.9c.3,0,.5-.2.5-.5v-11.9h0ZM268.7,558.3c0,.2-.3.2-.5.2l-.6-.2v2.3c0,.2-.2.4-.4.4h-.5c-.2,0-.4-.2-.4-.4v-2.3l-.6.2c-.2,0-.4,0-.5-.2,0-.2,0-.4,0-.5l1.4-1.4c.2-.2.4-.2.6,0l1.4,1.4c.1.1.2.3,0,.5h0ZM256.1,559.5l-1.4,1.4c-.2.2-.4.2-.6,0l-1.4-1.4c-.1-.1-.2-.3,0-.5,0-.2.3-.2.5-.2l.6.2v-2.6c0-.2.2-.4.4-.4h.5c.2,0,.4.2.4.4v2.6l.6-.2c.2,0,.4,0,.5.2,0,.2,0,.4,0,.5h0ZM262.4,559.7c0,0-.1,0-.2,0h-.5v4.7c0,.1-.1.2-.3.2h-.4c-.1,0-.2-.1-.2-.2v-3.9c0,0,0-.1-.1-.1s-.1,0-.1.1v3.9c0,.1-.1.2-.3.2h-.4c-.1,0-.3-.1-.3-.2v-4.7h-.5c0,0-.1,0-.2,0,0,0,0-.1,0-.2l.3-2.9c0-.4.4-.8.8-.8h1.5c.4,0,.8.3.8.8l.3,2.9c0,0,0,.1,0,.2h0ZM260.7,555.5c-.6,0-1-.5-1-1.1s.5-1.1,1-1.1,1,.5,1,1.1-.5,1.1-1,1.1h0Z"></path>
+      </g>
+    </g>
+  </g>
+  <g id="caminho">
+    <g id="destino" style="display: none;">
+      <path id="pin" class="cor_pin" d="M0,12.5c.3,0,.7-.1.9-.4.3-.3,8.5-7.6,8.5-15.1S5.2-12.5,0-12.5-9.4-8.2-9.4-3C-9.4,4.5-1.3,11.8-.9,12.1c.3.2.6.4.9.4H0Z"></path>
+      <path id="B" class="inside_svg_color" d="M2.5-3.3c.5-.4.7-.9.7-1.5s0-.5-.1-.7c0-.2-.2-.4-.3-.6-.1-.2-.3-.3-.5-.4-.2-.1-.5-.2-.8-.3-.3,0-.6,0-.9,0H-1.7c-.4,0-.7,0-.9.3-.2.2-.3.5-.3.9V-.4c0,.4,0,.7.3.9.2.2.5.3.9.3H.4c.4,0,.7,0,1,0,.3,0,.6-.1.8-.2.4-.2.7-.4.9-.8.2-.4.3-.8.3-1.2s-.2-1.3-1-1.7ZM-.8-5.2H.6c.3,0,.6.3.6.6s-.3.6-.6.6H-.8v-1.2ZM.7-.9h0s-1.5,0-1.5,0v-1.5H.7c.4,0,.7.3.7.7s-.3.7-.7.7Z"></path>
+    </g>
+    <g id="origem" style="display: none;">
+      <path id="pin1" data-name="pin" class="cor_pin" d="M0,12.5c.3,0,.7-.1.9-.4.3-.3,8.5-7.6,8.5-15.1S5.2-12.5,0-12.5-9.4-8.2-9.4-3C-9.4,4.5-1.3,11.8-.9,12.1c.3.2.6.4.9.4H0Z"></path>
+      <path id="A" class="inside_svg_color" d="M3.5-.9L1.4-5.9c0-.2-.1-.3-.2-.4-.1-.2-.2-.3-.4-.4-.2,0-.4-.1-.6-.1s-.5,0-.6.1c-.2,0-.3.2-.4.4,0,.1-.2.3-.3.5L-3.1-.9c0,.2-.1.3-.2.4,0,.1,0,.3,0,.4,0,.2.1.5.3.6.2.2.4.3.7.3.4,0,.6-.2.7-.3.1-.1.2-.4.4-.8l.3-.7H1.4l.3.7c0,.1,0,.2.2.4,0,.2.1.3.2.4,0,.1.2.2.3.2.1,0,.3,0,.4,0,.3,0,.5,0,.7-.3.2-.2.3-.4.3-.6s0-.5-.2-.8ZM-.5-2.5l.6-1.7.6,1.7H-.5Z"></path>
+    </g>
+  </g>
+</svg>
+</div>
+</body>
+</html>
