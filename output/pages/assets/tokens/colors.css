@@ -138,6 +138,28 @@
   --info-foreground:    hsl(0 0% 100%);
 
   /* ----------------------------------------------------------
+     Tag Colors
+     Soft tinted label pairs (background + text) for colour-coded
+     categorisation tags. Text/background pairs meet WCAG AA.
+     ---------------------------------------------------------- */
+  --tag-blue-bg:    hsl(214 95% 93%);  /* #DBEAFE */
+  --tag-blue-fg:    hsl(224 64% 33%);  /* #1E40AF */
+  --tag-green-bg:   hsl(141 84% 93%);  /* #DCFCE7 */
+  --tag-green-fg:   hsl(143 64% 24%);  /* #166534 */
+  --tag-amber-bg:   hsl(48 96% 89%);   /* #FEF3C7 */
+  --tag-amber-fg:   hsl(23 83% 31%);   /* #92400E */
+  --tag-red-bg:     hsl(0 93% 94%);    /* #FEE2E2 */
+  --tag-red-fg:     hsl(0 70% 35%);    /* #991B1B */
+  --tag-purple-bg:  hsl(269 100% 95%); /* #F3E8FF */
+  --tag-purple-fg:  hsl(273 67% 39%);  /* #6B21A8 */
+  --tag-teal-bg:    hsl(167 85% 89%);  /* #CCFBF1 */
+  --tag-teal-fg:    hsl(176 69% 22%);  /* #115E59 */
+  --tag-pink-bg:    hsl(326 78% 95%);  /* #FCE7F3 */
+  --tag-pink-fg:    hsl(336 69% 30%);  /* #9D174D */
+  --tag-gray-bg:    hsl(220 14% 93%);  /* #EBEDF0 */
+  --tag-gray-fg:    hsl(220 9% 30%);   /* #464B53 */
+
+  /* ----------------------------------------------------------
      Document Palette
      A secondary neutral/blue scale used across print-style
      document templates (brochures, letterheads, factsheets) —
@@ -230,4 +252,22 @@
   --sidebar-accent:      hsl(220 43% 11%);
   --sidebar-border:      hsl(220 43% 11%);
   --sidebar-ring:        hsl(0 0% 100%);
+
+  /* Tag colours — translucent tint + light text on dark surfaces */
+  --tag-blue-bg:    hsl(217 91% 60% / 0.2);
+  --tag-blue-fg:    hsl(213 97% 87%);
+  --tag-green-bg:   hsl(142 71% 45% / 0.2);
+  --tag-green-fg:   hsl(141 79% 85%);
+  --tag-amber-bg:   hsl(38 92% 50% / 0.2);
+  --tag-amber-fg:   hsl(48 97% 77%);
+  --tag-red-bg:     hsl(0 84% 60% / 0.2);
+  --tag-red-fg:     hsl(0 96% 89%);
+  --tag-purple-bg:  hsl(271 91% 65% / 0.2);
+  --tag-purple-fg:  hsl(269 97% 85%);
+  --tag-teal-bg:    hsl(173 80% 40% / 0.2);
+  --tag-teal-fg:    hsl(168 84% 78%);
+  --tag-pink-bg:    hsl(330 81% 60% / 0.2);
+  --tag-pink-fg:    hsl(326 85% 90%);
+  --tag-gray-bg:    hsl(0 0% 100% / 0.12);
+  --tag-gray-fg:    hsl(220 13% 85%);
 }
