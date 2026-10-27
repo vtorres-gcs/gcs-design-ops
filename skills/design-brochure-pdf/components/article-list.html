@@ -1,0 +1,80 @@
+<!-- COMPONENT: article-list
+     Newsletter-style list of clickable article cards — thumbnail image + title link + excerpt.
+     Use for content round-ups, "what's inside" newsletter pages, and publication digests.
+
+     WHEN TO USE:
+       Quarterly report "this issue" or "top articles" pages.
+       Newsletter round-up sections listing 3–5 linked articles.
+       Do NOT use for ordered tables of investment options (use table-ranking instead).
+
+     PARAMETERS:
+       articleN_url     — Full URL for the article link (verbatim from source)
+       articleN_title   — Article headline (Yrsa link style, Electric Blue)
+       articleN_excerpt — 1–2 sentence summary (Heebo 13px, muted)
+       articleN_imgSrc  — Optional: absolute path or URL to article image (120×80px thumbnail).
+                          If no image: omit the thumbnail <div> entirely.
+
+     HEIGHT ESTIMATE: each article row ≈ 124px (22px top/bottom padding + 80px content)
+       5 articles ≈ 620px; 3 articles ≈ 372px. Typically combined with narrative above it.
+
+     SOURCE: extracted from quarterly-report page 2. -->
+
+<div data-component="article-list" style="padding: 0 64px; flex: 1; display: flex; flex-direction: column; gap: 0; overflow: hidden;">
+
+  <!-- Article 1 -->
+  <div style="display: flex; gap: 24px; align-items: flex-start; padding: 22px 0; border-top: 1px solid #ECEDF5;">
+    <!-- Thumbnail — OMIT this entire <div> if no image is available -->
+    <div style="width: 120px; height: 80px; flex-shrink: 0; border-radius: 3px; overflow: hidden; background: #E8EAF2;">
+      <img src="ARTICLE1_IMG" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div style="flex: 1; min-width: 0;">
+      <a href="ARTICLE1_URL" style="font-family: 'Yrsa', serif; font-size: 19px; font-weight: 400; color: #3D51E8; line-height: 1.3; text-decoration: none; display: block; margin-bottom: 6px;">ARTICLE1_TITLE</a>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #6F7185; line-height: 1.65;">ARTICLE1_EXCERPT <span style="color: #3D51E8;">→</span></div>
+    </div>
+  </div>
+
+  <!-- Article 2 -->
+  <div style="display: flex; gap: 24px; align-items: flex-start; padding: 22px 0; border-top: 1px solid #ECEDF5;">
+    <div style="width: 120px; height: 80px; flex-shrink: 0; border-radius: 3px; overflow: hidden; background: #E8EAF2;">
+      <img src="ARTICLE2_IMG" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div style="flex: 1; min-width: 0;">
+      <a href="ARTICLE2_URL" style="font-family: 'Yrsa', serif; font-size: 19px; font-weight: 400; color: #3D51E8; line-height: 1.3; text-decoration: none; display: block; margin-bottom: 6px;">ARTICLE2_TITLE</a>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #6F7185; line-height: 1.65;">ARTICLE2_EXCERPT <span style="color: #3D51E8;">→</span></div>
+    </div>
+  </div>
+
+  <!-- Article 3 -->
+  <div style="display: flex; gap: 24px; align-items: flex-start; padding: 22px 0; border-top: 1px solid #ECEDF5;">
+    <div style="width: 120px; height: 80px; flex-shrink: 0; border-radius: 3px; overflow: hidden; background: #E8EAF2;">
+      <img src="ARTICLE3_IMG" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div style="flex: 1; min-width: 0;">
+      <a href="ARTICLE3_URL" style="font-family: 'Yrsa', serif; font-size: 19px; font-weight: 400; color: #3D51E8; line-height: 1.3; text-decoration: none; display: block; margin-bottom: 6px;">ARTICLE3_TITLE</a>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #6F7185; line-height: 1.65;">ARTICLE3_EXCERPT <span style="color: #3D51E8;">→</span></div>
+    </div>
+  </div>
+
+  <!-- Article 4 — OMIT for 3-article version -->
+  <div style="display: flex; gap: 24px; align-items: flex-start; padding: 22px 0; border-top: 1px solid #ECEDF5;">
+    <div style="width: 120px; height: 80px; flex-shrink: 0; border-radius: 3px; overflow: hidden; background: #E8EAF2;">
+      <img src="ARTICLE4_IMG" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div style="flex: 1; min-width: 0;">
+      <a href="ARTICLE4_URL" style="font-family: 'Yrsa', serif; font-size: 19px; font-weight: 400; color: #3D51E8; line-height: 1.3; text-decoration: none; display: block; margin-bottom: 6px;">ARTICLE4_TITLE</a>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #6F7185; line-height: 1.65;">ARTICLE4_EXCERPT <span style="color: #3D51E8;">→</span></div>
+    </div>
+  </div>
+
+  <!-- Article 5 — OMIT for 3- or 4-article version; add border-bottom to last visible article -->
+  <div style="display: flex; gap: 24px; align-items: flex-start; padding: 22px 0; border-top: 1px solid #ECEDF5; border-bottom: 1px solid #ECEDF5;">
+    <div style="width: 120px; height: 80px; flex-shrink: 0; border-radius: 3px; overflow: hidden; background: #E8EAF2;">
+      <img src="ARTICLE5_IMG" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div style="flex: 1; min-width: 0;">
+      <a href="ARTICLE5_URL" style="font-family: 'Yrsa', serif; font-size: 19px; font-weight: 400; color: #3D51E8; line-height: 1.3; text-decoration: none; display: block; margin-bottom: 6px;">ARTICLE5_TITLE</a>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; color: #6F7185; line-height: 1.65;">ARTICLE5_EXCERPT <span style="color: #3D51E8;">→</span></div>
+    </div>
+  </div>
+
+</div>

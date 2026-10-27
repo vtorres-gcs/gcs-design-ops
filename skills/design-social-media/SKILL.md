@@ -20,7 +20,7 @@ This folder carries everything it needs. Copy `skills/gcs-social-media/` on its 
 python3 <SKILL_DIR>/scripts/gcs_assets.py    # verify the bundle before a long job
 ```
 
-Only two things need internet: fetching a new Material Symbols icon with `curl` (they are pasted inline as SVG, never bundled — same as `gcs-brochure`) and `flag_uri()` (country flags). Everything else is offline. **Never** resolve an asset through a repo root, a `Path.cwd()` walk-up, `templates/`, or the design system's `assets/uploads/` — none of those exist on the target machine. If a new asset is needed, bundle it under `assets/` and expose it in `scripts/gcs_assets.py`.
+Only two things need internet: fetching a new Material Symbols icon with `curl` (they are pasted inline as SVG, never bundled — same as `design-brochure-pdf`) and `flag_uri()` (country flags). Everything else is offline. **Never** resolve an asset through a repo root, a `Path.cwd()` walk-up, `templates/`, or the design system's `assets/uploads/` — none of those exist on the target machine. If a new asset is needed, bundle it under `assets/` and expose it in `scripts/gcs_assets.py`.
 
 
 ## Supported formats
@@ -264,7 +264,7 @@ You have creative freedom over each layout *within* the design system — use it
 | **Quote marks** | `assets/images/quote-blue.png`, `quote-white.png` | `QUOTE_ICON_BLUE` (Type 8) / `QUOTE_ICON_WHITE` (Type 9). Exactly 178×153px. |
 | **CTA background** | `assets/images/background-cta.png` | `CTA_BG` (carousel Type 10) and `STORY_CTA_BG` (story Type 10) — same image, one file. |
 | **Trustpilot graphics** | `assets/images/trustpilot-5stars.png`, `logo-trustpilot.png` | Type 11 only: `TRUSTPILOT_STARS` at exactly 231×43px and `TRUSTPILOT_LOGO` at `height:52px` centred in the footer. Never redraw the stars or crop the row to fake a lower rating. The slide's three action icons are inline SVG in `slide-library.md` — copy them verbatim. No overline above the card. |
-| **Icons** | `google/material-design-icons` — `curl` on demand, **needs network** for a name not already in `slide-library.md` | **Material Symbols only**, always **inline `<svg fill="currentColor">`** — never `<img>`, never a `data:` URI, never Font Awesome / Heroicons / Feather / Lucide / a hand-drawn SVG. Fetch with `curl` via Bash, never WebFetch (it mangles markup). Size 40–56px via `width`/`height`; colour from the parent's `color`. Same treatment as the `gcs-brochure` skill. |
+| **Icons** | `google/material-design-icons` — `curl` on demand, **needs network** for a name not already in `slide-library.md` | **Material Symbols only**, always **inline `<svg fill="currentColor">`** — never `<img>`, never a `data:` URI, never Font Awesome / Heroicons / Feather / Lucide / a hand-drawn SVG. Fetch with `curl` via Bash, never WebFetch (it mangles markup). Size 40–56px via `width`/`height`; colour from the parent's `color`. Same treatment as the `design-brochure-pdf` skill. |
 | **Country flags** | `msikma/country-flags` on GitHub (public) — **needs network** | `flag_uri("pt")`. UK is `uk.png` upstream, so pass `gb` and the helper maps it. If a code is missing or there is no network, show the country name without a flag. |
 | **Passports** | `assets/passports/` in the design system repo | The one genuinely repo-only asset — not bundled, not portable. If a plan needs it without the repo, ask the user for the file. |
 

@@ -1,0 +1,48 @@
+<!-- COMPONENT: stat-strip-dark
+     Horizontal strip of 2–4 headline numbers on a dark Night Blue background.
+     Use to showcase key programme metrics, outcome statistics, or country data.
+
+     WHEN TO USE:
+       Whenever you want to elevate 2–4 key numbers as visual anchors on a page.
+       Works at the bottom of a narrative page or as a standalone row inside a page.
+       Often combined with narrative (top of page) or hero-image (below image).
+       Do NOT use for more than 4 stats — use stat-strip-light for a 3-column light variant.
+
+     PARAMETERS:
+       stat1Value / stat1Label — first stat (e.g. "186" / "Visa-free destinations")
+       stat2Value / stat2Label — second stat
+       stat3Value / stat3Label — third stat (OMIT the entire <div> block for 2-stat version)
+       stat4Value / stat4Label — fourth stat (OMIT the entire <div> block for 2- or 3-stat version)
+       Remove border-right from the last visible tile.
+
+     HEIGHT ESTIMATE: ~96px (fixed; does not grow with content)
+
+     SOURCE: extracted from lead-magnet page 3 (4 tiles) and case-study page 3 (3 tiles). -->
+
+<div data-component="stat-strip-dark" style="margin: 0 64px 48px; flex-shrink: 0; background: #000957; border-radius: 6px; display: flex; overflow: hidden;">
+
+  <!-- Tile 1 -->
+  <div style="flex: 1; padding: 28px 28px; border-right: 1px solid rgba(255,255,255,0.1);">
+    <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 42px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">STAT1_VALUE</div>
+    <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);">STAT1_LABEL</div>
+  </div>
+
+  <!-- Tile 2 -->
+  <div style="flex: 1; padding: 28px 28px; border-right: 1px solid rgba(255,255,255,0.1);">
+    <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 42px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">STAT2_VALUE</div>
+    <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);">STAT2_LABEL</div>
+  </div>
+
+  <!-- Tile 3 — OMIT this entire <div> for a 2-tile version -->
+  <div style="flex: 1; padding: 28px 28px; border-right: 1px solid rgba(255,255,255,0.1);">
+    <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 42px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">STAT3_VALUE</div>
+    <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);">STAT3_LABEL</div>
+  </div>
+
+  <!-- Tile 4 — OMIT this entire <div> for a 2- or 3-tile version; remove border-right from tile 3 -->
+  <div style="flex: 1; padding: 28px 28px;">
+    <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 42px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">STAT4_VALUE</div>
+    <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);">STAT4_LABEL</div>
+  </div>
+
+</div>

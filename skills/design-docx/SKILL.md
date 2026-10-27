@@ -363,7 +363,7 @@ new Paragraph({
 Icons aren't currently used in this skill's templates (the letterhead
 references have none). If a document needs one — an icon-led callout or
 list item, say — the source is Material Symbols only, same as
-`gcs-social-media`/`gcs-brochure`.
+`gcs-social-media`/`design-brochure-pdf`.
 
 Because `docx-js`'s `ImageRun` doesn't support SVG (the same constraint
 already noted above for logos — "Export the reference `.svg` logos to

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Table Usage Guidelines" description="Mobile table rules one/two-pager for copywriters" -->
+<helmet>
+<script src="./ds-base.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yrsa:ital,wght@0,400;0,500;1,400&amp;family=Heebo:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+@page { size: 210mm 297mm; margin: 0; }
+@media print {
+  html, body { margin: 0 !important; padding: 0 !important; }
+  [data-doc-wrapper] { background: none !important; padding: 0 !important; min-height: unset !important; }
+  [data-doc-page] { margin: 0 !important; box-shadow: none !important; border-radius: 0 !important; page-break-after: always; break-after: page; width: 210mm !important; height: 297mm !important; overflow: hidden !important; }
+  [data-doc-page]:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</helmet>
+
+<div data-doc-wrapper="" style="background: #DDE0E8; padding: 40px 24px; min-height: 100vh; font-family: 'Heebo', 'Helvetica Neue', sans-serif;">
+
+  <!-- PAGE 1 -->
+  <div data-doc-page="" style="width: 794px; min-height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">Content Guidelines</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #000957;">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 60px; flex-shrink: 0;"></div>
+
+    <div style="padding: 44px 60px 0;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #3D51E8; margin-bottom: 16px;">For Copywriters &amp; Editors</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 44px; color: #16182A; line-height: 1.08; letter-spacing: -1px; margin-bottom: 14px;">Using Tables on the Website</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 300; color: #6F7185; line-height: 1.7; max-width: 560px; margin-bottom: 28px;">Rules for building tables that stay readable on mobile — where most of our traffic happens.</div>
+    </div>
+
+    <!-- Principle callout -->
+    <div style="margin: 0 60px 36px; background: #000957; border-radius: 6px; padding: 24px 28px; display: flex; gap: 18px; align-items: flex-start;">
+      <div style="font-family: 'Yrsa', serif; font-style: italic; font-size: 30px; color: #3D51E8; line-height: 1; flex-shrink: 0;">“</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 400; color: #FFFFFF; line-height: 1.6;">UX comes before content. If a table can't be read comfortably on a phone, it should not go on the page as-is — restructure it or use a different format.</div>
+    </div>
+
+    <div style="padding: 0 60px;">
+      <!-- When to use -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #000957; margin-bottom: 16px;">01 · When to Use a Table</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px;">
+        <div style="background: #F2F3FE; border-radius: 6px; padding: 20px 22px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #1B7A5A; margin-bottom: 12px;">✓ Use a table for</div>
+          <ul style="margin: 0; padding-left: 18px; font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #343750; line-height: 1.9;">
+            <li>Comparing 2–4 items across a small set of shared attributes</li>
+            <li>Structured numeric or reference data (fees, thresholds, dates)</li>
+            <li>Content readers scan, not read start‑to‑end</li>
+          </ul>
+        </div>
+        <div style="background: #FBF2F0; border-radius: 6px; padding: 20px 22px;">
+          <div style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #C0442E; margin-bottom: 12px;">✕ Use prose, a list, or cards for</div>
+          <ul style="margin: 0; padding-left: 18px; font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #343750; line-height: 1.9;">
+            <li>Explaining a process, step, or requirement in detail</li>
+            <li>Long-form descriptions, benefits, or country write-ups</li>
+            <li>Anything a single cell can't hold in one short line</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Hard limits -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #000957; margin-bottom: 16px;">02 · Hard Limits</div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px;">
+        <div style="border: 1px solid #E8E9F2; border-radius: 6px; padding: 18px 16px; text-align: center;">
+          <div style="font-family: 'Yrsa', serif; font-size: 34px; color: #000957; line-height: 1;">3</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6F7185; margin-top: 8px;">Columns max (incl. label)</div>
+        </div>
+        <div style="border: 1px solid #E8E9F2; border-radius: 6px; padding: 18px 16px; text-align: center;">
+          <div style="font-family: 'Yrsa', serif; font-size: 34px; color: #000957; line-height: 1;">6</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6F7185; margin-top: 8px;">Rows before "show more"</div>
+        </div>
+        <div style="border: 1px solid #E8E9F2; border-radius: 6px; padding: 18px 16px; text-align: center;">
+          <div style="font-family: 'Yrsa', serif; font-size: 34px; color: #000957; line-height: 1;">1</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6F7185; margin-top: 8px;">Data point per cell</div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 32px;">
+        <div style="border: 1px solid #E8E9F2; border-radius: 6px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between;">
+          <span style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: #343750;">Header text</span>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 700; color: #000957;">≤ 18 characters</span>
+        </div>
+        <div style="border: 1px solid #E8E9F2; border-radius: 6px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between;">
+          <span style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 400; color: #343750;">Cell text</span>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 700; color: #000957;">≤ 40 characters</span>
+        </div>
+      </div>
+
+      <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 300; font-style: italic; color: #9B9CAD; line-height: 1.7;">These are ceilings, not targets — the shortest label that stays clear always wins. Every column beyond the first must justify itself on a 375px screen.</div>
+    </div>
+
+    <div style="flex: 1;"></div>
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; margin-top: 24px;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">Global Citizen Solutions — Internal Content Guideline</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">01</span>
+    </div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div data-doc-page="" style="width: 794px; min-height: 1123px; margin: 0 auto; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+    <div style="padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">Content Guidelines</span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <img src="../../assets/logos/GCS-Symbol-Blue.svg" style="height: 15px; width: auto;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #000957;">Global Citizen Solutions</span>
+      </div>
+    </div>
+    <div style="border-bottom: 1px solid #E0E2EA; margin: 0 60px; flex-shrink: 0;"></div>
+
+    <div style="padding: 44px 60px 0; flex: 1;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #000957; margin-bottom: 16px;">03 · If a Table Runs Too Big</div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 26px; color: #16182A; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 24px;">Restructure it, in this order</div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px;">
+        <div style="display: flex; gap: 18px; align-items: flex-start; background: #F9FAFF; border-radius: 6px; padding: 16px 20px;">
+          <div style="width: 26px; height: 26px; border-radius: 50%; background: #000957; color: #FFFFFF; font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+          <div><span style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A;">Cut to the essential columns.</span> <span style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #343750;">Keep only what a reader decides with — usually 2, never more than 3. Move supporting detail into a second line inside the same cell.</span></div>
+        </div>
+        <div style="display: flex; gap: 18px; align-items: flex-start; background: #F9FAFF; border-radius: 6px; padding: 16px 20px;">
+          <div style="width: 26px; height: 26px; border-radius: 50%; background: #000957; color: #FFFFFF; font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+          <div><span style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A;">Split one table into several.</span> <span style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #343750;">Group rows by category (e.g. by region, by programme type) under their own subheading instead of one long table with many rows.</span></div>
+        </div>
+        <div style="display: flex; gap: 18px; align-items: flex-start; background: #F9FAFF; border-radius: 6px; padding: 16px 20px;">
+          <div style="width: 26px; height: 26px; border-radius: 50%; background: #000957; color: #FFFFFF; font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+          <div><span style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A;">Push the rest one click deeper.</span> <span style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #343750;">Remaining detail becomes an expandable row, a linked country/programme page, or an FAQ — not another column.</span></div>
+        </div>
+        <div style="display: flex; gap: 18px; align-items: flex-start; background: #F9FAFF; border-radius: 6px; padding: 16px 20px;">
+          <div style="width: 26px; height: 26px; border-radius: 50%; background: #000957; color: #FFFFFF; font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</div>
+          <div><span style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #16182A;">Last resort: stacked cards.</span> <span style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #343750;">If the data genuinely needs 5+ attributes per item, ask design/dev for the card layout below rather than shrinking a table to fit.</span></div>
+        </div>
+      </div>
+
+      <!-- Good vs bad example -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #000957; margin-bottom: 16px;">On a 375px Screen</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 36px;">
+        <!-- Bad -->
+        <div>
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 10px;">
+            <span style="color: #C0442E; font-size: 13px; font-weight: 700;">✕</span>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #C0442E;">Too wide</span>
+          </div>
+          <div style="border: 1px solid #F0D8D3; border-radius: 6px; overflow: hidden; width: 172px;">
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); background: #FBF2F0;">
+              <div style="padding: 6px 4px; font-size: 6px; font-family: 'Heebo', sans-serif; font-weight: 700; color: #C0442E; border-right: 1px solid #F0D8D3;">CTRY</div>
+              <div style="padding: 6px 4px; font-size: 6px; font-family: 'Heebo', sans-serif; font-weight: 700; color: #C0442E; border-right: 1px solid #F0D8D3;">VISA</div>
+              <div style="padding: 6px 4px; font-size: 6px; font-family: 'Heebo', sans-serif; font-weight: 700; color: #C0442E; border-right: 1px solid #F0D8D3;">MIN.</div>
+              <div style="padding: 6px 4px; font-size: 6px; font-family: 'Heebo', sans-serif; font-weight: 700; color: #C0442E; border-right: 1px solid #F0D8D3;">TIME</div>
+              <div style="padding: 6px 4px; font-size: 6px; font-family: 'Heebo', sans-serif; font-weight: 700; color: #C0442E; border-right: 1px solid #F0D8D3;">QOL</div>
+              <div style="padding: 6px 4px; font-size: 6px; font-family: 'Heebo', sans-serif; font-weight: 700; color: #C0442E;">TAX</div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid #F0D8D3;">
+              <div style="padding: 6px 4px; font-size: 6px; font-family: 'Heebo', sans-serif; color: #343750; border-right: 1px solid #F0D8D3; overflow: hidden;">Malta</div>
+              <div style="padding: 6px 4px; font-size: 6px; font-family: 'Heebo', sans-serif; color: #343750; border-right: 1px solid #F0D8D3; overflow: hidden;">186 c...</div>
+              <div style="padding: 6px 4px; font-size: 6px; font-family: 'Heebo', sans-serif; color: #343750; border-right: 1px solid #F0D8D3; overflow: hidden;">€690k</div>
+              <div style="padding: 6px 4px; font-size: 6px; font-family: 'Heebo', sans-serif; color: #343750; border-right: 1px solid #F0D8D3; overflow: hidden;">12-36</div>
+              <div style="padding: 6px 4px; font-size: 6px; font-family: 'Heebo', sans-serif; color: #343750; border-right: 1px solid #F0D8D3; overflow: hidden;">Exc.</div>
+              <div style="padding: 6px 4px; font-size: 6px; font-family: 'Heebo', sans-serif; color: #343750; overflow: hidden;">0%...</div>
+            </div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.6; margin-top: 10px;">6 columns force truncation and horizontal scroll — unreadable and untappable.</div>
+        </div>
+        <!-- Good -->
+        <div>
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 10px;">
+            <span style="color: #1B7A5A; font-size: 13px; font-weight: 700;">✓</span>
+            <span style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #1B7A5A;">Fits the screen</span>
+          </div>
+          <div style="border: 1px solid #DCEEE3; border-radius: 6px; overflow: hidden; width: 172px;">
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr 0.8fr; background: #E7F5ED;">
+              <div style="padding: 6px 6px; font-size: 6px; font-family: 'Heebo', sans-serif; font-weight: 700; color: #1B7A5A; border-right: 1px solid #DCEEE3;">COUNTRY</div>
+              <div style="padding: 6px 6px; font-size: 6px; font-family: 'Heebo', sans-serif; font-weight: 700; color: #1B7A5A; border-right: 1px solid #DCEEE3;">MIN. INV.</div>
+              <div style="padding: 6px 6px; font-size: 6px; font-family: 'Heebo', sans-serif; font-weight: 700; color: #1B7A5A;">QOL</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr 0.8fr; border-top: 1px solid #DCEEE3;">
+              <div style="padding: 8px 6px; font-size: 7px; font-family: 'Heebo', sans-serif; color: #16182A; font-weight: 600; border-right: 1px solid #DCEEE3;">Malta</div>
+              <div style="padding: 8px 6px; font-size: 7px; font-family: 'Heebo', sans-serif; color: #343750; border-right: 1px solid #DCEEE3;">€690k</div>
+              <div style="padding: 8px 6px; font-size: 7px; font-family: 'Heebo', sans-serif; color: #1B7A5A; font-weight: 700;">Exc.</div>
+            </div>
+          </div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; line-height: 1.6; margin-top: 10px;">3 columns, no scroll needed. Timeline and tax detail live on the linked country page.</div>
+        </div>
+      </div>
+
+      <!-- Dev ask -->
+      <sc-if value="{{ showDevCallout }}" hint-placeholder-val="{{ true }}">
+      <div style="background: #000957; border-radius: 6px; padding: 22px 26px; margin-bottom: 8px;">
+        <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #3D51E8; margin-bottom: 10px;">Needs Dev Input</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.85); line-height: 1.75;">If a dataset can't be trimmed to these limits, don't force it into a static table — flag it to dev/design for a responsive pattern: sticky first column with horizontal scroll, collapse to stacked cards below 480px, or a "show more" row toggle. These are engineering changes, not something copy alone can fix.</div>
+      </div>
+      </sc-if>
+    </div>
+
+    <div style="border-top: 1px solid #E0E2EA; padding: 14px 60px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">Global Citizen Solutions — Internal Content Guideline</span>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">02</span>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 900, &quot;height&quot;: 1250},
+  &quot;showDevCallout&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Content&quot;}
+}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showDevCallout: this.props.showDevCallout ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>

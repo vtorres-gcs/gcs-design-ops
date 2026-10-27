@@ -6,7 +6,7 @@ and returned as a `data:` URI. Standard library only, no network, no repo
 checkout, no hardcoded base64 in the docs.
 
 Icons are NOT here on purpose: Material Symbols are fetched with `curl` and
-pasted inline as `<svg fill="currentColor">`, exactly as the gcs-brochure skill
+pasted inline as `<svg fill="currentColor">`, exactly as the design-brochure-pdf skill
 does it. Flags stay `<img>` via `flag_uri()`, the one network call.
 
 Import it from a generation script:
@@ -153,7 +153,7 @@ TRUSTPILOT_LOGO = data_uri(ASSETS / "images" / "logo-trustpilot.png")     # Type
 # ----------------------------------------------------------------------------
 # Icons are deliberately NOT handled here. Material Symbols are fetched with
 # `curl` in Bash and pasted **inline** into the slide HTML as
-# `<svg fill="currentColor">` — same treatment as the gcs-brochure skill. An
+# `<svg fill="currentColor">` — same treatment as the design-brochure-pdf skill. An
 # icon is never an <img>, never a data URI, never a bundled file. See the
 # "Icon images" section of references/rendering.md.
 #

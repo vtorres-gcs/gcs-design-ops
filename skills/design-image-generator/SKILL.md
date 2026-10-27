@@ -12,7 +12,7 @@ description: >
   permitted social imagery, and corporate/editorial photography concepts. Not
   for video, or for AI use cases prohibited by the bundled imagery guideline.
   Not for iconography either: icon sourcing and rendering (Material Symbols,
-  inline SVG icons) is governed per-skill (see gcs-social-media, gcs-brochure,
+  inline SVG icons) is governed per-skill (see gcs-social-media, design-brochure-pdf,
   etc.); this skill covers photographic and illustrative imagery only.
 ---
 

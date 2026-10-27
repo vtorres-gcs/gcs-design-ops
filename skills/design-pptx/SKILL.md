@@ -1251,7 +1251,7 @@ Use the official pre-rasterized PNGs — **no SVG rasterization needed for logos
 
 Prefer `assets/icons/{outlined|rounded|sharp}/{name}[-fill].svg` (91MB, shared across the whole design-system repo, requires that repo checked out alongside this folder). Default: **outlined**, 24px, unless heavier/lighter feel needed.
 
-**If the full repo isn't checked out** (skill running standalone), fetch the Material Symbol on demand instead of skipping it — same fallback `gcs-brochure` uses (`curl` via Bash, never the WebFetch tool):
+**If the full repo isn't checked out** (skill running standalone), fetch the Material Symbol on demand instead of skipping it — same fallback `design-brochure-pdf` uses (`curl` via Bash, never the WebFetch tool):
 
 ```bash
 curl -sL "https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/account_balance/materialsymbolsoutlined/account_balance_24px.svg" -o account_balance.svg
@@ -1259,7 +1259,7 @@ curl -sL "https://raw.githubusercontent.com/google/material-design-icons/master/
 
 Only ask the user for the specific SVG if that fetch itself fails (icon name not found in Material Symbols).
 
-Unlike `gcs-brochure` — which inlines the fetched SVG markup directly into HTML (`fill="currentColor"`) — OOXML slide shapes can't hold inline scalable vector markup, so every icon (repo-sourced or fetched) still has to be rasterized to PNG and recolored before embedding:
+Unlike `design-brochure-pdf` — which inlines the fetched SVG markup directly into HTML (`fill="currentColor"`) — OOXML slide shapes can't hold inline scalable vector markup, so every icon (repo-sourced or fetched) still has to be rasterized to PNG and recolored before embedding:
 
 ```python
 import cairosvg

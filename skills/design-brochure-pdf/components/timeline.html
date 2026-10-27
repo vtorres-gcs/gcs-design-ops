@@ -1,0 +1,113 @@
+<!-- COMPONENT: timeline
+     Vertical step-by-step process — numbered circles connected by a gradient line.
+     Use for application processes, project stages, chronological event sequences.
+
+     WHEN TO USE:
+       Application process timelines (most common in programme guides and case studies).
+       Project milestones. Step-by-step "how it works" sequences.
+       Typically occupies most of a content page on its own (5 steps ≈ full page).
+       Can share a page with stat-strip-dark below, but watch for overflow.
+
+     PARAMETERS:
+       timelineHeading — Yrsa section heading (e.g. "From Application to Residency")
+       timelineSubtitle — Heebo descriptor sentence (optional; omit div if not needed)
+       stepN_title    — Title for step N (Yrsa 22px)
+       stepN_duration — Duration label shown next to title (Heebo, Electric Blue)
+       stepN_desc     — Body paragraph for step N (Heebo 14px)
+       Last step circle uses #3D51E8 background to signal completion.
+       Clone the step block pattern for any number of steps (3–6 typical).
+
+     HEIGHT ESTIMATE (at standard font sizes):
+       Header block (heading + subtitle): ~110px
+       Each step: ~100–120px depending on desc length
+       5 steps: ~600–700px total — fits comfortably on a page.
+
+     SOURCE: extracted from lead-magnet page 7 (5 steps). -->
+
+<div data-component="timeline" style="padding: 52px 64px; flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+
+  <!-- Heading block -->
+  <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">Application Process</div>
+  <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 40px; color: #16182A; line-height: 1.08; letter-spacing: -0.8px; margin-bottom: 10px;">TIMELINE_HEADING</div>
+  <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #6F7185; line-height: 1.65; margin-bottom: 48px;">TIMELINE_SUBTITLE</div>
+
+  <!-- Step list -->
+  <div style="flex: 1; display: flex; flex-direction: column; gap: 0; position: relative;">
+
+    <!-- Connecting vertical line -->
+    <div style="position: absolute; left: 19px; top: 20px; bottom: 20px; width: 1px; background: linear-gradient(to bottom, #3D51E8 0%, #ECEDF5 100%);"></div>
+
+    <!-- Step 1 — circle background: #000957 (non-final steps) -->
+    <div style="display: flex; gap: 28px; align-items: flex-start; padding-bottom: 36px; position: relative;">
+      <div style="width: 40px; height: 40px; border-radius: 50%; background: #000957; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 700; color: #FFFFFF; letter-spacing: 0.04em;">01</span>
+      </div>
+      <div style="flex: 1; padding-top: 8px;">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px;">
+          <div style="font-family: 'Yrsa', serif; font-size: 22px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">STEP1_TITLE</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; color: #3D51E8; letter-spacing: 0.12em; text-transform: uppercase;">STEP1_DURATION</div>
+        </div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.75;">STEP1_DESC</div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div style="display: flex; gap: 28px; align-items: flex-start; padding-bottom: 36px; position: relative;">
+      <div style="width: 40px; height: 40px; border-radius: 50%; background: #000957; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 700; color: #FFFFFF; letter-spacing: 0.04em;">02</span>
+      </div>
+      <div style="flex: 1; padding-top: 8px;">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px;">
+          <div style="font-family: 'Yrsa', serif; font-size: 22px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">STEP2_TITLE</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; color: #3D51E8; letter-spacing: 0.12em; text-transform: uppercase;">STEP2_DURATION</div>
+        </div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.75;">STEP2_DESC</div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div style="display: flex; gap: 28px; align-items: flex-start; padding-bottom: 36px; position: relative;">
+      <div style="width: 40px; height: 40px; border-radius: 50%; background: #000957; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 700; color: #FFFFFF; letter-spacing: 0.04em;">03</span>
+      </div>
+      <div style="flex: 1; padding-top: 8px;">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px;">
+          <div style="font-family: 'Yrsa', serif; font-size: 22px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">STEP3_TITLE</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; color: #3D51E8; letter-spacing: 0.12em; text-transform: uppercase;">STEP3_DURATION</div>
+        </div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.75;">STEP3_DESC</div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div style="display: flex; gap: 28px; align-items: flex-start; padding-bottom: 36px; position: relative;">
+      <div style="width: 40px; height: 40px; border-radius: 50%; background: #000957; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 700; color: #FFFFFF; letter-spacing: 0.04em;">04</span>
+      </div>
+      <div style="flex: 1; padding-top: 8px;">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px;">
+          <div style="font-family: 'Yrsa', serif; font-size: 22px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">STEP4_TITLE</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; color: #3D51E8; letter-spacing: 0.12em; text-transform: uppercase;">STEP4_DURATION</div>
+        </div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.75;">STEP4_DESC</div>
+      </div>
+    </div>
+
+    <!-- Step 5 (FINAL — circle background: #3D51E8 to signal completion) -->
+    <div style="display: flex; gap: 28px; align-items: flex-start; position: relative;">
+      <div style="width: 40px; height: 40px; border-radius: 50%; background: #3D51E8; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1;">
+        <span style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 700; color: #FFFFFF; letter-spacing: 0.04em;">05</span>
+      </div>
+      <div style="flex: 1; padding-top: 8px;">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px;">
+          <div style="font-family: 'Yrsa', serif; font-size: 22px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">STEP5_TITLE</div>
+          <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; color: #3D51E8; letter-spacing: 0.12em; text-transform: uppercase;">STEP5_DURATION</div>
+        </div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 300; color: #4B4E65; line-height: 1.75;">STEP5_DESC</div>
+      </div>
+    </div>
+
+    <!-- Add or remove step blocks above. Make the last step always use #3D51E8 circle. -->
+
+  </div>
+</div>

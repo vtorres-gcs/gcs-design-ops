@@ -1,0 +1,191 @@
+<!-- COMPONENT: month-grid
+     12-month publication calendar grid — 3 columns × 4 rows, each cell showing a month's
+     events with colour-coded dot indicators (Report/Briefing/Index).
+     GIU sub-brand only — use exclusively in GIU Calendar brochures.
+
+     WHEN TO USE:
+       Annual GIU publication schedule page.
+       Any calendar-style overview where events are organised by month.
+       This component fills a full content page on its own.
+
+     COLOUR CODING (dot colours):
+       #000957  Report        — major annual/quarterly research reports
+       #3D51E8  Briefing      — shorter intelligence briefings
+       #7B8FFF  Index         — ranking or index publications
+     The current month (or highlighted publication) uses a Night Blue border + #F7F8FD bg.
+
+     PARAMETERS:
+       calYear     — 4-digit year for the header label (e.g. "2026")
+       gridHeading — Yrsa heading (e.g. "A Year of Intelligence")
+       MONTH_NAME  — Each month cell: replace event text and choose the right dot colour.
+                     Clone the event item <div> inside a month cell for multiple events.
+                     To highlight a month (e.g. the current one): change border to
+                     "1.5px solid #000957" and background to #F7F8FD.
+
+     HEIGHT: fills the content area (~1023px) — do not combine with other components.
+
+     SOURCE: extracted from giu-calendar page 2. -->
+
+<div data-component="month-grid" style="padding: 28px 56px 24px; flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+
+  <!-- Header -->
+  <div style="margin-bottom: 16px; flex-shrink: 0;">
+    <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 8px;">CALYEAR Publication Calendar</div>
+    <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 36px; color: #16182A; line-height: 1.08; letter-spacing: -0.6px;">GRID_HEADING</div>
+  </div>
+
+  <!-- Legend -->
+  <div style="display: flex; gap: 20px; margin-bottom: 16px; flex-shrink: 0;">
+    <div style="display: flex; align-items: center; gap: 7px;">
+      <div style="width: 10px; height: 10px; border-radius: 2px; background: #000957; flex-shrink: 0;"></div>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; color: #6F7185; letter-spacing: 0.04em;">Report</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 7px;">
+      <div style="width: 10px; height: 10px; border-radius: 2px; background: #3D51E8; flex-shrink: 0;"></div>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; color: #6F7185; letter-spacing: 0.04em;">Briefing</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 7px;">
+      <div style="width: 10px; height: 10px; border-radius: 2px; background: #7B8FFF; flex-shrink: 0;"></div>
+      <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; color: #6F7185; letter-spacing: 0.04em;">Index</span>
+    </div>
+  </div>
+
+  <!-- 3×4 Month grid -->
+  <div style="flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 1fr); gap: 10px; overflow: hidden;">
+
+    <!-- January — standard cell -->
+    <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">January</div>
+      <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+        <!-- Event item: change dot colour to match type (#000957 / #3D51E8 / #7B8FFF) -->
+        <div style="display: flex; align-items: flex-start; gap: 6px;">
+          <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">JAN_EVENT_1</span>
+        </div>
+        <!-- Clone the event <div> above for additional events in this month -->
+      </div>
+    </div>
+
+    <!-- February -->
+    <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">February</div>
+      <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+        <div style="display: flex; align-items: flex-start; gap: 6px;">
+          <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">FEB_EVENT_1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- March — HIGHLIGHTED cell (e.g. current month or major publication) -->
+    <div style="border: 1.5px solid #000957; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; background: #F7F8FD; overflow: hidden;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #D4D6E8;">March</div>
+      <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+        <div style="display: flex; align-items: flex-start; gap: 6px;">
+          <div style="width: 6px; height: 6px; border-radius: 1px; background: #000957; flex-shrink: 0; margin-top: 3px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #000957; line-height: 1.45;">MAR_EVENT_1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- April -->
+    <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">April</div>
+      <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+        <div style="display: flex; align-items: flex-start; gap: 6px;">
+          <div style="width: 6px; height: 6px; border-radius: 1px; background: #7B8FFF; flex-shrink: 0; margin-top: 3px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">APR_EVENT_1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- May -->
+    <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">May</div>
+      <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+        <div style="display: flex; align-items: flex-start; gap: 6px;">
+          <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">MAY_EVENT_1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- June -->
+    <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">June</div>
+      <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+        <div style="display: flex; align-items: flex-start; gap: 6px;">
+          <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">JUN_EVENT_1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- July -->
+    <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">July</div>
+      <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+        <div style="display: flex; align-items: flex-start; gap: 6px;">
+          <div style="width: 6px; height: 6px; border-radius: 1px; background: #000957; flex-shrink: 0; margin-top: 3px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">JUL_EVENT_1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- August -->
+    <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">August</div>
+      <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+        <div style="display: flex; align-items: flex-start; gap: 6px;">
+          <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">AUG_EVENT_1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- September -->
+    <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">September</div>
+      <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+        <div style="display: flex; align-items: flex-start; gap: 6px;">
+          <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">SEP_EVENT_1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- October -->
+    <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">October</div>
+      <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+        <div style="display: flex; align-items: flex-start; gap: 6px;">
+          <div style="width: 6px; height: 6px; border-radius: 1px; background: #7B8FFF; flex-shrink: 0; margin-top: 3px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">OCT_EVENT_1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- November -->
+    <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">November</div>
+      <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+        <div style="display: flex; align-items: flex-start; gap: 6px;">
+          <div style="width: 6px; height: 6px; border-radius: 1px; background: #3D51E8; flex-shrink: 0; margin-top: 3px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">NOV_EVENT_1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- December -->
+    <div style="border: 1px solid #ECEDF5; border-radius: 4px; padding: 14px; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #000957; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ECEDF5;">December</div>
+      <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+        <div style="display: flex; align-items: flex-start; gap: 6px;">
+          <div style="width: 6px; height: 6px; border-radius: 1px; background: #000957; flex-shrink: 0; margin-top: 3px;"></div>
+          <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #4B4E65; line-height: 1.45;">DEC_EVENT_1</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<!-- COMPONENT: stat-strip-light
+     3-column grid of metrics on a light (#F7F8FD) background — each tile has a
+     label, large value, and optional description line. Use when the data needs
+     more breathing room than stat-strip-dark, or when three stats benefit from labels.
+
+     WHEN TO USE:
+       Country-at-a-glance data grids (passport strength, GDP, QoL index, etc.).
+       Programme quick-facts panels.
+       Prefer stat-strip-dark for 4 stats; use this when 3 stats need richer labels.
+
+     PARAMETERS:
+       stat1Label / stat1Value / stat1Desc — first cell (label above, value large, desc small)
+       stat2Label / stat2Value / stat2Desc — second cell
+       stat3Label / stat3Value / stat3Desc — third cell
+       To add a 4th–6th tile: add another row of 3 divs inside the grid container.
+       Accent the last/highlight tile by changing background to #F2F3FE and label color to #3D51E8.
+
+     HEIGHT ESTIMATE: ~120px per row of 3 tiles (fixed)
+
+     SOURCE: extracted from lead-magnet page 4 (6-tile 2-row grid) and factsheet page 2. -->
+
+<div data-component="stat-strip-light" style="margin: 0 64px 48px; flex-shrink: 0; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; background: #ECEDF5; border-radius: 4px; overflow: hidden;">
+
+  <!-- Tile 1 -->
+  <div style="background: #FFFFFF; padding: 24px 22px;">
+    <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 10px;">STAT1_LABEL</div>
+    <div style="font-family: 'Yrsa', serif; font-size: 38px; color: #000957; font-weight: 400; line-height: 1; margin-bottom: 4px;">STAT1_VALUE</div>
+    <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #6F7185;">STAT1_DESC</div>
+  </div>
+
+  <!-- Tile 2 -->
+  <div style="background: #FFFFFF; padding: 24px 22px;">
+    <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 10px;">STAT2_LABEL</div>
+    <div style="font-family: 'Yrsa', serif; font-size: 38px; color: #000957; font-weight: 400; line-height: 1; margin-bottom: 4px;">STAT2_VALUE</div>
+    <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #6F7185;">STAT2_DESC</div>
+  </div>
+
+  <!-- Tile 3 — use background: #F2F3FE and label color: #3D51E8 to accent a highlight tile -->
+  <div style="background: #FFFFFF; padding: 24px 22px;">
+    <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9B9CAD; margin-bottom: 10px;">STAT3_LABEL</div>
+    <div style="font-family: 'Yrsa', serif; font-size: 38px; color: #000957; font-weight: 400; line-height: 1; margin-bottom: 4px;">STAT3_VALUE</div>
+    <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #6F7185;">STAT3_DESC</div>
+  </div>
+
+  <!-- Tile 4 — clone and continue for a 2-row (6-tile) grid; OMIT for 3-tile version -->
+  <!-- <div style="background: #FFFFFF; padding: 24px 22px;">...</div> -->
+
+</div>

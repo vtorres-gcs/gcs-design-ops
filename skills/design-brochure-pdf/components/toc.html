@@ -1,0 +1,97 @@
+<!-- COMPONENT: toc
+     Table of Contents — numbered section rows with title, description, and page reference.
+     Only include when the brochure has 5 or more sections (per SKILL.md rule).
+
+     WHEN TO USE:
+       Documents with 5+ content sections where a navigation index adds value.
+       Lead Magnet, GIU Corporate, and GIU Calendar style documents.
+       Do NOT add a TOC to Case Study or Factsheet brochures — too short to warrant one.
+
+     PARAMETERS:
+       tocTitle     — Yrsa heading above the row list (e.g. "What's Inside", "In This Report")
+       tocSubLabel  — small ALL-CAPS label above tocTitle (e.g. "Contents", "In This Report")
+       itemN_num    — section number string (e.g. "01", "02")
+       itemN_title  — section title (Yrsa 20px)
+       itemN_desc   — one-line description (Heebo 11px, muted)
+       itemN_page   — page number right-aligned (e.g. "03")
+       Clone the item row for each section. The last item should have a border-bottom too.
+
+     HEIGHT ESTIMATE:
+       Header block: ~120px · Each row: ~58px
+       6-item TOC: ~468px total — leaves room for a brief intro paragraph above, if needed.
+
+     SOURCE: extracted from lead-magnet page 2 and giu-corporate page 2. -->
+
+<div data-component="toc" style="padding: 52px 64px; flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+
+  <!-- Section label above heading -->
+  <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">TOC_SUB_LABEL</div>
+
+  <!-- Heading -->
+  <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 42px; color: #16182A; line-height: 1.08; letter-spacing: -0.8px; margin-bottom: 48px;">TOC_TITLE</div>
+
+  <!-- TOC rows — clone this block for each section -->
+  <div style="display: flex; flex-direction: column; gap: 0;">
+
+    <!-- Item 1 -->
+    <div style="display: flex; align-items: baseline; gap: 0; padding: 20px 0; border-top: 1px solid #ECEDF5;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">01</div>
+      <div style="flex: 1;">
+        <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">ITEM1_TITLE</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">ITEM1_DESC</div>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #CACCD8; letter-spacing: 0.06em;">03</div>
+    </div>
+
+    <!-- Item 2 -->
+    <div style="display: flex; align-items: baseline; gap: 0; padding: 20px 0; border-top: 1px solid #ECEDF5;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">02</div>
+      <div style="flex: 1;">
+        <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">ITEM2_TITLE</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">ITEM2_DESC</div>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #CACCD8; letter-spacing: 0.06em;">04</div>
+    </div>
+
+    <!-- Item 3 -->
+    <div style="display: flex; align-items: baseline; gap: 0; padding: 20px 0; border-top: 1px solid #ECEDF5;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">03</div>
+      <div style="flex: 1;">
+        <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">ITEM3_TITLE</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">ITEM3_DESC</div>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #CACCD8; letter-spacing: 0.06em;">05</div>
+    </div>
+
+    <!-- Item 4 -->
+    <div style="display: flex; align-items: baseline; gap: 0; padding: 20px 0; border-top: 1px solid #ECEDF5;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">04</div>
+      <div style="flex: 1;">
+        <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">ITEM4_TITLE</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">ITEM4_DESC</div>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #CACCD8; letter-spacing: 0.06em;">06</div>
+    </div>
+
+    <!-- Item 5 -->
+    <div style="display: flex; align-items: baseline; gap: 0; padding: 20px 0; border-top: 1px solid #ECEDF5;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">05</div>
+      <div style="flex: 1;">
+        <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">ITEM5_TITLE</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">ITEM5_DESC</div>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #CACCD8; letter-spacing: 0.06em;">07</div>
+    </div>
+
+    <!-- Last item always gets border-bottom too -->
+    <div style="display: flex; align-items: baseline; gap: 0; padding: 20px 0; border-top: 1px solid #ECEDF5; border-bottom: 1px solid #ECEDF5;">
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; color: #3D51E8; width: 36px; flex-shrink: 0; letter-spacing: 0.08em;">06</div>
+      <div style="flex: 1;">
+        <div style="font-family: 'Yrsa', serif; font-size: 20px; font-weight: 400; color: #16182A; letter-spacing: -0.2px;">ITEM6_TITLE</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 300; color: #9B9CAD; margin-top: 2px;">ITEM6_DESC</div>
+      </div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 500; color: #CACCD8; letter-spacing: 0.06em;">08</div>
+    </div>
+
+  </div>
+</div>

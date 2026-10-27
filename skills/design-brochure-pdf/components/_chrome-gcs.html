@@ -1,0 +1,40 @@
+<!-- GCS CONTENT PAGE WRAPPER — _chrome-gcs.html
+     Use for all content pages in GCS-brand brochures (Case Study, Lead Magnet,
+     Quarterly Report, Factsheet, and any non-GIU document).
+
+     HOW TO USE:
+     1. Copy this entire file content into assembled.html as a new [data-doc-page] block.
+     2. Replace EYEBROW_TEXT with the section label (e.g. "01 · Introduction").
+     3. Replace PAGE_NUMBER with the 2-digit page number (e.g. "02").
+     4. Replace YEAR with the 4-digit year (e.g. "2026").
+     5. Paste your chosen component snippets between the two INSERT markers.
+
+     HEIGHTS (at 794px wide):
+       Header chrome:  56px (including border-bottom)
+       Footer chrome:  44px (including border-top)
+       Available for components: ~1023px (= 1123px total − 56px − 44px)
+
+     Asset paths are relative to skills/design-brochure-pdf/assets/covers/ (where assembled.html lives). -->
+
+<div data-doc-page="" style="width: 794px; min-height: 1123px; height: 1123px; margin: 0 auto 32px; background: #FFFFFF; border-radius: 2px; box-shadow: 0 4px 20px rgba(0,9,87,0.1); display: flex; flex-direction: column; overflow: hidden;">
+
+  <!-- Header chrome -->
+  <div style="padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+    <span style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9CAD;">EYEBROW_TEXT</span>
+    <!-- GCS-Secondary-Blue.svg is the horizontal lockup — it already contains the
+         starburst symbol. Never pair it with GCS-Symbol-Blue.svg (double symbol). -->
+    <img src="../logos/GCS-Secondary-Blue.svg" style="height: 11px; width: auto;">
+  </div>
+  <div style="border-bottom: 1px solid #E0E2EA; margin: 0 64px; flex-shrink: 0;"></div>
+
+  <!-- ── INSERT COMPONENTS BELOW THIS LINE ───────────────────── -->
+
+  <!-- ── INSERT COMPONENTS ABOVE THIS LINE ───────────────────── -->
+
+  <!-- Footer chrome -->
+  <div style="border-top: 1px solid #E0E2EA; padding: 14px 64px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; margin-top: auto;">
+    <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5;">© YEAR Global Citizen Solutions — Confidential</span>
+    <span style="font-family: 'Heebo', sans-serif; font-size: 11px; color: #C6C8D5; letter-spacing: 0.08em;">PAGE_NUMBER</span>
+  </div>
+
+</div>

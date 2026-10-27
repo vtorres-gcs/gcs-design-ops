@@ -1,0 +1,74 @@
+<!-- COMPONENT: bio-card
+     Person card — circular avatar photo + name + title + location.
+     Two layout variants: (A) single card inline, (B) 2-column grid of cards.
+     Most commonly used in CTA pages to introduce advisors or consultants.
+
+     WHEN TO USE:
+       CTA pages introducing GCS advisors ("speak to our team").
+       Case study "meet the advisor" sections.
+       Author attribution in editorial reports.
+       Do NOT use for client profiles (use the case-study client sidebar pattern from
+       _chrome-gcs.html for that).
+
+     PARAMETERS:
+       name       — Full name (Yrsa 24px)
+       title      — Job title / specialisation (Heebo 11px, muted)
+       location   — City, Country (Heebo 11px, muted)
+       photoSrc   — Absolute path or URL to headshot JPG/PNG.
+                    GCS headshots: <repo-root>/assets/uploads/<filename>.
+                    Pass empty string to show a placeholder silhouette.
+
+     HEIGHT ESTIMATE:
+       Single card: ~120px
+       2-card grid: ~140px
+
+     SOURCE: extracted from quarterly-report page 3 CTA section. -->
+
+<!-- ── VARIANT A: Single bio card ─────────────────────────── -->
+<div data-component="bio-card" style="padding: 0 64px 48px; flex-shrink: 0;">
+  <div style="display: flex; gap: 20px; align-items: center;">
+    <!-- Avatar -->
+    <div style="width: 72px; height: 72px; border-radius: 50%; flex-shrink: 0; overflow: hidden; background: #E8EAF2;">
+      <img src="PHOTO_SRC" alt="NAME" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
+    </div>
+    <!-- Details -->
+    <div>
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 24px; color: #16182A; margin-bottom: 4px; line-height: 1.2;">NAME</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 400; color: #6F7185; margin-bottom: 2px;">TITLE</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 11px; font-weight: 400; color: #9B9CAD;">LOCATION</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── VARIANT B: 2-column grid of bio cards ──────────────────
+     Replace Variant A above with this block for a 2-advisor layout.
+     Clone the card column for 3 or 4 advisors.
+
+<div data-component="bio-card" style="padding: 0 64px 48px; flex-shrink: 0;">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+
+    <div style="display: flex; gap: 16px; align-items: center; background: #F7F8FD; border-radius: 6px; padding: 20px 20px;">
+      <div style="width: 60px; height: 60px; border-radius: 50%; flex-shrink: 0; overflow: hidden; background: #E8EAF2;">
+        <img src="PHOTO1_SRC" alt="NAME1" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
+      </div>
+      <div>
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 20px; color: #16182A; margin-bottom: 4px; line-height: 1.2;">NAME1</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #6F7185;">TITLE1</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #9B9CAD;">LOCATION1</div>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 16px; align-items: center; background: #F7F8FD; border-radius: 6px; padding: 20px 20px;">
+      <div style="width: 60px; height: 60px; border-radius: 50%; flex-shrink: 0; overflow: hidden; background: #E8EAF2;">
+        <img src="PHOTO2_SRC" alt="NAME2" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
+      </div>
+      <div>
+        <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 20px; color: #16182A; margin-bottom: 4px; line-height: 1.2;">NAME2</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #6F7185;">TITLE2</div>
+        <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 400; color: #9B9CAD;">LOCATION2</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+──────────────────────────────────────────────────────────────── -->

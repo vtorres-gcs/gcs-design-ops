@@ -1,0 +1,56 @@
+<!-- COMPONENT: cta-panel
+     Dark call-to-action section — Night Blue background, large Yrsa heading, body text,
+     optional contact line, and optional stat strip for results/outcomes.
+     Appears at or near the end of a brochure before the back cover.
+
+     WHEN TO USE:
+       "Ready to start?" / "Speak to an advisor" closing page.
+       Results summary on a case study (combine with the results stat-strip inside this panel).
+       Do NOT use this for the back cover — use back-cover.html for that.
+       Typically paired with bio-card below it on the same page.
+
+     PARAMETERS:
+       ctaLine1     — first line of Yrsa heading (e.g. "Ready to Write")
+       ctaLine2     — second line of Yrsa heading, italic (e.g. "Your Story?")
+       ctaBody      — Heebo body paragraph (1–3 sentences)
+       ctaEmail     — Contact email address (displayed verbatim, no link styling needed)
+       Results stat strip: include the inner strip div when showing outcome stats (case study);
+       omit when it's a pure "contact us" CTA.
+
+     HEIGHT ESTIMATE:
+       Without stat strip: ~320px
+       With 3-stat result strip: ~420px
+       Combine with bio-card (Variant B, ~140px) = ~560px total. Fits comfortably on a page.
+
+     SOURCE: extracted from case-study page 3 results strip + quarterly-report page 3 CTA block. -->
+
+<div data-component="cta-panel" style="margin: 40px 64px 32px; flex-shrink: 0; background: #000957; border-radius: 6px; overflow: hidden;">
+
+  <!-- CTA content -->
+  <div style="padding: 48px 48px 40px;">
+    <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 16px;">Next Steps</div>
+    <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 44px; color: #FFFFFF; line-height: 1.06; letter-spacing: -0.8px;">CTA_LINE1</div>
+    <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 44px; color: #B3B5CD; line-height: 1.06; letter-spacing: -0.8px; margin-bottom: 28px;">CTA_LINE2</div>
+    <div style="width: 48px; height: 1px; background: rgba(255,255,255,0.2); margin-bottom: 24px;"></div>
+    <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.65); line-height: 1.75; max-width: 520px; margin-bottom: 20px;">CTA_BODY</div>
+    <!-- Contact email line — OMIT if no email needed -->
+    <div style="font-family: 'Heebo', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5);">CTA_EMAIL</div>
+  </div>
+
+  <!-- Results stat strip — OMIT this entire <div> for pure CTA panels without outcome stats -->
+  <div style="display: flex; border-top: 1px solid rgba(255,255,255,0.1);">
+    <div style="flex: 1; padding: 24px 28px; border-right: 1px solid rgba(255,255,255,0.1);">
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 38px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">RESULT1_VALUE</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4);">RESULT1_LABEL</div>
+    </div>
+    <div style="flex: 1; padding: 24px 28px; border-right: 1px solid rgba(255,255,255,0.1);">
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 38px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">RESULT2_VALUE</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4);">RESULT2_LABEL</div>
+    </div>
+    <div style="flex: 1; padding: 24px 28px;">
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 38px; color: #FFFFFF; line-height: 1; margin-bottom: 6px;">RESULT3_VALUE</div>
+      <div style="font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4);">RESULT3_LABEL</div>
+    </div>
+  </div>
+
+</div>

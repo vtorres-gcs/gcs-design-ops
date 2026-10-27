@@ -1,0 +1,95 @@
+<!-- COMPONENT: table-ranking
+     Data table — for investment options, programme comparisons, ranking tables,
+     or any structured data with rows and columns. Supports flags, badge chips,
+     and icon column headers.
+
+     WHEN TO USE:
+       Investment option comparisons, programme ranking tables, eligibility criteria grids,
+       side-by-side country comparisons. Use whenever data has clear columns and multiple rows.
+       Do NOT hand-build complex tables here — for tables wider than 4 columns or with
+       more than ~10 rows, use the gcs-table embed pattern from
+       references/table-chart-embed.md and paste the resulting <div class="gcs-table"> block.
+
+     BADGE CHIPS (.gc-badge):
+       Add <span class="gc-badge" data-level="green|amber|red">text</span> for status badges.
+       data-level="green" → green background (active/open programmes)
+       data-level="amber" → amber background (pending/conditional)
+       data-level="red"   → red background (closed/suspended)
+       No data-level (default) → neutral blue-grey
+       Chips are for SHORT status words only (≲24 chars: "OPEN", "4-6 MONTHS",
+       "MODERATE"). A longer phrase belongs in the cell as plain text — an
+       uppercase, letter-spaced chip holding a full sentence reads badly and
+       eats the column. Text stays verbatim either way; only the container
+       is your choice.
+
+     COLUMN WIDTHS:
+       The table uses table-layout: fixed (see below), so columns divide evenly
+       unless you set width on the <th>s. 5+ columns of prose do not fit an A4
+       page — use the gcs-table embed pattern instead (see references/table-chart-embed.md).
+
+     FLAGS:
+       Fetch flag PNG into the same folder as assembled.html: curl -sL "https://raw.githubusercontent.com/msikma/country-flags/master/flags/png/<iso2>.png" -o assets/covers/<iso2>.png
+       Embed: <img src="./pt.png" style="width: 20px; height: 20px; object-fit: cover; border-radius: 50%; border: 1px solid #ECEDF5; vertical-align: middle; margin-right: 6px;">
+       Always use the msikma/country-flags source; never flagcdn.com.
+
+     PARAMETERS: column headers and row data — filled verbatim from source content.
+
+     HEIGHT ESTIMATE: header row ~40px + each data row ~44px.
+       A 5-row table ≈ 260px. A 8-row table ≈ 392px. Run check-overflow.js.
+
+     SOURCE: extracted from lead-magnet page 6, giu-corporate table pages, factsheet right panel.
+     See also: references/table-chart-embed.md for the full gcs-table embed pattern. -->
+
+<style>
+/* Badge chip styles — include once per assembled.html <style> block. */
+.gc-badge { display: inline-block; font-family: 'Heebo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; white-space: normal; line-height: 1.3; max-width: 100%; background: #F2F3FE; color: #4B4E65; }
+.gc-badge[data-level="green"] { background: #E8F7EE; color: #15803D; }
+.gc-badge[data-level="amber"] { background: #FDF3E3; color: #B45309; }
+.gc-badge[data-level="red"]   { background: #FDEBEB; color: #B91C1C; }
+</style>
+
+<div data-component="table-ranking" style="padding: 48px 64px; flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+
+  <!-- Optional section heading above the table -->
+  <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 10px;">SECTION_LABEL</div>
+  <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 36px; color: #16182A; line-height: 1.08; letter-spacing: -0.6px; margin-bottom: 28px;">TABLE_HEADING</div>
+
+  <!-- Table -->
+  <div style="flex: 1; overflow: hidden;">
+    <!-- table-layout: fixed is a hard guarantee that no cell content can widen a
+         column past the page edge (where it would be silently clipped). Without
+         explicit widths the columns divide evenly; set width on the <th>s below
+         when the columns need uneven distribution, e.g. a narrow rank column. -->
+    <table style="width: 100%; table-layout: fixed; border-collapse: collapse; font-family: 'Heebo', sans-serif;">
+
+      <!-- Header row -->
+      <thead>
+        <tr style="border-bottom: 2px solid #000957;">
+          <th style="text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #9B9CAD; padding: 0 12px 12px 0;">COL_1_HEADER</th>
+          <th style="text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #9B9CAD; padding: 0 12px 12px;">COL_2_HEADER</th>
+          <th style="text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #9B9CAD; padding: 0 12px 12px;">COL_3_HEADER</th>
+          <th style="text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #9B9CAD; padding: 0 0 12px 12px;">COL_4_HEADER</th>
+        </tr>
+      </thead>
+
+      <!-- Data rows — clone <tr> as needed; alternating zebra via nth-child -->
+      <tbody>
+        <tr style="border-bottom: 1px solid #ECEDF5;">
+          <td style="padding: 14px 12px 14px 0; font-size: 13px; font-weight: 500; color: #16182A;">ROW1_COL1</td>
+          <td style="padding: 14px 12px; font-size: 13px; font-weight: 300; color: #4B4E65;">ROW1_COL2</td>
+          <td style="padding: 14px 12px; font-size: 13px; font-weight: 300; color: #4B4E65;">ROW1_COL3</td>
+          <td style="padding: 14px 0 14px 12px; font-size: 13px; font-weight: 300; color: #4B4E65;"><span class="gc-badge" data-level="green">ROW1_BADGE</span></td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ECEDF5; background: #FAFBFF;">
+          <td style="padding: 14px 12px 14px 0; font-size: 13px; font-weight: 500; color: #16182A;">ROW2_COL1</td>
+          <td style="padding: 14px 12px; font-size: 13px; font-weight: 300; color: #4B4E65;">ROW2_COL2</td>
+          <td style="padding: 14px 12px; font-size: 13px; font-weight: 300; color: #4B4E65;">ROW2_COL3</td>
+          <td style="padding: 14px 0 14px 12px;"><span class="gc-badge" data-level="amber">ROW2_BADGE</span></td>
+        </tr>
+        <!-- Add more <tr> blocks as needed following the same pattern -->
+      </tbody>
+
+    </table>
+  </div>
+
+</div>

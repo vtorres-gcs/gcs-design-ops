@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<x-dc>
+<!-- @template name="GIU Cover" description="A4 cover page — GIU sub-brand (GCS Symbol + GIU Wordmark lockup). Use for: GIU Corporate Report, GIU Calendar, and any Global Intelligence Unit branded brochure." -->
+<helmet>
+<style>
+/* Self-hosted brand fonts — fonts.googleapis.com is blocked in the render
+   environment, so a CDN <link> silently falls back to system fonts. Paths
+   resolve relative to this file (assets/covers/). */
+@font-face { font-family: 'Heebo'; src: url('../fonts/Heebo-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'Heebo'; src: url('../fonts/Heebo-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Heebo'; src: url('../fonts/Heebo-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'Heebo'; src: url('../fonts/Heebo-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; }
+@font-face { font-family: 'Heebo'; src: url('../fonts/Heebo-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'Yrsa'; src: url('../fonts/Yrsa-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Yrsa'; src: url('../fonts/Yrsa-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@page { size: 210mm 297mm; margin: 0; }
+@media print {
+  html, body { margin: 0 !important; padding: 0 !important; }
+  [data-doc-wrapper] { background: none !important; padding: 0 !important; min-height: unset !important; }
+  [data-doc-page] {
+    margin: 0 !important; box-shadow: none !important; border-radius: 0 !important;
+    page-break-after: always; break-after: page;
+    width: 210mm !important; height: 297mm !important;
+    min-height: unset !important; overflow: hidden !important; position: relative !important;
+  }
+  [data-doc-page]:last-child { page-break-after: auto; break-after: auto; }
+}
+</style>
+</helmet>
+
+<div data-doc-wrapper="" style="background: #DDE0E8; padding: 40px 24px; min-height: 100vh; font-family: 'Heebo', 'Helvetica Neue', sans-serif;">
+
+  <!-- ── COVER PAGE ─────────────────────────────────────────── -->
+  <!-- data-cover marks this page so the design-token linter skips the component-catalog check -->
+  <div data-doc-page="" data-cover="giu" style="width: 794px; height: 1123px; margin: 0 auto; border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; overflow: hidden; position: relative;">
+    <img src="./background-cover-giu.png" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0;">
+
+    <!-- Top bar: GCS Symbol + separator + GIU Wordmark lockup -->
+    <div style="position: relative; z-index: 2; padding: 48px 56px 0; display: flex; justify-content: flex-start; align-items: center; gap: 14px;">
+      <img src="../logos/GCS-Symbol-White.svg" style="width: 42px; height: 42px;">
+      <div style="width: 1px; height: 30px; background: rgba(255,255,255,0.2); flex-shrink: 0;"></div>
+      <img src="../logos/GIU-Wordmark-White.svg" style="height: 13px; width: auto;">
+    </div>
+
+    <!-- Bottom text block -->
+    <div style="position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 56px 64px;">
+      <!-- eyebrow: small ALL-CAPS line above the title (e.g. "Annual Intelligence Report · 2026") -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 20px;">{{ eyebrow }}</div>
+      <!-- title: first line — normal weight, white -->
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 64px; color: #FFFFFF; line-height: 1.06; letter-spacing: -1.5px;">{{ coverTitleLine1 }}</div>
+      <!-- title: second line — italic, muted lavender -->
+      <div style="font-family: 'Yrsa', serif; font-weight: 400; font-style: italic; font-size: 64px; color: #B3B5CD; line-height: 1.06; letter-spacing: -1.5px; margin-bottom: 36px;">{{ coverTitleLine2 }}</div>
+      <!-- hairline divider -->
+      <div style="width: 48px; height: 1px; background: rgba(255,255,255,0.25); margin-bottom: 28px;"></div>
+      <!-- subtitle: 1–2 sentence descriptor -->
+      <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.65; max-width: 480px;">{{ coverSubtitle }}</div>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 860, &quot;height&quot;: 1200},
+  &quot;eyebrow&quot;:        {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Annual Intelligence Report · 2026&quot;},
+  &quot;coverTitleLine1&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Investment Migration&quot;},
+  &quot;coverTitleLine2&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Industry Outlook.&quot;},
+  &quot;coverSubtitle&quot;:   {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;A Global Intelligence Unit analysis of programme performance, market trends, and regulatory developments across the investment migration landscape.&quot;}
+}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      eyebrow:         this.props.eyebrow         ?? 'Annual Intelligence Report · 2026',
+      coverTitleLine1: this.props.coverTitleLine1 ?? 'Investment Migration',
+      coverTitleLine2: this.props.coverTitleLine2 ?? 'Industry Outlook.',
+      coverSubtitle:   this.props.coverSubtitle   ?? 'A Global Intelligence Unit analysis of programme performance, market trends, and regulatory developments across the investment migration landscape.',
+    };
+  }
+}
+</script>
+</body>
+</html>

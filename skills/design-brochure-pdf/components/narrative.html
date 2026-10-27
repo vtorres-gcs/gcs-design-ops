@@ -1,0 +1,49 @@
+<!-- COMPONENT: narrative
+     Running text block — section heading + up to 3 body paragraphs + optional sub-sections.
+     The most versatile content block; use whenever the content is primarily prose.
+
+     WHEN TO USE:
+       Programme descriptions, editorial introductions, case narrative, analysis sections.
+       Can stand alone (1 component fills the page) or pair with pull-quote or stat-strip-dark.
+
+     PARAMETERS (fill inline — no {{ }} tokens, paste real text):
+       sectionLabel   — small ALL-CAPS eyebrow above heading (e.g. "Overview", "The Challenge")
+       heading        — Yrsa section heading (can be 1–2 lines; ~32–44px depending on length)
+       leadPara       — optional larger lead paragraph (Yrsa 21px); omit div if not needed
+       body1/2/3      — Heebo body paragraphs (omit unused ones)
+       sub-sections   — optional: each sub-section has a bold Heebo label + body paragraph
+
+     HEIGHT ESTIMATE:
+       Heading only: ~80px · Each body paragraph (~120 words): ~90px
+       Sub-section heading + para: ~100px
+       With lead paragraph: add ~80px
+       Safe capacity for a full page (1023px available): ~5–6 medium paragraphs, or
+       2 sub-sections + 2 paragraphs. Always run check-overflow.js.
+
+     SOURCE: extracted from lead-magnet page 3 and quarterly-report page 3. -->
+
+<div data-component="narrative" style="padding: 52px 64px; flex: 1; display: flex; flex-direction: column; gap: 0; overflow: hidden;">
+
+  <!-- Section label (small caps above heading) -->
+  <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #3D51E8; margin-bottom: 12px;">SECTION_LABEL</div>
+
+  <!-- Main heading -->
+  <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 44px; color: #16182A; line-height: 1.06; letter-spacing: -0.8px; margin-bottom: 28px;">HEADING_TEXT</div>
+
+  <!-- Lead paragraph (larger, Yrsa) — OMIT THIS DIV if no lead paragraph -->
+  <div style="font-family: 'Yrsa', serif; font-size: 21px; font-weight: 400; color: #252839; line-height: 1.6; margin-bottom: 28px; letter-spacing: -0.2px;">LEAD_PARAGRAPH</div>
+
+  <!-- Body paragraph 1 -->
+  <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #4B4E65; line-height: 1.85; margin-bottom: 22px;">BODY_PARAGRAPH_1</div>
+
+  <!-- Body paragraph 2 — OMIT if not needed -->
+  <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #4B4E65; line-height: 1.85; margin-bottom: 22px;">BODY_PARAGRAPH_2</div>
+
+  <!-- Body paragraph 3 — OMIT if not needed -->
+  <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #4B4E65; line-height: 1.85; margin-bottom: 22px;">BODY_PARAGRAPH_3</div>
+
+  <!-- Sub-section block — CLONE this pair for each sub-section; OMIT if not needed -->
+  <div style="font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600; color: #3D51E8; line-height: 1.4; margin-bottom: 10px; margin-top: 8px;">SUB_SECTION_HEADING</div>
+  <div style="font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 300; color: #4B4E65; line-height: 1.85; margin-bottom: 22px;">SUB_SECTION_BODY</div>
+
+</div>

@@ -1,0 +1,47 @@
+<!-- COMPONENT: hero-image
+     Full-width photograph with gradient overlay and title/label burned in at the bottom.
+     Occupies roughly the top half of the page; combine with stat-strip-light or narrative
+     below it.
+
+     WHEN TO USE:
+       Country hero shot, lifestyle photograph, location image.
+       One per document maximum — use sparingly for visual impact.
+       If no photograph is available, use the solid fallback variant (see bottom of file).
+
+     PARAMETERS:
+       imageSrc       — absolute path or URL to photograph (landscape, min 794px wide).
+                        Country photos: <repo-root>/assets/images/Countries/<Name>-1.png
+                        Pass empty string "" to use the solid Night Blue fallback.
+       sectionLabel   — small ALL-CAPS section label burned into the photo (e.g. "02 · Country at a Glance")
+       imageTitle     — large Yrsa title over the photo (e.g. country name or section heading)
+
+     HEIGHT: 420px (fixed — do not change; page has 1023px, leaving ~603px for components below)
+
+     SOURCE: extracted from lead-magnet page 4. -->
+
+<div data-component="hero-image" style="height: 420px; flex-shrink: 0; background: #000D50; position: relative; overflow: hidden;">
+
+  <!-- Photo — if imageSrc is empty, this renders as a solid Night Blue block -->
+  <img src="IMAGE_SRC" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+
+  <!-- Gradient overlay -->
+  <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,9,87,0.85) 0%, transparent 60%);"></div>
+
+  <!-- Bottom label + title -->
+  <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 0 64px 32px;">
+    <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 6px;">SECTION_LABEL</div>
+    <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 44px; color: #FFFFFF; line-height: 1.0; letter-spacing: -1px;">IMAGE_TITLE</div>
+  </div>
+
+</div>
+
+<!-- ── SOLID FALLBACK (no photograph available) ────────────────
+     Replace the div above with this when imageSrc is empty or unavailable.
+
+<div data-component="hero-image" style="height: 420px; flex-shrink: 0; background: #000957; position: relative; overflow: hidden;">
+  <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 0 64px 32px;">
+    <div style="font-family: 'Heebo', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 6px;">SECTION_LABEL</div>
+    <div style="font-family: 'Yrsa', serif; font-weight: 400; font-size: 44px; color: #FFFFFF; line-height: 1.0; letter-spacing: -1px;">IMAGE_TITLE</div>
+  </div>
+</div>
+──────────────────────────────────────────────────────────────── -->

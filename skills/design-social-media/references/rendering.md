@@ -78,7 +78,7 @@ Rules for the HTML you write: quote marks and logos at their documented pixel si
 
 ## Icons — fetch with curl, paste inline
 
-Same treatment as the `gcs-brochure` skill. Icons are **Material Symbols only** and always arrive as **inline `<svg>` markup with `fill="currentColor"`** — never an `<img>`, never a `data:` URI, never a bundled file, never Font Awesome / Heroicons / Feather / Lucide / an ad-hoc drawn SVG.
+Same treatment as the `design-brochure-pdf` skill. Icons are **Material Symbols only** and always arrive as **inline `<svg>` markup with `fill="currentColor"`** — never an `<img>`, never a `data:` URI, never a bundled file, never Font Awesome / Heroicons / Feather / Lucide / an ad-hoc drawn SVG.
 
 Fetch the one you need with `curl` via Bash (never the WebFetch tool — it summarises through a model and returns mangled markup):
 
