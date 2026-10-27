@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCS — Country Pages Sitemap v2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #f0f2f7; color: #1a1a2e;
+    padding: 32px 24px 64px; min-width: 960px;
+  }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 36px; }
+  .logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .logo-mark { width: 32px; height: 32px; background: #000957; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #3F8CFF; font-weight: 900; font-size: 15px; }
+  .logo-name { font-size: 12px; font-weight: 700; color: #000957; text-transform: uppercase; letter-spacing: .6px; }
+  h1 { font-size: 22px; font-weight: 800; color: #000957; }
+  .subtitle { font-size: 13px; color: #6b7280; margin-top: 5px; }
+
+  /* Parent banner */
+  .parent-page {
+    max-width: 960px; margin: 0 auto 36px;
+    background: #000957; border-radius: 14px; padding: 20px 28px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .parent-icon { font-size: 36px; flex-shrink: 0; }
+  .parent-meta { flex: 1; }
+  .parent-title { font-size: 18px; font-weight: 800; color: #fff; }
+  .parent-slug { font-family: 'Courier New', monospace; font-size: 13px; color: #3F8CFF; margin-top: 4px; background: rgba(63,140,255,.12); padding: 3px 10px; border-radius: 6px; display: inline-block; }
+  .parent-desc { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 6px; }
+  .parent-stats { display: flex; gap: 20px; flex-shrink: 0; }
+  .pstat { text-align: center; }
+  .pstat-num { font-size: 24px; font-weight: 800; color: #3F8CFF; }
+  .pstat-lbl { font-size: 10px; color: rgba(255,255,255,.45); text-transform: uppercase; }
+
+  /* Anatomy box */
+  .anatomy-box { max-width: 960px; margin: 0 auto 32px; background: #fff; border-radius: 12px; border: 1px solid #e4e8f4; overflow: hidden; }
+  .anatomy-header { background: #f8f9ff; border-bottom: 1px solid #e4e8f4; padding: 10px 18px; display: flex; align-items: center; gap: 8px; }
+  .anatomy-header span { font-size: 13px; font-weight: 700; color: #000957; }
+  .anatomy-header small { font-size: 11px; color: #9ca3af; margin-left: 4px; }
+  .anatomy-body { padding: 14px 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .anatomy-item { display: flex; align-items: flex-start; gap: 9px; background: #f8f9ff; border: 1px solid #e4e8f4; border-radius: 8px; padding: 8px 12px; flex: 1; min-width: 160px; }
+  .anatomy-num { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: #fff; margin-top: 1px; }
+  .anatomy-label { font-size: 11px; font-weight: 700; color: #374151; }
+  .anatomy-sub { font-size: 9px; color: #9ca3af; margin-top: 2px; }
+
+  /* Legend */
+  .legend { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #4b5563; font-weight: 500; }
+  .ltag { font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+  .ltag-cbi   { background: #dbeafe; color: #1d4ed8; }
+  .ltag-merit { background: #fef3c7; color: #92400e; }
+  .ltag-rbi   { background: #d1fae5; color: #065f46; }
+  .ltag-vis   { background: #f3f4f6; color: #6b7280; }
+
+  /* Region */
+  .region { margin-bottom: 36px; max-width: 1400px; margin-left: auto; margin-right: auto; }
+  .region-title { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: #fff; margin-bottom: 14px; padding: 8px 16px; background: #000957; border-radius: 8px; display: flex; align-items: center; gap: 8px; }
+  .region-count { margin-left: auto; background: #3F8CFF; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 12px; }
+  .countries-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+
+  /* Country card */
+  .country-card { background: #fff; border-radius: 12px; border: 1px solid #e4e8f4; overflow: hidden; transition: box-shadow .18s, transform .18s; }
+  .country-card:hover { box-shadow: 0 6px 28px rgba(0,9,87,.11); transform: translateY(-2px); }
+
+  .card-top { background: #000957; padding: 12px 14px 10px; display: flex; align-items: flex-start; gap: 10px; }
+  .card-flag { font-size: 26px; flex-shrink: 0; margin-top: 1px; }
+  .card-meta { flex: 1; min-width: 0; }
+  .card-country { font-size: 13px; font-weight: 800; color: #fff; }
+  .card-region-tag { font-size: 9px; color: rgba(255,255,255,.45); margin-top: 2px; }
+  .card-program { font-size: 10px; color: rgba(255,255,255,.5); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .slug-bar { background: #f8f9ff; padding: 6px 14px; border-bottom: 1px solid #eef0f8; display: flex; align-items: center; gap: 6px; }
+  .slug-text { font-family: 'Courier New', monospace; font-size: 10px; color: #3F8CFF; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* Section label */
+  .section-title { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .9px; color: #9ca3af; padding: 8px 14px 4px; }
+
+  /* Nav menu */
+  .nav-menu { border-bottom: 1px solid #f0f2f7; padding-bottom: 6px; margin-bottom: 4px; }
+  .nav-item { display: flex; align-items: center; gap: 8px; padding: 5px 14px; border-left: 3px solid transparent; transition: background .12s; }
+  .nav-item:hover { background: #f5f7ff; }
+  .nav-item.about { border-left-color: #8b5cf6; }
+  .nav-item.cbi   { border-left-color: #3F8CFF; }
+  .nav-item.merit { border-left-color: #f59e0b; }
+  .nav-item.rbi   { border-left-color: #10b981; }
+  .nav-icon { font-size: 11px; flex-shrink: 0; width: 16px; text-align: center; }
+  .nav-label { font-size: 11px; font-weight: 600; color: #374151; flex: 1; }
+  .nav-tag { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 7px; flex-shrink: 0; }
+  .tag-about { background: #ede9fe; color: #6d28d9; }
+  .tag-cbi   { background: #dbeafe; color: #1d4ed8; }
+  .tag-merit { background: #fef3c7; color: #92400e; }
+  .tag-rbi   { background: #d1fae5; color: #065f46; }
+
+  /* Page sections */
+  .page-sections { padding: 0 0 8px; }
+  .ps-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 14px; border-left: 3px solid transparent; transition: background .12s; }
+  .ps-item:hover { background: #f9faff; }
+  .ps-num { width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; color: #fff; margin-top: 1px; }
+  .ps-info { flex: 1; min-width: 0; }
+  .ps-label { font-size: 11px; font-weight: 600; color: #374151; }
+  .ps-sub { font-size: 9px; color: #9ca3af; margin-top: 1px; }
+
+  .ps-1 { border-left-color: #6366f1; } .ps-1 .ps-num { background: #6366f1; }
+  .ps-2 { border-left-color: #3F8CFF; } .ps-2 .ps-num { background: #3F8CFF; }
+  .ps-3 { border-left-color: #10b981; } .ps-3 .ps-num { background: #10b981; }
+
+  /* Badges */
+  .badge-cbi   { background: #dbeafe; color: #1d4ed8; font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
+  .badge-merit { background: #fef3c7; color: #92400e; font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
+  .badge-rbi   { background: #d1fae5; color: #065f46; font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
+  .badge-vis   { background: #f3f4f6; color: #6b7280; font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
+
+  .vis-bar { font-size: 9px; color: #92400e; background: #fef3c7; padding: 4px 14px; border-top: 1px solid #fde68a; display: flex; align-items: center; gap: 4px; }
+  .no-url-bar { font-size: 9px; color: #991b1b; background: #fef2f2; padding: 4px 14px; border-top: 1px solid #fecaca; display: flex; align-items: center; gap: 4px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo"><div class="logo-mark">GCS</div><div class="logo-name">Global Citizen Solutions</div></div>
+  <h1>Country Pages — Sitemap</h1>
+  <div class="subtitle">Estrutura interna de cada página de país · menu de navegação + secções de conteúdo</div>
+</div>
+
+<div class="parent-page">
+  <div class="parent-icon">🌍</div>
+  <div class="parent-meta">
+    <div class="parent-title">Countries (Listing Page)</div>
+    <div class="parent-slug">/countries</div>
+    <div class="parent-desc">Listagem de todos os países com programas de cidadania e/ou residência</div>
+  </div>
+  <div class="parent-stats">
+    <div class="pstat"><div class="pstat-num">42</div><div class="pstat-lbl">Country Pages</div></div>
+    <div class="pstat"><div class="pstat-num">3</div><div class="pstat-lbl">CBI + RBI</div></div>
+    <div class="pstat"><div class="pstat-num">13</div><div class="pstat-lbl">CBI Only</div></div>
+    <div class="pstat"><div class="pstat-num">26</div><div class="pstat-lbl">RBI Only</div></div>
+  </div>
+</div>
+
+<!-- Anatomy -->
+<div class="anatomy-box">
+  <div class="anatomy-header">
+    <span>📐 Anatomia de cada página de país</span>
+    <small>— aplicada a todos os 42 países</small>
+  </div>
+  <div class="anatomy-body">
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#8b5cf6;">🧭</div>
+      <div>
+        <div class="anatomy-label">Menu Interno</div>
+        <div class="anatomy-sub">About Country · CBI (se tiver) · RBI (se tiver)</div>
+      </div>
+    </div>
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#6366f1;">1</div>
+      <div>
+        <div class="anatomy-label">Country Overview</div>
+        <div class="anatomy-sub">Visão geral do país</div>
+      </div>
+    </div>
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#3F8CFF;">2</div>
+      <div>
+        <div class="anatomy-label">Country Information</div>
+        <div class="anatomy-sub">Dados, factos e contexto</div>
+      </div>
+    </div>
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#10b981;">3</div>
+      <div>
+        <div class="anatomy-label">An Introduction to [Country]</div>
+        <div class="anatomy-sub">Aprofundamento narrativo do país</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><span class="ltag ltag-cbi">CBI</span> Citizenship by Investment</div>
+  <div class="legend-item"><span class="ltag ltag-merit">Merit</span> Citizenship by Merit</div>
+  <div class="legend-item"><span class="ltag ltag-rbi">RBI</span> Residency by Investment</div>
+  <div class="legend-item"><span class="ltag ltag-vis">Visibility</span> Sem URL confirmada</div>
+</div>
+
+
+<!-- ══════════════════════ DUAL — CBI + RBI ══════════════════════ -->
+<div class="region">
+  <div class="region-title">🌐 Citizenship + Residency (ambos os programas)<div class="region-count">3 países</div></div>
+  <div class="countries-grid">
+
+    <!-- Malta -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇲🇹</div>
+        <div class="card-meta">
+          <div class="card-country">Malta</div>
+          <div class="card-region-tag">Europe</div>
+          <div class="card-program">Citizenship by Merit · MPRP</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
+          <span class="badge-merit">Merit</span>
+          <span class="badge-rbi">RBI</span>
+        </div>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/country/malta</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item merit"><div class="nav-icon">⭐</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-merit">Merit</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div><div class="ps-sub">Visão geral de Malta</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div><div class="ps-sub">Dados, factos e contexto de Malta</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Malta</div><div class="ps-sub">Aprofundamento narrativo</div></div></div>
+      </div>
+    </div>
+
+    <!-- Austria -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇦🇹</div>
+        <div class="card-meta">
+          <div class="card-country">Austria</div>
+          <div class="card-region-tag">Europe</div>
+          <div class="card-program">Citizenship by Merit · Golden Visa</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
+          <span class="badge-merit">Merit</span>
+          <span class="badge-rbi">RBI</span>
+        </div>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/country/austria</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item merit"><div class="nav-icon">⭐</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-merit">Merit</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div><div class="ps-sub">Visão geral de Austria</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div><div class="ps-sub">Dados, factos e contexto de Austria</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Austria</div><div class="ps-sub">Aprofundamento narrativo</div></div></div>
+      </div>
+    </div>
+
+    <!-- Argentina -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇦🇷</div>
+        <div class="card-meta">
+          <div class="card-country">Argentina</div>
+          <div class="card-region-tag">Americas</div>
+          <div class="card-program">CBI (visibility) · Independent Means Visa</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
+          <span class="badge-vis">Visibility</span>
+          <span class="badge-rbi">RBI</span>
+        </div>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/country/argentina</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div><div class="ps-sub">Visão geral de Argentina</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div><div class="ps-sub">Dados, factos e contexto de Argentina</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Argentina</div><div class="ps-sub">Aprofundamento narrativo</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════ CITIZENSHIP ONLY ══════════════════════ -->
+<div class="region">
+  <div class="region-title">🏛️ Citizenship Only<div class="region-count">13 países</div></div>
+  <div class="countries-grid">
+
+    <!-- Caribbean -->
+    <!-- Antigua -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇦🇬</div><div class="card-meta"><div class="card-country">Antigua and Barbuda</div><div class="card-region-tag">Caribbean</div><div class="card-program">Citizenship by Investment · USD 230k</div></div><span class="badge-cbi">CBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/antigua-and-barbuda</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Antigua and Barbuda</div></div></div>
+      </div>
+    </div>
+
+    <!-- Dominica -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇩🇲</div><div class="card-meta"><div class="card-country">Dominica</div><div class="card-region-tag">Caribbean</div><div class="card-program">Citizenship by Investment · USD 200k</div></div><span class="badge-cbi">CBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/dominica</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Dominica</div></div></div>
+      </div>
+    </div>
+
+    <!-- Grenada -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇬🇩</div><div class="card-meta"><div class="card-country">Grenada</div><div class="card-region-tag">Caribbean</div><div class="card-program">Citizenship by Investment · USD 235k</div></div><span class="badge-cbi">CBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/grenada</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Grenada</div></div></div>
+      </div>
+    </div>
+
+    <!-- St Kitts -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇰🇳</div><div class="card-meta"><div class="card-country">St. Kitts and Nevis</div><div class="card-region-tag">Caribbean</div><div class="card-program">Citizenship by Investment · USD 250k</div></div><span class="badge-cbi">CBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/st-kitts-and-nevis</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to St. Kitts and Nevis</div></div></div>
+      </div>
+    </div>
+
+    <!-- St Lucia -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇱🇨</div><div class="card-meta"><div class="card-country">St. Lucia</div><div class="card-region-tag">Caribbean</div><div class="card-program">Citizenship by Investment · USD 240k</div></div><span class="badge-cbi">CBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/st-lucia</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to St. Lucia</div></div></div>
+      </div>
+    </div>
+
+    <!-- Turkey -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇹🇷</div><div class="card-meta"><div class="card-country">Turkey</div><div class="card-region-tag">Europe</div><div class="card-program">Turkish Citizenship by Investment · USD 400k</div></div><span class="badge-cbi">CBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/turkey</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Turkey</div></div></div>
+      </div>
+    </div>
+
+    <!-- Egypt -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇪🇬</div><div class="card-meta"><div class="card-country">Egypt</div><div class="card-region-tag">Africa</div><div class="card-program">Citizenship by Investment · USD 250k</div></div><span class="badge-cbi">CBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/egypt</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Egypt</div></div></div>
+      </div>
+    </div>
+
+    <!-- Jordan -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇯🇴</div><div class="card-meta"><div class="card-country">Jordan</div><div class="card-region-tag">Middle East</div><div class="card-program">Citizenship by Investment · JOD 350k</div></div><span class="badge-cbi">CBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/jordan</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Jordan</div></div></div>
+      </div>
+    </div>
+
+    <!-- São Tomé -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇸🇹</div><div class="card-meta"><div class="card-country">São Tomé and Príncipe</div><div class="card-region-tag">Africa</div><div class="card-program">Citizenship by Investment · USD 95k</div></div><span class="badge-cbi">CBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/sao-tome-and-principe</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to São Tomé and Príncipe</div></div></div>
+      </div>
+    </div>
+
+    <!-- Nauru -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇳🇷</div><div class="card-meta"><div class="card-country">Nauru</div><div class="card-region-tag">Oceania</div><div class="card-program">Citizenship by Investment · USD 120k</div></div><span class="badge-cbi">CBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/nauru</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Nauru</div></div></div>
+      </div>
+    </div>
+
+    <!-- Vanuatu -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇻🇺</div><div class="card-meta"><div class="card-country">Vanuatu</div><div class="card-region-tag">Oceania</div><div class="card-program">Citizenship by Investment</div></div><span class="badge-vis">Visibility</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/vanuatu</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Vanuatu</div></div></div>
+      </div>
+      <div class="vis-bar">⚠️ Visibility only — no fixed minimum</div>
+    </div>
+
+    <!-- Cambodia -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇰🇭</div><div class="card-meta"><div class="card-country">Cambodia</div><div class="card-region-tag">Asia</div><div class="card-program">Citizenship by Investment</div></div><span class="badge-vis">Visibility</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/cambodia</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Cambodia</div></div></div>
+      </div>
+      <div class="vis-bar">⚠️ Visibility only — public placeholder</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════ RESIDENCY ONLY — EUROPE ══════════════════════ -->
+<div class="region">
+  <div class="region-title">🇪🇺 Residency Only — Europe<div class="region-count">14 países</div></div>
+  <div class="countries-grid">
+
+    <!-- Helper macro: RBI only Europe -->
+    <!-- Cyprus -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇨🇾</div><div class="card-meta"><div class="card-country">Cyprus</div><div class="card-region-tag">Europe</div><div class="card-program">Golden Visa · from EUR 300k</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/cyprus</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Cyprus</div></div></div>
+      </div>
+    </div>
+
+    <!-- Greece -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇬🇷</div><div class="card-meta"><div class="card-country">Greece</div><div class="card-region-tag">Europe</div><div class="card-program">Greek Golden Visa · from EUR 250k</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/greece</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Greece</div></div></div>
+      </div>
+    </div>
+
+    <!-- Hungary -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇭🇺</div><div class="card-meta"><div class="card-country">Hungary</div><div class="card-region-tag">Europe</div><div class="card-program">Hungary Golden Visa · from EUR 250k</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/hungary</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Hungary</div></div></div>
+      </div>
+    </div>
+
+    <!-- Ireland -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇮🇪</div><div class="card-meta"><div class="card-country">Ireland</div><div class="card-region-tag">Europe</div><div class="card-program">Ireland Golden Visa</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/ireland</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Ireland</div></div></div>
+      </div>
+    </div>
+
+    <!-- Italy -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇮🇹</div><div class="card-meta"><div class="card-country">Italy</div><div class="card-region-tag">Europe</div><div class="card-program">Italy Investor Visa · from EUR 250k</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/italy</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Italy</div></div></div>
+      </div>
+    </div>
+
+    <!-- Latvia -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇱🇻</div><div class="card-meta"><div class="card-country">Latvia</div><div class="card-region-tag">Europe</div><div class="card-program">Latvia Golden Visa · from EUR 50k</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/latvia</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Latvia</div></div></div>
+      </div>
+    </div>
+
+    <!-- Luxembourg -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇱🇺</div><div class="card-meta"><div class="card-country">Luxembourg</div><div class="card-region-tag">Europe</div><div class="card-program">Luxembourg Golden Visa</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/luxembourg</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Luxembourg</div></div></div>
+      </div>
+    </div>
+
+    <!-- Monaco -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇲🇨</div><div class="card-meta"><div class="card-country">Monaco</div><div class="card-region-tag">Europe</div><div class="card-program">Carte de Séjour · Premium</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/monaco</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Monaco</div></div></div>
+      </div>
+    </div>
+
+    <!-- Portugal -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇵🇹</div><div class="card-meta"><div class="card-country">Portugal</div><div class="card-region-tag">Europe</div><div class="card-program">Portugal Golden Visa · from EUR 250k</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/portugal</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Portugal</div></div></div>
+      </div>
+    </div>
+
+    <!-- Serbia -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇷🇸</div><div class="card-meta"><div class="card-country">Serbia</div><div class="card-region-tag">Europe</div><div class="card-program">Serbia Residency by Investment</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/serbia</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Serbia</div></div></div>
+      </div>
+    </div>
+
+    <!-- Spain -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇪🇸</div><div class="card-meta"><div class="card-country">Spain</div><div class="card-region-tag">Europe</div><div class="card-program">Non-Lucrative Visa</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/spain</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Spain</div></div></div>
+      </div>
+    </div>
+
+    <!-- Switzerland -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇨🇭</div><div class="card-meta"><div class="card-country">Switzerland</div><div class="card-region-tag">Europe</div><div class="card-program">Lump Sum Tax · CHF 250k/yr</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/switzerland</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Switzerland</div></div></div>
+      </div>
+    </div>
+
+    <!-- UK -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇬🇧</div><div class="card-meta"><div class="card-country">United Kingdom</div><div class="card-region-tag">Europe</div><div class="card-program">Innovator Founder Visa</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/uk</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to United Kingdom</div></div></div>
+      </div>
+    </div>
+
+    <!-- Jersey -->
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇯🇪</div><div class="card-meta"><div class="card-country">Jersey</div><div class="card-region-tag">Europe</div><div class="card-program">Jersey Residency by Investment</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/jersey</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Jersey</div></div></div>
+      </div>
+      <div class="no-url-bar">⚠️ URL not confirmed</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════ RESIDENCY ONLY — CARIBBEAN ══════════════════════ -->
+<div class="region">
+  <div class="region-title">🏝️ Residency Only — Caribbean<div class="region-count">2 países</div></div>
+  <div class="countries-grid">
+
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇧🇸</div><div class="card-meta"><div class="card-country">Bahamas</div><div class="card-region-tag">Caribbean</div><div class="card-program">Economic Permanent Residency</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/bahamas</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Bahamas</div></div></div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇰🇾</div><div class="card-meta"><div class="card-country">Cayman Islands</div><div class="card-region-tag">Caribbean</div><div class="card-program">Persons of Independent Means</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/cayman</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Cayman Islands</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════ RESIDENCY ONLY — AMERICAS ══════════════════════ -->
+<div class="region">
+  <div class="region-title">🌎 Residency Only — Americas<div class="region-count">7 países</div></div>
+  <div class="countries-grid">
+
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇧🇷</div><div class="card-meta"><div class="card-country">Brazil</div><div class="card-region-tag">Americas</div><div class="card-program">Brazil Investor Visa</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/brazil</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Brazil</div></div></div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇨🇦</div><div class="card-meta"><div class="card-country">Canada</div><div class="card-region-tag">Americas</div><div class="card-program">Entrepreneurship Visa</div></div><span class="badge-vis">Visibility</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/canada</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Canada</div></div></div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇨🇷</div><div class="card-meta"><div class="card-country">Costa Rica</div><div class="card-region-tag">Americas</div><div class="card-program">Investor Visa · from USD 150k</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/costa-rica</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Costa Rica</div></div></div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇵🇦</div><div class="card-meta"><div class="card-country">Panama</div><div class="card-region-tag">Americas</div><div class="card-program">Qualified Investor Visa · from USD 300k</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/panama</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Panama</div></div></div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇵🇾</div><div class="card-meta"><div class="card-country">Paraguay</div><div class="card-region-tag">Americas</div><div class="card-program">Independent Means Visa</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/paraguay</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Paraguay</div></div></div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇺🇸</div><div class="card-meta"><div class="card-country">United States</div><div class="card-region-tag">Americas</div><div class="card-program">EB-5 Visa · from USD 800k</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/united-states</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to United States</div></div></div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇺🇾</div><div class="card-meta"><div class="card-country">Uruguay</div><div class="card-region-tag">Americas</div><div class="card-program">Independent Means Visa · USD 1k/mo</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/uruguay</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to Uruguay</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════ MIDDLE EAST & OCEANIA ══════════════════════ -->
+<div class="region">
+  <div class="region-title">🌏 Residency Only — Middle East &amp; Oceania<div class="region-count">2 países</div></div>
+  <div class="countries-grid">
+
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇦🇪</div><div class="card-meta"><div class="card-country">UAE</div><div class="card-region-tag">Middle East</div><div class="card-program">UAE Golden Visa · from AED 2M</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/uae</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to UAE</div></div></div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="card-top"><div class="card-flag">🇳🇿</div><div class="card-meta"><div class="card-country">New Zealand</div><div class="card-region-tag">Oceania</div><div class="card-program">Investor Visa · from NZD 5M</div></div><span class="badge-rbi">RBI</span></div>
+      <div class="slug-bar"><span class="slug-text">/country/new-zealand</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Country Overview</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Country Information</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">An Introduction to New Zealand</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:28px;font-size:11px;color:#9ca3af;">
+  <strong style="color:#000957">42 country pages</strong> · Cada página: Menu Interno + 3 secções de conteúdo · slugs em <span style="font-family:monospace;color:#3F8CFF;">/country/country-name</span>
+</div>
+
+</body>
+</html>

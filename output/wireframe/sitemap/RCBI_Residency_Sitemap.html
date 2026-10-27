@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCS — Residency Pages Sitemap</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --night:    #000957;
+    --electric: #3F8CFF;
+    --green:    #10b981;
+    --white:    #ffffff;
+    --off:      #f4f5fa;
+    --mid:      #e4e8f4;
+    --muted:    #9ca3af;
+    --text:     #1a1a2e;
+    --label:    #6b7280;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-sans:  'Segoe UI', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: #f0f2f7;
+    color: var(--text);
+    padding: 32px 24px 64px;
+    min-width: 960px;
+  }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 36px; }
+  .logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .logo-mark { width: 32px; height: 32px; background: var(--night); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--electric); font-weight: 900; font-size: 15px; }
+  .logo-name { font-size: 12px; font-weight: 700; color: var(--night); text-transform: uppercase; letter-spacing: .6px; }
+  h1 { font-size: 22px; font-weight: 800; color: var(--night); }
+  .subtitle { font-size: 13px; color: var(--muted); margin-top: 5px; }
+
+  /* Parent banner */
+  .parent-page {
+    max-width: 960px; margin: 0 auto 36px;
+    background: var(--night); border-radius: 14px; padding: 20px 28px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .parent-icon { font-size: 36px; flex-shrink: 0; }
+  .parent-meta { flex: 1; }
+  .parent-title { font-size: 18px; font-weight: 800; color: #fff; }
+  .parent-slug { font-family: 'Courier New', monospace; font-size: 13px; color: var(--green); margin-top: 4px; background: rgba(16,185,129,.12); padding: 3px 10px; border-radius: 6px; display: inline-block; }
+  .parent-desc { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 6px; }
+  .parent-stats { display: flex; gap: 20px; flex-shrink: 0; }
+  .pstat { text-align: center; }
+  .pstat-num { font-size: 24px; font-weight: 800; color: var(--green); }
+  .pstat-lbl { font-size: 10px; color: rgba(255,255,255,.4); text-transform: uppercase; }
+
+  /* Anatomy box */
+  .anatomy-box { max-width: 960px; margin: 0 auto 32px; background: #fff; border-radius: 12px; border: 1px solid var(--mid); overflow: hidden; }
+  .anatomy-header { background: #f8f9ff; border-bottom: 1px solid var(--mid); padding: 10px 18px; display: flex; align-items: center; gap: 8px; }
+  .anatomy-header span { font-size: 13px; font-weight: 700; color: var(--night); }
+  .anatomy-header small { font-size: 11px; color: var(--muted); margin-left: 4px; }
+  .anatomy-body { padding: 14px 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .anatomy-item { display: flex; align-items: flex-start; gap: 9px; background: #f8f9ff; border: 1px solid var(--mid); border-radius: 8px; padding: 8px 12px; flex: 1; min-width: 160px; }
+  .anatomy-num { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: #fff; margin-top: 1px; }
+  .anatomy-label { font-size: 11px; font-weight: 700; color: #374151; }
+  .anatomy-sub { font-size: 9px; color: var(--muted); margin-top: 2px; }
+
+  /* Legend */
+  .legend { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #4b5563; font-weight: 500; }
+  .ltag { font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+  .ltag-gv  { background: #d1fae5; color: #065f46; }
+  .ltag-rbi { background: #e0f2fe; color: #0369a1; }
+  .ltag-vis { background: #f3f4f6; color: #6b7280; }
+
+  /* Region */
+  .region { margin-bottom: 36px; max-width: 1400px; margin-left: auto; margin-right: auto; }
+  .region-title {
+    font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px;
+    color: #fff; margin-bottom: 14px; padding: 8px 16px;
+    background: var(--night); border-radius: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .region-count { margin-left: auto; background: var(--green); color: #fff; font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 12px; }
+  .countries-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+
+  /* Country card */
+  .country-card { background: #fff; border-radius: 12px; border: 1px solid var(--mid); overflow: hidden; transition: box-shadow .18s, transform .18s; }
+  .country-card:hover { box-shadow: 0 6px 28px rgba(0,9,87,.11); transform: translateY(-2px); }
+
+  .card-top { background: var(--night); padding: 12px 14px 10px; display: flex; align-items: flex-start; gap: 10px; }
+  .card-flag { font-size: 26px; flex-shrink: 0; margin-top: 1px; }
+  .card-meta { flex: 1; min-width: 0; }
+  .card-country { font-size: 13px; font-weight: 800; color: #fff; }
+  .card-region-tag { font-size: 9px; color: rgba(255,255,255,.4); margin-top: 2px; }
+  .card-program { font-size: 10px; color: rgba(255,255,255,.5); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .slug-bar { background: #f0fdf4; padding: 6px 14px; border-bottom: 1px solid #d1fae5; display: flex; align-items: center; gap: 6px; }
+  .slug-text { font-family: 'Courier New', monospace; font-size: 10px; color: var(--green); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* From badge */
+  .from-badge {
+    flex-shrink: 0; background: rgba(16,185,129,.15);
+    border: 1px solid rgba(16,185,129,.3);
+    color: var(--green); font-size: 10px; font-weight: 700;
+    padding: 3px 8px; border-radius: 6px; white-space: nowrap;
+    align-self: flex-start;
+  }
+
+  /* Section title */
+  .section-title { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .9px; color: var(--muted); padding: 8px 14px 4px; }
+
+  /* Nav menu */
+  .nav-menu { border-bottom: 1px solid var(--off); padding-bottom: 6px; margin-bottom: 4px; }
+  .nav-item { display: flex; align-items: center; gap: 8px; padding: 5px 14px; border-left: 3px solid transparent; transition: background .12s; }
+  .nav-item:hover { background: #f0fdf4; }
+  .nav-item.about { border-left-color: #8b5cf6; }
+  .nav-item.cbi   { border-left-color: var(--electric); }
+  .nav-item.merit { border-left-color: #f59e0b; }
+  .nav-item.rbi   { border-left-color: var(--green); }
+  .nav-icon { font-size: 11px; flex-shrink: 0; width: 16px; text-align: center; }
+  .nav-label { font-size: 11px; font-weight: 600; color: #374151; flex: 1; }
+  .nav-tag { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 7px; flex-shrink: 0; }
+  .tag-about { background: #ede9fe; color: #6d28d9; }
+  .tag-cbi   { background: #dbeafe; color: #1d4ed8; }
+  .tag-merit { background: #fef3c7; color: #92400e; }
+  .tag-rbi   { background: #d1fae5; color: #065f46; }
+
+  /* Page sections */
+  .page-sections { padding: 0 0 8px; }
+  .ps-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 14px; border-left: 3px solid transparent; transition: background .12s; }
+  .ps-item:hover { background: #f9fffe; }
+  .ps-num { width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; color: #fff; margin-top: 1px; }
+  .ps-label { font-size: 11px; font-weight: 600; color: #374151; }
+
+  .ps-1 { border-left-color: #6366f1; } .ps-1 .ps-num { background: #6366f1; }
+  .ps-2 { border-left-color: var(--green); } .ps-2 .ps-num { background: var(--green); }
+  .ps-3 { border-left-color: var(--electric); } .ps-3 .ps-num { background: var(--electric); }
+  .ps-4 { border-left-color: #f59e0b; } .ps-4 .ps-num { background: #f59e0b; }
+
+  /* Status badges */
+  .badge-gv  { background: #d1fae5; color: #065f46; font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
+  .badge-rbi { background: #e0f2fe; color: #0369a1; font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
+  .badge-vis { background: #f3f4f6; color: #6b7280; font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
+
+  .vis-bar { font-size: 9px; color: #92400e; background: #fef3c7; padding: 4px 14px; border-top: 1px solid #fde68a; display: flex; align-items: center; gap: 4px; }
+  .no-url-bar { font-size: 9px; color: #991b1b; background: #fef2f2; padding: 4px 14px; border-top: 1px solid #fecaca; display: flex; align-items: center; gap: 4px; }
+
+  /* Slug reference table */
+  .slug-table-wrap { max-width: 960px; margin: 0 auto; background: #fff; border-radius: 14px; border: 1px solid var(--mid); overflow: hidden; }
+  .slug-table-head { background: var(--night); padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
+  .slug-table-head span { font-size: 13px; font-weight: 700; color: #fff; }
+  table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  thead tr { background: #f8f9ff; border-bottom: 2px solid var(--mid); }
+  th { padding: 8px 16px; text-align: left; color: var(--muted); font-weight: 700; text-transform: uppercase; font-size: 9px; letter-spacing: .8px; }
+  td { padding: 7px 16px; border-bottom: 1px solid #f3f4f6; color: var(--label); }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) { background: #fafbff; }
+  td.country-name { font-weight: 700; color: var(--night); }
+  td.slug-val { font-family: monospace; color: var(--green); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo"><div class="logo-mark">GCS</div><div class="logo-name">Global Citizen Solutions</div></div>
+  <h1>Residency — Page Sitemap</h1>
+  <div class="subtitle">Estrutura interna de cada página de programa · menu de navegação + secções de conteúdo</div>
+</div>
+
+<!-- Parent listing page -->
+<div class="parent-page">
+  <div class="parent-icon">🏠</div>
+  <div class="parent-meta">
+    <div class="parent-title">Residency (Listing Page)</div>
+    <div class="parent-slug">/residency</div>
+    <div class="parent-desc">Listagem de todos os programas de residência por investimento</div>
+  </div>
+  <div class="parent-stats">
+    <div class="pstat"><div class="pstat-num">28</div><div class="pstat-lbl">Programs</div></div>
+    <div class="pstat"><div class="pstat-num">16</div><div class="pstat-lbl">Europe</div></div>
+    <div class="pstat"><div class="pstat-num">7</div><div class="pstat-lbl">Americas</div></div>
+    <div class="pstat"><div class="pstat-num">5</div><div class="pstat-lbl">Other</div></div>
+  </div>
+</div>
+
+<!-- Anatomy -->
+<div class="anatomy-box">
+  <div class="anatomy-header">
+    <span>📐 Anatomia de cada página de programa de residência</span>
+    <small>— aplicada a todos os 28 países</small>
+  </div>
+  <div class="anatomy-body">
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#8b5cf6;">🧭</div>
+      <div><div class="anatomy-label">Menu Interno</div><div class="anatomy-sub">About Country · CBI (se tiver) · RBI (active)</div></div>
+    </div>
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#6366f1;">1</div>
+      <div><div class="anatomy-label">Overview of Residency</div><div class="anatomy-sub">Intro ao programa do país</div></div>
+    </div>
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#10b981;">2</div>
+      <div><div class="anatomy-label">Benefits</div><div class="anatomy-sub">Benefícios da residência</div></div>
+    </div>
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#3F8CFF;">3</div>
+      <div><div class="anatomy-label">Requirements</div><div class="anatomy-sub">Requisitos do programa</div></div>
+    </div>
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#f59e0b;">4</div>
+      <div><div class="anatomy-label">Procedure</div><div class="anatomy-sub">Processo passo a passo</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><span class="ltag ltag-gv">GV</span> Golden Visa</div>
+  <div class="legend-item"><span class="ltag ltag-rbi">RBI</span> Residency by Investment</div>
+  <div class="legend-item"><span class="ltag ltag-vis">Visibility</span> Sem URL / placeholder</div>
+</div>
+
+
+<!-- ══════════════════ EUROPE — GOLDEN VISA ══════════════════ -->
+<div class="region">
+  <div class="region-title">🇪🇺 Europe — Golden Visa &amp; Investor Residency<div class="region-count">16 programs</div></div>
+  <div class="countries-grid">
+
+    <!-- Austria -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇦🇹</div>
+        <div class="card-meta"><div class="card-country">Austria</div><div class="card-region-tag">Europe</div><div class="card-program">Austria Golden Visa</div></div>
+        <span class="badge-vis">No URL</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/austria</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item merit"><div class="nav-icon">⭐</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-merit">Merit</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Austria Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Austria Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Austria Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Austria Residency</div></div>
+      </div>
+      <div class="no-url-bar">⚠️ URL not confirmed</div>
+    </div>
+
+    <!-- Cyprus -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇨🇾</div>
+        <div class="card-meta"><div class="card-country">Cyprus</div><div class="card-region-tag">Europe</div><div class="card-program">Golden Visa</div></div>
+        <span class="from-badge">EUR 300k</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/cyprus</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Cyprus Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Cyprus Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Cyprus Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Cyprus Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Greece -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇬🇷</div>
+        <div class="card-meta"><div class="card-country">Greece</div><div class="card-region-tag">Europe</div><div class="card-program">Greek Golden Visa</div></div>
+        <span class="from-badge">EUR 250k</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/greece</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Greece Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Greece Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Greece Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Greece Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Hungary -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇭🇺</div>
+        <div class="card-meta"><div class="card-country">Hungary</div><div class="card-region-tag">Europe</div><div class="card-program">Hungary Golden Visa</div></div>
+        <span class="from-badge">EUR 250k</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/hungary</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Hungary Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Hungary Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Hungary Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Hungary Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Ireland -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇮🇪</div>
+        <div class="card-meta"><div class="card-country">Ireland</div><div class="card-region-tag">Europe</div><div class="card-program">Ireland Golden Visa</div></div>
+        <span class="badge-gv">GV</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/ireland</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Ireland Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Ireland Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Ireland Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Ireland Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Italy -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇮🇹</div>
+        <div class="card-meta"><div class="card-country">Italy</div><div class="card-region-tag">Europe</div><div class="card-program">Italy Investor Visa</div></div>
+        <span class="from-badge">EUR 250k</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/italy</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Italy Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Italy Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Italy Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Italy Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Jersey -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇯🇪</div>
+        <div class="card-meta"><div class="card-country">Jersey</div><div class="card-region-tag">Europe</div><div class="card-program">Jersey Residency by Investment</div></div>
+        <span class="badge-vis">No URL</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/jersey</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Jersey Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Jersey Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Jersey Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Jersey Residency</div></div>
+      </div>
+      <div class="no-url-bar">⚠️ URL not confirmed</div>
+    </div>
+
+    <!-- Latvia -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇱🇻</div>
+        <div class="card-meta"><div class="card-country">Latvia</div><div class="card-region-tag">Europe</div><div class="card-program">Latvia Golden Visa</div></div>
+        <span class="from-badge">EUR 50k</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/latvia</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Latvia Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Latvia Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Latvia Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Latvia Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Luxembourg -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇱🇺</div>
+        <div class="card-meta"><div class="card-country">Luxembourg</div><div class="card-region-tag">Europe</div><div class="card-program">Luxembourg Golden Visa</div></div>
+        <span class="badge-gv">GV</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/luxembourg</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Luxembourg Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Luxembourg Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Luxembourg Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Luxembourg Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Malta -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇲🇹</div>
+        <div class="card-meta"><div class="card-country">Malta</div><div class="card-region-tag">Europe</div><div class="card-program">MPRP — Malta Permanent Residence Programme</div></div>
+        <span class="from-badge">EUR 169k</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/malta</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item merit"><div class="nav-icon">⭐</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-merit">Merit</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Malta Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Malta Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Malta Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Malta Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Monaco -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇲🇨</div>
+        <div class="card-meta"><div class="card-country">Monaco</div><div class="card-region-tag">Europe</div><div class="card-program">Monaco Carte de Séjour</div></div>
+        <span class="badge-rbi">Premium</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/monaco</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Monaco Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Monaco Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Monaco Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Monaco Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Portugal -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇵🇹</div>
+        <div class="card-meta"><div class="card-country">Portugal</div><div class="card-region-tag">Europe</div><div class="card-program">Portugal Golden Visa</div></div>
+        <span class="from-badge">EUR 250k</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/portugal</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Portugal Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Portugal Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Portugal Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Portugal Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Serbia -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇷🇸</div>
+        <div class="card-meta"><div class="card-country">Serbia</div><div class="card-region-tag">Europe</div><div class="card-program">Serbia Residency by Investment</div></div>
+        <span class="badge-rbi">RBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/serbia</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Serbia Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Serbia Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Serbia Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Serbia Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Spain -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇪🇸</div>
+        <div class="card-meta"><div class="card-country">Spain</div><div class="card-region-tag">Europe</div><div class="card-program">Spanish Non-Lucrative Visa</div></div>
+        <span class="badge-rbi">RBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/spain</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Spain Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Spain Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Spain Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Spain Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Switzerland -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇨🇭</div>
+        <div class="card-meta"><div class="card-country">Switzerland</div><div class="card-region-tag">Europe</div><div class="card-program">Lump Sum Tax Residence</div></div>
+        <span class="from-badge">CHF 250k/yr</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/switzerland</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Switzerland Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Switzerland Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Switzerland Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Switzerland Residency</div></div>
+      </div>
+    </div>
+
+    <!-- UK -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇬🇧</div>
+        <div class="card-meta"><div class="card-country">United Kingdom</div><div class="card-region-tag">Europe</div><div class="card-program">Innovator Founder Visa</div></div>
+        <span class="badge-rbi">RBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/uk</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of United Kingdom Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of United Kingdom Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of United Kingdom Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for United Kingdom Residency</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════ CARIBBEAN ══════════════════ -->
+<div class="region">
+  <div class="region-title">🏝️ Caribbean — Residency by Investment<div class="region-count">2 programs</div></div>
+  <div class="countries-grid">
+
+    <!-- Bahamas -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇧🇸</div>
+        <div class="card-meta"><div class="card-country">Bahamas</div><div class="card-region-tag">Caribbean</div><div class="card-program">Economic Permanent Residency</div></div>
+        <span class="badge-rbi">Premium</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/bahamas</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Bahamas Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Bahamas Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Bahamas Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Bahamas Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Cayman -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇰🇾</div>
+        <div class="card-meta"><div class="card-country">Cayman Islands</div><div class="card-region-tag">Caribbean</div><div class="card-program">Persons of Independent Means</div></div>
+        <span class="badge-rbi">Premium</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/cayman-islands</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Cayman Islands Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Cayman Islands Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Cayman Islands Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Cayman Islands Residency</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════ AMERICAS ══════════════════ -->
+<div class="region">
+  <div class="region-title">🌎 Americas — Residency by Investment<div class="region-count">7 programs</div></div>
+  <div class="countries-grid">
+
+    <!-- Argentina -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇦🇷</div>
+        <div class="card-meta"><div class="card-country">Argentina</div><div class="card-region-tag">Americas</div><div class="card-program">Independent Means Visa</div></div>
+        <span class="badge-rbi">RBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/argentina</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Argentina Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Argentina Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Argentina Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Argentina Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Brazil -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇧🇷</div>
+        <div class="card-meta"><div class="card-country">Brazil</div><div class="card-region-tag">Americas</div><div class="card-program">Brazil Investor Visa</div></div>
+        <span class="badge-rbi">Investor</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/brazil</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Brazil Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Brazil Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Brazil Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Brazil Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Canada -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇨🇦</div>
+        <div class="card-meta"><div class="card-country">Canada</div><div class="card-region-tag">Americas</div><div class="card-program">Entrepreneurship Visa</div></div>
+        <span class="badge-vis">Visibility</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/canada</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Canada Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Canada Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Canada Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Canada Residency</div></div>
+      </div>
+      <div class="vis-bar">⚠️ Visibility only — no URL confirmed</div>
+    </div>
+
+    <!-- Costa Rica -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇨🇷</div>
+        <div class="card-meta"><div class="card-country">Costa Rica</div><div class="card-region-tag">Americas</div><div class="card-program">Investor Visa</div></div>
+        <span class="from-badge">USD 150k</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/costa-rica</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Costa Rica Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Costa Rica Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Costa Rica Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Costa Rica Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Panama -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇵🇦</div>
+        <div class="card-meta"><div class="card-country">Panama</div><div class="card-region-tag">Americas</div><div class="card-program">Qualified Investor Visa</div></div>
+        <span class="from-badge">USD 300k</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/panama</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Panama Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Panama Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Panama Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Panama Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Paraguay -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇵🇾</div>
+        <div class="card-meta"><div class="card-country">Paraguay</div><div class="card-region-tag">Americas</div><div class="card-program">Independent Means Visa</div></div>
+        <span class="badge-rbi">RBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/paraguay</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Paraguay Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Paraguay Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Paraguay Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Paraguay Residency</div></div>
+      </div>
+    </div>
+
+    <!-- United States -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇺🇸</div>
+        <div class="card-meta"><div class="card-country">United States</div><div class="card-region-tag">Americas</div><div class="card-program">EB-5 Investor Visa</div></div>
+        <span class="from-badge">USD 800k</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/united-states</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of United States Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of United States Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of United States Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for United States Residency</div></div>
+      </div>
+    </div>
+
+    <!-- Uruguay -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇺🇾</div>
+        <div class="card-meta"><div class="card-country">Uruguay</div><div class="card-region-tag">Americas</div><div class="card-program">Independent Means Visa</div></div>
+        <span class="from-badge">USD 1k/mo</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/uruguay</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of Uruguay Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of Uruguay Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of Uruguay Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for Uruguay Residency</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════ MIDDLE EAST & OCEANIA ══════════════════ -->
+<div class="region">
+  <div class="region-title">🌏 Middle East &amp; Oceania — Residency by Investment<div class="region-count">2 programs</div></div>
+  <div class="countries-grid">
+
+    <!-- UAE -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇦🇪</div>
+        <div class="card-meta"><div class="card-country">UAE</div><div class="card-region-tag">Middle East</div><div class="card-program">UAE Golden Visa</div></div>
+        <span class="from-badge">AED 2M</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/uae</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of UAE Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of UAE Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of UAE Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for UAE Residency</div></div>
+      </div>
+    </div>
+
+    <!-- New Zealand -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇳🇿</div>
+        <div class="card-meta"><div class="card-country">New Zealand</div><div class="card-region-tag">Oceania</div><div class="card-program">New Zealand Investor Visa</div></div>
+        <span class="from-badge">NZD 5M</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/residency/new-zealand</span></div>
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-label">Overview of New Zealand Residency</div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-label">Benefits of New Zealand Residency</div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-label">Requirements of New Zealand Residency</div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-label">Procedure for New Zealand Residency</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- SLUG REFERENCE TABLE -->
+<div class="slug-table-wrap">
+  <div class="slug-table-head"><span>🔗 All Residency Slugs — Quick Reference</span></div>
+  <table>
+    <thead>
+      <tr>
+        <th></th><th>Country</th><th>Slug</th><th>Programme</th><th>Starting From</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>🇦🇹</td><td class="country-name">Austria</td><td class="slug-val">/residency/austria</td><td>Austria Golden Visa</td><td style="color:var(--muted)">—</td></tr>
+      <tr><td>🇧🇸</td><td class="country-name">Bahamas</td><td class="slug-val">/residency/bahamas</td><td>Economic Permanent Residency</td><td style="color:var(--muted)">—</td></tr>
+      <tr><td>🇧🇷</td><td class="country-name">Brazil</td><td class="slug-val">/residency/brazil</td><td>Brazil Investor Visa</td><td style="color:var(--muted)">—</td></tr>
+      <tr><td>🇨🇦</td><td class="country-name">Canada</td><td class="slug-val">/residency/canada</td><td>Entrepreneurship Visa</td><td style="color:var(--muted)">Visibility</td></tr>
+      <tr><td>🇰🇾</td><td class="country-name">Cayman Islands</td><td class="slug-val">/residency/cayman-islands</td><td>Persons of Independent Means</td><td style="color:var(--muted)">—</td></tr>
+      <tr><td>🇨🇷</td><td class="country-name">Costa Rica</td><td class="slug-val">/residency/costa-rica</td><td>Investor Visa</td><td>USD 150,000</td></tr>
+      <tr><td>🇨🇾</td><td class="country-name">Cyprus</td><td class="slug-val">/residency/cyprus</td><td>Golden Visa</td><td>EUR 300,000</td></tr>
+      <tr><td>🇬🇷</td><td class="country-name">Greece</td><td class="slug-val">/residency/greece</td><td>Greek Golden Visa</td><td>EUR 250,000</td></tr>
+      <tr><td>🇭🇺</td><td class="country-name">Hungary</td><td class="slug-val">/residency/hungary</td><td>Hungary Golden Visa</td><td>EUR 250,000</td></tr>
+      <tr><td>🇮🇪</td><td class="country-name">Ireland</td><td class="slug-val">/residency/ireland</td><td>Ireland Golden Visa</td><td style="color:var(--muted)">—</td></tr>
+      <tr><td>🇮🇹</td><td class="country-name">Italy</td><td class="slug-val">/residency/italy</td><td>Italy Investor Visa</td><td>EUR 250,000</td></tr>
+      <tr><td>🇯🇪</td><td class="country-name">Jersey</td><td class="slug-val">/residency/jersey</td><td>Jersey RBI</td><td style="color:#ef4444">URL TBC</td></tr>
+      <tr><td>🇱🇻</td><td class="country-name">Latvia</td><td class="slug-val">/residency/latvia</td><td>Latvia Golden Visa</td><td>EUR 50,000</td></tr>
+      <tr><td>🇱🇺</td><td class="country-name">Luxembourg</td><td class="slug-val">/residency/luxembourg</td><td>Luxembourg Golden Visa</td><td style="color:var(--muted)">—</td></tr>
+      <tr><td>🇲🇹</td><td class="country-name">Malta</td><td class="slug-val">/residency/malta</td><td>MPRP</td><td>EUR 169,000</td></tr>
+      <tr><td>🇲🇨</td><td class="country-name">Monaco</td><td class="slug-val">/residency/monaco</td><td>Carte de Séjour</td><td style="color:var(--muted)">—</td></tr>
+      <tr><td>🇳🇿</td><td class="country-name">New Zealand</td><td class="slug-val">/residency/new-zealand</td><td>Investor Visa</td><td>NZD 5,000,000</td></tr>
+      <tr><td>🇵🇦</td><td class="country-name">Panama</td><td class="slug-val">/residency/panama</td><td>Qualified Investor Visa</td><td>USD 300,000</td></tr>
+      <tr><td>🇵🇾</td><td class="country-name">Paraguay</td><td class="slug-val">/residency/paraguay</td><td>Independent Means Visa</td><td style="color:var(--muted)">—</td></tr>
+      <tr><td>🇵🇹</td><td class="country-name">Portugal</td><td class="slug-val">/residency/portugal</td><td>Portugal Golden Visa</td><td>EUR 250,000</td></tr>
+      <tr><td>🇦🇷</td><td class="country-name">Argentina</td><td class="slug-val">/residency/argentina</td><td>Independent Means Visa</td><td style="color:var(--muted)">—</td></tr>
+      <tr><td>🇷🇸</td><td class="country-name">Serbia</td><td class="slug-val">/residency/serbia</td><td>Serbia RBI</td><td style="color:var(--muted)">—</td></tr>
+      <tr><td>🇪🇸</td><td class="country-name">Spain</td><td class="slug-val">/residency/spain</td><td>Non-Lucrative Visa</td><td style="color:var(--muted)">—</td></tr>
+      <tr><td>🇨🇭</td><td class="country-name">Switzerland</td><td class="slug-val">/residency/switzerland</td><td>Lump Sum Tax</td><td>CHF 250,000/yr</td></tr>
+      <tr><td>🇦🇪</td><td class="country-name">UAE</td><td class="slug-val">/residency/uae</td><td>UAE Golden Visa</td><td>AED 2,000,000</td></tr>
+      <tr><td>🇺🇸</td><td class="country-name">United States</td><td class="slug-val">/residency/united-states</td><td>EB-5 Visa</td><td>USD 800,000</td></tr>
+      <tr><td>🇬🇧</td><td class="country-name">United Kingdom</td><td class="slug-val">/residency/uk</td><td>Innovator Founder Visa</td><td style="color:var(--muted)">—</td></tr>
+      <tr><td>🇺🇾</td><td class="country-name">Uruguay</td><td class="slug-val">/residency/uruguay</td><td>Independent Means Visa</td><td>USD 1,000/mo</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="text-align:center;margin-top:28px;font-size:11px;color:#9ca3af;">
+  <strong style="color:var(--night)">28 residency pages</strong> · Cada página: Menu Interno + 4 secções de conteúdo · slugs em <span style="font-family:monospace;color:var(--green);">/residency/country-name</span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Malta Permanent Residence Programme (MPRP)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  a { color: inherit; text-decoration: none; cursor: pointer; }
+  .nav-link[href], .inav-item[href], .toc-item[href] { cursor: pointer; }
+  .nav-link[href]:hover, .inav-item[href]:hover, .toc-item[href]:hover { opacity: .8; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --night:      #000957;
+    --electric:   #3F8CFF;
+    --white:      #ffffff;
+    --off:        #f4f5fa;
+    --mid:        #e4e8f4;
+    --muted:      #9ca3af;
+    --text:       #1a1a2e;
+    --wire:       #c5cce0;
+    --wire-dk:    #a0aabb;
+    --label:      #6b7280;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-sans:  'Segoe UI', system-ui, sans-serif;
+  }
+
+  body { background: #e8eaf2; font-family: var(--font-sans); color: var(--text); }
+  .page-wrapper { background: var(--white); box-shadow: 0 8px 48px rgba(0,9,87,.14); }
+
+  /* ── Placeholders ── */
+  .wire-img {
+    background: var(--wire); display: flex; align-items: center; justify-content: center;
+    color: var(--wire-dk); font-size: 11px; font-weight: 600;
+    letter-spacing: .4px; text-transform: uppercase;
+  }
+
+  /* ══ UTILITY BAR + NAVBAR ══ */
+  .util-bar { background: var(--night); padding: 0 48px; display: flex; align-items: center; justify-content: flex-end; height: 38px; gap: 28px; }
+  .util-item { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.85); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .navbar {
+    background: #fff; border-bottom: 1px solid var(--mid); padding: 0 48px;
+    display: flex; align-items: center; height: 84px; gap: 40px;
+    position: sticky; top: 0; z-index: 50;
+  }
+  .nav-logo { display: flex; align-items: center; flex-shrink: 0; font-family: var(--font-serif); font-size: 20px; font-weight: 700; color: var(--night); }
+  .nav-links { display: flex; gap: 32px; flex: 1; align-items: center; }
+  .nav-link { font-size: 13px; font-weight: 600; color: var(--night); cursor: default; display: flex; align-items: center; gap: 4px; }
+  .nav-link.active { font-weight: 800; color: var(--electric); }
+  .nav-link.has-caret:after { content: '⌄'; font-size: 11px; color: var(--night); }
+  .nav-cta { background: var(--night); color: #fff; font-size: 11px; font-weight: 700; padding: 16px 26px; letter-spacing: .5px; text-transform: uppercase; cursor: default; flex-shrink: 0; }
+
+  /* ══ INTERNAL NAV — MALTA ══ */
+  .internal-nav {
+    background: var(--night); border-bottom: 1px solid rgba(255,255,255,.08);
+    padding: 0 48px; display: flex; align-items: stretch; gap: 0;
+    position: sticky; top: 84px; z-index: 20;
+  }
+  .inav-item {
+    font-size: 12px; font-weight: 600; color: rgba(255,255,255,.5);
+    padding: 20px 26px; border-bottom: 3px solid transparent;
+    cursor: default; display: flex; align-items: center; gap: 7px;
+    white-space: nowrap;
+  }
+  .inav-item.active { color: #fff; border-bottom-color: var(--electric); }
+  .inav-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); }
+  .inav-item.active .inav-dot { background: var(--electric); }
+  .inav-sep { width: 1px; background: rgba(255,255,255,.12); margin: 12px 0; }
+
+  /* ══ ARTICLE HEADER ══ */
+  .article-header { padding: 40px 48px 0; border-bottom: 1px solid var(--mid); }
+  .article-breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); margin-bottom: 20px; }
+  .hbc-sep { color: var(--wire-dk); }
+  .hbc-current { color: var(--night); font-weight: 600; }
+  .article-tag { display: inline-block; font-size: 10px; font-weight: 800; color: var(--electric); text-transform: uppercase; letter-spacing: 1px; background: rgba(63,140,255,.1); padding: 5px 12px; margin-bottom: 18px; }
+  .article-title { font-family: var(--font-serif); font-size: 38px; font-weight: 700; color: var(--night); line-height: 1.16; letter-spacing: -.4px; max-width: 820px; margin-bottom: 22px; }
+  .article-meta { display: flex; align-items: center; justify-content: space-between; padding-bottom: 28px; flex-wrap: wrap; gap: 16px; }
+  .article-byline { display: flex; align-items: center; gap: 12px; }
+  .byline-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--wire); color: var(--wire-dk); font-size: 9px; }
+  .byline-name { font-size: 12px; font-weight: 700; color: var(--night); }
+  .byline-sub { font-size: 11px; color: var(--muted); }
+  .article-share { display: flex; align-items: center; gap: 10px; }
+  .share-btn { width: 34px; height: 34px; border: 1px solid var(--mid); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--night); cursor: default; }
+
+  .article-hero-img { height: 420px; }
+  .article-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ══ ARTICLE LAYOUT ══ */
+  .article-shell { display: grid; grid-template-columns: 260px 1fr; gap: 56px; padding: 48px; align-items: start; }
+  .article-sidebar { position: sticky; top: 156px; display: flex; flex-direction: column; gap: 28px; }
+  .toc-title { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+  .toc-list { display: flex; flex-direction: column; }
+  .toc-item { font-size: 12px; color: var(--label); padding: 9px 0 9px 14px; border-left: 2px solid var(--mid); line-height: 1.4; }
+  .toc-item.active { color: var(--night); font-weight: 700; border-left-color: var(--electric); }
+  .sidebar-save { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--night); border: 1px solid var(--mid); padding: 12px 16px; cursor: default; }
+
+  .article-body { max-width: 720px; }
+  .article-p { font-size: 14px; color: var(--label); line-height: 1.85; margin-bottom: 18px; }
+  .article-h2 { font-family: var(--font-serif); font-size: 26px; font-weight: 700; color: var(--night); line-height: 1.2; margin: 48px 0 18px; letter-spacing: -.2px; scroll-margin-top: 156px; }
+  .article-h2:first-child { margin-top: 0; }
+  .article-h3 { font-size: 15px; font-weight: 800; color: var(--night); margin: 26px 0 10px; }
+  .article-img { height: 280px; margin: 28px 0; }
+
+  /* key facts card */
+  .facts-card { background: var(--night); padding: 26px 28px; margin-bottom: 20px; }
+  .facts-title { font-size: 12px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: .6px; margin-bottom: 16px; }
+  .facts-list { display: flex; flex-direction: column; gap: 12px; }
+  .facts-item { display: flex; gap: 10px; font-size: 12px; color: rgba(255,255,255,.75); line-height: 1.6; }
+  .facts-check { color: var(--electric); font-weight: 800; flex-shrink: 0; }
+
+  /* benefit rows */
+  .num-list { display: flex; flex-direction: column; margin-top: 8px; }
+  .num-item { display: flex; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--mid); }
+  .num-item:last-child { border-bottom: none; }
+  .num-badge { width: 30px; height: 30px; background: var(--off); border: 1px solid var(--mid); color: var(--night); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .num-item-title { font-size: 13px; font-weight: 700; color: var(--night); margin-bottom: 5px; }
+  .num-item-desc { font-size: 12px; color: var(--label); line-height: 1.7; }
+
+  /* bullet list */
+  .bullet-list { display: flex; flex-direction: column; gap: 12px; margin: 8px 0 18px; }
+  .bullet-item { display: flex; gap: 10px; font-size: 13px; color: var(--label); line-height: 1.7; }
+  .bullet-dot { color: var(--electric); font-weight: 800; flex-shrink: 0; }
+
+  /* inline cta banner */
+  .inline-cta { position: relative; height: 220px; margin: 32px 0; overflow: hidden; }
+  .inline-cta .wire-img { width: 100%; height: 100%; }
+  .inline-cta-overlay { position: absolute; inset: 0; background: rgba(0,9,87,.68); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 14px; padding: 0 40px; }
+  .inline-cta-title { font-family: var(--font-serif); font-size: 22px; font-weight: 700; color: #fff; max-width: 360px; line-height: 1.25; }
+  .btn { font-size: 12px; font-weight: 700; padding: 13px 24px; display: inline-block; cursor: default; letter-spacing: .3px; }
+  .btn-electric { background: var(--electric); color: #fff; }
+  .btn-white { background: #fff; color: var(--night); }
+  .btn-ghost { background: transparent; border: 2px solid rgba(255,255,255,.5); color: #fff; }
+
+  /* option cards */
+  .option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0 8px; }
+  .option-card { border: 1px solid var(--mid); padding: 24px 22px; }
+  .option-card-tag { font-size: 9px; font-weight: 800; color: var(--electric); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 10px; }
+  .option-card-title { font-size: 15px; font-weight: 800; color: var(--night); margin-bottom: 12px; }
+  .option-row { display: flex; justify-content: space-between; font-size: 11px; color: var(--label); padding: 9px 0; border-bottom: 1px solid var(--mid); }
+  .option-row:last-child { border-bottom: none; }
+  .option-row-val { font-weight: 700; color: var(--night); }
+
+  /* timeline */
+  .timeline-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 22px 0 8px; border-top: 2px solid var(--mid); }
+  .timeline-step { padding: 16px 16px 0; position: relative; }
+  .timeline-step::before { content: ''; position: absolute; top: -2px; left: 0; width: 100%; height: 2px; background: var(--electric); }
+  .timeline-step-month { font-size: 10px; font-weight: 800; color: var(--electric); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+  .timeline-step-desc { font-size: 11px; color: var(--label); line-height: 1.6; }
+
+  /* cost list */
+  .cost-list { display: flex; flex-direction: column; margin: 18px 0 8px; }
+  .cost-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--mid); }
+  .cost-row:last-child { border-bottom: none; }
+  .cost-row.total { padding-top: 18px; }
+  .cost-row.total .cost-key, .cost-row.total .cost-val { font-weight: 800; color: var(--night); }
+  .cost-key { font-size: 13px; color: var(--label); }
+  .cost-val { font-size: 13px; font-weight: 700; color: var(--night); }
+
+  /* help / contact CTA */
+  .help-band { background: var(--off); border: 1px solid var(--mid); padding: 36px 32px; margin: 40px 0; }
+  .help-title { font-family: var(--font-serif); font-size: 22px; font-weight: 700; color: var(--night); margin-bottom: 10px; }
+  .help-desc { font-size: 13px; color: var(--label); line-height: 1.7; margin-bottom: 20px; max-width: 560px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .form-field-lbl { font-size: 10px; font-weight: 700; color: var(--night); text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
+  .form-input { background: #fff; border: 1px solid var(--mid); height: 42px; }
+  .form-textarea { background: #fff; border: 1px solid var(--mid); height: 84px; margin-bottom: 18px; }
+
+  /* FAQ */
+  .faq-section { margin-top: 8px; }
+  .faq-item { border-bottom: 1px solid var(--mid); padding: 18px 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; cursor: default; }
+  .faq-q { font-size: 13px; font-weight: 700; color: var(--night); }
+  .faq-caret { font-size: 12px; color: var(--muted); flex-shrink: 0; margin-top: 2px; }
+
+  /* ══ FOOTER ══ */
+  .footer { background: var(--night); padding: 40px 48px 24px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+  .footer-logo { font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+  .footer-desc { font-size: 11px; color: rgba(255,255,255,.3); line-height: 1.6; max-width: 220px; }
+  .footer-col-title { font-size: 10px; font-weight: 800; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 12px; }
+  .footer-link { font-size: 11px; color: rgba(255,255,255,.4); margin-bottom: 8px; cursor: default; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 20px; display: flex; justify-content: space-between; font-size: 10px; color: rgba(255,255,255,.2); }
+
+  @media (max-width: 900px) {
+    .article-shell { grid-template-columns: 1fr; }
+    .article-sidebar { position: static; }
+    .form-row, .option-grid { grid-template-columns: 1fr; }
+    .timeline-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- UTILITY BAR -->
+    <div class="util-bar">
+      <div class="util-item"><span>📞</span> Request a Callback</div>
+      <div class="util-item"><span>📞</span> +351 210 605 995</div>
+      <div class="util-item"><span>⊙</span> Worldwide Offices</div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <a class="nav-logo" href="index.html">
+        <svg viewBox="0 0 199 71" style="height:34px;width:auto;display:block;" xmlns="http://www.w3.org/2000/svg">
+<path d="M64.045 35C64.045 51.5685 50.6136 65 34.045 65C17.4765 65 4.04504 51.5685 4.04504 35C4.04504 18.4315 17.4765 5 34.045 5C50.6136 5 64.045 18.4315 64.045 35Z" fill="white"></path>
+<path d="M34.7438 0C15.5817 0 0.0450439 15.8237 0.0450439 35.353C0.0450439 54.8823 15.5817 70.6994 34.7438 70.6994C53.9058 70.6994 69.4425 54.869 69.4425 35.353C69.4425 15.8371 53.9058 0 34.7438 0ZM49.0052 42.8376L52.3635 52.2584C52.5572 52.7925 52.0297 53.3066 51.5022 53.1063L42.2484 49.6278C41.9212 49.5076 41.554 49.6545 41.4071 49.975L35.358 63.0613C35.1177 63.5754 34.3832 63.5754 34.1429 63.0613L28.0871 49.9616C27.9402 49.6478 27.573 49.4942 27.2459 49.6144L17.8985 53.073C17.3644 53.2733 16.8436 52.7525 17.0372 52.2183L20.4356 42.8242C20.5558 42.4971 20.4023 42.1365 20.0884 41.9897L7.03553 35.9606C6.52143 35.7203 6.52143 34.9858 7.03553 34.7455L20.0951 28.7031C20.4156 28.5562 20.5625 28.189 20.4423 27.8618L16.9371 18.5612C16.7368 18.027 17.2509 17.5063 17.785 17.6932L27.2659 21.0583C27.593 21.1718 27.9536 21.0249 28.0938 20.7111L34.1429 7.63812C34.3832 7.12402 35.1177 7.12402 35.358 7.63812L41.3937 20.6977C41.5406 21.0115 41.9012 21.1651 42.2283 21.0449L51.6091 17.6465C52.1432 17.4528 52.6573 17.9736 52.4637 18.5078L49.0118 27.8484C48.8917 28.1756 49.0452 28.5428 49.359 28.683L62.4654 34.7455C62.9795 34.9858 62.9795 35.7203 62.4654 35.9606L49.359 42.0164C49.0452 42.1633 48.8917 42.5238 49.0118 42.8443L49.0052 42.8376Z" fill="#000957"></path>
+<path d="M91.6211 13.1498C90.7598 12.3219 89.4712 11.8679 88.3562 11.8679C85.6054 11.8679 83.9362 13.9577 83.9362 16.6016C83.9362 18.7115 85.1647 20.8947 88.3562 20.8947C89.3644 20.8947 90.2457 20.6744 91.2539 19.8665V17.5898H87.9689V15.4265H93.4705V20.8413C92.202 22.2902 90.6062 23.1515 88.3495 23.1515C83.5223 23.1515 81.5593 19.98 81.5593 16.6016C81.5593 12.9896 83.816 9.64453 88.3495 9.64453C90.0721 9.64453 91.8014 10.3055 93.1233 11.6075L91.6211 13.1498Z" fill="#000957"></path>
+<path d="M99.3461 10.0117V20.6143H105.949V22.851H96.9224V10.0117H99.3461Z" fill="#000957"></path>
+<path d="M121.366 16.5081C121.332 19.8264 119.289 23.1514 114.776 23.1514C110.262 23.1514 108.173 19.9065 108.173 16.5281C108.173 13.1497 110.336 9.75793 114.776 9.75793C119.216 9.75793 121.399 13.1497 121.366 16.5081ZM110.556 16.5615C110.61 18.6713 111.751 20.928 114.776 20.928C117.8 20.928 118.942 18.6513 118.975 16.5414C119.009 14.3782 117.8 11.9546 114.776 11.9546C111.751 11.9546 110.503 14.3982 110.556 16.5615Z" fill="#000957"></path>
+<path d="M135.046 13.7373C135.046 14.7255 134.572 15.6802 133.377 16.2144C134.879 16.675 135.433 18.2708 135.433 19.0787C135.433 21.943 133.284 22.8577 130.626 22.8577H124.537V10.0117H130.626C133.157 10.0117 135.046 11.1468 135.046 13.7373ZM126.921 15.1661H130.626C132.149 15.1661 132.643 14.5252 132.643 13.7907C132.643 13.2032 132.169 12.215 130.626 12.215H126.921V15.1661ZM126.921 20.5943H130.626C131.614 20.5943 133.03 20.2671 133.03 19.0519C133.03 17.8368 131.614 17.2893 130.626 17.2893H126.921V20.5943Z" fill="#000957"></path>
+<path d="M147.725 20.434H141.009L139.907 22.8577H137.283L143.045 10.0117H145.689L151.451 22.8577H148.807L147.725 20.434ZM144.367 12.7091L141.983 18.1773H146.757L144.374 12.7091H144.367Z" fill="#000957"></path>
+<path d="M156.625 10.0117V20.6143H163.229V22.851H154.202V10.0117H156.625Z" fill="#000957"></path>
+<path d="M93.4038 40.1703C92.0818 41.4722 90.3792 42.0798 88.5231 42.0798C83.7493 42.0798 81.7329 38.7949 81.7129 35.4566C81.6929 32.0982 83.8762 28.6864 88.5231 28.6864C90.2657 28.6864 91.9149 29.3474 93.2369 30.6493L91.6211 32.2117C90.7798 31.3838 89.6381 31.0032 88.5231 31.0032C85.4251 31.0032 84.0831 33.3133 84.1032 35.4632C84.1232 37.5931 85.3517 39.8098 88.5231 39.8098C89.6448 39.8098 90.9067 39.3491 91.7546 38.5078L93.4038 40.177V40.1703Z" fill="#000957"></path>
+<path d="M96.2615 41.7861V28.9402H98.6651V41.7861H96.2615Z" fill="#000957"></path>
+<path d="M106.316 31.1435H102.244V28.9402H112.813V31.1435H108.74V41.7861H106.316V31.1435Z" fill="#000957"></path>
+<path d="M115.764 41.7861V28.9402H118.168V41.7861H115.764Z" fill="#000957"></path>
+<path d="M121.713 28.9402H131.588V30.0752L124.924 39.4893H131.588V41.7861H121.553V40.3907L128.069 31.2169H121.72V28.9402H121.713Z" fill="#000957"></path>
+<path d="M144.093 41.7861H134.479V28.9402H144.093V31.2904H136.882V34.2415H143.839V36.4982H136.882V39.3959H144.093V41.7794V41.7861Z" fill="#000957"></path>
+<path d="M156.258 28.92H158.682V41.786H157.18V41.806L150.429 33.1264V41.786H148.006V28.9401H149.969L156.265 36.9054V28.9267L156.258 28.92Z" fill="#000957"></path>
+<path d="M90.0055 50.9732C89.5648 50.2387 88.3563 49.5444 86.9609 49.5444C85.1649 49.5444 84.3036 50.2988 84.3036 51.2536C84.3036 52.3753 85.6256 52.6824 87.1679 52.8694C89.8452 53.1965 92.3423 53.8976 92.3423 56.9622C92.3423 59.8265 89.8118 61.055 86.9475 61.055C84.3236 61.055 82.3072 60.2471 81.3525 57.8969L83.3688 56.8487C83.9364 58.2641 85.4253 58.885 86.9809 58.885C88.5366 58.885 89.932 58.3509 89.932 56.9555C89.932 55.747 88.6635 55.2463 86.9609 55.066C84.337 54.7522 81.9133 54.0578 81.9133 51.1735C81.9133 48.5295 84.5172 47.4479 86.8875 47.4279C88.8905 47.4279 90.9602 47.9954 91.935 49.9783L90.0055 50.9665V50.9732Z" fill="#000957"></path>
+<path d="M108.3 54.3716C108.266 57.6899 106.223 61.0149 101.71 61.0149C97.1962 61.0149 95.1064 57.77 95.1064 54.3916C95.1064 51.0132 97.2697 47.6215 101.71 47.6215C106.15 47.6215 108.333 51.0132 108.3 54.3716ZM97.49 54.425C97.5434 56.5348 98.6851 58.7915 101.71 58.7915C104.734 58.7915 105.876 56.5148 105.909 54.405C105.943 52.2417 104.734 49.8181 101.71 49.8181C98.6851 49.8181 97.4366 52.2618 97.49 54.425Z" fill="#000957"></path>
+<path d="M113.968 47.8751V58.4777H120.571V60.7143H111.544V47.8684H113.968V47.8751Z" fill="#000957"></path>
+<path d="M134.258 47.8951V55.2528C134.258 59.0519 131.928 60.9948 128.697 60.9948C125.465 60.9948 122.988 59.1253 122.988 55.2528V47.8951H125.392V55.2528C125.392 57.563 126.714 58.7915 128.71 58.7915C130.706 58.7915 131.848 57.4495 131.848 55.2528V47.8951H134.252H134.258Z" fill="#000957"></path>
+<path d="M141.416 50.0786H137.343V47.8752H147.912V50.0786H143.839V60.7212H141.416V50.0786Z" fill="#000957"></path>
+<path d="M150.863 60.7212V47.8752H153.267V60.7212H150.863Z" fill="#000957"></path>
+<path d="M170.019 54.3716C169.985 57.6899 167.942 61.0149 163.429 61.0149C158.915 61.0149 156.826 57.77 156.826 54.3916C156.826 51.0132 158.989 47.6215 163.429 47.6215C167.869 47.6215 170.052 51.0132 170.019 54.3716ZM159.209 54.425C159.263 56.5348 160.404 58.7915 163.429 58.7915C166.453 58.7915 167.595 56.5148 167.628 54.405C167.662 52.2417 166.453 49.8181 163.429 49.8181C160.404 49.8181 159.156 52.2618 159.209 54.425Z" fill="#000957"></path>
+<path d="M181.71 47.8552H184.133V60.7145H182.631V60.7345L175.881 52.0549V60.7145H173.457V47.8686H175.42L181.716 55.8339V47.8552H181.71Z" fill="#000957"></path>
+<path d="M195.944 50.9732C195.504 50.2387 194.295 49.5444 192.9 49.5444C191.104 49.5444 190.242 50.2988 190.242 51.2536C190.242 52.3753 191.564 52.6824 193.107 52.8694C195.784 53.1965 198.281 53.8976 198.281 56.9622C198.281 59.8265 195.751 61.055 192.886 61.055C190.263 61.055 188.246 60.2471 187.291 57.8969L189.308 56.8487C189.875 58.2641 191.364 58.885 192.92 58.885C194.475 58.885 195.871 58.3509 195.871 56.9555C195.871 55.747 194.602 55.2463 192.9 55.066C190.276 54.7522 187.852 54.0578 187.852 51.1735C187.852 48.5295 190.456 47.4479 192.826 47.4279C194.829 47.4279 196.899 47.9954 197.874 49.9783L195.944 50.9665V50.9732Z" fill="#000957"></path>
+</svg>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="countries.html">Countries</a>
+        <a class="nav-link" href="residency.html">Residency</a>
+        <a class="nav-link" href="citizenship.html">Citizenship</a>
+        <div class="nav-link has-caret">Services</div>
+        <div class="nav-link has-caret active">Intelligence</div>
+        <div class="nav-link has-caret">About</div>
+      </div>
+      <div class="nav-cta">Book a Consultation</div>
+    </nav>
+
+    <!-- INTERNAL NAV — MALTA -->
+    <div class="internal-nav">
+      <a class="inav-item" href="country-malta.html"><div class="inav-dot"></div> About the Country</a>
+      <div class="inav-sep"></div>
+      <a class="inav-item" href="residency-malta.html"><div class="inav-dot"></div> Permanent Residency Programme</a>
+      <div class="inav-sep"></div>
+      <a class="inav-item" href="citizenship-malta.html"><div class="inav-dot"></div> Citizenship by Merit Framework</a>
+      <div class="inav-sep"></div>
+      <a class="inav-item" href="malta-real-estate.html"><div class="inav-dot"></div> Real Estate</a>
+    </div>
+
+    <!-- ARTICLE HEADER -->
+    <div class="article-header">
+      <div class="article-breadcrumb">
+        <a href="index.html">Home</a> <span class="hbc-sep">/</span> <a href="#">Intelligence</a> <span class="hbc-sep">/</span> <span class="hbc-current">Malta Permanent Residence Programme (MPRP)</span>
+      </div>
+      <div class="article-tag">Residency By Investment</div>
+      <div class="article-title">Malta Permanent Residence Programme (MPRP): A Guide To Malta Residency By Investment 2026</div>
+      <div class="article-meta">
+        <div class="article-byline">
+          <div class="byline-avatar wire-img"></div>
+          <div>
+            <div class="byline-name">Global Citizen Solutions Research Team</div>
+            <div class="byline-sub">Updated August 2026 · 12 min read</div>
+          </div>
+        </div>
+        <div class="article-share">
+          <div class="share-btn">🔖</div>
+          <div class="share-btn">in</div>
+          <div class="share-btn">𝕏</div>
+          <div class="share-btn">✉</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO IMAGE -->
+    <div class="article-hero-img">
+      <img src="assets/img/Malta-1.png" alt="Valletta waterfront, Malta">
+    </div>
+
+    <!-- ARTICLE SHELL -->
+    <div class="article-shell">
+
+      <!-- SIDEBAR -->
+      <div class="article-sidebar">
+        <div>
+          <div class="toc-title">Table Of Contents</div>
+          <div class="toc-list">
+            <a class="toc-item active" href="#overview">Malta Permanent Residence Program MPRP</a>
+            <a class="toc-item" href="#benefits">6 Top Benefits Of The Program</a>
+            <a class="toc-item" href="#suited">Who Is The Malta Golden Visa Best Suited For</a>
+            <a class="toc-item" href="#requirements">Program Requirements 2026</a>
+            <a class="toc-item" href="#investment">Investment Options</a>
+            <a class="toc-item" href="#process">Step By Step Application Process</a>
+            <a class="toc-item" href="#timeline">Malta Residency Timeline</a>
+            <a class="toc-item" href="#cost">Total Cost Of Malta Residency</a>
+            <a class="toc-item" href="#tourism">Residence And Tourism</a>
+            <a class="toc-item" href="#citizenship">Is Citizenship Possible?</a>
+            <a class="toc-item" href="#faq">Frequently Asked Questions</a>
+          </div>
+        </div>
+        <div class="sidebar-save">🔖 Save This Article</div>
+      </div>
+
+      <!-- BODY -->
+      <div class="article-body">
+
+        <div class="facts-card">
+          <div class="facts-title">Key Facts And Options</div>
+          <div class="facts-list">
+            <div class="facts-item"><span class="facts-check">✓</span> Minimum qualifying investment from EUR 150,000 (contribution) plus a property route.</div>
+            <div class="facts-item"><span class="facts-check">✓</span> Visa-free travel across the Schengen Area for the main applicant and dependants.</div>
+            <div class="facts-item"><span class="facts-check">✓</span> No minimum stay requirement to maintain residency status.</div>
+            <div class="facts-item"><span class="facts-check">✓</span> Processing time of approximately 4 to 6 months from submission.</div>
+            <div class="facts-item"><span class="facts-check">✓</span> Dependants include spouse, children, and qualifying parents and grandparents.</div>
+          </div>
+        </div>
+
+        <p class="article-p">The Malta Permanent Residence Programme (MPRP) grants non-EU nationals and their families the right to live, work and study in Malta indefinitely, with visa-free access to the Schengen Area. It is one of the few EU residency-by-investment routes that grants permanent — rather than temporary — status from the outset.</p>
+
+        <h2 class="article-h2" id="overview">Malta Permanent Residence Program MPRP</h2>
+        <p class="article-p">Administered by Malta's Residency Malta Agency, the MPRP was relaunched with revised contribution thresholds and due-diligence requirements. Applicants must satisfy a capital and property test, contribute to the National Development and Social Fund, and pass a stringent background-check process before a certificate is issued.</p>
+        <div class="article-img wire-img">Image — Valletta harbour and fortifications</div>
+        <p class="article-p">Because the programme grants permanent residence rather than a renewable permit, successful applicants are not required to reapply or demonstrate continued eligibility once the certificate is issued, subject to maintaining the qualifying property and fund contribution.</p>
+
+        <h2 class="article-h2" id="benefits">6 Top Benefits Of The Malta Residency By Investment Program</h2>
+        <div class="num-list">
+          <div class="num-item">
+            <div class="num-badge">01</div>
+            <div>
+              <div class="num-item-title">Permanent Status From Day One</div>
+              <div class="num-item-desc">Unlike golden visas requiring periodic renewal, the MPRP grants indefinite residence once approved.</div>
+            </div>
+          </div>
+          <div class="num-item">
+            <div class="num-badge">02</div>
+            <div>
+              <div class="num-item-title">Schengen Mobility</div>
+              <div class="num-item-desc">Visa-free travel across the 29 Schengen countries for up to 90 days in any 180-day period.</div>
+            </div>
+          </div>
+          <div class="num-item">
+            <div class="num-badge">03</div>
+            <div>
+              <div class="num-item-title">No Minimum Stay</div>
+              <div class="num-item-desc">Applicants are not required to reside in Malta to keep their status active.</div>
+            </div>
+          </div>
+          <div class="num-item">
+            <div class="num-badge">04</div>
+            <div>
+              <div class="num-item-title">Family Inclusion</div>
+              <div class="num-item-desc">Spouse, children, and qualifying parents and grandparents of both applicant and spouse can be included.</div>
+            </div>
+          </div>
+          <div class="num-item">
+            <div class="num-badge">05</div>
+            <div>
+              <div class="num-item-title">EU Legal Framework</div>
+              <div class="num-item-desc">Malta offers security and stability within the EU's legal and regulatory system.</div>
+            </div>
+          </div>
+          <div class="num-item">
+            <div class="num-badge">06</div>
+            <div>
+              <div class="num-item-title">Pathway Optionality</div>
+              <div class="num-item-desc">Long-term residents may explore naturalisation routes after meeting separate residence-based criteria.</div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="article-h2" id="suited">Who Is The Malta Golden Visa Best Suited For?</h2>
+        <div class="bullet-list">
+          <div class="bullet-item"><span class="bullet-dot">—</span> Globally-mobile families seeking a Plan B within the EU without a relocation requirement.</div>
+          <div class="bullet-item"><span class="bullet-dot">—</span> Investors who value permanent status over a renewable permit.</div>
+          <div class="bullet-item"><span class="bullet-dot">—</span> Applicants prioritising a stable, English-speaking EU jurisdiction with a straightforward legal system.</div>
+          <div class="bullet-item"><span class="bullet-dot">—</span> Families wanting to include parents and grandparents on a single application.</div>
+        </div>
+
+        <h2 class="article-h2" id="requirements">Malta Permanent Residency Program Requirements 2026</h2>
+        <div class="bullet-list">
+          <div class="bullet-item"><span class="bullet-dot">—</span> Be a non-EU, non-EEA and non-Swiss national, at least 18 years of age.</div>
+          <div class="bullet-item"><span class="bullet-dot">—</span> Show proof of stable and regular resources of at least EUR 500,000, of which EUR 150,000 must be financial assets.</div>
+          <div class="bullet-item"><span class="bullet-dot">—</span> Hold a qualifying property, purchased or rented, meeting the minimum thresholds.</div>
+          <div class="bullet-item"><span class="bullet-dot">—</span> Make a non-refundable contribution to the National Development and Social Fund.</div>
+          <div class="bullet-item"><span class="bullet-dot">—</span> Hold valid health insurance covering Malta and the EU, and pass due-diligence checks.</div>
+        </div>
+
+        <div class="inline-cta">
+          <div class="wire-img">Image — Advisor consultation, Malta office</div>
+          <div class="inline-cta-overlay">
+            <div class="inline-cta-title">Find Out If You Qualify For The MPRP</div>
+            <div class="btn btn-electric">Check Your Eligibility</div>
+          </div>
+        </div>
+
+        <h2 class="article-h2" id="investment">Investment Options For The Malta Golden Visa</h2>
+        <p class="article-p">Applicants must combine the fund contribution with one of two qualifying property options in Malta or Gozo.</p>
+        <div class="option-grid">
+          <div class="option-card">
+            <div class="option-card-tag">Option 01 — Property Rental</div>
+            <div class="option-card-title">Lease A Qualifying Property</div>
+            <div class="option-row"><span>Minimum Annual Rent</span><span class="option-row-val">EUR 12,000 – 14,000</span></div>
+            <div class="option-row"><span>Contribution Fee</span><span class="option-row-val">EUR 150,000 – 160,000</span></div>
+            <div class="option-row"><span>Government Donation</span><span class="option-row-val">EUR 2,000</span></div>
+          </div>
+          <div class="option-card">
+            <div class="option-card-tag">Option 02 — Property Purchase</div>
+            <div class="option-card-title">Buy A Qualifying Property</div>
+            <div class="option-row"><span>Minimum Purchase</span><span class="option-row-val">EUR 300,000 – 350,000</span></div>
+            <div class="option-row"><span>Contribution Fee</span><span class="option-row-val">EUR 28,000 – 30,000</span></div>
+            <div class="option-row"><span>Government Donation</span><span class="option-row-val">EUR 2,000</span></div>
+          </div>
+        </div>
+
+        <h2 class="article-h2" id="process">Malta Permanent Residency Program: Step By Step Application Process</h2>
+        <div class="num-list">
+          <div class="num-item"><div class="num-badge">1</div><div><div class="num-item-title">Initial Eligibility Assessment</div><div class="num-item-desc">Our advisory team reviews your profile against the MPRP criteria.</div></div></div>
+          <div class="num-item"><div class="num-badge">2</div><div><div class="num-item-title">Document Preparation And Collation</div><div class="num-item-desc">Gathering of due-diligence documents, financial evidence and certificates.</div></div></div>
+          <div class="num-item"><div class="num-badge">3</div><div><div class="num-item-title">Application Submission</div><div class="num-item-desc">Filing through a Licensed Agent to Residency Malta Agency.</div></div></div>
+          <div class="num-item"><div class="num-badge">4</div><div><div class="num-item-title">Due Diligence And Background Checks</div><div class="num-item-desc">Agency review of source of funds and applicant background.</div></div></div>
+          <div class="num-item"><div class="num-badge">5</div><div><div class="num-item-title">Property Agreement Or Purchase</div><div class="num-item-desc">Securing the qualifying property once in-principle approval is granted.</div></div></div>
+          <div class="num-item"><div class="num-badge">6</div><div><div class="num-item-title">Fulfilment Of Investment Options</div><div class="num-item-desc">Payment of the contribution, donation and administrative fees.</div></div></div>
+          <div class="num-item"><div class="num-badge">7</div><div><div class="num-item-title">Final Approval And Residence Card</div><div class="num-item-desc">Issuance of the Malta Permanent Residence Certificate.</div></div></div>
+        </div>
+
+        <h2 class="article-h2" id="timeline">Maltese Residency Timeline</h2>
+        <div class="timeline-row">
+          <div class="timeline-step"><div class="timeline-step-month">Month 1 – 2</div><div class="timeline-step-desc">Onboarding and document preparation</div></div>
+          <div class="timeline-step"><div class="timeline-step-month">Month 3</div><div class="timeline-step-desc">Submission of application to Residency Malta Agency</div></div>
+          <div class="timeline-step"><div class="timeline-step-month">Month 4 – 6</div><div class="timeline-step-desc">Due diligence and background checks</div></div>
+          <div class="timeline-step"><div class="timeline-step-month">Month 7</div><div class="timeline-step-desc">Completion of investment and issuance of residence card</div></div>
+        </div>
+
+        <h2 class="article-h2" id="cost">Total Cost Of Malta Residency By Investment (MPRP)</h2>
+        <div class="cost-list">
+          <div class="cost-row"><span class="cost-key">Government Contribution Fee</span><span class="cost-val">EUR 28,000 – 160,000</span></div>
+          <div class="cost-row"><span class="cost-key">Qualifying Property (Purchase Or Rental)</span><span class="cost-val">From EUR 300,000 / EUR 12,000 p.a.</span></div>
+          <div class="cost-row"><span class="cost-key">Government Donation</span><span class="cost-val">EUR 2,000</span></div>
+          <div class="cost-row"><span class="cost-key">Due Diligence Fees (Per Applicant)</span><span class="cost-val">EUR 15,000 – 40,000</span></div>
+          <div class="cost-row total"><span class="cost-key">Estimated Total, Single Applicant</span><span class="cost-val">From EUR 175,000</span></div>
+        </div>
+
+        <h2 class="article-h2" id="tourism">Malta Permanent Residence And Tourism</h2>
+        <div class="article-img wire-img">Image — Malta coastline and tourist promenade</div>
+        <p class="article-p">Beyond residency, Malta's tourism infrastructure, climate and connectivity make it an attractive base for holders looking to divide time between the island and their home country, without the minimum-stay obligations found in comparable programmes.</p>
+
+        <h2 class="article-h2" id="citizenship">Is Citizenship Possible Through The Malta Golden Visa?</h2>
+        <p class="article-p">The MPRP does not itself lead to citizenship. Malta operates a separate route, the Citizenship by Naturalisation for Exceptional Services by Direct Investment, for applicants seeking a Maltese passport. Long-term MPRP holders may explore standard naturalisation after meeting residence-based requirements. Learn more on our <a href="citizenship-malta.html" style="color:var(--electric);font-weight:700;">Malta Citizenship</a> page.</p>
+
+        <div class="help-band" id="help">
+          <div class="help-title">How Can Global Citizen Solutions Help You?</div>
+          <div class="help-desc">Our licensed advisors structure MPRP applications end-to-end — eligibility review, property sourcing and due-diligence preparation — for a single point of contact throughout.</div>
+          <div class="form-row">
+            <div><div class="form-field-lbl">First Name</div><div class="form-input"></div></div>
+            <div><div class="form-field-lbl">Last Name</div><div class="form-input"></div></div>
+          </div>
+          <div class="form-row">
+            <div><div class="form-field-lbl">Email</div><div class="form-input"></div></div>
+            <div><div class="form-field-lbl">Phone Number</div><div class="form-input"></div></div>
+          </div>
+          <div class="form-field-lbl">Comment</div>
+          <div class="form-textarea"></div>
+          <div class="btn btn-electric">Submit</div>
+        </div>
+
+        <h2 class="article-h2" id="faq">Frequently Asked Questions</h2>
+        <div class="faq-section">
+          <div class="faq-item"><div class="faq-q">What is the Malta Permanent Residency Programme?</div><div class="faq-caret">⌄</div></div>
+          <div class="faq-item"><div class="faq-q">What are the costs of applying for a property in Malta?</div><div class="faq-caret">⌄</div></div>
+          <div class="faq-item"><div class="faq-q">Do I get a permanent residence permit if I purchase real estate in Malta?</div><div class="faq-caret">⌄</div></div>
+          <div class="faq-item"><div class="faq-q">Can I rent a property in Malta with the MPRP instead of buying?</div><div class="faq-caret">⌄</div></div>
+          <div class="faq-item"><div class="faq-q">How long does the Malta Permanent Residency Programme take?</div><div class="faq-caret">⌄</div></div>
+          <div class="faq-item"><div class="faq-q">Who qualifies as a dependant under the MPRP?</div><div class="faq-caret">⌄</div></div>
+          <div class="faq-item"><div class="faq-q">Can I apply for Maltese citizenship through the MPRP?</div><div class="faq-caret">⌄</div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Global Citizen Solutions</div>
+          <div class="footer-desc">Leading advisory firm for residence and citizenship by investment across 50+ countries.</div>
+        </div>
+        <div>
+          <div class="footer-col-title">Citizenship</div>
+          <div class="footer-link">Malta</div>
+          <div class="footer-link">Austria</div>
+          <div class="footer-link">Caribbean CBI</div>
+          <div class="footer-link">All Programmes</div>
+        </div>
+        <div>
+          <div class="footer-col-title">Residency</div>
+          <div class="footer-link">Portugal</div>
+          <div class="footer-link">Greece</div>
+          <div class="footer-link">UAE</div>
+          <div class="footer-link">All Programmes</div>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <div class="footer-link">About GCS</div>
+          <div class="footer-link">Advisors</div>
+          <div class="footer-link">Contact</div>
+          <div class="footer-link">Legal</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Global Citizen Solutions. All rights reserved.</span>
+        <span>Privacy · Terms · Cookies</span>
+      </div>
+    </footer>
+
+  </div><!-- /page-wrapper -->
+</body>
+</html>

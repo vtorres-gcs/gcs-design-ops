@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RCBI New Site Structure — Sitemap</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #f0f2f7;
+    color: #1a1a2e;
+    padding: 32px 24px 60px;
+    min-width: 1100px;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .header .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .header .logo-mark {
+    width: 32px; height: 32px;
+    background: #000957;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: #3F8CFF; font-weight: 900; font-size: 16px; letter-spacing: -1px;
+  }
+  .header .logo-name {
+    font-size: 13px; font-weight: 600; color: #000957; letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: 22px; font-weight: 700; color: #000957;
+    letter-spacing: -0.3px;
+  }
+  .subtitle {
+    font-size: 13px; color: #6b7280; margin-top: 4px;
+  }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex; gap: 20px; justify-content: center;
+    margin-bottom: 32px; flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; color: #4b5563; font-weight: 500;
+  }
+  .legend-dot {
+    width: 12px; height: 12px; border-radius: 3px;
+  }
+
+  /* ── Columns ── */
+  .sitemap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ── Page Column ── */
+  .page-col { display: flex; flex-direction: column; gap: 12px; }
+
+  .page-header {
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex; align-items: center; gap: 10px;
+    position: relative;
+  }
+  .page-header.citizenship { background: #000957; }
+  .page-header.residency   { background: #1a3a8f; }
+  .page-header.countries   { background: #0a1f6e; }
+
+  .page-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .page-header.citizenship .page-icon { background: rgba(63,140,255,.2); }
+  .page-header.residency   .page-icon { background: rgba(63,140,255,.2); }
+  .page-header.countries   .page-icon { background: rgba(63,140,255,.2); }
+
+  .page-meta { flex: 1; }
+  .page-title { font-size: 14px; font-weight: 700; color: #fff; }
+  .page-desc  { font-size: 10px; color: rgba(255,255,255,.65); margin-top: 2px; }
+  .page-count {
+    background: #3F8CFF; color: #fff;
+    font-size: 10px; font-weight: 700;
+    padding: 3px 8px; border-radius: 20px;
+  }
+
+  /* ── Section Group ── */
+  .section-group { display: flex; flex-direction: column; gap: 6px; }
+  .section-label {
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; color: #9ca3af;
+    padding: 0 4px 2px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-top: 4px;
+  }
+
+  /* ── Program Card ── */
+  .program-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 9px 12px;
+    display: flex; align-items: center; gap: 8px;
+    border: 1px solid #e9ecf4;
+    transition: box-shadow .15s, transform .15s;
+    cursor: default;
+  }
+  .program-card:hover {
+    box-shadow: 0 4px 16px rgba(0,9,87,.09);
+    transform: translateY(-1px);
+  }
+  .flag { font-size: 17px; flex-shrink: 0; }
+  .prog-info { flex: 1; min-width: 0; }
+  .prog-country { font-size: 11px; font-weight: 700; color: #000957; }
+  .prog-name { font-size: 10px; color: #6b7280; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .prog-badge {
+    font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 10px;
+    flex-shrink: 0;
+  }
+  .badge-cbi   { background: #dbeafe; color: #1d4ed8; }
+  .badge-merit { background: #fef3c7; color: #92400e; }
+  .badge-res   { background: #d1fae5; color: #065f46; }
+  .badge-other { background: #f3f4f6; color: #374151; }
+  .prog-from  {
+    font-size: 9px; color: #3F8CFF; font-weight: 600;
+    text-align: right; white-space: nowrap; flex-shrink: 0;
+  }
+  .no-url { opacity: .5; }
+
+  /* ── Stats bar ── */
+  .stats-bar {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    background: #000957; border-radius: 10px;
+    padding: 14px 18px; margin-bottom: 4px;
+    justify-content: space-around;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 20px; font-weight: 800; color: #3F8CFF; }
+  .stat-lbl { font-size: 10px; color: rgba(255,255,255,.6); }
+
+  /* ── Connector line ── */
+  .connector {
+    text-align: center; font-size: 11px; color: #9ca3af;
+    padding: 2px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <div class="logo-mark">GCS</div>
+    <div class="logo-name">Global Citizen Solutions</div>
+  </div>
+  <h1>RCBI New Site Structure — Sitemap</h1>
+  <div class="subtitle">Artur Review · 3 listing pages · 15 citizenship + 28 residency programs</div>
+</div>
+
+<!-- Stats -->
+<div class="stats-bar" style="max-width:760px;margin:0 auto 32px;">
+  <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">Listing Pages</div></div>
+  <div class="stat"><div class="stat-num">15</div><div class="stat-lbl">Citizenship Programs</div></div>
+  <div class="stat"><div class="stat-num">28</div><div class="stat-lbl">Residency Programs</div></div>
+  <div class="stat"><div class="stat-num">43</div><div class="stat-lbl">Total Programs</div></div>
+  <div class="stat"><div class="stat-num">42</div><div class="stat-lbl">Country Pages</div></div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#dbeafe;border:1px solid #93c5fd;"></div> Citizenship by Investment</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#fef3c7;border:1px solid #fcd34d;"></div> Citizenship by Merit</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#d1fae5;border:1px solid #6ee7b7;"></div> Residency / Golden Visa</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f3f4f6;border:1px solid #d1d5db;"></div> Other / Visibility</div>
+</div>
+
+<div class="sitemap">
+
+  <!-- ═══════════════════════ CITIZENSHIP ═══════════════════════ -->
+  <div class="page-col">
+    <div class="page-header citizenship">
+      <div class="page-icon">🏛️</div>
+      <div class="page-meta">
+        <div class="page-title">Citizenship</div>
+        <div class="page-desc">Listagem de todos os programas de cidadania</div>
+      </div>
+      <div class="page-count">15 programs</div>
+    </div>
+
+    <!-- European Merit -->
+    <div class="section-group">
+      <div class="section-label">European Merit-Led</div>
+      <div class="program-card">
+        <div class="flag">🇦🇹</div>
+        <div class="prog-info">
+          <div class="prog-country">Austria</div>
+          <div class="prog-name">Citizenship by Merit</div>
+        </div>
+        <span class="prog-badge badge-merit">Merit</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇲🇹</div>
+        <div class="prog-info">
+          <div class="prog-country">Malta</div>
+          <div class="prog-name">Citizenship by Merit</div>
+        </div>
+        <span class="prog-badge badge-merit">Merit</span>
+      </div>
+    </div>
+
+    <!-- Caribbean CBI -->
+    <div class="section-group">
+      <div class="section-label">Caribbean CBI</div>
+      <div class="program-card">
+        <div class="flag">🇦🇬</div>
+        <div class="prog-info">
+          <div class="prog-country">Antigua and Barbuda</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-cbi">CBI</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇩🇲</div>
+        <div class="prog-info">
+          <div class="prog-country">Dominica</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-cbi">CBI</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇬🇩</div>
+        <div class="prog-info">
+          <div class="prog-country">Grenada</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-cbi">CBI</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇰🇳</div>
+        <div class="prog-info">
+          <div class="prog-country">St. Kitts and Nevis</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-cbi">CBI</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇱🇨</div>
+        <div class="prog-info">
+          <div class="prog-country">St. Lucia</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-cbi">CBI</span>
+      </div>
+    </div>
+
+    <!-- Other Regions -->
+    <div class="section-group">
+      <div class="section-label">Europe / Americas</div>
+      <div class="program-card">
+        <div class="flag">🇹🇷</div>
+        <div class="prog-info">
+          <div class="prog-country">Turkey</div>
+          <div class="prog-name">Turkish Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-cbi">CBI</span>
+      </div>
+      <div class="program-card no-url">
+        <div class="flag">🇦🇷</div>
+        <div class="prog-info">
+          <div class="prog-country">Argentina</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-other">Visibility</span>
+      </div>
+    </div>
+
+    <div class="section-group">
+      <div class="section-label">Middle East / Africa</div>
+      <div class="program-card">
+        <div class="flag">🇪🇬</div>
+        <div class="prog-info">
+          <div class="prog-country">Egypt</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-cbi">CBI</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇯🇴</div>
+        <div class="prog-info">
+          <div class="prog-country">Jordan</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-cbi">CBI</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇸🇹</div>
+        <div class="prog-info">
+          <div class="prog-country">São Tomé and Príncipe</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-cbi">CBI</span>
+      </div>
+    </div>
+
+    <div class="section-group">
+      <div class="section-label">Oceania</div>
+      <div class="program-card">
+        <div class="flag">🇳🇷</div>
+        <div class="prog-info">
+          <div class="prog-country">Nauru</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-cbi">CBI</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇻🇺</div>
+        <div class="prog-info">
+          <div class="prog-country">Vanuatu</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-cbi">CBI</span>
+      </div>
+      <div class="program-card no-url">
+        <div class="flag">🇰🇭</div>
+        <div class="prog-info">
+          <div class="prog-country">Cambodia</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-other">Visibility</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ RESIDENCY ═══════════════════════ -->
+  <div class="page-col">
+    <div class="page-header residency">
+      <div class="page-icon">🏠</div>
+      <div class="page-meta">
+        <div class="page-title">Residency</div>
+        <div class="page-desc">Listagem de todos os programas de residência</div>
+      </div>
+      <div class="page-count">28 programs</div>
+    </div>
+
+    <!-- Europe -->
+    <div class="section-group">
+      <div class="section-label">Europe — Golden Visa / Investor</div>
+      <div class="program-card">
+        <div class="flag">🇨🇾</div>
+        <div class="prog-info">
+          <div class="prog-country">Cyprus</div>
+          <div class="prog-name">Golden Visa</div>
+        </div>
+        <div class="prog-from">from EUR 300k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇬🇷</div>
+        <div class="prog-info">
+          <div class="prog-country">Greece</div>
+          <div class="prog-name">Greek Golden Visa</div>
+        </div>
+        <div class="prog-from">from EUR 250k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇭🇺</div>
+        <div class="prog-info">
+          <div class="prog-country">Hungary</div>
+          <div class="prog-name">Hungary Golden Visa</div>
+        </div>
+        <div class="prog-from">from EUR 250k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇮🇪</div>
+        <div class="prog-info">
+          <div class="prog-country">Ireland</div>
+          <div class="prog-name">Ireland Golden Visa</div>
+        </div>
+        <span class="prog-badge badge-res">GV</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇮🇹</div>
+        <div class="prog-info">
+          <div class="prog-country">Italy</div>
+          <div class="prog-name">Italy Investor Visa</div>
+        </div>
+        <div class="prog-from">from EUR 250k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇱🇻</div>
+        <div class="prog-info">
+          <div class="prog-country">Latvia</div>
+          <div class="prog-name">Latvia Golden Visa</div>
+        </div>
+        <div class="prog-from">from EUR 50k</div>
+      </div>
+      <div class="program-card no-url">
+        <div class="flag">🇱🇺</div>
+        <div class="prog-info">
+          <div class="prog-country">Luxembourg</div>
+          <div class="prog-name">Luxembourg Golden Visa</div>
+        </div>
+        <span class="prog-badge badge-res">GV</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇲🇹</div>
+        <div class="prog-info">
+          <div class="prog-country">Malta</div>
+          <div class="prog-name">MPRP</div>
+        </div>
+        <div class="prog-from">from EUR 169k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇲🇨</div>
+        <div class="prog-info">
+          <div class="prog-country">Monaco</div>
+          <div class="prog-name">Carte de Séjour</div>
+        </div>
+        <span class="prog-badge badge-res">Premium</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇵🇹</div>
+        <div class="prog-info">
+          <div class="prog-country">Portugal</div>
+          <div class="prog-name">Portugal Golden Visa</div>
+        </div>
+        <div class="prog-from">from EUR 250k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇷🇸</div>
+        <div class="prog-info">
+          <div class="prog-country">Serbia</div>
+          <div class="prog-name">Serbia Residency by Investment</div>
+        </div>
+        <span class="prog-badge badge-res">RBI</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇪🇸</div>
+        <div class="prog-info">
+          <div class="prog-country">Spain</div>
+          <div class="prog-name">Non-Lucrative Visa</div>
+        </div>
+        <span class="prog-badge badge-res">Residency</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇨🇭</div>
+        <div class="prog-info">
+          <div class="prog-country">Switzerland</div>
+          <div class="prog-name">Lump Sum Tax</div>
+        </div>
+        <div class="prog-from">CHF 250k/yr</div>
+      </div>
+      <div class="program-card no-url">
+        <div class="flag">🇦🇹</div>
+        <div class="prog-info">
+          <div class="prog-country">Austria</div>
+          <div class="prog-name">Austria Golden Visa</div>
+        </div>
+        <span class="prog-badge badge-res">GV</span>
+      </div>
+      <div class="program-card no-url">
+        <div class="flag">🇯🇪</div>
+        <div class="prog-info">
+          <div class="prog-country">Jersey</div>
+          <div class="prog-name">Jersey Residency by Investment</div>
+        </div>
+        <span class="prog-badge badge-other">TBC</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇬🇧</div>
+        <div class="prog-info">
+          <div class="prog-country">United Kingdom</div>
+          <div class="prog-name">Innovator Founder Visa</div>
+        </div>
+        <span class="prog-badge badge-res">Residency</span>
+      </div>
+    </div>
+
+    <!-- Caribbean -->
+    <div class="section-group">
+      <div class="section-label">Caribbean Residency</div>
+      <div class="program-card">
+        <div class="flag">🇧🇸</div>
+        <div class="prog-info">
+          <div class="prog-country">Bahamas</div>
+          <div class="prog-name">Economic Permanent Residency</div>
+        </div>
+        <span class="prog-badge badge-res">Premium</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇰🇾</div>
+        <div class="prog-info">
+          <div class="prog-country">Cayman Islands</div>
+          <div class="prog-name">Persons of Independent Means</div>
+        </div>
+        <span class="prog-badge badge-res">Premium</span>
+      </div>
+    </div>
+
+    <!-- Americas -->
+    <div class="section-group">
+      <div class="section-label">Americas</div>
+      <div class="program-card">
+        <div class="flag">🇦🇷</div>
+        <div class="prog-info">
+          <div class="prog-country">Argentina</div>
+          <div class="prog-name">Independent Means Visa</div>
+        </div>
+        <span class="prog-badge badge-res">Residency</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇧🇷</div>
+        <div class="prog-info">
+          <div class="prog-country">Brazil</div>
+          <div class="prog-name">Brazil Investor Visa</div>
+        </div>
+        <span class="prog-badge badge-res">Investor</span>
+      </div>
+      <div class="program-card no-url">
+        <div class="flag">🇨🇦</div>
+        <div class="prog-info">
+          <div class="prog-country">Canada</div>
+          <div class="prog-name">Entrepreneurship Visa</div>
+        </div>
+        <span class="prog-badge badge-other">Visibility</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇨🇷</div>
+        <div class="prog-info">
+          <div class="prog-country">Costa Rica</div>
+          <div class="prog-name">Investor Visa</div>
+        </div>
+        <div class="prog-from">from USD 150k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇵🇦</div>
+        <div class="prog-info">
+          <div class="prog-country">Panama</div>
+          <div class="prog-name">Qualified Investor Visa</div>
+        </div>
+        <div class="prog-from">from USD 300k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇵🇾</div>
+        <div class="prog-info">
+          <div class="prog-country">Paraguay</div>
+          <div class="prog-name">Independent Means Visa</div>
+        </div>
+        <span class="prog-badge badge-res">Residency</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇺🇸</div>
+        <div class="prog-info">
+          <div class="prog-country">United States</div>
+          <div class="prog-name">EB-5 Visa</div>
+        </div>
+        <div class="prog-from">from USD 800k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇺🇾</div>
+        <div class="prog-info">
+          <div class="prog-country">Uruguay</div>
+          <div class="prog-name">Independent Means Visa</div>
+        </div>
+        <div class="prog-from">USD 1k/mo</div>
+      </div>
+    </div>
+
+    <!-- Middle East & Oceania -->
+    <div class="section-group">
+      <div class="section-label">Middle East &amp; Oceania</div>
+      <div class="program-card">
+        <div class="flag">🇦🇪</div>
+        <div class="prog-info">
+          <div class="prog-country">UAE</div>
+          <div class="prog-name">UAE Golden Visa</div>
+        </div>
+        <div class="prog-from">from AED 2M</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇳🇿</div>
+        <div class="prog-info">
+          <div class="prog-country">New Zealand</div>
+          <div class="prog-name">New Zealand Investor Visa</div>
+        </div>
+        <div class="prog-from">from NZD 5M</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ COUNTRIES ═══════════════════════ -->
+  <div class="page-col">
+    <div class="page-header countries">
+      <div class="page-icon">🌍</div>
+      <div class="page-meta">
+        <div class="page-title">Countries</div>
+        <div class="page-desc">Todos os programas de cidadania e residência por país</div>
+      </div>
+      <div class="page-count">42 countries</div>
+    </div>
+
+    <!-- European Merit Citizenship -->
+    <div class="section-group">
+      <div class="section-label">European Citizenship by Merit</div>
+      <div class="program-card">
+        <div class="flag">🇦🇹</div>
+        <div class="prog-info">
+          <div class="prog-country">Austria</div>
+          <div class="prog-name">Citizenship by Merit · + Golden Visa</div>
+        </div>
+        <span class="prog-badge badge-merit">Merit</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇲🇹</div>
+        <div class="prog-info">
+          <div class="prog-country">Malta</div>
+          <div class="prog-name">Citizenship by Merit · + MPRP</div>
+        </div>
+        <span class="prog-badge badge-merit">Merit</span>
+      </div>
+    </div>
+
+    <!-- Caribbean CBI -->
+    <div class="section-group">
+      <div class="section-label">Caribbean Citizenship by Investment</div>
+      <div class="program-card">
+        <div class="flag">🇦🇬</div>
+        <div class="prog-info">
+          <div class="prog-country">Antigua and Barbuda</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <div class="prog-from">USD 230k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇩🇲</div>
+        <div class="prog-info">
+          <div class="prog-country">Dominica</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <div class="prog-from">USD 200k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇬🇩</div>
+        <div class="prog-info">
+          <div class="prog-country">Grenada</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <div class="prog-from">USD 235k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇰🇳</div>
+        <div class="prog-info">
+          <div class="prog-country">St. Kitts and Nevis</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <div class="prog-from">USD 250k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇱🇨</div>
+        <div class="prog-info">
+          <div class="prog-country">St. Lucia</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <div class="prog-from">USD 240k</div>
+      </div>
+    </div>
+
+    <!-- European CBI -->
+    <div class="section-group">
+      <div class="section-label">European CBI</div>
+      <div class="program-card">
+        <div class="flag">🇹🇷</div>
+        <div class="prog-info">
+          <div class="prog-country">Turkey</div>
+          <div class="prog-name">Turkish Citizenship by Investment</div>
+        </div>
+        <div class="prog-from">USD 400k</div>
+      </div>
+    </div>
+
+    <!-- Oceanian CBI -->
+    <div class="section-group">
+      <div class="section-label">Oceanian CBI</div>
+      <div class="program-card">
+        <div class="flag">🇳🇷</div>
+        <div class="prog-info">
+          <div class="prog-country">Nauru</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <div class="prog-from">USD 120k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇻🇺</div>
+        <div class="prog-info">
+          <div class="prog-country">Vanuatu</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-other">Visibility</span>
+      </div>
+      <div class="program-card no-url">
+        <div class="flag">🇰🇭</div>
+        <div class="prog-info">
+          <div class="prog-country">Cambodia</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <span class="prog-badge badge-other">Visibility</span>
+      </div>
+    </div>
+
+    <!-- African CBI -->
+    <div class="section-group">
+      <div class="section-label">African CBI</div>
+      <div class="program-card">
+        <div class="flag">🇪🇬</div>
+        <div class="prog-info">
+          <div class="prog-country">Egypt</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <div class="prog-from">USD 250k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇸🇹</div>
+        <div class="prog-info">
+          <div class="prog-country">São Tomé and Príncipe</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <div class="prog-from">USD 95k</div>
+      </div>
+    </div>
+
+    <!-- Middle Eastern CBI -->
+    <div class="section-group">
+      <div class="section-label">Middle Eastern CBI</div>
+      <div class="program-card">
+        <div class="flag">🇯🇴</div>
+        <div class="prog-info">
+          <div class="prog-country">Jordan</div>
+          <div class="prog-name">Citizenship by Investment</div>
+        </div>
+        <div class="prog-from">JOD 350k</div>
+      </div>
+    </div>
+
+    <!-- European Residency -->
+    <div class="section-group">
+      <div class="section-label">Strategic Residency — Europe</div>
+      <div class="program-card">
+        <div class="flag">🇨🇾</div>
+        <div class="prog-info"><div class="prog-country">Cyprus</div><div class="prog-name">Golden Visa</div></div>
+        <div class="prog-from">EUR 300k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇬🇷</div>
+        <div class="prog-info"><div class="prog-country">Greece</div><div class="prog-name">Greek Golden Visa</div></div>
+        <div class="prog-from">EUR 250k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇭🇺</div>
+        <div class="prog-info"><div class="prog-country">Hungary</div><div class="prog-name">Hungary GV</div></div>
+        <div class="prog-from">EUR 250k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇮🇹</div>
+        <div class="prog-info"><div class="prog-country">Italy</div><div class="prog-name">Italy Investor Visa</div></div>
+        <div class="prog-from">EUR 250k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇱🇻</div>
+        <div class="prog-info"><div class="prog-country">Latvia</div><div class="prog-name">Latvia Golden Visa</div></div>
+        <div class="prog-from">EUR 50k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇲🇨</div>
+        <div class="prog-info"><div class="prog-country">Monaco</div><div class="prog-name">Carte de Séjour</div></div>
+        <span class="prog-badge badge-res">Premium</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇵🇹</div>
+        <div class="prog-info"><div class="prog-country">Portugal</div><div class="prog-name">Portugal Golden Visa</div></div>
+        <div class="prog-from">EUR 250k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇪🇸</div>
+        <div class="prog-info"><div class="prog-country">Spain</div><div class="prog-name">Non-Lucrative Visa</div></div>
+        <span class="prog-badge badge-res">Residency</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇨🇭</div>
+        <div class="prog-info"><div class="prog-country">Switzerland</div><div class="prog-name">Lump Sum Tax</div></div>
+        <div class="prog-from">CHF 250k/yr</div>
+      </div>
+    </div>
+
+    <!-- Caribbean Residency -->
+    <div class="section-group">
+      <div class="section-label">Caribbean Residency</div>
+      <div class="program-card">
+        <div class="flag">🇧🇸</div>
+        <div class="prog-info"><div class="prog-country">Bahamas</div><div class="prog-name">Economic Permanent Residency</div></div>
+        <span class="prog-badge badge-res">Premium</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇰🇾</div>
+        <div class="prog-info"><div class="prog-country">Cayman Islands</div><div class="prog-name">Persons of Independent Means</div></div>
+        <span class="prog-badge badge-res">Premium</span>
+      </div>
+    </div>
+
+    <!-- Americas Residency -->
+    <div class="section-group">
+      <div class="section-label">Residency — Americas</div>
+      <div class="program-card">
+        <div class="flag">🇧🇷</div>
+        <div class="prog-info"><div class="prog-country">Brazil</div><div class="prog-name">Brazil Investor Visa</div></div>
+        <span class="prog-badge badge-res">Investor</span>
+      </div>
+      <div class="program-card no-url">
+        <div class="flag">🇨🇦</div>
+        <div class="prog-info"><div class="prog-country">Canada</div><div class="prog-name">Entrepreneurship Visa</div></div>
+        <span class="prog-badge badge-other">Visibility</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇨🇷</div>
+        <div class="prog-info"><div class="prog-country">Costa Rica</div><div class="prog-name">Investor Visa</div></div>
+        <div class="prog-from">USD 150k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇵🇦</div>
+        <div class="prog-info"><div class="prog-country">Panama</div><div class="prog-name">Qualified Investor Visa</div></div>
+        <div class="prog-from">USD 300k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇵🇾</div>
+        <div class="prog-info"><div class="prog-country">Paraguay</div><div class="prog-name">Independent Means Visa</div></div>
+        <span class="prog-badge badge-res">Residency</span>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇺🇸</div>
+        <div class="prog-info"><div class="prog-country">United States</div><div class="prog-name">EB-5 Visa</div></div>
+        <div class="prog-from">USD 800k</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇺🇾</div>
+        <div class="prog-info"><div class="prog-country">Uruguay</div><div class="prog-name">Independent Means Visa</div></div>
+        <div class="prog-from">USD 1k/mo</div>
+      </div>
+    </div>
+
+    <!-- Middle East & Oceania -->
+    <div class="section-group">
+      <div class="section-label">Middle East &amp; Oceania Residency</div>
+      <div class="program-card">
+        <div class="flag">🇦🇪</div>
+        <div class="prog-info"><div class="prog-country">UAE</div><div class="prog-name">UAE Golden Visa</div></div>
+        <div class="prog-from">AED 2M</div>
+      </div>
+      <div class="program-card">
+        <div class="flag">🇳🇿</div>
+        <div class="prog-info"><div class="prog-country">New Zealand</div><div class="prog-name">Investor Visa</div></div>
+        <div class="prog-from">NZD 5M</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer note -->
+<div style="text-align:center;margin-top:36px;font-size:11px;color:#9ca3af;">
+  <span style="color:#9ca3af;">Cards com opacidade reduzida = sem URL confirmada · </span>
+  <span style="background:#fef3c7;color:#92400e;padding:2px 6px;border-radius:4px;font-weight:600;font-size:10px;">Merit</span> = Citizenship by Merit &nbsp;
+  <span style="background:#dbeafe;color:#1d4ed8;padding:2px 6px;border-radius:4px;font-weight:600;font-size:10px;">CBI</span> = Citizenship by Investment &nbsp;
+  <span style="background:#d1fae5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:600;font-size:10px;">GV</span> = Golden Visa / Residency
+</div>
+
+</body>
+</html>

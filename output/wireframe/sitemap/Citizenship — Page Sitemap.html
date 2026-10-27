@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCS — Citizenship Pages Sitemap v2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #f0f2f7;
+    color: #1a1a2e;
+    padding: 32px 24px 64px;
+    min-width: 960px;
+  }
+
+  /* ── Header ── */
+  .header { text-align: center; margin-bottom: 36px; }
+  .logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .logo-mark {
+    width: 32px; height: 32px; background: #000957; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: #3F8CFF; font-weight: 900; font-size: 15px;
+  }
+  .logo-name { font-size: 12px; font-weight: 700; color: #000957; text-transform: uppercase; letter-spacing: .6px; }
+  h1 { font-size: 22px; font-weight: 800; color: #000957; }
+  .subtitle { font-size: 13px; color: #6b7280; margin-top: 5px; }
+
+  /* ── Parent Page Banner ── */
+  .parent-page {
+    max-width: 960px; margin: 0 auto 40px;
+    background: #000957; border-radius: 14px;
+    padding: 20px 28px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .parent-icon { font-size: 36px; flex-shrink: 0; }
+  .parent-meta { flex: 1; }
+  .parent-title { font-size: 18px; font-weight: 800; color: #fff; }
+  .parent-slug {
+    font-family: 'Courier New', monospace; font-size: 13px; color: #3F8CFF;
+    margin-top: 4px; background: rgba(63,140,255,.12);
+    padding: 3px 10px; border-radius: 6px; display: inline-block;
+  }
+  .parent-desc { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 6px; }
+  .parent-stats { display: flex; gap: 20px; flex-shrink: 0; }
+  .pstat { text-align: center; }
+  .pstat-num { font-size: 24px; font-weight: 800; color: #3F8CFF; }
+  .pstat-lbl { font-size: 10px; color: rgba(255,255,255,.45); text-transform: uppercase; }
+
+  /* ── Page Anatomy Legend ── */
+  .anatomy-box {
+    max-width: 960px; margin: 0 auto 36px;
+    background: #fff; border-radius: 12px; border: 1px solid #e4e8f4;
+    overflow: hidden;
+  }
+  .anatomy-header {
+    background: #f8f9ff; border-bottom: 1px solid #e4e8f4;
+    padding: 10px 18px; display: flex; align-items: center; gap: 8px;
+  }
+  .anatomy-header span { font-size: 13px; font-weight: 700; color: #000957; }
+  .anatomy-header small { font-size: 11px; color: #9ca3af; margin-left: 4px; }
+  .anatomy-body { padding: 14px 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .anatomy-item {
+    display: flex; align-items: center; gap: 7px;
+    background: #f8f9ff; border: 1px solid #e4e8f4;
+    border-radius: 8px; padding: 7px 12px;
+    flex: 1; min-width: 160px;
+  }
+  .anatomy-num {
+    width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 800; color: #fff;
+  }
+  .anatomy-label { font-size: 11px; font-weight: 600; color: #374151; }
+  .anatomy-sub { font-size: 9px; color: #9ca3af; margin-top: 1px; }
+
+  /* ── Legend tags ── */
+  .legend { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #4b5563; font-weight: 500; }
+  .ltag { font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+  .ltag-cbi   { background: #dbeafe; color: #1d4ed8; }
+  .ltag-merit { background: #fef3c7; color: #92400e; }
+  .ltag-vis   { background: #f3f4f6; color: #6b7280; }
+
+  /* ── Region ── */
+  .region { margin-bottom: 36px; max-width: 1360px; margin-left: auto; margin-right: auto; }
+  .region-title {
+    font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px;
+    color: #fff; margin-bottom: 14px; padding: 8px 16px;
+    background: #000957; border-radius: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .region-count {
+    margin-left: auto; background: #3F8CFF; color: #fff;
+    font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 12px;
+  }
+
+  .countries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+
+  /* ── Country Card ── */
+  .country-card {
+    background: #fff; border-radius: 12px;
+    border: 1px solid #e4e8f4; overflow: hidden;
+    transition: box-shadow .18s, transform .18s;
+  }
+  .country-card:hover {
+    box-shadow: 0 6px 28px rgba(0,9,87,.11);
+    transform: translateY(-2px);
+  }
+
+  /* Card top */
+  .card-top {
+    background: #000957; padding: 12px 14px 10px;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .card-flag { font-size: 26px; flex-shrink: 0; margin-top: 1px; }
+  .card-meta { flex: 1; min-width: 0; }
+  .card-country { font-size: 13px; font-weight: 800; color: #fff; }
+  .card-program { font-size: 10px; color: rgba(255,255,255,.5); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-from { font-size: 11px; font-weight: 700; color: #3F8CFF; margin-top: 3px; }
+
+  /* Slug bar */
+  .slug-bar {
+    background: #f8f9ff; padding: 6px 14px;
+    border-bottom: 1px solid #eef0f8;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .slug-text {
+    font-family: 'Courier New', monospace;
+    font-size: 10px; color: #3F8CFF; font-weight: 600;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+
+  /* ── Internal Nav ── */
+  .section-title {
+    font-size: 9px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: .9px; color: #9ca3af;
+    padding: 8px 14px 4px;
+  }
+
+  .nav-menu { border-bottom: 1px solid #f0f2f7; padding-bottom: 6px; margin-bottom: 4px; }
+  .nav-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 5px 14px;
+    border-left: 3px solid transparent;
+    transition: background .12s;
+  }
+  .nav-item:hover { background: #f5f7ff; }
+  .nav-item.about  { border-left-color: #8b5cf6; }
+  .nav-item.cbi    { border-left-color: #3F8CFF; }
+  .nav-item.merit  { border-left-color: #f59e0b; }
+  .nav-item.rbi    { border-left-color: #10b981; }
+  .nav-icon { font-size: 11px; flex-shrink: 0; width: 16px; text-align: center; }
+  .nav-label { font-size: 11px; font-weight: 600; color: #374151; flex: 1; }
+  .nav-tag {
+    font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 7px; flex-shrink: 0;
+  }
+  .tag-about  { background: #ede9fe; color: #6d28d9; }
+  .tag-cbi    { background: #dbeafe; color: #1d4ed8; }
+  .tag-merit  { background: #fef3c7; color: #92400e; }
+  .tag-rbi    { background: #d1fae5; color: #065f46; }
+
+  /* ── Page Sections ── */
+  .page-sections { padding: 0 0 8px; }
+  .ps-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 6px 14px;
+    border-left: 3px solid transparent;
+    transition: background .12s;
+  }
+  .ps-item:hover { background: #f9faff; }
+  .ps-num {
+    width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 800; color: #fff; margin-top: 1px;
+  }
+  .ps-info { flex: 1; min-width: 0; }
+  .ps-label { font-size: 11px; font-weight: 600; color: #374151; }
+  .ps-sub { font-size: 9px; color: #9ca3af; margin-top: 1px; }
+
+  /* Section colours */
+  .ps-1 { border-left-color: #6366f1; }
+  .ps-1 .ps-num { background: #6366f1; }
+  .ps-2 { border-left-color: #3F8CFF; }
+  .ps-2 .ps-num { background: #3F8CFF; }
+  .ps-3 { border-left-color: #10b981; }
+  .ps-3 .ps-num { background: #10b981; }
+  .ps-4 { border-left-color: #f59e0b; }
+  .ps-4 .ps-num { background: #f59e0b; }
+
+  /* Visibility bar */
+  .vis-bar {
+    font-size: 9px; color: #92400e; background: #fef3c7;
+    padding: 4px 14px; border-top: 1px solid #fde68a;
+    display: flex; align-items: center; gap: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <div class="logo-mark">GCS</div>
+    <div class="logo-name">Global Citizen Solutions</div>
+  </div>
+  <h1>Citizenship — Page Sitemap</h1>
+  <div class="subtitle">Estrutura interna de cada página de programa · menu de navegação + secções de conteúdo</div>
+</div>
+
+<!-- Parent listing page -->
+<div class="parent-page">
+  <div class="parent-icon">🏛️</div>
+  <div class="parent-meta">
+    <div class="parent-title">Citizenship (Listing Page)</div>
+    <div class="parent-slug">/citizenship</div>
+    <div class="parent-desc">Listagem de todos os programas de cidadania por investimento e por mérito</div>
+  </div>
+  <div class="parent-stats">
+    <div class="pstat"><div class="pstat-num">15</div><div class="pstat-lbl">Programs</div></div>
+    <div class="pstat"><div class="pstat-num">13</div><div class="pstat-lbl">CBI</div></div>
+    <div class="pstat"><div class="pstat-num">2</div><div class="pstat-lbl">Merit</div></div>
+  </div>
+</div>
+
+<!-- Page anatomy reference -->
+<div class="anatomy-box">
+  <div class="anatomy-header">
+    <span>📐 Anatomia de cada página de programa</span>
+    <small>— aplicada a todos os 15 países</small>
+  </div>
+  <div class="anatomy-body">
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#8b5cf6;">🧭</div>
+      <div>
+        <div class="anatomy-label">Menu Interno</div>
+        <div class="anatomy-sub">About Country · CBI · RBI (se aplicável)</div>
+      </div>
+    </div>
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#6366f1;">1</div>
+      <div>
+        <div class="anatomy-label">Overview of Citizenship</div>
+        <div class="anatomy-sub">Intro ao programa do país</div>
+      </div>
+    </div>
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#3F8CFF;">2</div>
+      <div>
+        <div class="anatomy-label">Benefits</div>
+        <div class="anatomy-sub">Benefícios da cidadania</div>
+      </div>
+    </div>
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#10b981;">3</div>
+      <div>
+        <div class="anatomy-label">Requirements</div>
+        <div class="anatomy-sub">Requisitos do programa</div>
+      </div>
+    </div>
+    <div class="anatomy-item">
+      <div class="anatomy-num" style="background:#f59e0b;">4</div>
+      <div>
+        <div class="anatomy-label">Procedure</div>
+        <div class="anatomy-sub">Processo passo a passo</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><span class="ltag ltag-cbi">CBI</span> Citizenship by Investment</div>
+  <div class="legend-item"><span class="ltag ltag-merit">Merit</span> Citizenship by Merit</div>
+  <div class="legend-item"><span class="ltag ltag-vis">Visibility</span> Sem URL / placeholder</div>
+</div>
+
+
+<!-- ══════════════════════════
+     EUROPEAN MERIT
+══════════════════════════ -->
+<div class="region">
+  <div class="region-title">⭐ European Citizenship by Merit<div class="region-count">2 programs</div></div>
+  <div class="countries-grid">
+
+    <!-- Malta -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇲🇹</div>
+        <div class="card-meta">
+          <div class="card-country">Malta</div>
+          <div class="card-program">Malta Citizenship by Merit</div>
+          <div class="card-from">No fixed public minimum</div>
+        </div>
+        <span class="nav-tag tag-merit">Merit</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/malta</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item merit"><div class="nav-icon">⭐</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-merit">Merit</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of Malta Citizenship</div><div class="ps-sub">Intro ao programa de cidadania por mérito</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of Malta Citizenship</div><div class="ps-sub">Passaporte EU, Schengen, mobilidade global</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of Malta Citizenship</div><div class="ps-sub">Critérios de elegibilidade e contribuição</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for Malta Citizenship</div><div class="ps-sub">Processo passo a passo</div></div></div>
+      </div>
+    </div>
+
+    <!-- Austria -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇦🇹</div>
+        <div class="card-meta">
+          <div class="card-country">Austria</div>
+          <div class="card-program">Austria Citizenship by Merit</div>
+          <div class="card-from">No fixed public minimum</div>
+        </div>
+        <span class="nav-tag tag-merit">Merit</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/austria</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item merit"><div class="nav-icon">⭐</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-merit">Merit</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of Austria Citizenship</div><div class="ps-sub">Intro ao programa de cidadania por mérito</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of Austria Citizenship</div><div class="ps-sub">Passaporte austríaco, acesso UE/Schengen</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of Austria Citizenship</div><div class="ps-sub">Contribuição excecional, critérios</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for Austria Citizenship</div><div class="ps-sub">Processo passo a passo</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════
+     CARIBBEAN CBI
+══════════════════════════ -->
+<div class="region">
+  <div class="region-title">🏝️ Caribbean — Citizenship by Investment<div class="region-count">5 programs</div></div>
+  <div class="countries-grid">
+
+    <!-- Antigua -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇦🇬</div>
+        <div class="card-meta">
+          <div class="card-country">Antigua and Barbuda</div>
+          <div class="card-program">Citizenship by Investment</div>
+          <div class="card-from">from USD 230,000</div>
+        </div>
+        <span class="nav-tag tag-cbi">CBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/antigua-and-barbuda</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of Antigua and Barbuda Citizenship</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of Antigua and Barbuda Citizenship</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of Antigua and Barbuda Citizenship</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for Antigua and Barbuda Citizenship</div></div></div>
+      </div>
+    </div>
+
+    <!-- Dominica -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇩🇲</div>
+        <div class="card-meta">
+          <div class="card-country">Dominica</div>
+          <div class="card-program">Citizenship by Investment</div>
+          <div class="card-from">from USD 200,000</div>
+        </div>
+        <span class="nav-tag tag-cbi">CBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/dominica</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of Dominica Citizenship</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of Dominica Citizenship</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of Dominica Citizenship</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for Dominica Citizenship</div></div></div>
+      </div>
+    </div>
+
+    <!-- Grenada -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇬🇩</div>
+        <div class="card-meta">
+          <div class="card-country">Grenada</div>
+          <div class="card-program">Citizenship by Investment</div>
+          <div class="card-from">from USD 235,000</div>
+        </div>
+        <span class="nav-tag tag-cbi">CBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/grenada</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of Grenada Citizenship</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of Grenada Citizenship</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of Grenada Citizenship</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for Grenada Citizenship</div></div></div>
+      </div>
+    </div>
+
+    <!-- St. Kitts -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇰🇳</div>
+        <div class="card-meta">
+          <div class="card-country">St. Kitts and Nevis</div>
+          <div class="card-program">Citizenship by Investment</div>
+          <div class="card-from">from USD 250,000</div>
+        </div>
+        <span class="nav-tag tag-cbi">CBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/st-kitts-and-nevis</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of St. Kitts and Nevis Citizenship</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of St. Kitts and Nevis Citizenship</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of St. Kitts and Nevis Citizenship</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for St. Kitts and Nevis Citizenship</div></div></div>
+      </div>
+    </div>
+
+    <!-- St. Lucia -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇱🇨</div>
+        <div class="card-meta">
+          <div class="card-country">St. Lucia</div>
+          <div class="card-program">Citizenship by Investment</div>
+          <div class="card-from">from USD 240,000</div>
+        </div>
+        <span class="nav-tag tag-cbi">CBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/st-lucia</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of St. Lucia Citizenship</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of St. Lucia Citizenship</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of St. Lucia Citizenship</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for St. Lucia Citizenship</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════
+     EUROPE / AMERICAS CBI
+══════════════════════════ -->
+<div class="region">
+  <div class="region-title">🌍 Europe &amp; Americas — Citizenship by Investment<div class="region-count">2 programs</div></div>
+  <div class="countries-grid">
+
+    <!-- Turkey -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇹🇷</div>
+        <div class="card-meta">
+          <div class="card-country">Turkey</div>
+          <div class="card-program">Turkish Citizenship by Investment</div>
+          <div class="card-from">from USD 400,000</div>
+        </div>
+        <span class="nav-tag tag-cbi">CBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/turkey</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of Turkey Citizenship</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of Turkey Citizenship</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of Turkey Citizenship</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for Turkey Citizenship</div></div></div>
+      </div>
+    </div>
+
+    <!-- Argentina -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇦🇷</div>
+        <div class="card-meta">
+          <div class="card-country">Argentina</div>
+          <div class="card-program">Argentina Citizenship by Investment</div>
+          <div class="card-from">—</div>
+        </div>
+        <span class="nav-tag" style="background:#f3f4f6;color:#6b7280;">Visibility</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/argentina</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+        <div class="nav-item rbi"><div class="nav-icon">🏠</div><div class="nav-label">Residency by Investment</div><span class="nav-tag tag-rbi">RBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of Argentina Citizenship</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of Argentina Citizenship</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of Argentina Citizenship</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for Argentina Citizenship</div></div></div>
+      </div>
+      <div class="vis-bar">⚠️ Visibility only — URL not confirmed</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════
+     MIDDLE EAST & AFRICA
+══════════════════════════ -->
+<div class="region">
+  <div class="region-title">🌍 Middle East &amp; Africa — Citizenship by Investment<div class="region-count">3 programs</div></div>
+  <div class="countries-grid">
+
+    <!-- Egypt -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇪🇬</div>
+        <div class="card-meta">
+          <div class="card-country">Egypt</div>
+          <div class="card-program">Egypt Citizenship by Investment</div>
+          <div class="card-from">from USD 250,000</div>
+        </div>
+        <span class="nav-tag tag-cbi">CBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/egypt</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of Egypt Citizenship</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of Egypt Citizenship</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of Egypt Citizenship</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for Egypt Citizenship</div></div></div>
+      </div>
+    </div>
+
+    <!-- Jordan -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇯🇴</div>
+        <div class="card-meta">
+          <div class="card-country">Jordan</div>
+          <div class="card-program">Jordan Citizenship by Investment</div>
+          <div class="card-from">from JOD 350,000</div>
+        </div>
+        <span class="nav-tag tag-cbi">CBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/jordan</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of Jordan Citizenship</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of Jordan Citizenship</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of Jordan Citizenship</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for Jordan Citizenship</div></div></div>
+      </div>
+    </div>
+
+    <!-- São Tomé -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇸🇹</div>
+        <div class="card-meta">
+          <div class="card-country">São Tomé and Príncipe</div>
+          <div class="card-program">Citizenship by Investment</div>
+          <div class="card-from">from USD 95,000</div>
+        </div>
+        <span class="nav-tag tag-cbi">CBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/sao-tome-and-principe</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of São Tomé and Príncipe Citizenship</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of São Tomé and Príncipe Citizenship</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of São Tomé and Príncipe Citizenship</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for São Tomé and Príncipe Citizenship</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════
+     OCEANIA
+══════════════════════════ -->
+<div class="region">
+  <div class="region-title">🌏 Oceania — Citizenship by Investment<div class="region-count">3 programs</div></div>
+  <div class="countries-grid">
+
+    <!-- Nauru -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇳🇷</div>
+        <div class="card-meta">
+          <div class="card-country">Nauru</div>
+          <div class="card-program">Nauru Citizenship by Investment</div>
+          <div class="card-from">from USD 120,000</div>
+        </div>
+        <span class="nav-tag tag-cbi">CBI</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/nauru</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of Nauru Citizenship</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of Nauru Citizenship</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of Nauru Citizenship</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for Nauru Citizenship</div></div></div>
+      </div>
+    </div>
+
+    <!-- Vanuatu -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇻🇺</div>
+        <div class="card-meta">
+          <div class="card-country">Vanuatu</div>
+          <div class="card-program">Vanuatu Citizenship by Investment</div>
+          <div class="card-from">No fixed public minimum</div>
+        </div>
+        <span class="nav-tag" style="background:#f3f4f6;color:#6b7280;">Visibility</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/vanuatu</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of Vanuatu Citizenship</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of Vanuatu Citizenship</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of Vanuatu Citizenship</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for Vanuatu Citizenship</div></div></div>
+      </div>
+      <div class="vis-bar">⚠️ Visibility only — no fixed minimum</div>
+    </div>
+
+    <!-- Cambodia -->
+    <div class="country-card">
+      <div class="card-top">
+        <div class="card-flag">🇰🇭</div>
+        <div class="card-meta">
+          <div class="card-country">Cambodia</div>
+          <div class="card-program">Cambodia Citizenship by Investment</div>
+          <div class="card-from">No fixed public minimum</div>
+        </div>
+        <span class="nav-tag" style="background:#f3f4f6;color:#6b7280;">Visibility</span>
+      </div>
+      <div class="slug-bar"><span class="slug-text">/citizenship/cambodia</span></div>
+
+      <div class="section-title">Menu Interno</div>
+      <div class="nav-menu">
+        <div class="nav-item about"><div class="nav-icon">🗺️</div><div class="nav-label">About Country</div><span class="nav-tag tag-about">About</span></div>
+        <div class="nav-item cbi"><div class="nav-icon">🛂</div><div class="nav-label">Citizenship by Investment</div><span class="nav-tag tag-cbi">CBI</span></div>
+      </div>
+
+      <div class="section-title">Secções da Página</div>
+      <div class="page-sections">
+        <div class="ps-item ps-1"><div class="ps-num">1</div><div class="ps-info"><div class="ps-label">Overview of Cambodia Citizenship</div></div></div>
+        <div class="ps-item ps-2"><div class="ps-num">2</div><div class="ps-info"><div class="ps-label">Benefits of Cambodia Citizenship</div></div></div>
+        <div class="ps-item ps-3"><div class="ps-num">3</div><div class="ps-info"><div class="ps-label">Requirements of Cambodia Citizenship</div></div></div>
+        <div class="ps-item ps-4"><div class="ps-num">4</div><div class="ps-info"><div class="ps-label">Procedure for Cambodia Citizenship</div></div></div>
+      </div>
+      <div class="vis-bar">⚠️ Visibility only — public placeholder</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align:center;margin-top:28px;font-size:11px;color:#9ca3af;">
+  <strong style="color:#000957">15 citizenship pages</strong> · Cada página: Menu Interno + 4 secções de conteúdo · slugs em <span style="font-family:monospace;color:#3F8CFF;">/citizenship/country-name</span>
+</div>
+
+</body>
+</html>
