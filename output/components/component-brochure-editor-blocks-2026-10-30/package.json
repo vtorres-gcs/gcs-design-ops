@@ -1,0 +1,6 @@
+{
+  "name": "gcs-brochure-editor-blocks",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test" }
+}

@@ -1,0 +1,22 @@
+#pages { width: 794px; margin: 0 auto; }
+.pg-wrap { margin-bottom: 32px; }
+#pages [data-f] { cursor: text; }
+#pages [data-f]:hover { outline: 1px dashed var(--accent); outline-offset: 2px; }
+#pages .blk, #probe .blk { overflow-wrap: anywhere; }
+#pages .blk.flash { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+@page { size: 210mm 297mm; margin: 0; }
+@media print {
+  html, body { height: auto; background: none; }
+  #app { display: block !important; height: auto; }
+  body[data-view="gallery"] #app, body[data-view="editor"] #gallery { display: none !important; }
+  .top, .side, .tools, #probe { display: none !important; }
+  .main { display: block; }
+  .stagewrap { display: block; }
+  .stage { overflow: visible; padding: 0; }
+  #pages { zoom: 1 !important; width: auto; }
+  .pg-wrap { margin: 0; }
+  [data-doc-page] { margin: 0 !important; box-shadow: none !important; border-radius: 0 !important; page-break-after: always; break-after: page; width: 210mm !important; height: 297mm !important; overflow: hidden !important; }
+  .pg-wrap:last-child [data-doc-page] { page-break-after: auto; break-after: auto; }
+  #pages [data-f]:hover { outline: none; }
+}
