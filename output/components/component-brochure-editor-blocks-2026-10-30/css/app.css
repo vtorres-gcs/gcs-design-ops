@@ -98,3 +98,14 @@ input:focus, textarea:focus, button:focus-visible, select:focus-visible, .btn:fo
 #probe { position: absolute; left: -10000px; top: 0; width: 794px; visibility: hidden; pointer-events: none; }
 @media (max-width: 1100px) { .main { grid-template-columns: 240px minmax(0, 1fr) 300px; } }
 @media (max-width: 900px) { .main { grid-template-columns: 1fr; } .side { display: none; } }
+
+/* ── structure list + add menu ── */
+.sh { padding: 14px 16px 8px; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--doc-muted-alt); }
+.slist { display: flex; flex-direction: column; gap: 6px; padding: 0 12px; }
+.srow { display: flex; align-items: center; gap: 4px; padding: 6px 6px 6px 8px; border: 1px solid var(--doc-border); border-radius: 8px; background: #fff; cursor: pointer; }
+.srow[aria-selected="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.srow .nm { flex: 1; font-size: 13px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.srow .drag { cursor: grab; color: var(--doc-muted); user-select: none; }
+.amenu { padding: 0 12px 20px; display: flex; flex-direction: column; gap: 10px; }
+.agrp { display: flex; flex-wrap: wrap; gap: 6px; }
+.agrp .gl { width: 100%; font-size: 10.5px; color: var(--doc-muted-alt); letter-spacing: .08em; }
