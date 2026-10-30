@@ -202,3 +202,11 @@ test('articles and sections split into one part per item', () => {
     assert.ok(parts.every(h => typeof h === 'string' && h.trim()));
   }
 });
+
+test('benefits columns: up to 4 items use n columns, 5-6 use 3 (wider cards keep 2-line descriptions), 7-8 use 4', () => {
+  const def = get('benefits');
+  for (const [n, cols] of [[1, 1], [4, 4], [5, 3], [6, 3], [7, 4], [8, 4]]) {
+    const html = renderBlock(def, { ...def.defaults(), items: items(def, 'items', n) });
+    assert.ok(html.includes(`repeat(${cols},1fr)`), `n=${n}`);
+  }
+});

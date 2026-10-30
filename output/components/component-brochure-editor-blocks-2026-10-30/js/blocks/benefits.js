@@ -20,6 +20,6 @@ export default {
     const n = p.items.length;
     if (!n) return '';
     const cards = p.items.map((b, i) => `<div style="background:var(--doc-surface);border:1px solid var(--doc-border-soft);padding:14px 16px;">${ctx.ico(b.icon, 'display:block;margin-bottom:10px;color:var(--accent);')}${ctx.F(`items.${i}.title`, 'div', TITLE)}${ctx.F(`items.${i}.desc`, 'div', DESC)}</div>`).join('');
-    return `<div>${ctx.F('title', 'div', H)}<div style="display:grid;grid-template-columns:repeat(${Math.min(4, Math.max(n, 1))},1fr);gap:8px;">${cards}</div></div>`;
+    return `<div>${ctx.F('title', 'div', H)}<div style="display:grid;grid-template-columns:repeat(${n <= 4 ? Math.max(n, 1) : n <= 6 ? 3 : 4},1fr);gap:8px;">${cards}</div></div>`;
   }
 };

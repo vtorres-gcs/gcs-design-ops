@@ -2,6 +2,7 @@
 .pg-wrap { margin-bottom: 32px; }
 #pages [data-f] { cursor: text; }
 #pages [data-f]:hover { outline: 1px dashed var(--accent); outline-offset: 2px; }
+#pages .blk, #probe .blk { overflow-wrap: anywhere; }
 #pages .blk.flash { outline: 2px solid var(--accent); outline-offset: 4px; }
 
 @page { size: 210mm 297mm; margin: 0; }

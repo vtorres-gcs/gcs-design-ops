@@ -1,9 +1,10 @@
-import { get, all } from './presets/index.js';
-import { loadState, scheduleSave, flush } from './store.js';
+import { get, all, SOON } from './presets/index.js';
+import { createState, loadState, scheduleSave, flush, clearDraft } from './store.js';
 import { renderDocument, pageChrome } from './document.js';
 import { mountStage } from './ui/stage.js';
 import { mountStructure } from './ui/structure.js';
 import { mountForm } from './ui/form.js';
+import { mountGallery } from './ui/gallery.js';
 
 const $ = s => document.querySelector(s);
 const memory = new Map();
@@ -12,7 +13,7 @@ const backend = (() => {
   return { getItem: k => (memory.has(k) ? memory.get(k) : null), setItem: (k, v) => void memory.set(k, v), removeItem: k => void memory.delete(k) };
 })();
 
-let icons = {}, S = null, preset = null, redrawTimer = 0;
+let icons = {}, S = null, preset = null, redrawTimer = 0, issues = [];
 const stage = mountStage($('#stagewrap'));
 const api = {
   get state() { return S; }, get preset() { return preset; }, get icons() { return icons; },
@@ -28,38 +29,78 @@ const api = {
 };
 const structureUi = mountStructure($('#structure'), api);
 const formUi = mountForm($('#form'), api);
-const deps = () => ({ icons });
+const galleryUi = mountGallery($('#gallery'), { presets: all(), soon: SOON, backend, getIcons: () => icons });
 
 function measure(items) {
   const probe = $('#probe');
-  probe.innerHTML = pageChrome(items, { state: S, pageNo: 2, deps: deps() });
+  probe.innerHTML = pageChrome(items, { state: S, pageNo: 2, deps: { icons } });
   const body = probe.querySelector('[data-body]');
   return body.scrollHeight - body.clientHeight;
 }
 
-function rerender() {
-  const { pages, warnings } = renderDocument(S, preset, deps(), measure);
-  $('#probe').innerHTML = '';
-  stage.render(pages, warnings);
-  const fit = $('#fit');
-  fit.textContent = warnings.length ? `⚠ ${warnings.length} warning${warnings.length > 1 ? 's' : ''}` : '✓ A4 OK';
-  fit.classList.toggle('bad', warnings.length > 0);
+// Everything the user should know about: blocks taller than a page, and text cut by line-clamp.
+function collectIssues(warnings) {
+  const list = warnings.map(w => ({ blockId: w.blockId, kind: w.kind }));
+  document.querySelectorAll('#pages [style*="line-clamp"]').forEach(el => {
+    if (el.scrollHeight > el.clientHeight + 1) { const b = el.closest('[data-blk]'); list.push({ blockId: b && b.dataset.blk, kind: 'clamp' }); }
+  });
+  return list;
 }
 
-function route() {
-  flush();
-  const p = get(location.hash.slice(1));
-  if (!p) { location.hash = '#' + all()[0].id; return; }
+function rerender() {
+  const { pages, warnings } = renderDocument(S, preset, { icons }, measure);
+  $('#probe').innerHTML = '';
+  stage.render(pages, warnings);
+  issues = collectIssues(warnings);
+  const fit = $('#fit');
+  fit.textContent = issues.length ? `⚠ ${issues.length} warning${issues.length > 1 ? 's' : ''}` : '✓ A4 OK';
+  fit.classList.toggle('bad', issues.length > 0);
+  fit.title = issues.length ? 'Click to jump to the first problem' : '';
+}
+
+function showEditor(p) {
   preset = p;
   S = loadState(p, backend);
-  $('#switch').value = p.id;
   api.selected = null;
+  $('#switch').value = p.id;
   document.body.dataset.view = 'editor';
   structureUi.render();
   formUi.render();
   rerender();
   stage.fit();
 }
+
+function route() {
+  flush();
+  const p = get(location.hash.slice(1));
+  if (!p) { document.body.dataset.view = 'gallery'; galleryUi.render(); return; }
+  showEditor(p);
+}
+
+$('#fit').addEventListener('click', () => {
+  const first = issues.find(i => i.blockId);
+  if (!first) return;
+  api.selected = first.blockId;
+  structureUi.render();
+  formUi.render();
+  stage.scrollToBlock(first.blockId);
+});
+
+document.addEventListener('click', e => {
+  const act = e.target.closest('#app [data-act]');
+  if (!act) return;
+  if (act.dataset.act === 'print') { flush(); window.print(); }
+  else if (act.dataset.act === 'reset') {
+    if (!confirm(`Reset "${preset.label}" to its original content? Your edits will be lost.`)) return;
+    flush();
+    clearDraft(preset.id, backend);
+    S = createState(preset);
+    api.selected = null;
+    structureUi.render();
+    formUi.render();
+    rerender();
+  }
+});
 
 $('#pages').addEventListener('click', e => {
   if (e.target.closest('a')) e.preventDefault();
@@ -86,5 +127,5 @@ window.addEventListener('beforeunload', flush);
   $('#switch').addEventListener('change', e => { location.hash = '#' + e.target.value; });
   await document.fonts.ready;
   route();
-  window.__editor = { get state() { return S; }, api, rerender };
+  window.__editor = { get state() { return S; }, api, rerender, get issues() { return issues; } };
 })();
