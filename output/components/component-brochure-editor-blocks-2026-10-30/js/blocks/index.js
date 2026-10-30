@@ -1,8 +1,13 @@
 import { uid } from '../util.js';
 import heading from './heading.js';
 import pageBreak from './pageBreak.js';
+import narrative from './narrative.js';
+import sections from './sections.js';
+import pullQuote from './pullQuote.js';
+import overview from './overview.js';
+import titleBanner from './titleBanner.js';
 
-const DEFS = [heading, pageBreak];   // new blocks register here
+const DEFS = [titleBanner, heading, narrative, overview, sections, pullQuote, pageBreak];   // new blocks register here
 const BY_TYPE = new Map(DEFS.map(d => [d.type, d]));
 const GROUPS = ['Texto', 'Números', 'Listas', 'Estrutura'];
 

@@ -104,3 +104,41 @@ test('ctx.ico falls back to the star icon and ctx.flag is empty without a code',
   assert.equal(ctx.flag(''), '');
   assert.match(ctx.flag('it'), /country-flags\/master\/flags\/png\/it\.png/);
 });
+
+/* ── Task 4 blocks ── */
+test('titleBanner reads title and subtitle from the cover and edits go to the cover group', () => {
+  const def = get('titleBanner');
+  const html = renderBlock(def, def.defaults(), { cover: { coverTitleLine1: 'A', coverTitleLine2: 'B', subtitle: 'S' } });
+  assert.match(html, /data-b="cover" data-f="coverTitleLine1"[^>]*>A</);
+  assert.match(html, /data-b="cover" data-f="subtitle"[^>]*>S</);
+  assert.equal(def.unique, true);
+});
+
+test('narrative omits empty eyebrow and lead', () => {
+  const def = get('narrative');
+  const html = renderBlock(def, { ...def.defaults(), eyebrow: '', lead: '' });
+  assert.ok(!html.includes('data-f="eyebrow"') && !html.includes('data-f="lead"'));
+  const full = renderBlock(def, { ...def.defaults(), eyebrow: 'E', lead: 'L' });
+  assert.ok(full.includes('data-f="eyebrow"') && full.includes('data-f="lead"'));
+});
+
+test('sections renders nothing without items', () => {
+  const def = get('sections');
+  assert.equal(renderBlock(def, { items: [] }).trim(), '');
+});
+
+test('pullQuote styles differ and the photo is optional', () => {
+  const def = get('pullQuote');
+  const base = def.defaults();
+  const html = s => renderBlock(def, { ...base, style: s });
+  assert.notEqual(html('dark'), html('plain'));
+  assert.notEqual(html('boxed'), html('plain'));
+  assert.ok(!renderBlock(def, { ...base, img: '' }).includes('<img'));
+  assert.ok(renderBlock(def, { ...base, img: 'x.png' }).includes('<img'));
+});
+
+test('overview keeps line breaks and is unique', () => {
+  const def = get('overview');
+  assert.ok(renderBlock(def, def.defaults()).includes('white-space:pre-line'));
+  assert.equal(def.unique, true);
+});
