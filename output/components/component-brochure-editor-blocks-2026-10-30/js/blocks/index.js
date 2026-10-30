@@ -6,8 +6,13 @@ import sections from './sections.js';
 import pullQuote from './pullQuote.js';
 import overview from './overview.js';
 import titleBanner from './titleBanner.js';
+import figures from './figures.js';
+import benefits from './benefits.js';
+import options from './options.js';
+import steps from './steps.js';
+import articles from './articles.js';
 
-const DEFS = [titleBanner, heading, narrative, overview, sections, pullQuote, pageBreak];   // new blocks register here
+const DEFS = [titleBanner, heading, narrative, overview, sections, pullQuote, figures, benefits, options, steps, articles, pageBreak];   // new blocks register here
 const BY_TYPE = new Map(DEFS.map(d => [d.type, d]));
 const GROUPS = ['Texto', 'Números', 'Listas', 'Estrutura'];
 

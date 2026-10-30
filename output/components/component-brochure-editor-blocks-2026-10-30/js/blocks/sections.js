@@ -10,5 +10,10 @@ export default {
       { heading: 'Regulatory Developments Strengthening the Industry', body: "Across regions, regulatory and programmatic developments pointed to a more robust and credible industry. Portugal's nationality law reforms signaled a maturing European framework that aligns investor pathways with integration and social cohesion. In the Caribbean, enhanced due diligence standards have accelerated regional efforts to reinforce transparency and compliance. At the same time, St. Vincent and the Grenadines' announcement of a forthcoming Citizenship program underscores continued innovation and confidence in the model." }]
   }),
   lists: { items: { min: 0, max: 8, one: 'Section', add: () => ({ heading: 'New section', body: 'Section text.' }), f: [['heading', 'Heading'], ['body', 'Body', 'area', 6]] } },
-  render: (p, ctx) => p.items.map((_, i) => `<div>${ctx.F(`items.${i}.heading`, 'div', HEAD)}${ctx.F(`items.${i}.body`, 'div', BODY)}</div>`).join('')
+  render: (p, ctx) => p.items.map((_, i) => part(ctx, i)).join(''),
+  split: (p, ctx) => p.items.map((_, i) => part(ctx, i))
 };
+
+function part(ctx, i) {
+  return `<div>${ctx.F(`items.${i}.heading`, 'div', HEAD)}${ctx.F(`items.${i}.body`, 'div', BODY)}</div>`;
+}

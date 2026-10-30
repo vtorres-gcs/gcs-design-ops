@@ -20,3 +20,9 @@ export function renderBlock(def, props, stateExtra = {}) {
   const state = fakeState({ ...stateExtra, blocks: [block] });
   return def.render(props, makeCtx({ state, icons: ICONS }, block.id));
 }
+
+export function splitBlock(def, props, stateExtra = {}) {
+  const block = blockWith(def.type, props);
+  const state = fakeState({ ...stateExtra, blocks: [block] });
+  return def.split(props, makeCtx({ state, icons: ICONS }, block.id));
+}

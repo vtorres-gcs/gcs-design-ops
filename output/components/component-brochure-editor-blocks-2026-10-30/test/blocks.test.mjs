@@ -142,3 +142,63 @@ test('overview keeps line breaks and is unique', () => {
   assert.ok(renderBlock(def, def.defaults()).includes('white-space:pre-line'));
   assert.equal(def.unique, true);
 });
+
+/* ── Task 5 blocks ── */
+import { splitBlock } from './helpers.mjs';
+const items = (def, key, n) => Array.from({ length: n }, () => def.lists[key].add());
+
+test('figures picks columns by count: n up to 5 uses n, 6 uses 3', () => {
+  const def = get('figures');
+  for (const [n, cols] of [[2, 2], [4, 4], [5, 5], [6, 3]]) {
+    const html = renderBlock(def, { ...def.defaults(), items: items(def, 'items', n) });
+    assert.ok(html.includes(`repeat(${cols},1fr)`), `n=${n}`);
+  }
+});
+
+test('figures themes render differently', () => {
+  const def = get('figures');
+  assert.notEqual(renderBlock(def, { ...def.defaults(), theme: 'dark' }), renderBlock(def, { ...def.defaults(), theme: 'light' }));
+});
+
+test('benefits, options and steps render nothing when empty', () => {
+  for (const type of ['benefits', 'options', 'steps']) {
+    const def = get(type);
+    assert.equal(renderBlock(def, { ...def.defaults(), items: [] }).trim(), '', type);
+  }
+});
+
+test('articles renders nothing when empty and has no title', () => {
+  const def = get('articles');
+  assert.equal(renderBlock(def, { title: '', items: [] }).trim(), '');
+});
+
+test('options columns follow n<=4 ? n : ceil(n/2); steps follow n<=6 ? n : ceil(n/2)', () => {
+  const o = get('options'), s = get('steps');
+  assert.ok(renderBlock(o, { ...o.defaults(), items: items(o, 'items', 8) }).includes('repeat(4,1fr)'));
+  assert.ok(renderBlock(o, { ...o.defaults(), items: items(o, 'items', 3) }).includes('repeat(3,1fr)'));
+  assert.ok(renderBlock(s, { ...s.defaults(), items: items(s, 'items', 8) }).includes('repeat(4,1fr)'));
+  assert.ok(renderBlock(s, { ...s.defaults(), items: items(s, 'items', 6) }).includes('repeat(6,1fr)'));
+});
+
+test('steps shows the duration chip only when set', () => {
+  const def = get('steps');
+  const base = def.defaults();
+  const none = renderBlock(def, { ...base, items: [{ title: 'T', desc: 'D', duration: '' }] });
+  const some = renderBlock(def, { ...base, items: [{ title: 'T', desc: 'D', duration: '2 weeks' }] });
+  assert.ok(!none.includes('items.0.duration'));
+  assert.ok(some.includes('items.0.duration'));
+});
+
+test('benefits clamp descriptions to 2 lines', () => {
+  const def = get('benefits');
+  assert.ok(renderBlock(def, def.defaults()).includes('-webkit-line-clamp:2'));
+});
+
+test('articles and sections split into one part per item', () => {
+  for (const [type, n] of [['articles', 5], ['sections', 3]]) {
+    const def = get(type);
+    const parts = splitBlock(def, def.defaults());
+    assert.equal(parts.length, n, type);
+    assert.ok(parts.every(h => typeof h === 'string' && h.trim()));
+  }
+});
