@@ -97,8 +97,14 @@ export function loadState(preset, backend) {
   return { v: VERSION, template: preset.id, cover: { ...preset.cover.defaults(), ...raw.cover }, meta: { ...preset.meta.defaults(), ...raw.meta }, blocks };
 }
 
+let saveListener = null;
+export const onSave = fn => { saveListener = fn; };   // fn(ok) after every write attempt
+
 export function saveState(state, backend) {
-  try { backend.setItem(KEY + state.template, JSON.stringify(state)); return true; } catch { return false; }
+  let ok = true;
+  try { backend.setItem(KEY + state.template, JSON.stringify(state)); } catch { ok = false; }
+  if (saveListener) saveListener(ok);
+  return ok;
 }
 
 export const hasDraft = (templateId, backend) => read(backend, templateId) != null;

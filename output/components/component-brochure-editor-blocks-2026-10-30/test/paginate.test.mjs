@@ -45,3 +45,12 @@ test('the guard stops a measure that never fits and reports tooTall', () => {
   assert.ok(r.warnings.length >= 1);
   assert.equal(r.warnings[0].kind, 'tooTall');
 });
+
+test('a long brochure paginates completely: no false warning, no page over capacity', () => {
+  const many = Array.from({ length: 40 }, (_, i) => it('b' + i, 45));   // two items fit per page
+  const r = paginate(many, { measure });
+  assert.deepEqual(r.warnings, []);
+  assert.equal(r.pages.length, 20);
+  assert.ok(r.pages.every(p => p.length <= 2));
+  assert.equal(r.pages.flat().length, 40);
+});

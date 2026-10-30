@@ -139,3 +139,14 @@ test('scheduleSave writes by itself after the delay', async () => {
   await new Promise(r => setTimeout(r, 40));
   assert.notEqual(be.getItem(KEY), null);
 });
+
+test('onSave reports whether each write reached storage', async () => {
+  const { onSave } = await import('../js/store.js');
+  const seen = [];
+  onSave(ok => seen.push(ok));
+  const good = memory(), bad = { getItem: () => null, setItem() { throw new Error('quota'); }, removeItem() {} };
+  saveState(createState(preset), good);
+  saveState(createState(preset), bad);
+  onSave(null);
+  assert.deepEqual(seen, [true, false]);
+});

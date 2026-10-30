@@ -1,5 +1,5 @@
 import { get, all, SOON } from './presets/index.js';
-import { createState, loadState, scheduleSave, flush, clearDraft } from './store.js';
+import { createState, loadState, scheduleSave, flush, clearDraft, onSave } from './store.js';
 import { renderDocument, pageChrome } from './document.js';
 import { mountStage } from './ui/stage.js';
 import { mountStructure } from './ui/structure.js';
@@ -12,6 +12,8 @@ const backend = (() => {
   try { localStorage.getItem('gcs-probe'); return localStorage; } catch { /* private mode: keep drafts in memory */ }
   return { getItem: k => (memory.has(k) ? memory.get(k) : null), setItem: (k, v) => void memory.set(k, v), removeItem: k => void memory.delete(k) };
 })();
+
+onSave(ok => { $('#saved').hidden = ok; });
 
 let icons = {}, S = null, preset = null, redrawTimer = 0, issues = [];
 const stage = mountStage($('#stagewrap'));
