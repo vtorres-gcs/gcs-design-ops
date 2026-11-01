@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brochure Editor</title>
+<!-- DS tokens (sibling repo). From output/components/ the DS is ../../../gcs-design-system -->
+<link rel="stylesheet" href="../../../gcs-design-system/tokens/fonts.css">
+<link rel="stylesheet" href="../../../gcs-design-system/tokens/colors.css">
+<link rel="stylesheet" href="../../../gcs-design-system/tokens/typography.css">
+<link rel="stylesheet" href="../../../gcs-design-system/tokens/spacing.css">
+<link rel="stylesheet" href="../../../gcs-design-system/tokens/radius.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body { font-family: 'Heebo', 'Helvetica Neue', sans-serif; background: var(--doc-wrapper); color: var(--doc-heading); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; cursor: pointer; }
+a { color: inherit; }
+body[data-view="gallery"] #app { display: none; }
+body[data-view="editor"] #gallery { display: none; }
+
+/* ── top bar (shared) ── */
+.top { display: flex; align-items: center; gap: 10px; padding: 0 16px; height: 52px; background: var(--primary); color: var(--primary-foreground); }
+.top img { height: 20px; }
+.top .ttl { font-weight: 500; font-size: 14px; letter-spacing: .02em; white-space: nowrap; }
+.top .sp { flex: 1; }
+.top .warn { font-size: 12px; background: #fff2; padding: 4px 10px; border-radius: 99px; white-space: nowrap; }
+.top .warn.bad { background: #ffb4a8; color: #5a0f05; }
+.btn { border: 1px solid rgba(255,255,255,.35); background: transparent; color: #fff; padding: 7px 12px; border-radius: 6px; font-size: 13px; white-space: nowrap; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.btn:hover { background: #fff2; }
+.btn.pri { background: var(--accent); border-color: var(--accent); }
+.top select { background: #fff2; color: #fff; border: 1px solid rgba(255,255,255,.35); border-radius: 6px; padding: 6px 8px; font: 500 13px 'Heebo', sans-serif; max-width: 220px; }
+.top select option { color: var(--doc-heading); }
+
+/* ── gallery ── */
+#gallery { height: 100%; overflow: auto; }
+.ghero { max-width: 1040px; margin: 0 auto; padding: 44px 24px 12px; }
+.ghero h1 { font-family: 'Yrsa', serif; font-weight: 400; font-size: 44px; letter-spacing: -.8px; line-height: 1.05; color: var(--doc-heading); }
+.ghero p { margin-top: 10px; font-size: 15px; font-weight: 300; color: var(--doc-body); max-width: 620px; line-height: 1.6; }
+.gsec { max-width: 1040px; margin: 0 auto; padding: 22px 24px 0; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--doc-muted-alt); }
+.gall { max-width: 1040px; margin: 0 auto; padding: 14px 24px 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 22px; }
+.card { background: #fff; border: 1px solid var(--doc-border); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; text-decoration: none; color: inherit; transition: box-shadow .15s, transform .15s; }
+a.card:hover, a.card:focus-visible { box-shadow: 0 10px 28px rgba(0,9,87,.16); transform: translateY(-2px); outline: none; }
+a.card:focus-visible { box-shadow: 0 0 0 3px var(--accent); }
+.card .th { background: var(--doc-surface); padding: 18px 16px; display: flex; justify-content: center; border-bottom: 1px solid var(--doc-border-light); }
+.card .sc { width: 198px; height: 280px; overflow: hidden; position: relative; box-shadow: 0 6px 18px rgba(0,9,87,.22); background: var(--doc-primary-deep); }
+.card .sc > div { width: 794px; height: 1123px; transform: scale(.2494); transform-origin: top left; position: absolute; left: 0; top: 0; pointer-events: none; }
+.card .sc [data-doc-page] { margin: 0 !important; box-shadow: none !important; border-radius: 0 !important; }
+.card .meta { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.card h3 { font-family: 'Yrsa', serif; font-weight: 500; font-size: 22px; line-height: 1.1; color: var(--doc-heading); }
+.card p { font-size: 12.5px; line-height: 1.5; color: var(--doc-body); font-weight: 300; flex: 1; }
+.card .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.tag { font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; background: var(--doc-surface-alt); color: var(--doc-badge); }
+.tag.draft { background: #e6f6ee; color: #146c43; }
+.card.soon { opacity: .5; }
+.card.soon .th { filter: grayscale(1); }
+.card.soon .sc { display: flex; align-items: center; justify-content: center; background: var(--doc-pattern-1); box-shadow: none; }
+.card.soon .sc span { font-family: 'Yrsa', serif; font-size: 18px; color: var(--doc-muted-alt); }
+
+/* ── editor ── */
+#app { display: grid; grid-template-rows: 52px 1fr; height: 100%; }
+.main { display: grid; grid-template-columns: 390px minmax(0, 1fr); min-height: 0; }
+.side { background: var(--card); border-right: 1px solid var(--doc-border); display: flex; flex-direction: column; min-height: 0; }
+.sidescroll { overflow: auto; flex: 1; }
+.sidefoot { border-top: 1px solid var(--doc-border); padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--doc-muted-alt); }
+.stagewrap { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+.tools { display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--card); border-bottom: 1px solid var(--doc-border); overflow-x: auto; }
+.chips { display: flex; gap: 6px; flex: 1; min-width: 0; }
+.chip { border: 1px solid var(--doc-border-strong); background: #fff; border-radius: 99px; padding: 4px 11px; font-size: 12px; white-space: nowrap; }
+.chip:hover { background: var(--doc-surface-alt); }
+.chip.on { background: var(--primary); color: #fff; border-color: var(--primary); }
+.zoom { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--doc-muted-alt); white-space: nowrap; }
+.zoom input { width: 90px; }
+.stage { overflow: auto; padding: 28px 24px 64px; flex: 1; }
+
+details.grp { border-bottom: 1px solid var(--doc-border); }
+details.grp > summary { list-style: none; cursor: pointer; padding: 13px 16px; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--primary); display: flex; justify-content: space-between; gap: 8px; }
+details.grp > summary .cnt { margin-left: auto; font-weight: 400; letter-spacing: 0; color: var(--doc-muted); }
+details.grp > summary::after { content: "+"; color: var(--doc-muted); }
+details.grp[open] > summary::after { content: "–"; }
+.grp .body { padding: 0 16px 14px; }
+.sub { margin: 10px 0 0; padding: 10px; background: var(--doc-surface); border: 1px solid var(--doc-border-soft); border-radius: 6px; }
+.subh { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; }
+.subh b { flex: 1; font-size: 11px; color: var(--doc-muted-alt); letter-spacing: .08em; }
+.ib { border: 1px solid var(--doc-border-strong); background: #fff; border-radius: 5px; width: 26px; height: 26px; font-size: 13px; line-height: 1; }
+.ib:hover:not(:disabled) { background: var(--doc-surface-alt); }
+.ib:disabled { opacity: .35; cursor: default; }
+.fl { display: block; margin-top: 8px; }
+.fl > span { display: block; font-size: 11px; color: var(--doc-muted-alt); margin-bottom: 3px; }
+input[type=text], textarea { width: 100%; font: 400 13px/1.4 'Heebo', sans-serif; padding: 7px 9px; border: 1px solid var(--doc-border); border-radius: 5px; background: #fff; color: var(--doc-heading); }
+textarea { resize: vertical; }
+input:focus, textarea:focus, button:focus-visible, select:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.fl.flash input, .fl.flash textarea { box-shadow: 0 0 0 3px var(--accent); }
+.imgrow { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
+.imgrow img { width: 40px; height: 40px; object-fit: cover; border-radius: 5px; border: 1px solid var(--doc-border); }
+.sbtn { border: 1px solid var(--doc-border-strong); background: #fff; padding: 6px 10px; border-radius: 5px; font-size: 12px; }
+.sbtn:hover:not(:disabled) { background: var(--doc-surface); }
+.sbtn:disabled { opacity: .4; cursor: default; }
+.sbtn.add { width: 100%; margin-top: 10px; border-style: dashed; color: var(--doc-ink-muted); }
+.chk { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; }
+.iconbtn { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.ipick { display: grid; grid-template-columns: repeat(auto-fill, minmax(34px, 1fr)); gap: 4px; margin-top: 8px; padding: 8px; background: #fff; border: 1px solid var(--doc-border); border-radius: 6px; }
+.ipick button { border: 1px solid transparent; background: none; border-radius: 5px; height: 34px; display: flex; align-items: center; justify-content: center; }
+.ipick button:hover { background: var(--doc-surface-alt); }
+.ipick button.on { border-color: var(--accent); background: var(--doc-surface-alt); }
+.hint { font-size: 11px; color: var(--doc-muted-alt); margin-top: 6px; }
+
+#pages { width: 794px; margin: 0 auto; }
+#pages [data-f] { cursor: text; }
+#pages [data-f]:hover { outline: 1px dashed var(--accent); outline-offset: 2px; }
+
+@page { size: 210mm 297mm; margin: 0; }
+@media print {
+  html, body { height: auto; background: none; }
+  #app, #gallery { display: block !important; height: auto; }
+  body[data-view="gallery"] #app, body[data-view="editor"] #gallery { display: none !important; }
+  .top, .side, .tools { display: none !important; }
+  .main { display: block; }
+  .stagewrap { display: block; }
+  .stage { overflow: visible; padding: 0; }
+  #pages { zoom: 1 !important; width: auto; }
+  [data-doc-page] { margin: 0 !important; box-shadow: none !important; border-radius: 0 !important; page-break-after: always; break-after: page; width: 210mm !important; height: 297mm !important; overflow: hidden !important; }
+  [data-doc-page]:last-child { page-break-after: auto; break-after: auto; }
+  #pages [data-f]:hover { outline: none; }
+}
+@media (max-width: 900px) { .main { grid-template-columns: 1fr; } .side { display: none; } }
+</style>
+</head>
+<body data-view="gallery">
+
+<!-- ═════════ Gallery ═════════ -->
+<main id="gallery">
+  <header class="top"><img src="../../../gcs-design-system/assets/logos/GCS-Symbol-White.svg" alt=""><span class="ttl">Brochure Editor</span></header>
+  <section class="ghero">
+    <h1>Start from a template</h1>
+    <p>Pick a brochure layout, edit the content in the sidebar, and export a print-ready A4 PDF. Your drafts are saved in this browser, one per template.</p>
+  </section>
+  <div class="gsec">Available</div>
+  <div class="gall" id="gReady"></div>
+  <div class="gsec">Coming soon</div>
+  <div class="gall" id="gSoon"></div>
+</main>
+
+<!-- ═════════ Editor ═════════ -->
+<div id="app">
+  <header class="top">
+    <a class="btn" href="#" aria-label="Back to templates">‹ Templates</a>
+    <select id="switch" aria-label="Switch template"></select>
+    <span class="sp"></span>
+    <span id="fit" class="warn">A4 OK</span>
+    <button class="btn" data-act="reset">Reset</button>
+    <button class="btn pri" data-act="print">Export PDF</button>
+  </header>
+  <div class="main">
+    <aside class="side"><div class="sidescroll" id="side"></div><div class="sidefoot"><span>Click any text on the page to edit it</span></div></aside>
+    <section class="stagewrap">
+      <div class="tools"><div class="chips" id="chips"></div>
+        <button class="sbtn" data-act="fit">Fit width</button>
+        <label class="zoom">Zoom <input type="range" id="zoom" min="40" max="130" value="85"></label></div>
+      <div class="stage" id="stage"><div id="pages"></div></div>
+    </section>
+  </div>
+</div>
+
+<script>
+(() => {
+'use strict';
+const DS = '../../../gcs-design-system';
+const KEYP = 'gcs-brochure-editor-v3:';
+const BR = DS + '/templates/brochures';
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+/* Material Symbols (outlined, 24px) — paths from google/material-design-icons, curated set */
+const ICONS = {"account_balance":"M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z","apartment":"M120-120v-560h160v-160h400v320h160v400H520v-160h-80v160H120Zm80-80h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm160 160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm160 320h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm160 480h80v-80h-80v80Zm0-160h80v-80h-80v80Z","badge":"M160-80q-33 0-56.5-23.5T80-160v-440q0-33 23.5-56.5T160-680h200v-120q0-33 23.5-56.5T440-880h80q33 0 56.5 23.5T600-800v120h200q33 0 56.5 23.5T880-600v440q0 33-23.5 56.5T800-80H160Zm0-80h640v-440H600q0 33-23.5 56.5T520-520h-80q-33 0-56.5-23.5T360-600H160v440Zm80-80h240v-18q0-17-9.5-31.5T444-312q-20-9-40.5-13.5T360-330q-23 0-43.5 4.5T276-312q-17 8-26.5 22.5T240-258v18Zm320-60h160v-60H560v60Zm-200-60q25 0 42.5-17.5T420-420q0-25-17.5-42.5T360-480q-25 0-42.5 17.5T300-420q0 25 17.5 42.5T360-360Zm200-60h160v-60H560v60ZM440-600h80v-200h-80v200Zm40 220Z","business_center":"M160-120q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v440q0 33-23.5 56.5T800-120H160Zm240-600h160v-80H400v80Zm400 360H600v80H360v-80H160v160h640v-160Zm-360 0h80v-80h-80v80Zm-280-80h200v-80h240v80h200v-200H160v200Zm320 40Z","check_circle":"m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z","description":"M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z","diversity_3":"M40-160v-160q0-34 23.5-57t56.5-23h131q20 0 38 10t29 27q29 39 71.5 61t90.5 22q49 0 91.5-22t70.5-61q13-17 30.5-27t36.5-10h131q34 0 57 23t23 57v160H640v-91q-35 25-75.5 38T480-200q-43 0-84-13.5T320-252v92H40Zm440-160q-38 0-72-17.5T351-386q-17-25-42.5-39.5T253-440q22-37 93-58.5T480-520q63 0 134 21.5t93 58.5q-29 0-55 14.5T609-386q-22 32-56 49t-73 17ZM160-440q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T280-560q0 50-34.5 85T160-440Zm640 0q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T920-560q0 50-34.5 85T800-440ZM480-560q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-680q0 50-34.5 85T480-560Z","euro":"M600-120q-118 0-210-67T260-360H120v-80h122q-3-24-2.5-44.5T242-520H120v-80h140q38-106 130-173t210-67q69 0 130.5 24.5T840-748l-57 56q-37-32-83.5-50T600-760q-85 0-152 44.5T347-600h253v80H323q-4 27-3 47.5t3 32.5h277v80H347q34 71 101 115.5T600-200q53 0 99.5-18t83.5-50l57 56q-48 43-109.5 67.5T600-120Z","family_restroom":"M720-720q-33 0-56.5-23.5T640-800q0-33 23.5-56.5T720-880q33 0 56.5 23.5T800-800q0 33-23.5 56.5T720-720ZM680-80v-320q0-40-20.5-72T607-522l35-103q8-25 29.5-40t48.5-15q27 0 48.5 15t29.5 40l102 305H800v240H680ZM500-500q-25 0-42.5-17.5T440-560q0-25 17.5-42.5T500-620q25 0 42.5 17.5T560-560q0 25-17.5 42.5T500-500ZM220-720q-33 0-56.5-23.5T140-800q0-33 23.5-56.5T220-880q33 0 56.5 23.5T300-800q0 33-23.5 56.5T220-720ZM140-80v-280H80v-240q0-33 23.5-56.5T160-680h120q33 0 56.5 23.5T360-600v240h-60v280H140Zm300 0v-160h-40v-160q0-25 17.5-42.5T460-460h80q25 0 42.5 17.5T600-400v160h-40v160H440Z","flight_takeoff":"M120-120v-80h720v80H120Zm74-200L80-514l62-12 70 62 192-52-162-274 78-24 274 246 200-54q32-9 58 12t26 56q0 22-13.5 39T830-492L194-320Z","gavel":"M160-120v-80h480v80H160Zm226-194L160-540l84-86 228 226-86 86Zm254-254L414-796l86-84 226 226-86 86Zm184 408L302-682l56-56 522 522-56 56Z","globe":"M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-7-.5-14.5T799-507q-5 29-27 48t-52 19h-80q-33 0-56.5-23.5T560-520v-40H400v-80q0-33 23.5-56.5T480-720h40q0-23 12.5-40.5T563-789q-20-5-40.5-8t-42.5-3q-134 0-227 93t-93 227h200q66 0 113 47t47 113v40H400v110q20 5 39.5 7.5T480-160Z","groups":"M0-240v-63q0-43 44-70t116-27q13 0 25 .5t23 2.5q-14 21-21 44t-7 48v65H0Zm240 0v-65q0-32 17.5-58.5T307-410q32-20 76.5-30t96.5-10q53 0 97.5 10t76.5 30q32 20 49 46.5t17 58.5v65H240Zm540 0v-65q0-26-6.5-49T754-397q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780Zm-455-80h311q-10-20-55.5-35T480-370q-55 0-100.5 15T325-320ZM160-440q-33 0-56.5-23.5T80-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160-440Zm640 0q-33 0-56.5-23.5T720-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800-440Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-600q0 50-34.5 85T480-480Zm0-80q17 0 28.5-11.5T520-600q0-17-11.5-28.5T480-640q-17 0-28.5 11.5T440-600q0 17 11.5 28.5T480-560Zm1 240Zm-1-280Z","handshake":"M475-160q4 0 8-2t6-4l328-328q12-12 17.5-27t5.5-30q0-16-5.5-30.5T817-607L647-777q-11-12-25.5-17.5T591-800q-15 0-30 5.5T534-777l-11 11 74 75q15 14 22 32t7 38q0 42-28.5 70.5T527-522q-20 0-38.5-7T456-550l-75-74-175 175q-3 3-4.5 6.5T200-435q0 8 6 14.5t14 6.5q4 0 8-2t6-4l136-136 56 56-135 136q-3 3-4.5 6.5T285-350q0 8 6 14t14 6q4 0 8-2t6-4l136-135 56 56-135 136q-3 2-4.5 6t-1.5 8q0 8 6 14t14 6q4 0 7.5-1.5t6.5-4.5l136-135 56 56-136 136q-3 3-4.5 6.5T454-180q0 8 6.5 14t14.5 6Zm-1 80q-37 0-65.5-24.5T375-166q-34-5-57-28t-28-57q-34-5-56.5-28.5T206-336q-38-5-62-33t-24-66q0-20 7.5-38.5T149-506l232-231 131 131q2 3 6 4.5t8 1.5q9 0 15-5.5t6-14.5q0-4-1.5-8t-4.5-6L398-777q-11-12-25.5-17.5T342-800q-15 0-30 5.5T285-777L144-635q-9 9-15 21t-8 24q-2 12 0 24.5t8 23.5l-58 58q-17-23-25-50.5T40-590q2-28 14-54.5T87-692l141-141q24-23 53.5-35t60.5-12q31 0 60.5 12t52.5 35l11 11 11-11q24-23 53.5-35t60.5-12q31 0 60.5 12t52.5 35l169 169q23 23 35 53t12 61q0 31-12 60.5T873-437L545-110q-14 14-32.5 22T474-80Zm-99-560Z","health_and_safety":"M420-340h120v-100h100v-120H540v-100H420v100H320v120h100v100Zm60 260q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z","home":"M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z","hub":"M240-40q-50 0-85-35t-35-85q0-50 35-85t85-35q14 0 26 3t23 8l57-71q-28-31-39-70t-5-78l-81-27q-17 25-43 40t-58 15q-50 0-85-35T0-580q0-50 35-85t85-35q50 0 85 35t35 85v8l81 28q20-36 53.5-61t75.5-32v-87q-39-11-64.5-42.5T360-840q0-50 35-85t85-35q50 0 85 35t35 85q0 42-26 73.5T510-724v87q42 7 75.5 32t53.5 61l81-28v-8q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35q-32 0-58.5-15T739-515l-81 27q6 39-5 77.5T614-340l57 70q11-5 23-7.5t26-2.5q50 0 85 35t35 85q0 50-35 85t-85 35q-50 0-85-35t-35-85q0-20 6.5-38.5T624-232l-57-71q-41 23-87.5 23T392-303l-56 71q11 15 17.5 33.5T360-160q0 50-35 85t-85 35ZM120-540q17 0 28.5-11.5T160-580q0-17-11.5-28.5T120-620q-17 0-28.5 11.5T80-580q0 17 11.5 28.5T120-540Zm120 420q17 0 28.5-11.5T280-160q0-17-11.5-28.5T240-200q-17 0-28.5 11.5T200-160q0 17 11.5 28.5T240-120Zm240-680q17 0 28.5-11.5T520-840q0-17-11.5-28.5T480-880q-17 0-28.5 11.5T440-840q0 17 11.5 28.5T480-800Zm0 440q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm240 240q17 0 28.5-11.5T760-160q0-17-11.5-28.5T720-200q-17 0-28.5 11.5T680-160q0 17 11.5 28.5T720-120Zm120-420q17 0 28.5-11.5T880-580q0-17-11.5-28.5T840-620q-17 0-28.5 11.5T800-580q0 17 11.5 28.5T840-540ZM480-840ZM120-580Zm360 120Zm360-120ZM240-160Zm480 0Z","key":"M280-400q-33 0-56.5-23.5T200-480q0-33 23.5-56.5T280-560q33 0 56.5 23.5T360-480q0 33-23.5 56.5T280-400Zm0 160q-100 0-170-70T40-480q0-100 70-170t170-70q67 0 121.5 33t86.5 87h352l120 120-180 180-80-60-80 60-85-60h-47q-32 54-86.5 87T280-240Zm0-80q56 0 98.5-34t56.5-86h125l58 41 82-61 71 55 75-75-40-40H435q-14-52-56.5-86T280-640q-66 0-113 47t-47 113q0 66 47 113t113 47Z","language":"M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Zm0-82q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-200 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z","location_on":"M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z","lock":"M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z","payments":"M560-440q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM280-320q-33 0-56.5-23.5T200-400v-320q0-33 23.5-56.5T280-800h560q33 0 56.5 23.5T920-720v320q0 33-23.5 56.5T840-320H280Zm80-80h400q0-33 23.5-56.5T840-480v-160q-33 0-56.5-23.5T760-720H360q0 33-23.5 56.5T280-640v160q33 0 56.5 23.5T360-400Zm440 240H120q-33 0-56.5-23.5T40-240v-440h80v440h680v80ZM280-400v-320 320Z","public":"M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-82v-78q-33 0-56.5-23.5T360-320v-40L168-552q-3 18-5.5 36t-2.5 36q0 121 79.5 212T440-162Zm276-102q20-22 36-47.5t26.5-53q10.5-27.5 16-56.5t5.5-59q0-98-54.5-179T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h240q17 0 28.5 11.5T600-440v120h40q26 0 47 15.5t29 40.5Z","savings":"M640-520q17 0 28.5-11.5T680-560q0-17-11.5-28.5T640-600q-17 0-28.5 11.5T600-560q0 17 11.5 28.5T640-520Zm-320-80h200v-80H320v80ZM180-120q-34-114-67-227.5T80-580q0-92 64-156t156-64h200q29-38 70.5-59t89.5-21q25 0 42.5 17.5T720-820q0 6-1.5 12t-3.5 11q-4 11-7.5 22.5T702-751l91 91h87v279l-113 37-67 224H480v-80h-80v80H180Zm60-80h80v-80h240v80h80l62-206 98-33v-141h-40L620-720q0-20 2.5-38.5T630-796q-29 8-51 27.5T547-720H300q-58 0-99 41t-41 99q0 98 27 191.5T240-200Zm240-298Z","schedule":"m612-292 56-56-148-148v-184h-80v216l172 172ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z","school":"M480-120 200-272v-240L40-600l440-240 440 240v320h-80v-276l-80 44v240L480-120Zm0-332 274-148-274-148-274 148 274 148Zm0 241 200-108v-151L480-360 280-470v151l200 108Zm0-241Zm0 90Zm0 0Z","shield":"M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z","star":"m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z","support_agent":"M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z","travel_explore":"M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q146 0 255.5 91.5T872-559h-82q-19-73-68.5-130.5T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h80v120h-40L168-552q-3 18-5.5 36t-2.5 36q0 131 92 225t228 95v80Zm364-20L716-228q-21 12-45 20t-51 8q-75 0-127.5-52.5T440-380q0-75 52.5-127.5T620-560q75 0 127.5 52.5T800-380q0 27-8 51t-20 45l128 128-56 56ZM620-280q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Z","trending_up":"m136-240-56-56 296-298 160 160 208-206H640v-80h240v240h-80v-104L536-320 376-480 136-240Z","verified_user":"m438-338 226-226-57-57-169 169-84-84-57 57 141 141Zm42 258q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z","work":"M160-120q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v440q0 33-23.5 56.5T800-120H160Zm0-80h640v-440H160v440Zm240-520h160v-80H400v80ZM160-200v-440 440Z"};
+const ICON_NAMES = Object.keys(ICONS);
+const ico = (name, st = '') => `<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" style="${st}"><path d="${ICONS[name] || ICONS.star}"/></svg>`;
+const label = n => n.replace(/_/g, ' ');
+
+/* ═══════════ shared page pieces ═══════════ */
+const PG = 'width:794px;height:1123px;margin:0 auto 32px;border-radius:2px;display:flex;flex-direction:column;overflow:hidden;position:relative;';
+let S = null, cur = null;                       // current state + template
+const getPath = p => p.split('.').reduce((o, k) => (o == null ? o : o[k]), S);
+const setPath = (p, v) => { const k = p.split('.'); let o = S; for (let i = 0; i < k.length - 1; i++) o = o[k[i]]; o[k[k.length - 1]] = v; };
+const F = (p, tag = 'div', st = '', txt) => `<${tag} data-f="${p}" style="${st}">${esc(txt == null ? getPath(p) : txt)}</${tag}>`;
+// Same helper but readable from any state (gallery thumbnails render with a state that is not `S`)
+const SOC = [
+  ['https://www.linkedin.com/company/globalcitizensolutions/', 'M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z'],
+  ['https://www.facebook.com/globalcitizensolutions/', 'M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z'],
+  ['https://www.instagram.com/globalcitizensolutions/', 'M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z'],
+  ['https://beglobal.link/GCS-youtube', 'M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z']
+];
+const PIN = 'M 6.836 0 C 3.06 0 0 3.06 0 6.836 C 0 8.889 1.07 10.675 2.26 12.036 C 3.459 13.407 4.859 14.436 5.692 14.991 C 6.388 15.454 7.283 15.454 7.979 14.991 C 8.812 14.436 10.212 13.407 11.411 12.036 C 12.601 10.675 13.671 8.889 13.671 6.836 C 13.671 3.06 10.611 0 6.836 0 Z M 6.836 3.798 C 5.158 3.798 3.798 5.158 3.798 6.836 C 3.798 8.513 5.158 9.874 6.836 9.874 C 8.513 9.874 9.874 8.513 9.874 6.836 C 9.874 5.158 8.513 3.798 6.836 3.798 Z';
+// Back cover is fixed brand content, shared by every template.
+function pageBack() {
+  const L = "font-family:'Heebo',sans-serif;font-size:13px;font-weight:400;color:var(--primary-foreground);line-height:1.6;";
+  return `<div data-doc-page style="width:794px;height:1123px;margin:0 auto;background:radial-gradient(1146px 1196px at 101.45% 0%,var(--primary) 0%,var(--doc-primary-dark) 100%);border-radius:2px;box-shadow:0 8px 40px rgba(0,0,0,.45);display:flex;flex-direction:column;padding:56px;overflow:hidden;">
+    <div><img src="${DS}/assets/logos/GCS-Primary-White.svg" alt="" style="height:32px;width:auto;"></div>
+    <div style="flex:1;"></div>
+    <div style="margin-bottom:44px;">
+      <div style="margin-bottom:22px;line-height:1.08;"><div style="font-family:'Yrsa',serif;font-weight:400;font-size:68px;color:var(--primary-foreground);letter-spacing:-1.5px;">Our Global</div><div style="font-family:'Yrsa',serif;font-weight:400;font-style:italic;font-size:68px;color:var(--night-blue-50);letter-spacing:-1.5px;">Presence.</div></div>
+      <div style="font-family:'Heebo',sans-serif;font-size:16px;color:rgb(168,179,205);line-height:1.6;max-width:520px;margin-bottom:44px;">We operate globally, with teams supporting clients across different regions, both through local offices and dedicated contact points.</div>
+      <div style="margin-bottom:10px;color:#fff;"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 13.671 15.338" fill="currentColor" style="display:block;"><path d="${PIN}" fill-rule="evenodd"/></svg></div>
+      <div style="font-family:'Heebo',sans-serif;font-size:17px;color:var(--primary-foreground);line-height:1.65;letter-spacing:.01em;">ANTIGUA AND BARBUDA | BRAZIL | DUBAI | GRENADA | ITALY | MALTA | PORTUGAL | SPAIN | ST. LUCIA | SWITZERLAND | TURKEY | UNITED KINGDOM | VANUATU</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;padding-top:28px;border-top:1px solid rgba(255,255,255,.1);">
+      <div><div style="font-family:'Heebo',sans-serif;font-size:11px;letter-spacing:.2em;color:rgb(179,181,205);margin-bottom:18px;">GLOBALCITIZENSOLUTIONS.COM</div>
+        <div style="display:flex;gap:14px;align-items:center;">${SOC.map(([u, d]) => `<a href="${u}" target="_blank" style="display:flex;color:rgb(179,181,205);"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="${d}"/></svg></a>`).join('')}</div></div>
+      <div style="text-align:right;"><div style="${L}margin-bottom:8px;">8–10 Hill Street, London<br>W1J 5NG — United Kingdom</div><div style="${L}">+44 20 8068 3119<br>info@globalcitizensolutions.com</div></div>
+    </div></div>`;
+}
+const pageHead = (labelHtml, padX) => `<div style="padding:${padX === 64 ? 20 : 18}px ${padX}px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;">${labelHtml}
+  <div style="display:flex;align-items:center;gap:7px;"><img src="${DS}/assets/logos/GCS-Symbol-Blue.svg" alt="" style="height:15px;width:auto;"><span style="font-family:'Heebo',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);">Global Citizen Solutions</span></div></div>
+  <div style="border-bottom:1px solid var(--doc-border);margin:0 ${padX}px;flex-shrink:0;"></div>`;
+
+/* ═══════════ TEMPLATE 1 — Factsheet ═══════════ */
+const FLAG_ONLINE = 'https://raw.githubusercontent.com/msikma/country-flags/master/flags/png/';
+function flagUrls(code) {   // online repo defined by the DS (msikma/country-flags); DS local copy as offline fallback; uk <-> gb alias
+  if (!/^[a-z]{2}$/i.test(code || '')) return null;
+  const c = code.toLowerCase();
+  return [FLAG_ONLINE + (c === 'gb' ? 'uk' : c) + '.png', `${DS}/assets/flags/${c === 'uk' ? 'gb' : c}.png`];
+}
+const FS = {
+  H: "font-family:'Yrsa',serif;font-weight:400;font-size:28px;line-height:1.1;color:var(--primary);letter-spacing:-.3px;margin-bottom:12px;",
+  figCols: n => (n <= 5 ? Math.max(n, 1) : 3),
+  colsFor: (n, fit) => (n <= fit ? Math.max(n, 1) : Math.ceil(n / 2))
+};
+const factsheet = {
+  id: 'factsheet', ready: true, label: 'Factsheet', blurb: 'A4 programme factsheet: cover, key facts and investment options, global presence.',
+  tags: ['3+ pages', 'Visa programme'],
+  defaults: () => ({
+    country: 'Italy Investor Visa', coverTitleLine1: 'Italy', coverTitleLine2: 'Investor Visa',
+    subtitle: 'Golden Visa Programme', year: '2026',
+    supportText: "One of Europe's most accessible and fastest-processing investor visa programmes — offering a direct pathway to EU residency and, after 10 years, Italian citizenship.",
+    flag: 'it', coverImg: '', showOverview: true,
+    titles: { overview: 'Overview', benefits: 'Key Benefits', options: 'Investment Options', steps: 'Application Procedure' },
+    overview: "Italy offers one of Europe's most attractive Golden Visa programmes, granting permanent residency in as little as 1–2 months for one of the lowest minimum investments in the EU.\n\nApplicants receive pre-approval (Nulla Osta) before completing their investment, ensuring no funds are committed prior to confirmation. Investment options range from innovative startups to government bonds.\n\nAs the EU's 3rd largest economy, Italy provides stability, a Mediterranean lifestyle, and after 10 years of residence, eligibility to apply for citizenship and an EU passport.\n\nNo stay requirement: Golden Visa holders do not need to live in Italy continuously to maintain their residence permit, allowing full flexibility to travel.",
+    figures: [
+      { label: 'Min. Investment', value: '€250,000' }, { label: 'Processing Time', value: '1–2 Months' },
+      { label: 'Path to Citizenship', value: '10 Years' }, { label: 'Visa-Free Access', value: 'Schengen' }],
+    benefits: [
+      { icon: 'travel_explore', title: 'Visa-Free Travel', desc: 'Travel across the Schengen Area without a visa.' },
+      { icon: 'badge', title: 'Dual Citizenship', desc: 'Keep your original nationality alongside the new one.' },
+      { icon: 'family_restroom', title: 'Full Family Inclusion', desc: 'Spouse and dependent children up to age 18 included.' },
+      { icon: 'work', title: 'Right to Live & Work', desc: 'Live, work and study in the country from day one.' },
+      { icon: 'savings', title: 'Tax Incentives', desc: 'Attractive regimes for new residents on foreign income.' },
+      { icon: 'public', title: 'Path to EU Citizenship', desc: 'Eligible to apply for citizenship after the qualifying period.' }],
+    options: [
+      { title: 'Innovative Startup', amount: 'From €250k+', desc: 'Invest in a qualifying innovative company to support local growth.' },
+      { title: 'Listed or Unlisted Company', amount: 'From €500k+', desc: 'Support local business growth and job creation.' },
+      { title: 'Philanthropic Donation', amount: 'From €1M+', desc: 'Non-refundable contribution to a government-recognised initiative.' },
+      { title: 'Government Bonds', amount: 'From €2M+', desc: 'Stable, low-risk investment backed by the state.' }],
+    steps: [
+      { title: 'Intro Call', desc: 'Discuss goals and eligibility (1 day)' },
+      { title: 'Documents', desc: 'Collect and legalise the application file (2–4 weeks)' },
+      { title: 'Pre-approval', desc: 'Authorities review the application (4–6 weeks)' },
+      { title: 'Visa Approval', desc: 'Visa issued after the investment (2–4 weeks)' },
+      { title: 'Travel to Country', desc: 'Enter and complete local registration' },
+      { title: 'Visa Issued', desc: 'Receive residence permit and start your new life' }]
+  }),
+  lists: {
+    figures:  { min: 2, max: 6, one: 'Figure',  add: () => ({ label: 'New label', value: 'Value' }), f: [['label', 'Label'], ['value', 'Value']] },
+    benefits: { min: 0, max: 8, one: 'Benefit', add: () => ({ icon: 'star', title: 'New benefit', desc: 'Short description.' }), icon: true, f: [['title', 'Title'], ['desc', 'Description (max 2 lines)', 'area', 2]] },
+    options:  { min: 0, max: 8, one: 'Option',  add: () => ({ title: 'New option', amount: 'From €0', desc: 'Short description.' }), f: [['title', 'Title'], ['amount', 'Amount'], ['desc', 'Description', 'area', 2]] },
+    steps:    { min: 0, max: 8, one: 'Step',    add: () => ({ title: 'New step', desc: 'Short description.' }), f: [['title', 'Title'], ['desc', 'Description', 'area', 2]] }
+  },
+  form: [
+    { id: 'media', title: 'Media', open: true, fields: [['flag', 'Flag (ISO-2 code, msikma/country-flags)']], html: () => upload('coverImg', 'Cover image', 1800) },
+    { id: 'cover', title: 'Cover & title', open: true, fields: [['country', 'Page header label'], ['coverTitleLine1', 'Title line 1'], ['coverTitleLine2', 'Title line 2 (italic)'], ['subtitle', 'Subtitle'], ['supportText', 'Cover support text', 'area', 4], ['year', 'Year']] },
+    { id: 'figures', list: 'figures', title: 'Key figures' },
+    { id: 'overview', title: 'Overview', fields: [['titles.overview', 'Section title'], ['overview', 'Overview text', 'area', 14]], html: s => toggle('showOverview', 'Show overview section') },
+    { id: 'benefits', list: 'benefits', title: 'Key benefits', titlePath: 'titles.benefits' },
+    { id: 'options', list: 'options', title: 'Investment options', titlePath: 'titles.options' },
+    { id: 'steps', list: 'steps', title: 'Application procedure', titlePath: 'titles.steps' }
+  ],
+  flows: () => [
+    { label: 'Cover', fixed: factsheetCover },
+    { label: 'Content', sections: factsheetSections, page: factsheetPage },
+    { label: 'Back cover', fixed: () => pageBack() }
+  ]
+};
+function factsheetCover(s) {
+  return `<div data-doc-page style="${PG}box-shadow:0 8px 40px rgba(0,0,0,.45);background:var(--primary);">
+    <img src="${esc(s.coverImg || BR + '/factsheet/background-cover.png')}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;">
+    <div style="position:relative;z-index:2;padding:52px 60px 0;"><img src="${DS}/assets/logos/GCS-Symbol-White.svg" alt="" style="width:42px;height:42px;"></div>
+    <div style="position:relative;z-index:2;padding:0 60px 64px;margin-top:auto;">
+      <div style="font-family:'Yrsa',serif;font-weight:400;font-size:74px;color:var(--primary-foreground);line-height:.98;letter-spacing:-2px;margin-bottom:20px;">${F('coverTitleLine1', 'span')} ${F('coverTitleLine2', 'span', 'font-style:italic;color:var(--night-blue-50);')}</div>
+      ${F('subtitle', 'div', "font-family:'Heebo',sans-serif;font-size:28px;font-weight:300;color:var(--primary-foreground);line-height:1.3;margin-bottom:16px;")}
+      ${F('supportText', 'div', "font-family:'Heebo',sans-serif;font-size:16px;font-weight:300;color:rgba(255,255,255,.58);line-height:1.65;max-width:490px;")}
+    </div></div>`;
+}
+function factsheetSections(s) {
+  const { H, colsFor } = FS, showOv = s.showOverview, nb = s.benefits.length;
+  const bens = spanOdd => s.benefits.map((b, i) => {
+    const span = spanOdd && nb % 2 === 1 && i === nb - 1 ? 'grid-column:1/-1;' : '';
+    return `<div style="${span}background:var(--doc-surface);border:1px solid var(--doc-border-soft);padding:14px 16px;">${ico(b.icon, 'display:block;margin-bottom:10px;color:var(--accent);')}
+      ${F(`benefits.${i}.title`, 'div', "font-family:'Heebo',sans-serif;font-size:13px;font-weight:500;color:var(--doc-heading);margin-bottom:4px;line-height:1.3;")}
+      ${F(`benefits.${i}.desc`, 'div', "font-family:'Heebo',sans-serif;font-size:10.5px;font-weight:300;color:var(--doc-body);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;")}</div>`;
+  }).join('');
+  const ovBox = multi => `<div style="display:flex;flex-direction:column;"><div data-f="titles.overview" style="${H}">${esc(s.titles.overview)}</div>
+      <div style="flex:1;background:var(--doc-surface);border:1px solid var(--doc-border-soft);padding:18px;">
+        ${F('overview', 'div', `font-family:'Heebo',sans-serif;font-size:11px;font-weight:300;color:var(--doc-body);line-height:1.6;white-space:pre-line;${multi ? 'column-count:2;column-gap:24px;' : ''}`)}</div></div>`;
+  const benBox = (cols, spanOdd) => `<div><div data-f="titles.benefits" style="${H}">${esc(s.titles.benefits)}</div><div style="display:grid;grid-template-columns:repeat(${cols},1fr);gap:8px;">${bens(spanOdd)}</div></div>`;
+  const wideBen = benBox(Math.min(4, Math.max(nb, 1)), false);
+  const out = [];
+  if (showOv && nb) out.push({ html: `<div style="display:grid;grid-template-columns:4fr 6fr;gap:20px;align-items:stretch;">${ovBox(false)}${benBox(2, true)}</div>`, split: [ovBox(true), wideBen] });
+  else if (showOv) out.push({ html: ovBox(true) });
+  else if (nb) out.push({ html: wideBen });
+  if (s.options.length) {
+    const o = s.options.map((_, i) => `<div style="background:var(--doc-surface);border:1px solid var(--doc-border-soft);padding:12px 14px;">
+      <div style="font-family:'Yrsa',serif;font-size:20px;color:var(--accent);line-height:1;margin-bottom:6px;">0${i + 1}</div>
+      ${F(`options.${i}.title`, 'div', "font-family:'Heebo',sans-serif;font-size:12px;font-weight:500;color:var(--doc-heading);line-height:1.3;margin-bottom:2px;")}
+      ${F(`options.${i}.amount`, 'div', "font-family:'Heebo',sans-serif;font-size:13px;font-weight:700;color:var(--primary);margin-bottom:5px;")}
+      ${F(`options.${i}.desc`, 'div', "font-family:'Heebo',sans-serif;font-size:10px;font-weight:300;color:var(--doc-body);line-height:1.45;")}</div>`).join('');
+    out.push({ html: `<div><div data-f="titles.options" style="${H}">${esc(s.titles.options)}</div><div style="display:grid;grid-template-columns:repeat(${colsFor(s.options.length, 4)},1fr);gap:6px;">${o}</div></div>` });
+  }
+  if (s.steps.length) {
+    const st = s.steps.map((_, i) => `<div style="border-top:2px solid var(--primary);padding-top:8px;">
+      <div style="font-family:'Heebo',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;color:var(--accent);margin-bottom:3px;">${i + 1}</div>
+      ${F(`steps.${i}.title`, 'div', "font-family:'Heebo',sans-serif;font-size:11px;font-weight:500;color:var(--doc-heading);line-height:1.3;margin-bottom:3px;")}
+      ${F(`steps.${i}.desc`, 'div', "font-family:'Heebo',sans-serif;font-size:9.5px;font-weight:300;color:var(--doc-body);line-height:1.4;")}</div>`).join('');
+    out.push({ html: `<div><div data-f="titles.steps" style="${H}">${esc(s.titles.steps)}</div><div style="display:grid;grid-template-columns:repeat(${colsFor(s.steps.length, 6)},1fr);gap:${s.steps.length > 6 ? 14 : 10}px;">${st}</div></div>` });
+  }
+  return out;
+}
+function factsheetPage(s, i, secs) {
+  const first = i === 0;
+  const figs = s.figures.map((_, k) => `<div style="background:var(--primary);padding:16px 16px 14px;">
+      ${F(`figures.${k}.label`, 'div', "font-family:'Heebo',sans-serif;font-size:8px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;")}
+      ${F(`figures.${k}.value`, 'div', "font-family:'Yrsa',serif;font-weight:400;font-size:28px;color:var(--primary-foreground);line-height:1;letter-spacing:-.5px;")}</div>`).join('');
+  const fu = flagUrls(s.flag);
+  const flag = fu ? `<img src="${fu[0]}" alt="" data-fb="${fu[1]}" onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb=''}else{this.style.display='none'}" style="width:44px;height:44px;object-fit:cover;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,9,87,.12);display:block;flex-shrink:0;">` : '';
+  const head = first ? `
+    <div style="padding:28px 56px 4px;flex-shrink:0;display:flex;align-items:flex-start;gap:16px;">${flag}
+      <div>
+        <div style="font-family:'Yrsa',serif;font-weight:400;font-size:46px;line-height:1;letter-spacing:-1px;color:var(--primary);">${F('coverTitleLine1', 'span')} ${F('coverTitleLine2', 'span', 'font-style:italic;color:var(--night-blue-50);')}</div>
+        ${F('subtitle', 'div', "font-family:'Heebo',sans-serif;font-size:14px;font-weight:300;color:var(--doc-body);line-height:1.5;margin-top:8px;")}
+      </div></div>
+    <div style="padding:18px 56px 0;flex-shrink:0;"><div style="display:grid;grid-template-columns:repeat(${FS.figCols(s.figures.length)},1fr);gap:6px;">${figs}</div></div>` : '';
+  return `<div data-doc-page style="${PG}background:var(--card);box-shadow:0 4px 20px rgba(0,9,87,.1);">
+    ${pageHead(F('country', 'span', "font-family:'Heebo',sans-serif;font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--doc-muted);"), 56)}${head}
+    <div data-body style="padding:20px 56px 0;flex:1;display:flex;flex-direction:column;gap:18px;min-height:0;">${secs.map(x => x.html).join('')}</div>
+    <div style="border-top:1px solid var(--doc-border);padding:14px 56px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;margin-top:16px;">
+      <span style="font-family:'Heebo',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--primary);">GLOBALCITIZENSOLUTIONS.COM</span>
+      <span style="font-family:'Heebo',sans-serif;font-size:10px;color:var(--doc-muted);">${esc(s.coverTitleLine1 + ' ' + s.coverTitleLine2)} — Factsheet</span>
+    </div></div>`;
+}
+
+/* ═══════════ TEMPLATE 2 — Investment Migration Quarterly Report ═══════════ */
+const PAT = '/* pattern */';
+const quarterly = {
+  id: 'quarterly-report', ready: true, label: 'Quarterly Report', blurb: 'A4 quarterly report: cover, about + article list, market content with pull quote, global presence.',
+  tags: ['4+ pages', 'Institutional'],
+  defaults: () => ({
+    quarter: 'Q2 2026', year: '2026', coverImg: '',
+    coverTitle1: 'Investment Migration', coverTitle2: 'Quarterly Report',
+    aboutHeading: 'About this Report',
+    about: [
+      { text: 'The Global Citizen Solutions Investment Migration Quarterly Report is designed to distill and consolidate key developments across the residency and citizenship planning landscape.' },
+      { text: 'Tailored for our institutional audience, the report delivers timely, relevant and easily digestible insights to support strategic decision-making and stay ahead of industry trends.' },
+      { text: 'All analysis and insights are produced by Global Citizen Solutions industry experts and the Intelligence Unit Team.' }],
+    articles: [
+      { title: 'Why tax incentives are shaping HNWI migration in Europe', excerpt: 'As traditional visa pathways tighten, favorable tax regimes are becoming a key factor in how wealthy individuals choose where to live, structure wealth, and plan across borders.', url: '#', img: '' },
+      { title: 'From International Mobility to the Quality of Life', excerpt: 'Looking beyond visa-free access, this article shows how quality of life has become a central measure in evaluating the real value of a passport.', url: '#', img: '' },
+      { title: 'Crypto Secure Jurisdictions: Where Crypto Actually Works', excerpt: 'A comparative look at the jurisdictions where digital-asset investors can operate with greater legal certainty, stronger banking support, and more reliable long-term structuring options.', url: '#', img: '' },
+      { title: 'Policy Over Borders: How Restrictive Migration Laws Are Reshaping Citizenship Planning', excerpt: 'As governments tighten migration rules, investment migration is moving toward a more controlled model shaped by stricter screening, clearer rules, and greater accountability.', url: '#', img: '' },
+      { title: 'Global Atlas of Risk and Readiness Report 2026', excerpt: 'Our latest report examines which countries are best positioned to protect capital and sustain long-term competitiveness, using a comparative framework built around structural risk, institutional resilience, and future readiness.', url: '#', img: '' }],
+    contentLabel: '01 · Market Overview', contentHeading: 'Key Regulatory & Policy Developments',
+    sections: [
+      { heading: 'A Shift Toward Long-Term Mobility Planning', body: 'The final quarter of 2025 represented a period of consolidation and strategic evolution for the global investment migration industry, as changes in passport rankings, regulatory refinement in Europe, and closer international scrutiny encouraged a more sophisticated approach to global mobility. Rather than slowing demand, these developments reinforced a shift toward long-term, resilience-based mobility planning, where investors increasingly prioritize stability, legal certainty, and sustainable access over short-term convenience.' },
+      { heading: 'Passport Rankings and Global Rebalancing', body: 'The Global Citizen Solutions Global Passport Index 2025 illustrated this evolution clearly. While traditionally dominant passports such as that of the United States experienced a relative decline, European passports continued to strengthen, occupying nine of the top ten positions in the ranking. This rebalancing reflects not a loss of mobility overall, but a growing emphasis on quality-of-life indicators, economic opportunity, and investment potential.' },
+      { heading: 'Regulatory Developments Strengthening the Industry', body: "Across regions, regulatory and programmatic developments pointed to a more robust and credible industry. Portugal's nationality law reforms signaled a maturing European framework that aligns investor pathways with integration and social cohesion. In the Caribbean, enhanced due diligence standards have accelerated regional efforts to reinforce transparency and compliance. At the same time, St. Vincent and the Grenadines' announcement of a forthcoming Citizenship program underscores continued innovation and confidence in the model." }],
+    showQuote: true,
+    quote: '"Collectively, these trends position investment migration as a more regulated, resilient, and strategically relevant pillar of global mobility in the years ahead."',
+    quoteAuthor: 'Patricia Casaburi, CEO of Global Citizen Solutions', quoteImg: ''
+  }),
+  lists: {
+    about:    { min: 0, max: 6,  one: 'Paragraph', add: () => ({ text: 'New paragraph.' }), f: [['text', 'Text', 'area', 4]] },
+    articles: { min: 0, max: 10, one: 'Article',   add: () => ({ title: 'New article', excerpt: 'Short excerpt.', url: '#', img: '' }), f: [['title', 'Title'], ['excerpt', 'Excerpt', 'area', 3], ['url', 'Link URL'], ['img', 'Image', 'img', 600]] },
+    sections: { min: 0, max: 8,  one: 'Section',   add: () => ({ heading: 'New section', body: 'Section text.' }), f: [['heading', 'Heading'], ['body', 'Body', 'area', 6]] }
+  },
+  form: [
+    { id: 'cover', title: 'Cover', open: true, fields: [['quarter', 'Quarter label'], ['coverTitle1', 'Title line 1'], ['coverTitle2', 'Title line 2 (italic)'], ['year', 'Year (footer)']], html: () => upload('coverImg', 'Cover image', 1800) },
+    { id: 'aboutH', title: 'About page', fields: [['aboutHeading', 'Heading']] },
+    { id: 'about', list: 'about', title: 'About paragraphs' },
+    { id: 'articles', list: 'articles', title: 'Articles' },
+    { id: 'content', title: 'Content page', fields: [['contentLabel', 'Header label'], ['contentHeading', 'Page heading']] },
+    { id: 'sections', list: 'sections', title: 'Content sections' },
+    { id: 'quote', title: 'Pull quote', fields: [['quote', 'Quote', 'area', 4], ['quoteAuthor', 'Author']], html: () => toggle('showQuote', 'Show pull quote') + upload('quoteImg', 'Author photo (default: Patricia Casaburi)', 300) }
+  ],
+  flows: () => [
+    { label: 'Cover', fixed: quarterlyCover },
+    { label: 'About', sections: qAboutSections, page: (s, i, secs, no) => qPage(s, i, secs, no, F('aboutHeading', 'span', 'font-family:\'Heebo\',sans-serif;font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--doc-muted);'), '48px 64px') },
+    { label: 'Content', sections: qContentSections, page: (s, i, secs, no) => qPage(s, i, secs, no, F('contentLabel', 'span', 'font-family:\'Heebo\',sans-serif;font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--doc-muted);'), '52px 64px') },
+    { label: 'Back cover', fixed: () => pageBack() }
+  ]
+};
+function quarterlyCover(s) {
+  return `<div data-doc-page style="${PG}box-shadow:0 8px 40px rgba(0,0,0,.45);background:var(--doc-primary-deep);">
+    <img src="${esc(s.coverImg || BR + '/quarterly-report/background-cover.png')}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;">
+    <div style="position:relative;z-index:2;padding:48px 56px 0;"><img src="${DS}/assets/logos/GCS-Primary-White.svg" alt="" style="height:40px;width:auto;display:block;"></div>
+    <div style="position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 56px;">
+      ${F('quarter', 'div', "font-family:'Heebo',sans-serif;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--doc-accent-alt);margin-bottom:20px;")}
+      ${F('coverTitle1', 'div', "font-family:'Yrsa',serif;font-weight:400;font-size:62px;color:var(--primary-foreground);line-height:1.05;letter-spacing:-1.5px;")}
+      ${F('coverTitle2', 'div', "font-family:'Yrsa',serif;font-weight:400;font-style:italic;font-size:62px;color:var(--night-blue-50);line-height:1.05;letter-spacing:-1.5px;")}
+    </div>
+    <div style="position:relative;z-index:2;padding:0 56px 56px;"><div style="font-family:'Heebo',sans-serif;font-size:12px;font-weight:500;letter-spacing:.06em;color:var(--doc-label-on-dark);">GLOBALCITIZENSOLUTIONS.COM</div></div>
+  </div>`;
+}
+const qBody = "font-family:'Heebo',sans-serif;font-size:15px;font-weight:300;color:var(--doc-body);line-height:1.85;";
+function qAboutSections(s) {
+  const intro = `${F('aboutHeading', 'div', "font-family:'Yrsa',serif;font-weight:400;font-size:44px;color:var(--doc-heading);line-height:1.06;letter-spacing:-.8px;margin-bottom:28px;")}
+    ${s.about.map((_, i) => F(`about.${i}.text`, 'div', `${qBody}margin-bottom:14px;`)).join('')}<div style="height:30px;"></div>`;
+  const arts = s.articles.map((a, i) => {
+    const thumb = a.img
+      ? `<img src="${esc(a.img)}" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">`
+      : `<div style="width:100%;height:100%;background:repeating-linear-gradient(-45deg,var(--doc-pattern-1) 0,var(--doc-pattern-1) 6px,var(--doc-pattern-2) 6px,var(--doc-pattern-2) 12px);display:flex;align-items:center;justify-content:center;"><span style="font-family:monospace;font-size:9px;color:var(--doc-muted);text-align:center;padding:4px;">article image</span></div>`;
+    return { html: `<div style="display:flex;gap:24px;align-items:flex-start;padding:22px 0;border-top:1px solid var(--doc-border-light);/*LB*/">
+      <div style="width:120px;height:80px;flex-shrink:0;border-radius:3px;overflow:hidden;background:var(--doc-pattern-2);">${thumb}</div>
+      <div style="flex:1;min-width:0;"><a data-f="articles.${i}.title" href="${esc(a.url)}" style="font-family:'Yrsa',serif;font-size:19px;font-weight:400;color:var(--doc-badge);line-height:1.3;text-decoration:none;display:block;margin-bottom:6px;">${esc(a.title)}</a>
+        <div style="font-family:'Heebo',sans-serif;font-size:13px;font-weight:300;color:var(--doc-muted-alt);line-height:1.65;"><span data-f="articles.${i}.excerpt">${esc(a.excerpt)}</span> <span style="color:var(--doc-badge);">→</span></div></div></div>` };
+  });
+  return [{ html: intro }, ...arts];
+}
+function qContentSections(s) {
+  const head = F('contentHeading', 'div', "font-family:'Yrsa',serif;font-weight:400;font-size:44px;color:var(--doc-heading);line-height:1.06;letter-spacing:-.8px;margin-bottom:44px;");
+  const items = s.sections.map((_, i) => ({ html: `${F(`sections.${i}.heading`, 'div', "font-family:'Heebo',sans-serif;font-size:14px;font-weight:600;color:var(--doc-badge);line-height:1.4;margin-bottom:10px;")}
+    ${F(`sections.${i}.body`, 'div', `${qBody}margin-bottom:30px;`)}` }));
+  if (s.showQuote) {
+    const img = s.quoteImg || BR.replace('/templates/brochures', '') + '/assets/uploads/Patricia%20Casaburi.png';
+    items.push({ html: `<div style="display:flex;gap:28px;align-items:flex-start;padding:36px 0 0;margin-top:14px;border-top:1px solid var(--doc-border-light);">
+      <div style="width:72px;height:72px;border-radius:50%;flex-shrink:0;overflow:hidden;background:var(--doc-pattern-2);"><img src="${esc(img)}" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+      <div style="flex:1;">${F('quote', 'div', "font-family:'Yrsa',serif;font-weight:400;font-style:italic;font-size:22px;color:var(--doc-heading);line-height:1.5;margin-bottom:16px;")}
+        ${F('quoteAuthor', 'div', "font-family:'Heebo',sans-serif;font-size:11px;font-weight:700;color:var(--primary);letter-spacing:.04em;")}</div></div>` });
+  }
+  if (!items.length) items.push({ html: '' });
+  items[0] = { ...items[0], html: head + items[0].html };
+  return items;
+}
+function qPage(s, i, secs, no, labelHtml, pad) {
+  const list = secs.map((x, k) => (k === secs.length - 1 ? x.html.replace('/*LB*/', 'border-bottom:1px solid var(--doc-border-light);') : x.html));
+  return `<div data-doc-page style="${PG}background:var(--card);box-shadow:0 4px 20px rgba(0,9,87,.1);">
+    ${pageHead(labelHtml, 64)}
+    <div data-body style="padding:${pad};flex:1;display:flex;flex-direction:column;min-height:0;">${list.join('')}</div>
+    <div style="border-top:1px solid var(--doc-border);padding:14px 64px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;">
+      <span style="font-family:'Heebo',sans-serif;font-size:11px;color:var(--doc-subtle);">© ${esc(s.year)} Global Citizen Solutions — Confidential</span>
+      <span style="font-family:'Heebo',sans-serif;font-size:11px;color:var(--doc-subtle);letter-spacing:.08em;">${String(no).padStart(2, '0')}</span></div></div>`;
+}
+
+/* ═══════════ registry ═══════════ */
+const TEMPLATES = [factsheet, quarterly];
+const SOON = [
+  ['Case Study', 'Client case study with photo, content, CTA.'], ['GIU Calendar', 'Annual publication calendar and schedule.'],
+  ['GIU Corporate', 'Institutional report with tables and charts.'], ['Lead Magnet', 'Destination report with timeline and metrics.']];
+const byId = id => TEMPLATES.find(t => t.id === id);
+
+function loadState(t) {
+  const d = t.defaults();
+  try {
+    const sv = JSON.parse(localStorage.getItem(KEYP + t.id) || 'null');
+    if (sv && typeof sv === 'object') {
+      const s = { ...d, ...sv };
+      Object.keys(d).forEach(k => { if (d[k] && typeof d[k] === 'object' && !Array.isArray(d[k])) s[k] = { ...d[k], ...(sv[k] || {}) }; });
+      Object.keys(t.lists).forEach(k => { if (!Array.isArray(s[k])) s[k] = d[k]; });
+      return s;
+    }
+  } catch (e) {}
+  return d;
+}
+const hasDraft = t => { try { return !!localStorage.getItem(KEYP + t.id); } catch (e) { return false; } };
+
+/* ═══════════ pagination ═══════════ */
+const probe = document.createElement('div');
+probe.style.cssText = 'position:absolute;left:-10000px;top:0;width:794px;visibility:hidden;pointer-events:none;';
+document.body.appendChild(probe);
+const overflowOf = html => { probe.innerHTML = html; const b = probe.querySelector('[data-body]'); return b ? b.scrollHeight - b.clientHeight : 0; };
+// Each "flow" starts on a fresh page. While a page overflows, its last section moves to a continuation page.
+// A combined section that carries `split` is broken in two when it cannot fit alone.
+function paginate(flow) {
+  const pages = [flow.sections(S)], stuck = [];
+  for (let p = 0, guard = 0; p < pages.length && guard < 80; p++) {
+    for (;;) {
+      guard++;
+      const secs = pages[p];
+      if (overflowOf(flow.page(S, p, secs, 0)) <= 1) break;
+      if (secs.length > 1) { (pages[p + 1] = pages[p + 1] || []).unshift(secs.pop()); continue; }
+      if (secs.length === 1 && secs[0].split) { pages[p] = secs[0].split.map(h => ({ html: h })); continue; }
+      stuck.push(p); break;
+    }
+  }
+  probe.innerHTML = '';
+  return { pages, stuck };
+}
+function buildDoc(t, s, forThumb) {
+  const prev = S; S = s;
+  let no = 0, html = '', chips = [], stuck = [];
+  for (const f of t.flows()) {
+    if (f.fixed) { no++; html += f.fixed(S, no); chips.push(f.label); if (forThumb) break; }
+    else {
+      const r = paginate(f);
+      r.pages.forEach((secs, i) => { no++; html += f.page(S, i, secs, no); chips.push(f.label + (r.pages.length > 1 ? ' ' + (i + 1) : '')); });
+      r.stuck.forEach(i => stuck.push(`${f.label}${r.pages.length > 1 ? ' ' + (i + 1) : ''}`));
+    }
+  }
+  S = prev;
+  return { html, chips, stuck, total: no };
+}
+
+/* ═══════════ gallery ═══════════ */
+function renderGallery() {
+  $('#gReady').innerHTML = TEMPLATES.map(t => {
+    const st = loadState(t), thumb = t.flows()[0].fixed((S = st, st), 1);
+    S = null;
+    return `<a class="card" href="#${t.id}"><div class="th"><div class="sc"><div>${thumb}</div></div></div>
+      <div class="meta"><h3>${t.label}</h3><p>${t.blurb}</p><div class="tags">${t.tags.map(x => `<span class="tag">${x}</span>`).join('')}${hasDraft(t) ? '<span class="tag draft">Draft saved</span>' : ''}</div></div></a>`;
+  }).join('');
+  $('#gSoon').innerHTML = SOON.map(([n, d]) => `<div class="card soon"><div class="th"><div class="sc"><span>${n}</span></div></div><div class="meta"><h3>${n}</h3><p>${d}</p><div class="tags"><span class="tag">Coming soon</span></div></div></div>`).join('');
+}
+
+/* ═══════════ editor: sidebar form ═══════════ */
+const ui = { icon: null };
+let openG = new Set();
+let saveT, warned = false;
+const writeNow = () => { try { localStorage.setItem(KEYP + cur.id, JSON.stringify(S)); } catch (e) { if (!warned) { warned = true; alert('Browser storage is full (large images?). Your work is still on screen; export the PDF to keep it.'); } } };
+const save = () => { clearTimeout(saveT); saveT = setTimeout(() => { saveT = 0; writeNow(); }, 300); };
+// A pending debounced save must land before leaving the template (route change / tab close).
+const flush = () => { if (saveT && cur && S) { clearTimeout(saveT); saveT = 0; writeNow(); } };
+window.addEventListener('beforeunload', flush);
+
+function upload(path, lab, max) {
+  const v = getPath(path);
+  return `<div class="fl"><span>${lab}</span><div class="imgrow">${v ? `<img src="${esc(v)}" alt="">` : ''}<label class="sbtn">${v ? 'Replace…' : 'Upload…'}<input type="file" accept="image/*" hidden data-upload="${path}" data-max="${max || 1200}"></label>${v ? `<button class="sbtn" data-act="imgclr" data-p="${path}">Remove</button>` : ''}</div></div>`;
+}
+const toggle = (path, lab) => `<label class="chk"><input type="checkbox" data-toggle="${path}"${getPath(path) ? ' checked' : ''}> ${lab}</label>`;
+function fieldHtml(path, [k, lab, t, rows]) {
+  const p = path ? `${path}.${k}` : k;
+  if (t === 'img') return upload(p, lab, rows);
+  const v = esc(getPath(p));
+  return `<label class="fl" data-fl="${p}"><span>${lab}</span>${t === 'area'
+    ? `<textarea rows="${rows || 3}" data-k="${p}">${v}</textarea>` : `<input type="text" data-k="${p}" value="${v}">`}</label>`;
+}
+function listGroup(g) {
+  const key = g.list, L = cur.lists[key], arr = S[key], n = arr.length;
+  const items = arr.map((it, i) => {
+    const path = `${key}.${i}`, picker = ui.icon === path;
+    return `<div class="sub"><div class="subh"><b>${L.one.toUpperCase()} ${i + 1}</b>
+      <button class="ib" data-act="mv" data-l="${key}" data-i="${i}" data-d="-1" aria-label="Move up"${i === 0 ? ' disabled' : ''}>↑</button>
+      <button class="ib" data-act="mv" data-l="${key}" data-i="${i}" data-d="1" aria-label="Move down"${i === n - 1 ? ' disabled' : ''}>↓</button>
+      <button class="ib" data-act="del" data-l="${key}" data-i="${i}" aria-label="Remove"${n <= L.min ? ' disabled' : ''}>✕</button></div>
+      ${L.icon ? `<div class="iconbtn"><button class="sbtn" data-act="ipick" data-p="${path}">${picker ? 'Close icons' : 'Change icon'}</button>${ico(it.icon, 'width:20px;height:20px;fill:var(--primary);')}<span class="hint" style="margin:0">${label(it.icon)}</span></div>
+      ${picker ? `<div class="ipick">${ICON_NAMES.map(nm => `<button data-act="iset" data-p="${path}" data-n="${nm}" title="${label(nm)}" class="${nm === it.icon ? 'on' : ''}">${ico(nm, 'width:20px;height:20px;fill:var(--primary);')}</button>`).join('')}</div>` : ''}` : ''}
+      ${L.f.map(f => fieldHtml(path, f)).join('')}</div>`;
+  }).join('');
+  const lim = L.min ? `${L.min}–${L.max}` : `max ${L.max}`;
+  return `<details class="grp" data-g="${g.id}"><summary>${g.titlePath ? esc(getPath(g.titlePath)) : g.title}<span class="cnt">${n} · ${lim}</span></summary><div class="body">
+    ${g.titlePath ? fieldHtml('', [g.titlePath, 'Section title']) : ''}${items}
+    <button class="sbtn add" data-act="add" data-l="${key}"${n >= L.max ? ' disabled' : ''}>+ Add ${L.one.toLowerCase()}${n >= L.max ? ' (limit reached)' : ''}</button></div></details>`;
+}
+function renderSide() {
+  const side = $('#side'), sc = side.scrollTop;
+  side.innerHTML = cur.form.map(g => g.list ? listGroup(g)
+    : `<details class="grp" data-g="${g.id}"><summary>${g.title}</summary><div class="body">${g.html ? g.html(S) : ''}${(g.fields || []).map(f => fieldHtml('', f)).join('')}</div></details>`).join('');
+  $$('details.grp', side).forEach(d => { d.open = openG.has(d.dataset.g); });
+  side.scrollTop = sc;
+}
+document.addEventListener('toggle', e => { const d = e.target; if (d.matches && d.matches('details.grp') && cur) { d.open ? openG.add(d.dataset.g) : openG.delete(d.dataset.g); } }, true);
+
+/* ═══════════ editor: render ═══════════ */
+let zoomV = 85;
+function renderPages() {
+  const doc = buildDoc(cur, S);
+  $('#pages').innerHTML = doc.html;
+  $('#chips').innerHTML = doc.chips.map((c, i) => `<button class="chip" data-act="goto" data-n="${i}">${i + 1} · ${c}</button>`).join('');
+  const el = $('#fit'), cut = $$('#pages [style*="line-clamp"]').some(n => n.scrollHeight > n.clientHeight + 1);
+  const tot = ` · ${doc.total} pages`;
+  if (doc.stuck.length) { el.className = 'warn bad'; el.textContent = `${doc.stuck[0]}: one section is taller than a page — shorten text`; }
+  else if (cut) { el.className = 'warn bad'; el.textContent = 'A description is cut at 2 lines' + tot; }
+  else { el.className = 'warn'; el.textContent = 'A4 OK' + tot; }
+  markChip();
+}
+function markChip() {
+  const st = $('#stage'), top = st.getBoundingClientRect().top;
+  const pages = $$('#pages [data-doc-page]'); let on = 0;
+  pages.forEach((p, i) => { if (p.getBoundingClientRect().top - top < st.clientHeight * .4) on = i; });
+  $$('#chips .chip').forEach((c, i) => c.classList.toggle('on', i === on));
+}
+$('#stage').addEventListener('scroll', markChip, { passive: true });
+
+function setZoom(v) { zoomV = Math.max(40, Math.min(130, v)); $('#pages').style.zoom = zoomV / 100; $('#zoom').value = zoomV; markChip(); }
+const fitWidth = () => setZoom(Math.floor(($('#stage').clientWidth - 48) / 794 * 100));
+
+/* ═══════════ routing ═══════════ */
+function route() {
+  flush();
+  const t = byId(location.hash.slice(1));
+  if (!t) { cur = null; S = null; document.body.dataset.view = 'gallery'; document.title = 'Brochure Editor'; renderGallery(); return; }
+  cur = t; S = loadState(t); ui.icon = null; openG = new Set(t.form.filter(g => g.open).map(g => g.id));
+  document.body.dataset.view = 'editor'; document.title = t.label + ' — Brochure Editor';
+  $('#switch').innerHTML = TEMPLATES.map(x => `<option value="${x.id}"${x.id === t.id ? ' selected' : ''}>${x.label}</option>`).join('');
+  renderSide(); renderPages(); fitWidth();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => cur === t && renderPages());
+}
+window.addEventListener('hashchange', route);
+$('#switch').addEventListener('change', e => { location.hash = e.target.value; });
+$('a.btn[href="#"]').addEventListener('click', e => { e.preventDefault(); history.pushState(null, '', location.pathname); route(); });
+
+/* ═══════════ events ═══════════ */
+let rT;
+document.addEventListener('input', e => {
+  const k = e.target.dataset && e.target.dataset.k;
+  if (!k || !cur) return;
+  setPath(k, e.target.value);
+  clearTimeout(rT); rT = setTimeout(renderPages, 60);
+  save();
+});
+document.addEventListener('change', async e => {
+  if (!cur) return;
+  const t = e.target;
+  if (t.matches('[data-toggle]')) { setPath(t.dataset.toggle, t.checked); save(); renderPages(); return; }
+  if (t.matches('[data-upload]')) {
+    const f = t.files[0]; if (!f) return;
+    try { setPath(t.dataset.upload, await readImage(f, +t.dataset.max || 1200)); save(); renderSide(); renderPages(); }
+    catch (err) { alert('Could not read that image.'); }
+  }
+});
+function readImage(file, max) {
+  return new Promise((res, rej) => {
+    const fr = new FileReader(); fr.onerror = rej;
+    fr.onload = () => { const im = new Image(); im.onerror = rej; im.onload = () => {
+      const k = Math.min(1, max / Math.max(im.width, im.height)), c = document.createElement('canvas');
+      c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+      c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); res(c.toDataURL('image/jpeg', .85)); };
+      im.src = fr.result; };
+    fr.readAsDataURL(file);
+  });
+}
+// click text on the page -> open its group and focus the field
+$('#pages').addEventListener('click', e => {
+  const n = e.target.closest('[data-f]'); if (!n) return;
+  if (n.tagName === 'A') e.preventDefault();
+  const fl = $(`.fl[data-fl="${n.dataset.f}"]`); if (!fl) return;
+  const d = fl.closest('details'); if (d) { d.open = true; }
+  fl.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  const inp = $('input,textarea', fl); inp.focus({ preventScroll: true }); inp.select && inp.select();
+  fl.classList.add('flash'); setTimeout(() => fl.classList.remove('flash'), 900);
+});
+const changed = () => { save(); renderSide(); renderPages(); };
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-act]'); if (!a || !cur) return;
+  const d = a.dataset, act = d.act, L = cur.lists[d.l], i = +d.i;
+  if (act === 'print') window.print();
+  else if (act === 'fit') fitWidth();
+  else if (act === 'goto') { const p = $$('#pages [data-doc-page]')[+d.n]; if (p) p.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  else if (act === 'reset') { if (confirm(`Reset "${cur.label}" to its example content? Your edits will be lost.`)) { S = cur.defaults(); ui.icon = null; changed(); } }
+  else if (act === 'imgclr') { setPath(d.p, ''); changed(); }
+  else if (act === 'add') { if (S[d.l].length < L.max) { S[d.l].push(L.add()); openG.add(d.l); changed(); } }
+  else if (act === 'del') { if (S[d.l].length > L.min) { S[d.l].splice(i, 1); ui.icon = null; changed(); } }
+  else if (act === 'mv') { const j = i + +d.d, A = S[d.l]; if (j >= 0 && j < A.length) { [A[i], A[j]] = [A[j], A[i]]; ui.icon = null; changed(); } }
+  else if (act === 'ipick') { ui.icon = ui.icon === d.p ? null : d.p; renderSide(); }
+  else if (act === 'iset') { setPath(d.p + '.icon', d.n); ui.icon = null; changed(); }
+});
+$('#zoom').addEventListener('input', e => setZoom(+e.target.value));
+
+route();
+})();
+</script>
+</body>
+</html>
