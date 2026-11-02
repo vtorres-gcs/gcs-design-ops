@@ -8,7 +8,7 @@ Toda vez que algo for pedido no chat, invoque a skill `caveman` primeiro, antes 
 
 ## Design System
 
-Path: `/Volumes/GCS - DISK 1T/GCS 2026/Github/gcs-design-system` (`../gcs-design-system`). Subfolders: `tokens/`, `components/core/`, `templates/`, `assets/`.
+Path: `/Users/user/Desktop/GitHub/gcs/gcs-design-system` (`../gcs-design-system`). Subfolders: `tokens/`, `components/core/`, `templates/`, `assets/`.
 
 - Before building anything, read the DS `CLAUDE.md` (brand rules, repo map, component inventory).
 - Use project skills in `skills/` first (auto-loaded via `.claude/skills`); if none matches, search org-installed skills. For a build with no matching skill, use `/ops-create`.
